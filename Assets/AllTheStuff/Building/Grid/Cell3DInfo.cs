@@ -3,6 +3,7 @@
 public class Cell3DInfo
 {
     public bool Occupied;
+    public Grid3D Grid { get; }
     public int XIndex { get; }
     public int YIndex { get; }
     public int ZIndex { get; }

@@ -6,7 +6,8 @@ using Utility.Scripts;
 
 public class PlacementManager : Singleton<PlacementManager>
 {
-    [SerializeField] private Grid3D gameGrid;
+    [SerializeField] private GridProjector gridProjector;
+    [SerializeField] private YLevelManager yLevelManager;
 
     public bool Loaded { get; private set; }
     
@@ -18,20 +19,15 @@ public class PlacementManager : Singleton<PlacementManager>
 
         Loaded = true;
         
-        gameGrid.Project2DGrid(0);
-        
-        _builder = info.BuildStyle switch
-        {
-            EBuildStyle.Chain => new ChainBuilder(gameGrid, info),
-            EBuildStyle.Volume => new VolumeBuilder(gameGrid, info),
-            _ => _builder
-        };
+        gridProjector.Project2DGrid(yLevelManager.YLevel);
+
+        _builder = new Builder(gridProjector, info);
         _builder.OnBuildComplete += HandleBuildComplete;
         
-        SelectionManager.Instance.PrioritizeSelectables(gameGrid.ProjectedCells.Select(c => c.Selectable));
+        SelectionManager.Instance.PrioritizeSelectables(gridProjector.ProjectedCells.Select(c => c.Selectable));
     }
 
-    private void HandleBuildComplete(List<Cell3D> cells)
+    private void HandleBuildComplete()
     {
         Unload();
     }
@@ -39,8 +35,8 @@ public class PlacementManager : Singleton<PlacementManager>
     public void Unload()
     {
         Loaded = false;
-        SelectionManager.Instance.UnPrioritizeSelectables(gameGrid.ProjectedCells.Select(c => c.Selectable));
-        gameGrid.UnProject2DGrid();
+        SelectionManager.Instance.UnPrioritizeSelectables(gridProjector.ProjectedCells.Select(c => c.Selectable));
+        gridProjector.UnProject2DGrid();
         _builder.OnBuildComplete -= HandleBuildComplete;
         _builder.Destroy();
         _builder = null;

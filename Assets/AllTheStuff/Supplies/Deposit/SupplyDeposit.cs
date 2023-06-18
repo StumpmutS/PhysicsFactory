@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Utility.Scripts;
 using UnityEngine;
 
 public class SupplyDeposit : MonoBehaviour
@@ -9,7 +10,7 @@ public class SupplyDeposit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((1 << other.gameObject.layer & dolboidLayer) == 0) return;
+        if (!LayerHelper.LayerEqualsMask(other.gameObject.layer, dolboidLayer)) return;
         if (!other.gameObject.TryGetComponent<Dolboid>(out var dolboid)) return;
 
         SupplyManager.Instance.DepositDolboid(dolboid);

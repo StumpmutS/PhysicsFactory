@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Utility.Scripts;
 
 public class BuildingDisplay : MonoBehaviour
 {
-    [SerializeField] private List<BuildingInfo> buildings;
+    [SerializeField] private List<BuildingData> buildings;
     [SerializeField] private LayoutDisplay layoutDisplay;
     [SerializeField] private LabeledCallbackButton buttonPrefab;
 
@@ -17,22 +15,22 @@ public class BuildingDisplay : MonoBehaviour
         {
             var button = Instantiate(buttonPrefab);
             button.Init(HandleClicked, building);
-            button.SetText(building.Label);
+            button.SetText(building.Info.Label);
             layoutDisplay.Add(button.transform);
         }
     }
 
     private void HandleClicked(object obj)
     {
-        if (obj is not BuildingInfo info) return;
+        if (obj is not BuildingData data) return;
 
-        if (info == _activeInfo && PlacementManager.Instance.Loaded)
+        if (data.Info == _activeInfo && PlacementManager.Instance.Loaded)
         {
             _activeInfo = null;
             return;
         }
         
-        _activeInfo = info;
-        PlacementManager.Instance.Load(info);
+        _activeInfo = data.Info;
+        PlacementManager.Instance.Load(data.Info);
     }
 }

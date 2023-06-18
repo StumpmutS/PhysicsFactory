@@ -27,6 +27,11 @@ public class Cell3D : MonoBehaviour
         Info = info;
     }
 
+    public Vector3 GetPosition()
+    {
+        return new Vector3(Info.Center.x, Info.Center.y - (float) Info.Size / 2, Info.Center.z);
+    }
+
     private void HandleHovered()
     {
         OnHover.Invoke(this);

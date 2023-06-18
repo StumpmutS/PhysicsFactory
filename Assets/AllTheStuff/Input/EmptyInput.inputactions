@@ -1,0 +1,34 @@
+{
+    "name": "EmptyInput",
+    "maps": [
+        {
+            "name": "Empty",
+            "id": "b3d8f30c-2db3-436c-8f8f-f227dfe3aa75",
+            "actions": [
+                {
+                    "name": "EmptyVector2",
+                    "type": "Value",
+                    "id": "5b2e5d51-4e25-4946-927b-3139d97f99c1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3807a0cc-2868-493d-b7a9-c17cbf4a6183",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EmptyVector2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
