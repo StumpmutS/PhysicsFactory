@@ -21,8 +21,9 @@ public class YLevelManager : Singleton<YLevelManager>
 
     public UnityEvent<int> OnYLevelChanged;
 
-    public void ChangeLevels(float scrollValue)
+    public void ChangeLevels(Vector2 value)
     {
-        YLevel -= Mathf.RoundToInt(scrollValue / 120);
+        print($"v2 {value}");
+        YLevel += Mathf.RoundToInt(value.y);
     }
 }

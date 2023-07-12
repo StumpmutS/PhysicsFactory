@@ -16,10 +16,10 @@ public class Cell3D : MonoBehaviour
 
     private void Awake()
     {
-        selectable.OnHover += HandleHovered;
-        selectable.OnUnHover += HandleUnHovered;
-        selectable.OnSelect += HandleSelected;
-        selectable.OnDeselect += HandleDeselected;
+        selectable.OnHover.AddListener(HandleHovered);
+        selectable.OnHoverStop.AddListener(HandleUnHovered);
+        selectable.OnSelect.AddListener(HandleSelected);
+        selectable.OnDeselect.AddListener(HandleDeselected);
     }
 
     public void Init(Cell3DInfo info)
@@ -29,25 +29,25 @@ public class Cell3D : MonoBehaviour
 
     public Vector3 GetPosition()
     {
-        return new Vector3(Info.Center.x, Info.Center.y - (float) Info.Size / 2, Info.Center.z);
+        return new Vector3(Info.Center.x, Info.Center.y, Info.Center.z);
     }
 
-    private void HandleHovered()
+    private void HandleHovered(Selectable _)
     {
         OnHover.Invoke(this);
     }
 
-    private void HandleUnHovered()
+    private void HandleUnHovered(Selectable _)
     {
         OnUnHover.Invoke(this);
     }
 
-    private void HandleSelected()
+    private void HandleSelected(Selectable _)
     {
         OnSelect.Invoke(this);
     }
 
-    private void HandleDeselected()
+    private void HandleDeselected(Selectable _)
     {
         OnDeselect.Invoke(this);
     }

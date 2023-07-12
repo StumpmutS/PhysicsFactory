@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 using Utility.Scripts;
 
@@ -18,13 +16,9 @@ public class PlacementManager : Singleton<PlacementManager>
         if (_builder != null) Unload();
 
         Loaded = true;
-        
-        gridProjector.Project2DGrid(yLevelManager.YLevel);
-
+        ProjectGrid();
         _builder = new Builder(gridProjector, info);
         _builder.OnBuildComplete += HandleBuildComplete;
-        
-        SelectionManager.Instance.PrioritizeSelectables(gridProjector.ProjectedCells.Select(c => c.Selectable));
     }
 
     private void HandleBuildComplete()
@@ -34,11 +28,33 @@ public class PlacementManager : Singleton<PlacementManager>
 
     public void Unload()
     {
+        if (!Loaded) return;
+    
         Loaded = false;
-        SelectionManager.Instance.UnPrioritizeSelectables(gridProjector.ProjectedCells.Select(c => c.Selectable));
-        gridProjector.UnProject2DGrid();
+        UnProjectGrid();
         _builder.OnBuildComplete -= HandleBuildComplete;
         _builder.Destroy();
         _builder = null;
+    }
+
+    private void ProjectGrid()
+    {
+        gridProjector.Project2DGrid(yLevelManager.YLevel);
+        SelectionManager.Instance.PrioritizeSelectables(
+            gridProjector.Cells.SelectMany(l => l).Select(c => c.Selectable));
+    }
+
+    private void UnProjectGrid()
+    {
+        SelectionManager.Instance.UnPrioritizeSelectables(gridProjector.Cells.SelectMany(l => l)
+            .Select(c => c.Selectable));
+        gridProjector.UnProject2DGrid();
+    }
+
+    public void HandleYLevelChanged(int value)
+    {
+        if (!Loaded) return;
+        
+        gridProjector.Project2DGrid(value);
     }
 }

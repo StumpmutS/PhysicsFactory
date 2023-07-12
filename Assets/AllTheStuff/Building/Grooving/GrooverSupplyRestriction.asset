@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e953cf7eee44733baeb592a033e788e, type: 3}
   m_Name: GrooverSupplyRestriction
   m_EditorClassIdentifier: 
-  supplyRequired: 10
+  supplyRequired: 1

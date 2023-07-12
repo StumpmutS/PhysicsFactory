@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -11,9 +12,9 @@ public class SupplyDisplay : MonoBehaviour
         HandleSupplyChanged(SupplyManager.Instance.CurrentSupplyCount);
     }
 
-    private void HandleSupplyChanged(int amount)
+    private void HandleSupplyChanged(float amount)
     {
-        text.text = $"Supply: ${amount}";
+        text.text = $"Supply: ${amount:F2}";
     }
 
     private void OnDestroy()

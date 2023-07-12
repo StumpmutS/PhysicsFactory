@@ -2,14 +2,21 @@
 
 public class StickRigidbodyAffector : RigidbodyAffector
 {
-    public override void AffectRigidbody(Rigidbody rigidbody)
+    [SerializeField] private float energyToForceMultiplier;
+    
+    public override void AffectRigidbody(Collision collision)
     {
-        rigidbody.velocity = Vector3.zero;
-        rigidbody.angularVelocity = Vector3.zero;
+        GenerateInwardForce(collision);
     }
 
-    public override void UnaffectRigidbody(Rigidbody rigidbody)
+    public override void ContinuouslyAffectRigidbody(Collision collision)
     {
-        rigidbody.constraints = RigidbodyConstraints.None;
+        GenerateInwardForce(collision);
+    }
+
+    private void GenerateInwardForce(Collision collision)
+    {
+        var contact = collision.GetContact(0);
+        collision.rigidbody.AddForceAtPosition(contact.normal * energyToForceMultiplier, contact.point);
     }
 }

@@ -31,30 +31,30 @@ public class RigidBodyAffectorContainer : MonoBehaviour
         _affectors[affector.GetType()] = affector;
     }
 
-    public void ActivateAffectors(Rigidbody rigidbody)
+    public void ActivateAffectors(Collision collision)
     {
         foreach (var affector in _affectors.Values)
         {
             if (!affector.isActiveAndEnabled) continue;
-            affector.AffectRigidbody(rigidbody);
+            affector.AffectRigidbody(collision);
         }
     }
 
-    public void ContinuouslyActivateAffectors(Rigidbody rigidbody)
+    public void ContinuouslyActivateAffectors(Collision collision)
     {
         foreach (var affector in _affectors.Values)
         {
             if (!affector.isActiveAndEnabled) continue;
-            affector.ContinuouslyAffectRigidbody(rigidbody);
+            affector.ContinuouslyAffectRigidbody(collision);
         }
     }
 
-    public void DeactivateAffectors(Rigidbody rigidbody)
+    public void DeactivateAffectors(Collision collision)
     {
         foreach (var affector in _affectors.Values)
         {
             if (!affector.isActiveAndEnabled) continue;
-            affector.UnaffectRigidbody(rigidbody);
+            affector.UnaffectRigidbody(collision);
         }
     }
     
@@ -62,20 +62,20 @@ public class RigidBodyAffectorContainer : MonoBehaviour
     {
         if (collisionInfo.rigidbody == null) return;
 
-        ActivateAffectors(collisionInfo.rigidbody);
+        ActivateAffectors(collisionInfo);
     }
 
     private void OnCollisionStay(Collision collisionInfo)
     {
         if (collisionInfo.rigidbody == null) return;
 
-        ContinuouslyActivateAffectors(collisionInfo.rigidbody);
+        ContinuouslyActivateAffectors(collisionInfo);
     }
 
     private void OnCollisionExit(Collision collisionInfo)
     {
         if (collisionInfo.rigidbody == null) return;
 
-        DeactivateAffectors(collisionInfo.rigidbody);
+        DeactivateAffectors(collisionInfo);
     }
 }

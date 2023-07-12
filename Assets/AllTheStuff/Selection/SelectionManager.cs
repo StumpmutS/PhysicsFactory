@@ -10,8 +10,9 @@ public class SelectionManager : Singleton<SelectionManager>
     
     private Selectable _hovered;
     private Selectable _selected;
+    private HashSet<Selectable> _engaged = new();
     private HashSet<Selectable> _prioritizedSelectables = new();
-
+    
     public void PrioritizeSelectables(IEnumerable<Selectable> selectables)
     {
         _prioritizedSelectables = selectables.ToHashSet();
@@ -28,11 +29,6 @@ public class SelectionManager : Singleton<SelectionManager>
     private void Update()
     {
         UpdateHovered();
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (_selected != null) _selected.Deselect();
-            if (_hovered != null) _hovered.Select();
-        }
     }
 
     private void UpdateHovered()
@@ -54,12 +50,43 @@ public class SelectionManager : Singleton<SelectionManager>
         {
             SetHovered(firstSelectable);
         }
+        else SetHovered(null);
     }
 
     private void SetHovered(Selectable selectable)
     {
-        if (_hovered != null) _hovered.UnHover();
-        selectable.Hover();
+        if (_hovered != null) _hovered.StopHover();
         _hovered = selectable;
+        if (selectable == null) return;
+        selectable.Hover();
+    }
+
+    public void SelectHovered()
+    {
+        if (_selected != null) _selected.Deselect();
+        if (_hovered != null) _hovered.Select();
+        _selected = _hovered;
+    }
+
+    public void EngageHovered()
+    {
+        if (_hovered != null)
+        {
+            _hovered.Engage();
+            _engaged.Add(_hovered);
+            return;
+        }
+        
+        DisengageAll();
+    }
+
+    public void DisengageAll()
+    {
+        foreach (var selectable in _engaged)
+        {
+            selectable.Disengage();
+        }
+        
+        _engaged.Clear();
     }
 }

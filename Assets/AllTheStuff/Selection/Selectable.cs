@@ -1,30 +1,65 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Selectable : MonoBehaviour
 {
-    public event Action OnHover = delegate { };
-    public event Action OnUnHover = delegate { };
-    public event Action OnSelect = delegate { };
-    public event Action OnDeselect = delegate { };
+    [SerializeField] private GameObject mainObject;
+    public GameObject MainObject => mainObject;
+
+    public bool Hovered { get; private set; }
+    public bool Selected { get; private set; }
+    public bool Engaged { get; private set; }
+    
+    public UnityEvent<Selectable> OnHover;
+    public UnityEvent<Selectable> OnHoverStop;
+    public UnityEvent<Selectable> OnSelect;
+    public UnityEvent<Selectable> OnDeselect;
+    public UnityEvent<Selectable> OnEngage;
+    public UnityEvent<Selectable> OnDisengage;
+
+    private void Awake()
+    {
+        SelectionEvents.Instance.RegisterSelectable(this);
+    }
 
     public void Hover()
     {
-        OnHover.Invoke();
+        Hovered = true;
+        OnHover.Invoke(this);
     }
 
-    public void UnHover()
+    public void StopHover()
     {
-        OnUnHover.Invoke();
+        Hovered = false;
+        OnHoverStop.Invoke(this);
     }
     
     public void Select()
     {
-        OnSelect.Invoke();
+        Selected = true;
+        OnSelect.Invoke(this);
     }
 
     public void Deselect()
     {
-        OnDeselect.Invoke();
+        Selected = false;
+        OnDeselect.Invoke(this);
+    }
+    
+    public void Engage()
+    {
+        Engaged = true;
+        OnEngage.Invoke(this);
+    }
+
+    public void Disengage()
+    {
+        Engaged = false;
+        OnDisengage.Invoke(this);
+    }
+
+    private void OnDestroy()
+    {
+        SelectionEvents.Instance.DeregisterSelectable(this);
     }
 }

@@ -11,8 +11,8 @@ public class BuildingInfo
     public List<BuildingRestriction> Restrictions => restrictions;
     [SerializeField] private BuildingPreview previewPrefab;
     public BuildingPreview PreviewPrefab => previewPrefab;
-    [SerializeField] private Vector3 dimensions;
-    public Vector3 Dimensions => dimensions;
     [SerializeField] private int anchorCellAmount;
     public int AnchorCellAmount => anchorCellAmount;
+    [SerializeField] private bool restrictToAxes;
+    public bool RestrictToAxes => restrictToAxes;
 }

@@ -19,7 +19,6 @@ public class CameraTarget : MonoBehaviour
 
     public void ChangeLevels(int level)
     {
-        print(level);
         transform.position = new Vector3(transform.position.x, level + levelOffset, transform.position.z);
     }
 

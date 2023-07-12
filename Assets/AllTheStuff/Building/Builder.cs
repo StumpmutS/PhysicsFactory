@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using Utility.Scripts;
 using Object = UnityEngine.Object;
 
 public class Builder
 {
     private GridProjector _gridProjector;
-    protected BuildingInfo _info;
-    protected BuildingPreview _mainPreview;
-    protected List<Cell3D> _selectedCells = new();
+    private BuildingInfo _info;
+    private BuildingPreview _mainPreview;
+    private Stack<Vector3> _selectedLocations = new();
+    private Stack<Vector3> _restrictedAxes = new();
 
     public Builder(GridProjector gridProjector, BuildingInfo info)
     {
@@ -15,50 +19,53 @@ public class Builder
         _info = info;
         _mainPreview = Object.Instantiate(_info.PreviewPrefab);
         _mainPreview.gameObject.SetActive(false);
+        _restrictedAxes.Push(Vector3.zero);
         
         _gridProjector.OnCellHovered += HandleCellHovered;
-        _gridProjector.OnCellUnHovered += HandleCellUnHovered;
         _gridProjector.OnCellSelected += HandleCellSelected;
-        _gridProjector.OnCellDeselected += HandleCellDeselected;
+        InputTranslationManager.Instance.OnResetDown.AddListener(HandleReset);
     }
 
     public event Action OnBuildComplete = delegate { };
 
-    private void HandleCellHovered(Cell3D cell) 
-    { 
-        var destination = cell.GetPosition();
-        _mainPreview.gameObject.SetActive(true);
-        UpdateRestrictions();
-        
-        if (_selectedCells.Count < 1)
+    private void HandleCellHovered(Cell3D cell)
+    {
+        var position = RoundAxes(cell.GetPosition(), out _);
+        var hoveredLocations = new List<Vector3>(_selectedLocations.Reverse())
         {
-            _mainPreview.transform.position = destination;
-            return;
-        }
-        
-        _mainPreview.StretchTo(_selectedCells[0].GetPosition(), destination, cell.Info.Size);
+            position
+        };
+        _mainPreview.gameObject.SetActive(true);
+        _mainPreview.StretchTo(hoveredLocations, cell.Info.Size);
+        UpdateRestrictions();
     }
-    
-    private void HandleCellUnHovered(Cell3D cell) { }
 
     private void HandleCellSelected(Cell3D cell)
     {
-        _selectedCells.Add(cell);
+        var position = RoundAxes(cell.GetPosition(), out var newRestriction);
+        _selectedLocations.Push(position);
+        _restrictedAxes.Push(newRestriction);
+        UpdateRestrictions();
         
-        if (_selectedCells.Count < _info.AnchorCellAmount)
-        {
-            UpdateRestrictions();
-            return;
-        }
+        if (_selectedLocations.Count >= _info.AnchorCellAmount) CompleteBuild();
+    }
 
-        if (RestrictionHelper.CheckRestrictions(_info.Restrictions, GenerateRestrictionInfo()))
-        {
-            CompleteBuild();
-        }
+    private void HandleReset()
+    {
+        if (_selectedLocations.Count > 0) _selectedLocations.Pop();
+        if (_restrictedAxes.Count > 1) _restrictedAxes.Pop();
+    }
+
+    private Vector3 RoundAxes(Vector3 pos, out Vector3 newRestriction)
+    {
+        newRestriction = default;
+        if (!_info.RestrictToAxes || _selectedLocations.Count < 1) return pos;
+        
+        var restrictedDirection = (pos - _selectedLocations.Peek()).RoundToAxis(_restrictedAxes.Peek(), Vector3.up);
+        newRestriction = _restrictedAxes.Peek() + restrictedDirection;
+        return _selectedLocations.Peek() + restrictedDirection;
     }
     
-    private void HandleCellDeselected(Cell3D cell) { }
-
     private void UpdateRestrictions()
     {
         if (RestrictionHelper.CheckRestrictions(_info.Restrictions, GenerateRestrictionInfo()))
@@ -70,18 +77,13 @@ public class Builder
         _mainPreview.Deny();
     }
 
-    private BuildingRestrictionInfo GenerateRestrictionInfo()
-    {
-        return new BuildingRestrictionInfo(_mainPreview);
-    }
+    private BuildingRestrictionInfo GenerateRestrictionInfo() => new (_mainPreview);
 
     public void Destroy()
     {
         _gridProjector.OnCellHovered -= HandleCellHovered;
-        _gridProjector.OnCellUnHovered -= HandleCellUnHovered;
         _gridProjector.OnCellSelected -= HandleCellSelected;
-        _gridProjector.OnCellDeselected -= HandleCellDeselected;
-        
+        InputTranslationManager.Instance.OnResetDown.RemoveListener(HandleReset);
         Object.Destroy(_mainPreview.gameObject);
     }
 
