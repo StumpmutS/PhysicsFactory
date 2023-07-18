@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -6,6 +7,9 @@ using Utility.Scripts;
 
 public class SignedIntegerSelector : MonoBehaviour
 {
+    [SerializeField] private TMP_Text text;
+    [SerializeField] private Toggle toggle;
+    
     private SignedInt _signedInt;
     private SignedInt SignedInt
     {
@@ -25,6 +29,7 @@ public class SignedIntegerSelector : MonoBehaviour
     {
         _callbackObj = callbackObj;
         SignedInt = value;
+        UpdateVisuals(value);
     }
 
     public void HandleAdd()
@@ -46,5 +51,12 @@ public class SignedIntegerSelector : MonoBehaviour
     private void HandleChange()
     {
         OnChanged.Invoke(_callbackObj, SignedInt);
+    }
+
+    public void UpdateVisuals(SignedInt value)
+    {
+        _signedInt = value;
+        text.text = value.Value.ToString();
+        toggle.isOn = value.Positive;
     }
 }

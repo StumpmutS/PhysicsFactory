@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4803528034805517438}
   - component: {fileID: 6837308768476888878}
   - component: {fileID: 1812559561287694016}
+  - component: {fileID: 8802721029308301832}
   - component: {fileID: 6813526913334591816}
   m_Layer: 6
   m_Name: Selectable
@@ -79,6 +80,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectable: {fileID: 6837308768476888878}
   outline: {fileID: 6813526913334591816}
+  OnOutline:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRemoveOutline:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8802721029308301832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377348039135719189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f3c91eb33df9142bc712f0786f9eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors: {fileID: 11400000, guid: 77e83606d77456441a02154c36b4bf33, type: 2}
+  outline: {fileID: 6813526913334591816}
+  outlineController: {fileID: 1812559561287694016}
+  selectable: {fileID: 6837308768476888878}
 --- !u!114 &6813526913334591816
 MonoBehaviour:
   m_ObjectHideFlags: 0

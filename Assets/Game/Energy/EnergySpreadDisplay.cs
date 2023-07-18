@@ -2,13 +2,14 @@
 using UnityEngine;
 using Utility.Scripts;
 
-public class EnergySpreadDisplay : MonoBehaviour
+public class EnergySpreadDisplay : Singleton<EnergySpreadDisplay>
 {
     [SerializeField] private LayoutDisplay layout;
-    [SerializeField] private SignedIntegerSelector signedIntegerSelectorPrefab;
+    [SerializeField] private SignedFloatSelector signedIntegerSelectorPrefab;
 
     private EnergySpreadController _controller;
-    
+    private Dictionary<IEnergySpender, SignedFloatSelector> _selectors = new();
+
     private void Start()
     {
         SelectionEvents.Instance.OnSelected.AddListener(HandleSelection);
@@ -26,13 +27,16 @@ public class EnergySpreadDisplay : MonoBehaviour
     {
         _controller = controller;
         selectable.OnDeselect.AddListener(RemoveDisplay);
-        foreach (var kvp in controller.Spenders.Integers)
+        controller.Spenders.OnFloatsChanged += HandleSpendersChanged;
+        foreach (var kvp in controller.Spenders.Floats)
         {
-            layout.Add(CreateIntegerSelector(kvp.Key, kvp.Value).transform);
+            var selector = CreateFloatSelector(kvp.Key, kvp.Value);
+            _selectors[kvp.Key] = selector;
+            layout.Add(selector.transform);
         }
     }
 
-    private SignedIntegerSelector CreateIntegerSelector(object callbackObj, SignedInt value)
+    private SignedFloatSelector CreateFloatSelector(object callbackObj, SignedFloat value)
     {
         var selector = Instantiate(signedIntegerSelectorPrefab);
         selector.Init(value, callbackObj);
@@ -40,10 +44,18 @@ public class EnergySpreadDisplay : MonoBehaviour
         return selector;
     }
 
-    private void HandleSelectorChanged(object callbackObj, SignedInt value)
+    private void HandleSpendersChanged()
+    {
+        foreach (var kvp in _controller.Spenders.Floats)
+        {
+            _selectors[kvp.Key].UpdateVisuals(kvp.Value);
+        }
+    }
+
+    private void HandleSelectorChanged(object callbackObj, SignedFloat value)
     {
         if (callbackObj is not IEnergySpender spender) return;
-        _controller.Spenders.SetValue(spender, value.AsInt());
+        _controller.Spenders.SetValue(spender, value);
     }
 
     private void RemoveDisplay(Selectable selectable)

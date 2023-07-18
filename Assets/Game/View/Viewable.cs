@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,6 +7,8 @@ public class Viewable : MonoBehaviour
 {
     [SerializeField] private EView view;
     public EView View => view;
+    
+    public bool Active { get; private set; }
 
     public UnityEvent OnActivation;
     public UnityEvent OnDeactivation;
@@ -19,11 +20,15 @@ public class Viewable : MonoBehaviour
 
     public void Activate()
     {
+        if (Active) return;
+        Active = true;
         OnActivation.Invoke();
     }
 
     public void Deactivate()
     {
+        if (!Active) return;
+        Active = false;
         OnDeactivation.Invoke();
     }
 

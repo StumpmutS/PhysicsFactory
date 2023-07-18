@@ -5,8 +5,10 @@ using UnityEngine.Events;
 
 public class EnergyContainer : MonoBehaviour
 {
-    private int _totalCharge;
-    public int TotalCharge
+    [SerializeField] private List<EnergyConverter> converters;
+
+    private float _totalCharge;
+    public float TotalCharge
     {
         get => _totalCharge;
         private set
@@ -18,19 +20,24 @@ public class EnergyContainer : MonoBehaviour
         }
     }
     
-    private HashSet<EnergyCurrent> _currents = new();
+    public HashSet<EnergyCurrent> Currents { get; private set; } = new();
 
-    public UnityEvent<int> OnChargeChanged;
+    public UnityEvent<float> OnChargeChanged;
 
     public void AddCurrent(EnergyCurrent current)
     {
-        _currents.Add(current);
+        Currents.Add(current);
         current.OnChargeChanged += UpdateTotalCharge;
         UpdateTotalCharge();
     }
 
     private void UpdateTotalCharge()
     {
-        TotalCharge = _currents.Sum(c => c.Charge);
+        var rawCharge = Currents.Sum(c => c.Charge);
+        foreach (var converter in converters)
+        {
+            rawCharge = converter.ConvertEnergy(rawCharge);
+        }
+        TotalCharge = rawCharge;
     }
 }

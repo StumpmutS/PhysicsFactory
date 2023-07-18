@@ -6,10 +6,10 @@ public class SelectionEvents : Singleton<SelectionEvents>
 {
     private HashSet<Selectable> _selectables = new();
 
-    public UnityEvent<Selectable> OnSelected;
     public UnityEvent<Selectable> OnHovered;
-    public UnityEvent<Selectable> OnDeselected;
     public UnityEvent<Selectable> OnHoverStopped;
+    public UnityEvent<Selectable> OnSelected;
+    public UnityEvent<Selectable> OnDeselected;
     public UnityEvent<Selectable> OnEngaged;
     public UnityEvent<Selectable> OnDisengaged;
 
@@ -27,10 +27,10 @@ public class SelectionEvents : Singleton<SelectionEvents>
     public void DeregisterSelectable(Selectable selectable)
     {
         _selectables.Remove(selectable);
-        selectable.OnHover.AddListener(HandleHover);
-        selectable.OnHoverStop.AddListener(HandleHoverStop);
-        selectable.OnSelect.AddListener(HandleSelection);
-        selectable.OnDeselect.AddListener(HandleDeselection);
+        selectable.OnHover.RemoveListener(HandleHover);
+        selectable.OnHoverStop.RemoveListener(HandleHoverStop);
+        selectable.OnSelect.RemoveListener(HandleSelection);
+        selectable.OnDeselect.RemoveListener(HandleDeselection);
         selectable.OnEngage.RemoveListener(HandleEngagement);
         selectable.OnDisengage.RemoveListener(HandleDisengagement);
     }

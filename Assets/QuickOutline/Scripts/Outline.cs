@@ -53,6 +53,9 @@ public class Outline : MonoBehaviour {
     public List<Vector3> data;
   }
 
+  [SerializeField] 
+  private GameObject parent;
+
   [SerializeField]
   private Mode outlineMode;
 
@@ -83,7 +86,7 @@ public class Outline : MonoBehaviour {
   void Awake() {
 
     // Cache renderers
-    renderers = GetComponentsInChildren<Renderer>();
+    renderers = parent.GetComponentsInChildren<Renderer>();
 
     // Instantiate outline materials
     outlineMaskMaterial = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));
@@ -162,7 +165,7 @@ public class Outline : MonoBehaviour {
     // Generate smooth normals for each mesh
     var bakedMeshes = new HashSet<Mesh>();
 
-    foreach (var meshFilter in GetComponentsInChildren<MeshFilter>()) {
+    foreach (var meshFilter in parent.GetComponentsInChildren<MeshFilter>()) {
 
       // Skip duplicates
       if (!bakedMeshes.Add(meshFilter.sharedMesh)) {
@@ -180,7 +183,7 @@ public class Outline : MonoBehaviour {
   void LoadSmoothNormals() {
 
     // Retrieve or generate smooth normals
-    foreach (var meshFilter in GetComponentsInChildren<MeshFilter>()) {
+    foreach (var meshFilter in parent.GetComponentsInChildren<MeshFilter>()) {
 
       // Skip if smooth normals have already been adopted
       if (!registeredMeshes.Add(meshFilter.sharedMesh)) {
@@ -203,7 +206,7 @@ public class Outline : MonoBehaviour {
     }
 
     // Clear UV3 on skinned mesh renderers
-    foreach (var skinnedMeshRenderer in GetComponentsInChildren<SkinnedMeshRenderer>()) {
+    foreach (var skinnedMeshRenderer in parent.GetComponentsInChildren<SkinnedMeshRenderer>()) {
 
       // Skip if UV3 has already been reset
       if (!registeredMeshes.Add(skinnedMeshRenderer.sharedMesh)) {

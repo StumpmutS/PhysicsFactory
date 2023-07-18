@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class EnergyGenerator : MonoBehaviour
 {
-    [SerializeField] private int energyGenerated;
+    [SerializeField] private float energyGenerated;
 
-    private HashSet<EnergyCurrent> _currents = new();
+    public HashSet<EnergyCurrent> Currents { get; private set; } = new();
 
     public void RequestEnergy(EnergyCurrent current)
     {
-        _currents.Add(current);
+        Currents.Add(current);
         UpdateCurrentCharges();
     }
 
     private void UpdateCurrentCharges()
     {
-        foreach (var current in _currents)
+        foreach (var current in Currents)
         {
-            current.SetCharge(Mathf.FloorToInt((float)energyGenerated / _currents.Count));
+            current.SetCharge(energyGenerated / Currents.Count);
         }
     }
 }

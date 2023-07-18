@@ -1,22 +1,23 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class OutlineColorController : MonoBehaviour
 {
     [SerializeField] private ColorInfo colors;
     [SerializeField] private Outline outline;
-    [SerializeField] private OutlineController outlineController;
     [SerializeField] private Selectable selectable;
 
     private void Awake()
     {
-        outlineController.OnOutline.AddListener(HandleOutline);
+        selectable.OnHover.AddListener(HandleOutline);
+        selectable.OnHoverStop.AddListener(HandleOutline);
+        selectable.OnSelect.AddListener(HandleOutline);
+        selectable.OnDeselect.AddListener(HandleOutline);
+        selectable.OnEngage.AddListener(HandleOutline);
+        selectable.OnDisengage.AddListener(HandleOutline);
     }
-
-    private void HandleOutline()
+    
+    private void HandleOutline(Selectable _)
     {
         SetColor(DetermineColor());
     }
@@ -30,5 +31,15 @@ public class OutlineColorController : MonoBehaviour
     {
         if (selectable.Selected && selectable.Engaged) return colors.Colors[2];
         return selectable.Engaged ? colors.Colors[1] : colors.Colors[0];
+    }
+
+    private void OnDestroy()
+    {
+        if (selectable != null) selectable.OnHover.AddListener(HandleOutline);
+        if (selectable != null) selectable.OnHoverStop.AddListener(HandleOutline);
+        if (selectable != null) selectable.OnSelect.AddListener(HandleOutline);
+        if (selectable != null) selectable.OnDeselect.AddListener(HandleOutline);
+        if (selectable != null) selectable.OnEngage.AddListener(HandleOutline);
+        if (selectable != null) selectable.OnDisengage.AddListener(HandleOutline);
     }
 }

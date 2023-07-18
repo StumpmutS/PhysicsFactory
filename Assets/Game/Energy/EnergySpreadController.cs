@@ -10,7 +10,7 @@ public class EnergySpreadController : MonoBehaviour
     [SerializeField] private EnergyContainer container;
     [SerializeField] private List<Component> startingSpenders;
 
-    public IntegerGroup<IEnergySpender> Spenders { get; } = new();
+    public FloatGroup<IEnergySpender> Spenders { get; } = new();
 
     private void Awake()
     {
@@ -24,31 +24,31 @@ public class EnergySpreadController : MonoBehaviour
             }
         }
 
-        Spenders.OnIntegersChanged += HandleSpendersChanged;
+        Spenders.OnFloatsChanged += HandleSpendersChanged;
         container.OnChargeChanged.AddListener(HandleChargeChanged);
     }
 
     public void RegisterSpender(IEnergySpender spender)
     {
-        Spenders.SetValue(spender, 0);
+        Spenders.SetValue(spender, new SignedFloat(0, true));
     }
 
-    private void HandleChargeChanged(int value)
+    private void HandleChargeChanged(float value)
     {
         Spenders.MaxTotal = value;
     }
 
     private void HandleSpendersChanged()
     {
-        foreach (var kvp in Spenders.Integers)
+        foreach (var kvp in Spenders.Floats)
         {
-            kvp.Key.SetEnergyLevel(kvp.Value.AsInt());
+            kvp.Key.SetEnergyLevel(kvp.Value.AsFloat());
         }
     }
 
     private void OnDestroy()
     {
         if (container != null) container.OnChargeChanged.RemoveListener(HandleChargeChanged);
-        if (Spenders != null) Spenders.OnIntegersChanged -= HandleSpendersChanged;
+        if (Spenders != null) Spenders.OnFloatsChanged -= HandleSpendersChanged;
     }
 }

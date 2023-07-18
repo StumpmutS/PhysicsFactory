@@ -15,7 +15,7 @@ namespace Utility.Scripts
             {
                 var prevTotal = _maxTotal;
                 _maxTotal = value;
-                if (prevTotal >= value) return;
+                if (prevTotal <= value) return;
 
                 while (Total > _maxTotal)
                 {
@@ -41,17 +41,17 @@ namespace Utility.Scripts
 
         public event Action OnIntegersChanged = delegate { };
         
-        public void SetValue(T key, int value)
+        public void SetValue(T key, SignedInt value)
         {
             if (!Integers.ContainsKey(key)) Integers[key] = new SignedInt(0, true);
             
             var available = MaxTotal - Total;
-            var difference = Mathf.Abs(value) - Integers[key].Value;
+            var difference = (int) value.Value - Integers[key].Value;
             if (available < difference)
             {
-                Integers[key] = new SignedInt((uint)Mathf.Abs(Integers[key].Value + available), value >= 0);
+                Integers[key] = new SignedInt((uint)Mathf.Abs(Integers[key].Value + available), value.Positive);
             }
-            else Integers[key] = new SignedInt((uint)Mathf.Abs(value), value >= 0);
+            else Integers[key] = value;
             
             OnIntegersChanged.Invoke();
         }

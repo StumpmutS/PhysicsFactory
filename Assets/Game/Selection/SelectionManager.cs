@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Utility.Scripts;
@@ -55,6 +56,7 @@ public class SelectionManager : Singleton<SelectionManager>
 
     private void SetHovered(Selectable selectable)
     {
+        if (selectable == _hovered) return;
         if (_hovered != null) _hovered.StopHover();
         _hovered = selectable;
         if (selectable == null) return;
@@ -72,16 +74,22 @@ public class SelectionManager : Singleton<SelectionManager>
     {
         if (_hovered != null)
         {
-            _hovered.Engage();
             _engaged.Add(_hovered);
+            _hovered.Engage();
             return;
         }
         
         DisengageAll();
     }
 
-    public void DisengageAll()
+    private bool _disengageAll;
+    public void DisengageAll() => _disengageAll = true;
+
+    private void LateUpdate()
     {
+        if (!_disengageAll) return;
+        _disengageAll = false;
+        
         foreach (var selectable in _engaged)
         {
             selectable.Disengage();

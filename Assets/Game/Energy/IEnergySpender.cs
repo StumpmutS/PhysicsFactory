@@ -2,8 +2,8 @@
 
 public interface IEnergySpender
 {
-    public void SetEnergyLevel(int amount);
-    public EnergySpenderInfo Info { get; }
+    public void SetEnergyLevel(float amount);
+    public EnergySpenderInfo SpenderInfo { get; }
 }
 
 [Serializable]
