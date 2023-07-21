@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f86eb6650b9529f4fa7960ac9170c51c, type: 3}
+  m_Name: FrictionlessPhysicMaterialMod
+  m_EditorClassIdentifier: 
+  info:
+    modificationPrefab: {fileID: -5656782397557445885, guid: 2971c16519638aa408e1b507043006f7,
+      type: 3}
+    label: Frictionless
+    activationRestrictions:
+    - {fileID: 11400000, guid: f1a511772bb780a4a9e0a138aaef7e5c, type: 2}
+    saleRestrictions:
+    - {fileID: 11400000, guid: b541687ff8852b44893c7db935c8e0f4, type: 2}
+    price: 0.1

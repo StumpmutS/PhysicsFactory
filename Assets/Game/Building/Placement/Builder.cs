@@ -68,7 +68,7 @@ public class Builder
     
     private void UpdateRestrictions()
     {
-        if (RestrictionHelper.CheckRestrictions(_info.Restrictions, GenerateRestrictionInfo()))
+        if (RestrictionHelper.CheckRestrictions(_info.PlacementRestrictions, GenerateRestrictionInfo()))
         {
             _mainPreview.Pass();
             return;
@@ -77,7 +77,7 @@ public class Builder
         _mainPreview.Deny();
     }
 
-    private BuildingRestrictionInfo GenerateRestrictionInfo() => new (_mainPreview, _info.Price);
+    private PlacementRestrictionInfo GenerateRestrictionInfo() => new (_mainPreview, _info.Price);
 
     public void Destroy()
     {
@@ -89,7 +89,7 @@ public class Builder
 
     private void CompleteBuild()
     {
-        if (RestrictionHelper.TryPassRestrictions(_info.Restrictions, GenerateRestrictionInfo()))
+        if (RestrictionHelper.TryPassRestrictions(_info.PlacementRestrictions, GenerateRestrictionInfo()))
         {
             _mainPreview.Place(_info);
         }

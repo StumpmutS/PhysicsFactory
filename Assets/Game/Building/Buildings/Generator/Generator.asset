@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingInfo:
     label: Generator
-    restrictions:
+    placementRestrictions:
     - {fileID: 11400000, guid: 464e2efe4a444fd4a87e460a7946e84a, type: 2}
     - {fileID: 11400000, guid: 5cf2881d04a26f44ba4019ef24c35a88, type: 2}
+    saleRestrictions: []
     previewPrefab: {fileID: 8014081326541741142, guid: 8130bd342c3200b43a94ae5ebc492777,
       type: 3}
     anchorCellAmount: 2
     restrictToAxes: 0
+    price: 0

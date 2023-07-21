@@ -33,6 +33,11 @@ public class EnergySpreadController : MonoBehaviour
         Spenders.SetValue(spender, new SignedFloat(0, true));
     }
 
+    public void DeregisterSpender(IEnergySpender spender)
+    {
+        Spenders.Remove(spender);
+    }
+
     private void HandleChargeChanged(float value)
     {
         Spenders.MaxTotal = value;

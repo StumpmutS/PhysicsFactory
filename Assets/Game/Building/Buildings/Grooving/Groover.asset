@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingInfo:
     label: Groover
-    restrictions:
+    placementRestrictions:
     - {fileID: 11400000, guid: 07db2f424290dbe459ea3903f14344bd, type: 2}
     - {fileID: 11400000, guid: cfaaf258aef0c1a48b6e28bd77fe3e94, type: 2}
+    saleRestrictions: []
     previewPrefab: {fileID: 6590985248286571543, guid: b83aead0776a003498b3c8d58c0e4ece,
       type: 3}
     anchorCellAmount: 2

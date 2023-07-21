@@ -44,5 +44,10 @@ namespace Utility.Scripts
             
             OnFloatsChanged.Invoke();
         }
+
+        public void Remove(T key)
+        {
+            Floats.Remove(key);
+        }
     }
 }

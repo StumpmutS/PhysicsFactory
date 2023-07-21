@@ -35,4 +35,9 @@ public class SupplyManager : Singleton<SupplyManager>
     {
         CurrentSupplyCount -= amount;
     }
+
+    public void AddSupply(float amount)
+    {
+        CurrentSupplyCount += amount;
+    }
 }

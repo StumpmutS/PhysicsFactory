@@ -7,7 +7,7 @@ namespace Utility.Scripts
     {
         public static List<KeyValuePair<T, SignedFloat>> DistributedSubtract<T>(Dictionary<T, SignedFloat> floats, float targetSubtractAmount)
         {
-            var orderedFloats = new Stack<KeyValuePair<T, SignedFloat>>(floats.OrderBy(kvp => kvp.Value));
+            var orderedFloats = new Stack<KeyValuePair<T, SignedFloat>>(floats.OrderBy(kvp => kvp.Value.Value));
             var subtractGroup = new List<KeyValuePair<T, SignedFloat>> { orderedFloats.Pop() };
             var subtracted = 0f;
 

@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Restrictions/Building Collision")]
-public class BuildingCollisionRestriction : BuildingRestriction
+[CreateAssetMenu(menuName = "Restrictions/Placement/Building Collision")]
+public class PlacementCollisionRestriction : Restriction<PlacementRestrictionInfo>
 {
-    public override bool CheckRestriction(BuildingRestrictionInfo info)
+    public override bool CheckRestriction(PlacementRestrictionInfo info)
     {
         var results = new Collider[4];
         Physics.OverlapBoxNonAlloc(info.Preview.transform.position,

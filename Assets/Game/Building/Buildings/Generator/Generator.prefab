@@ -306,6 +306,12 @@ PrefabInstance:
       propertyPath: mainObject
       value: 
       objectReference: {fileID: 4395187715909865302}
+    - target: {fileID: 8802721029308301832, guid: 49c445ad83452654391e3e707471cb4e,
+        type: 3}
+      propertyPath: colors
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a3032c6b4aa9dc479f34d766ef19236,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

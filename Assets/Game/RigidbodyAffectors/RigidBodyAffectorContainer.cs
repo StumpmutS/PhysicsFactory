@@ -4,34 +4,37 @@ using UnityEngine;
 
 public class RigidBodyAffectorContainer : MonoBehaviour
 {
-    private Dictionary<Type, RigidbodyAffector> _affectors = new();
+    [SerializeField] private Transform containerTransform;
+    
+    private Dictionary<Type, RigidBodyAffector> _affectors = new();
 
     private void Awake()
     {
-        foreach (var affector in GetComponentsInChildren<RigidbodyAffector>())
+        foreach (var affector in GetComponentsInChildren<RigidBodyAffector>())
         {
             AddAffector(affector);
         }
     }
 
-    public void AddAffector(RigidbodyAffector affector)
+    public RigidBodyAffector AddAffector(RigidBodyAffector affectorPrefab)
     {
-        var type = affector.GetType();
-        
-        if (affector.gameObject.scene.rootCount == 0)
-        {
-            affector = Instantiate(affector, transform);
-        }
-
-        if (_affectors.ContainsKey(type))
-        {
-            Destroy(_affectors[type]);
-        }
-        
-        _affectors[affector.GetType()] = affector;
+        var type = affectorPrefab.GetType();
+        var affector = Instantiate(affectorPrefab, containerTransform);
+        if (_affectors.TryGetValue(type, out var currentAffector)) Destroy(currentAffector.gameObject);
+        _affectors[type] = affector;
+        return affector;
     }
 
-    public void ActivateAffectors(Collision collision)
+    public void RemoveAffector(RigidBodyAffector affector)
+    {
+        if (_affectors.TryGetValue(affector.GetType(), out var rigidBodyAffector))
+        {
+            _affectors.Remove(affector.GetType());
+            Destroy(rigidBodyAffector.gameObject);
+        }
+    }
+
+    private void ActivateAffectors(Collision collision)
     {
         foreach (var affector in _affectors.Values)
         {
@@ -40,7 +43,7 @@ public class RigidBodyAffectorContainer : MonoBehaviour
         }
     }
 
-    public void ContinuouslyActivateAffectors(Collision collision)
+    private void ContinuouslyActivateAffectors(Collision collision)
     {
         foreach (var affector in _affectors.Values)
         {
@@ -49,7 +52,7 @@ public class RigidBodyAffectorContainer : MonoBehaviour
         }
     }
 
-    public void DeactivateAffectors(Collision collision)
+    private void DeactivateAffectors(Collision collision)
     {
         foreach (var affector in _affectors.Values)
         {

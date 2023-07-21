@@ -30,10 +30,15 @@ public class EnergySpreadDisplay : Singleton<EnergySpreadDisplay>
         controller.Spenders.OnFloatsChanged += HandleSpendersChanged;
         foreach (var kvp in controller.Spenders.Floats)
         {
-            var selector = CreateFloatSelector(kvp.Key, kvp.Value);
-            _selectors[kvp.Key] = selector;
-            layout.Add(selector.transform);
+            SetupNewSelector(kvp.Key, kvp.Value);
         }
+    }
+
+    private void SetupNewSelector(IEnergySpender spender, SignedFloat value)
+    {
+        var selector = CreateFloatSelector(spender, value);
+        _selectors[spender] = selector;
+        layout.Add(selector.transform);
     }
 
     private SignedFloatSelector CreateFloatSelector(object callbackObj, SignedFloat value)
@@ -48,7 +53,14 @@ public class EnergySpreadDisplay : Singleton<EnergySpreadDisplay>
     {
         foreach (var kvp in _controller.Spenders.Floats)
         {
-            _selectors[kvp.Key].UpdateVisuals(kvp.Value);
+            if (_selectors.TryGetValue(kvp.Key, out var selector))
+            {
+                selector.UpdateVisuals(kvp.Value);
+            }
+            else
+            {
+                SetupNewSelector(kvp.Key, kvp.Value);
+            }
         }
     }
 

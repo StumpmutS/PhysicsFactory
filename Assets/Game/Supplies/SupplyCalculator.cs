@@ -6,4 +6,14 @@ public static class SupplyCalculator
     {
         return dolboid.CurrentInfo.Mass;
     }
+    
+    public static float CalculatePrice(float price, Building building)
+    {
+        return price * building.Info.Volume;
+    }
+    
+    public static float CalculatePrice(float price, BuildingPreview preview)
+    {
+        return price * preview.Volume;
+    }
 }
