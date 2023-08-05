@@ -14,7 +14,7 @@ namespace Utility.Scripts
             set
             {
                 if (value < 0) return;
-                var diff = Total - value; //how much needs to be subtracted in total
+                var diff = CurrentTotal - value; //how much needs to be subtracted in total
                 _maxTotal = value;
                 if (diff <= 0) return;
                 var replacedFloats = GroupSubtraction.DistributedSubtract(Floats, diff);
@@ -25,7 +25,7 @@ namespace Utility.Scripts
                 OnFloatsChanged.Invoke();
             }
         }
-        public float Total => Floats.Values.Sum(i => i.Value);
+        public float CurrentTotal => Floats.Values.Sum(i => i.Value);
         public Dictionary<T, SignedFloat> Floats { get; private set; } = new();
 
         public event Action OnFloatsChanged = delegate { };
@@ -34,7 +34,7 @@ namespace Utility.Scripts
         {
             if (!Floats.ContainsKey(key)) Floats[key] = new SignedFloat(0, true);
             
-            var available = MaxTotal - Total;
+            var available = MaxTotal - CurrentTotal;
             var difference = Mathf.Abs(value.Value) - Floats[key].Value;
             if (available < difference)
             {

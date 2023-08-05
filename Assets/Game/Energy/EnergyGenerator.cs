@@ -1,24 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnergyGenerator : MonoBehaviour
 {
+    [SerializeField] private CurrentContainer currentContainer;
     [SerializeField] private float energyGenerated;
+    public float EnergyGenerated => energyGenerated;
 
-    public HashSet<EnergyCurrent> Currents { get; private set; } = new();
+    public UnityEvent OnCurrentsChanged;
 
-    public void RequestEnergy(EnergyCurrent current)
+    private void Awake()
     {
-        Currents.Add(current);
-        UpdateCurrentCharges();
+        currentContainer.OnCurrentsChanged.AddListener(UpdateCurrentCharges);
     }
 
     private void UpdateCurrentCharges()
     {
-        foreach (var current in Currents)
+        foreach (var current in currentContainer.Currents)
         {
-            current.SetCharge(energyGenerated / Currents.Count);
+            current.SetCharge(energyGenerated / currentContainer.Currents.Count);
         }
+        OnCurrentsChanged.Invoke();
+    }
+
+    private void OnDestroy()
+    {
+        if (currentContainer != null) currentContainer.OnCurrentsChanged.RemoveListener(UpdateCurrentCharges);
     }
 }

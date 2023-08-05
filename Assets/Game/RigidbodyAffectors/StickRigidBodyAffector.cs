@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 public class StickRigidBodyAffector : RigidBodyAffector, IEnergySpender
@@ -21,8 +22,13 @@ public class StickRigidBodyAffector : RigidBodyAffector, IEnergySpender
 
     private void GenerateInwardForce(Collision collision)
     {
-        var contact = collision.GetContact(0);
-        collision.rigidbody.AddForceAtPosition(contact.normal * energyToForceMultiplier * _charge, contact.point);
+        var contacts = new List<ContactPoint>();
+        collision.GetContacts(contacts);
+        foreach (var contact in contacts)
+        {
+            collision.rigidbody.AddForceAtPosition
+                (contact.normal * energyToForceMultiplier * _charge, contact.point);
+        }
     }
 
     public void SetEnergyLevel(float amount)

@@ -1,6 +1,6 @@
 ﻿public enum EView
 {
     None,
-    Building,
+    Placement,
     Energy
 }

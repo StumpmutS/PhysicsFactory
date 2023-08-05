@@ -3,24 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utility.Scripts;
 
-public abstract class EnergyCurrentVisualizer : MonoBehaviour
+public class EnergyCurrentVisualizer : MonoBehaviour
 {
+    [SerializeField] private CurrentContainer currentContainer;
     [SerializeField] private GameObject currentVisualsPrefab;
 
-    protected abstract HashSet<EnergyCurrent> Currents { get; }
-
     private HashSet<GameObject> _currentVisuals = new();
+    private bool _active;
 
-    public void HandleEngaged()
+    public void TryActivate()
     {
-        foreach (var current in Currents)
+        if (_active) return;
+        currentContainer.OnCurrentsChanged.AddListener(Refresh);
+        Activate();
+    }
+
+    private void Activate()
+    {
+        _active = true;
+        foreach (var current in currentContainer.Currents)
         {
             VisualizeCurrent(current);
         }
     }
-
-    public void HandleDisengaged()
+    
+    private void Refresh()
     {
+        Deactivate();
+        Activate();
+    }
+    
+    public void Deactivate()
+    {
+        if (!_active) return;
+        _active = false;
+        currentContainer.OnCurrentsChanged.RemoveListener(Refresh);
         foreach (var current in _currentVisuals)
         {
             Destroy(current.gameObject);

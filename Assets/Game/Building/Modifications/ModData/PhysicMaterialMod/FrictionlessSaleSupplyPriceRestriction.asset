@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c47e760c2341609ce636135d8cca66, type: 3}
   m_Name: FrictionlessSaleSupplyPriceRestriction
   m_EditorClassIdentifier: 
-  saleMultiplier: 1
+  saleMultiplier: 0.151

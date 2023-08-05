@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -60,6 +61,9 @@ public class Selectable : MonoBehaviour
 
     private void OnDestroy()
     {
+        StopHover();
+        Disengage();
+        Deselect();
         SelectionEvents.Instance.DeregisterSelectable(this);
     }
 }

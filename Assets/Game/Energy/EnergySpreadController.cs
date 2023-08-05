@@ -3,18 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utility.Scripts;
 
 public class EnergySpreadController : MonoBehaviour
 {
-    [SerializeField] private EnergyContainer container;
+    [FormerlySerializedAs("container")] [SerializeField] private EnergyStorage storage;
     [SerializeField] private List<Component> startingSpenders;
 
     public FloatGroup<IEnergySpender> Spenders { get; } = new();
 
     private void Awake()
     {
-        Spenders.MaxTotal = container.TotalCharge;
+        Spenders.MaxTotal = storage.TotalCharge;
         
         foreach (var component in startingSpenders)
         {
@@ -25,7 +26,7 @@ public class EnergySpreadController : MonoBehaviour
         }
 
         Spenders.OnFloatsChanged += HandleSpendersChanged;
-        container.OnChargeChanged.AddListener(HandleChargeChanged);
+        storage.OnChargeChanged.AddListener(HandleChargeChanged);
     }
 
     public void RegisterSpender(IEnergySpender spender)
@@ -53,7 +54,7 @@ public class EnergySpreadController : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (container != null) container.OnChargeChanged.RemoveListener(HandleChargeChanged);
+        if (storage != null) storage.OnChargeChanged.RemoveListener(HandleChargeChanged);
         if (Spenders != null) Spenders.OnFloatsChanged -= HandleSpendersChanged;
     }
 }

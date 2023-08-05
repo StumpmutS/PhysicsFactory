@@ -8,7 +8,8 @@ public class ViewManager : Singleton<ViewManager>
 {
     [SerializeField] private EView defaultView;
 
-    private EView _currentView;
+    public EView CurrentView { get; private set; }
+
     private HashSet<Viewable> _viewables = new();
 
     private void Start()
@@ -28,13 +29,13 @@ public class ViewManager : Singleton<ViewManager>
 
     public void TrySetView(EView view)
     {
-        if (view == _currentView) return;
+        if (view == CurrentView) return;
         SetView(view);
     }
 
     private void SetView(EView view)
     {
-        _currentView = view;
+        CurrentView = view;
         foreach (var viewable in _viewables)
         {
             if (viewable.View == view) continue;

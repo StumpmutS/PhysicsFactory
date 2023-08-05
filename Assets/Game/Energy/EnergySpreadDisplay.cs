@@ -1,37 +1,32 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using Utility.Scripts;
 
-public class EnergySpreadDisplay : Singleton<EnergySpreadDisplay>
+public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
 {
     [SerializeField] private LayoutDisplay layout;
+    [SerializeField] private TMP_Text text;
     [SerializeField] private SignedFloatSelector signedIntegerSelectorPrefab;
 
     private EnergySpreadController _controller;
     private Dictionary<IEnergySpender, SignedFloatSelector> _selectors = new();
 
-    private void Start()
-    {
-        SelectionEvents.Instance.OnSelected.AddListener(HandleSelection);
-    }
-
-    private void HandleSelection(Selectable selectable)
-    {
-        if (selectable.MainObject.TryGetComponent<EnergySpreadController>(out var controller))
-        {
-            SetupDisplay(selectable, controller);
-        }
-    }
-
-    private void SetupDisplay(Selectable selectable, EnergySpreadController controller)
+    protected override void SetupSelectionDisplay(Selectable selectable, EnergySpreadController controller)
     {
         _controller = controller;
-        selectable.OnDeselect.AddListener(RemoveDisplay);
+        SetText(controller.Spenders.CurrentTotal, controller.Spenders.MaxTotal);
+        selectable.OnDeselect.AddListener(RemoveSelectionDisplay);
         controller.Spenders.OnFloatsChanged += HandleSpendersChanged;
         foreach (var kvp in controller.Spenders.Floats)
         {
             SetupNewSelector(kvp.Key, kvp.Value);
         }
+    }
+
+    private void SetText(float currentTotal, float maxTotal)
+    {
+        text.text = $"Charge Spent: {currentTotal:F2} / {maxTotal:F2}";
     }
 
     private void SetupNewSelector(IEnergySpender spender, SignedFloat value)
@@ -62,6 +57,8 @@ public class EnergySpreadDisplay : Singleton<EnergySpreadDisplay>
                 SetupNewSelector(kvp.Key, kvp.Value);
             }
         }
+        
+        SetText(_controller.Spenders.CurrentTotal, _controller.Spenders.MaxTotal);
     }
 
     private void HandleSelectorChanged(object callbackObj, SignedFloat value)
@@ -70,9 +67,8 @@ public class EnergySpreadDisplay : Singleton<EnergySpreadDisplay>
         _controller.Spenders.SetValue(spender, value);
     }
 
-    private void RemoveDisplay(Selectable selectable)
+    protected override void RemoveSelectionDisplay(Selectable selectable)
     {
-        selectable.OnDeselect.RemoveListener(RemoveDisplay);
         layout.Clear();
     }
 }

@@ -17,7 +17,7 @@ public abstract class BuildingPreview : MonoBehaviour
     {
         var building = Instantiate(buildingPrefab, transform.position, transform.rotation);
         building.transform.localScale = transform.localScale;
-        building.Init(new PlacedBuildingInfo(Volume, info.Price));
+        building.Init(new PlacedBuildingInfo(info.Label, Volume, info.Price, info.SaleRestrictions));
     }
     
     public void Pass()

@@ -65,9 +65,23 @@ public class SelectionManager : Singleton<SelectionManager>
 
     public void SelectHovered()
     {
-        if (_selected != null) _selected.Deselect();
-        if (_hovered != null) _hovered.Select();
+        if (_selected != null)
+        {
+            _selected.OnDeselect.RemoveListener(HandleEarlyDeselect);
+            _selected.Deselect();
+        }
+        if (_hovered != null)
+        {
+            _hovered.Select(); 
+            _hovered.OnDeselect.AddListener(HandleEarlyDeselect);
+        }
         _selected = _hovered;
+    }
+
+    private void HandleEarlyDeselect(Selectable selectable)
+    {
+        selectable.OnDeselect.RemoveListener(HandleEarlyDeselect);
+        if (_selected == selectable) _selected = null;
     }
 
     public void EngageHovered()
@@ -76,10 +90,17 @@ public class SelectionManager : Singleton<SelectionManager>
         {
             _engaged.Add(_hovered);
             _hovered.Engage();
+            _hovered.OnDisengage.AddListener(HandleEarlyDisengage);
             return;
         }
         
         DisengageAll();
+    }
+
+    private void HandleEarlyDisengage(Selectable selectable)
+    {
+        selectable.OnDisengage.RemoveListener(HandleEarlyDisengage);
+        _engaged.Remove(selectable);
     }
 
     private bool _disengageAll;
@@ -92,6 +113,7 @@ public class SelectionManager : Singleton<SelectionManager>
         
         foreach (var selectable in _engaged)
         {
+            selectable.OnDisengage.RemoveListener(HandleEarlyDisengage);
             selectable.Disengage();
         }
         

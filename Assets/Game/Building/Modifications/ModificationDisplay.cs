@@ -2,7 +2,7 @@
 using UnityEngine;
 using Utility.Scripts;
 
-public class ModificationDisplay : Singleton<ModificationDisplay>
+public class ModificationDisplay : SelectableDisplay<ModificationContainer>
 {
     [SerializeField] private LayoutDisplay layout;
     [SerializeField] private LabeledCallbackButton buttonPrefab;
@@ -10,24 +10,11 @@ public class ModificationDisplay : Singleton<ModificationDisplay>
     private ModificationContainer _container;
     private Dictionary<ModificationData, LabeledCallbackButton> _buttons = new();
 
-    private void Start()
-    {
-        SelectionEvents.Instance.OnSelected.AddListener(HandleSelection);
-    }
-
-    private void HandleSelection(Selectable selectable)
-    {
-        if (selectable.MainObject.TryGetComponent<ModificationContainer>(out var container))
-        {
-            SetupDisplay(selectable, container);
-        }
-    }
-
-    private void SetupDisplay(Selectable selectable, ModificationContainer container)
+    protected override void SetupSelectionDisplay(Selectable selectable, ModificationContainer container)
     {
         _buttons.Clear();
         _container = container;
-        selectable.OnDeselect.AddListener(RemoveDisplay);
+        selectable.OnDeselect.AddListener(RemoveSelectionDisplay);
         foreach (var kvp in container.Modifications)
         {
             var button = CreateButton(kvp.Key, kvp.Value);
@@ -63,9 +50,8 @@ public class ModificationDisplay : Singleton<ModificationDisplay>
         SetButton(_buttons[modification], modification, _container.Modifications[modification]);
     }
     
-    private void RemoveDisplay(Selectable selectable)
+    protected override void RemoveSelectionDisplay(Selectable selectable)
     {
-        selectable.OnDeselect.RemoveListener(RemoveDisplay);
         layout.Clear();
     }
 }

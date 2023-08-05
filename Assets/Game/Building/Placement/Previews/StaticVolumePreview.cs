@@ -6,7 +6,7 @@ public class StaticVolumePreview : BuildingPreview
     [SerializeField] private Vector3 dimensions;
     [SerializeField] private Vector3 defaultDirection;
 
-    public override float Volume => dimensions.x * dimensions.y * dimensions.z;
+    public override float Volume => 1;
 
     public override void StretchTo(List<Vector3> locations, int cellSize)
     {

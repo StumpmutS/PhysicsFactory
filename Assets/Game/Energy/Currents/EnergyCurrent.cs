@@ -2,8 +2,8 @@ using System;
 
 public class EnergyCurrent
 {
-    public EnergyGenerator Sender { get; private set; }
-    public EnergyContainer Receiver { get; private set; }
+    public CurrentContainer Sender { get; private set; }
+    public CurrentContainer Receiver { get; private set; }
     private float _charge;
     public float Charge
     {
@@ -16,7 +16,7 @@ public class EnergyCurrent
         }
     }
     
-    public EnergyCurrent(EnergyGenerator from, EnergyContainer to)
+    public EnergyCurrent(CurrentContainer from, CurrentContainer to)
     {
         Sender = from;
         Receiver = to;
@@ -27,13 +27,18 @@ public class EnergyCurrent
 
     private void SendCharge()
     {
-        Sender.RequestEnergy(this);
+        Sender.AddCurrent(this);
         Receiver.AddCurrent(this);
     }
 
     public void SetCharge(float value)
     {
         Charge = value;
-        OnChargeChanged.Invoke();
+    }
+
+    public void ShutDown()
+    {
+        Sender.RemoveCurrent(this);
+        Receiver.RemoveCurrent(this);
     }
 }

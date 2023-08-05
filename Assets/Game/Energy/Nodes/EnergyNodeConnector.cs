@@ -5,8 +5,7 @@ using Utility.Scripts;
 
 public class EnergyNodeConnector : Singleton<EnergyNodeConnector>
 {
-    private HashSet<EnergyContainerNode> _containerNodes = new();
-    private HashSet<EnergyGeneratorNode> _generatorNodes = new();
+    private HashSet<EnergyNode> _nodes = new();
 
     public void HandleEngaged(Selectable selectable)
     {
@@ -32,63 +31,29 @@ public class EnergyNodeConnector : Singleton<EnergyNodeConnector>
 
     private bool AttemptConnection(EnergyNode node)
     {
-        return node switch
+        bool connected = false;
+        foreach (var other in _nodes)
         {
-            EnergyContainerNode containerNode => AttemptContainerConnection(containerNode),
-            EnergyGeneratorNode generatorNode => AttemptGeneratorConnection(generatorNode),
-            _ => false
-        };
-    }
-    
-    private bool AttemptContainerConnection(EnergyContainerNode node)
-    {
-        foreach (var generatorNode in _generatorNodes)
-        {
-            node.InitiateCurrent(generatorNode.Generator, node.Container, generatorNode);
+            if (!node.CanConnect(other, out var sender, out var receiver)) continue;
+            connected = true;
+            node.InitiateCurrent(sender, receiver, other);
         }
 
-        return _generatorNodes.Count > 0;
-    }
-
-    private bool AttemptGeneratorConnection(EnergyGeneratorNode node)
-    {
-        foreach (var containerNode in _containerNodes)
-        {
-            node.InitiateCurrent(node.Generator, containerNode.Container, node);
-        }
-
-        return _containerNodes.Count > 0;
+        return connected;
     }
 
     private void AddNode(EnergyNode node)
     {
-        switch (node)
-        {
-            case EnergyContainerNode containerNode:
-                _containerNodes.Add(containerNode);
-                break;
-            case EnergyGeneratorNode generatorNode:
-                _generatorNodes.Add(generatorNode);
-                break;
-        }
+        _nodes.Add(node);
     }
 
     private void RemoveNode(EnergyNode node)
     {
-        switch (node)
-        {
-            case EnergyContainerNode containerNode:
-                _containerNodes.Remove(containerNode);
-                break;
-            case EnergyGeneratorNode generatorNode:
-                _generatorNodes.Remove(generatorNode);
-                break;
-        }
+        _nodes.Remove(node);
     }
 
     private void ClearNodes()
     {
-        _containerNodes.Clear();
-        _generatorNodes.Clear();
+        _nodes.Clear();
     }
 }

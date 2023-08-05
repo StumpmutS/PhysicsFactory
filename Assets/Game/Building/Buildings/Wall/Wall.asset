@@ -15,11 +15,12 @@ MonoBehaviour:
   buildingInfo:
     label: Wall
     placementRestrictions:
-    - {fileID: 11400000, guid: ef2dcce6cd8008d46a4ab1d623a8d64a, type: 2}
+    - {fileID: 11400000, guid: 1424a7f99faabfb468c5b3b9e992c1b2, type: 2}
     - {fileID: 11400000, guid: afe3c7c255dc2cf4bb6ec32db62c210c, type: 2}
-    saleRestrictions: []
+    saleRestrictions:
+    - {fileID: 11400000, guid: cb490c57cbddc4d47b30985b0bf6dff1, type: 2}
     previewPrefab: {fileID: 3945434422174935522, guid: 10b758939261d9d4e977a8626958813f,
       type: 3}
     anchorCellAmount: 4
     restrictToAxes: 1
-    price: 0
+    price: 0.25
