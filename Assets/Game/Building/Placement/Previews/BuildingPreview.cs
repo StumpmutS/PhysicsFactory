@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class BuildingPreview : MonoBehaviour
 {
-    [SerializeField] protected Building buildingPrefab;
+    [SerializeField] protected BuildingInfoTransmitter buildingPrefab;
 #pragma warning disable CS0108, CS0114
     [SerializeField] private Renderer renderer;
 #pragma warning restore CS0108, CS0114
@@ -15,9 +15,8 @@ public abstract class BuildingPreview : MonoBehaviour
     
     public void Place(BuildingInfo info)
     {
-        var building = Instantiate(buildingPrefab, transform.position, transform.rotation);
-        building.transform.localScale = transform.localScale;
-        building.Init(new PlacedBuildingInfo(info.Label, Volume, info.Price, info.SaleRestrictions));
+        var building = Instantiate(buildingPrefab);
+        building.Init(new PlacedBuildingInfo(info.Label, Volume, info.Price, info.SaleRestrictions), transform);
     }
     
     public void Pass()

@@ -2622,6 +2622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed748ab445b4ba2983545ad6d04428f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  container: {fileID: 1337954966}
   layout: {fileID: 794937938}
   text: {fileID: 866125537}
   signedIntegerSelectorPrefab: {fileID: 6530259967180451824, guid: dec8d5320e4a95e4aa82455d95b06051,
@@ -3303,11 +3304,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1570494514}
     m_Modifications:
-    - target: {fileID: 1449386786895385451, guid: 40ea79de0fa109449bf0501c760d74ef,
-        type: 3}
-      propertyPath: m_IsOn
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1449386786895385451, guid: 40ea79de0fa109449bf0501c760d74ef,
         type: 3}
       propertyPath: m_Group

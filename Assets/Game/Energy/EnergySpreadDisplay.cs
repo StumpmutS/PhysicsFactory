@@ -5,6 +5,7 @@ using Utility.Scripts;
 
 public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
 {
+    [SerializeField] private GameObject container;
     [SerializeField] private LayoutDisplay layout;
     [SerializeField] private TMP_Text text;
     [SerializeField] private SignedFloatSelector signedIntegerSelectorPrefab;
@@ -14,6 +15,7 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
 
     protected override void SetupSelectionDisplay(Selectable selectable, EnergySpreadController controller)
     {
+        container.SetActive(true);
         _controller = controller;
         SetText(controller.Spenders.CurrentTotal, controller.Spenders.MaxTotal);
         selectable.OnDeselect.AddListener(RemoveSelectionDisplay);
@@ -69,6 +71,7 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
 
     protected override void RemoveSelectionDisplay(Selectable selectable)
     {
+        container.SetActive(false);
         layout.Clear();
     }
 }

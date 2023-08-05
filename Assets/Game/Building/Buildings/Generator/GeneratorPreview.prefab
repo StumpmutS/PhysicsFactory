@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7e1a9b394f4d648f98c855c0977ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingPrefab: {fileID: 5105516507230135034, guid: cc243238367b75847b71c26217872531,
+  buildingPrefab: {fileID: 6657367101063419230, guid: cc243238367b75847b71c26217872531,
     type: 3}
   renderer: {fileID: 3897377271347392471}
   previewColors: {fileID: 11400000, guid: 23b59f967a90fca4198ecf3bb7c955a4, type: 2}

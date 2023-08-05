@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae886bc571d4933ac2a0e8c97c848a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingPrefab: {fileID: 4232349347706029696, guid: 2f2640e9078f39c4cbb048384bbcc121,
+  buildingPrefab: {fileID: 2926680181560606962, guid: 2f2640e9078f39c4cbb048384bbcc121,
     type: 3}
   renderer: {fileID: 7637131471690168982}
   previewColors: {fileID: 11400000, guid: 23b59f967a90fca4198ecf3bb7c955a4, type: 2}

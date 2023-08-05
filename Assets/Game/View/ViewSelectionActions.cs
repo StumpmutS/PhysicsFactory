@@ -17,13 +17,21 @@ public class ViewSelectionActions : MonoBehaviour
 
     private void Awake()
     {
-        if (selectable == null) return;
-        selectable.OnHover.AddListener(HandleHover);
-        selectable.OnHoverStop.AddListener(HandleHoverStop);
-        selectable.OnSelect.AddListener(HandleSelect);
-        selectable.OnDeselect.AddListener(HandleDeselect);
-        selectable.OnEngage.AddListener(HandleEngage);
-        selectable.OnDisengage.AddListener(HandleDisengage);
+        if (selectable != null)
+        {
+            selectable.OnHover.AddListener(HandleHover);
+            selectable.OnHoverStop.AddListener(HandleHoverStop);
+            selectable.OnSelect.AddListener(HandleSelect);
+            selectable.OnDeselect.AddListener(HandleDeselect);
+            selectable.OnEngage.AddListener(HandleEngage);
+            selectable.OnDisengage.AddListener(HandleDisengage);
+        }
+
+        if (viewable != null)
+        {
+            viewable.OnActivation.AddListener(HandleViewActivation);
+            viewable.OnDeactivation.AddListener(HandleViewDeactivation);
+        }
     }
 
     public void HandleHover(Selectable selectableParameter)
@@ -62,14 +70,31 @@ public class ViewSelectionActions : MonoBehaviour
         OnDisengage.Invoke(selectableParameter);
     }
 
-    private void OnDestroy()
+    private void HandleViewActivation()
     {
         if (selectable == null) return;
-        selectable.OnHover.RemoveListener(HandleHover);
-        selectable.OnHoverStop.RemoveListener(HandleHoverStop);
-        selectable.OnSelect.RemoveListener(HandleSelect);
-        selectable.OnDeselect.RemoveListener(HandleDeselect);
-        selectable.OnEngage.RemoveListener(HandleEngage);
-        selectable.OnDisengage.RemoveListener(HandleDisengage);
+        if (selectable.Selected) OnSelect.Invoke(selectable);
+        if (selectable.Engaged) OnEngage.Invoke(selectable);
+        if (selectable.Hovered) OnHover.Invoke(selectable);
+    }
+
+    private void HandleViewDeactivation()
+    {
+        if (selectable == null) return;
+        if (selectable.Selected) OnDeselect.Invoke(selectable);
+        if (selectable.Engaged) OnDisengage.Invoke(selectable);
+        if (selectable.Hovered) OnHoverStop.Invoke(selectable);
+    }
+    
+    private void OnDestroy()
+    {
+        if (selectable != null) selectable.OnHover.RemoveListener(HandleHover);
+        if (selectable != null) selectable.OnHoverStop.RemoveListener(HandleHoverStop);
+        if (selectable != null) selectable.OnSelect.RemoveListener(HandleSelect);
+        if (selectable != null) selectable.OnDeselect.RemoveListener(HandleDeselect);
+        if (selectable != null) selectable.OnEngage.RemoveListener(HandleEngage);
+        if (selectable != null) selectable.OnDisengage.RemoveListener(HandleDisengage);
+        if (viewable != null) viewable.OnActivation.AddListener(HandleViewActivation);
+        if (viewable != null) viewable.OnDeactivation.AddListener(HandleViewDeactivation);
     }
 }

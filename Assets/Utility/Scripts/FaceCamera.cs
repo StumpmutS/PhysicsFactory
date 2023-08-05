@@ -14,7 +14,8 @@ namespace Utility.Scripts
 
         private void LateUpdate()
         {
-            rotator.LookAt(MainCameraRef.Cam.transform);
+            var direction = MainCameraRef.Cam.transform.position - rotator.position;
+            rotator.forward = -direction;
         }
     }
 }

@@ -11,7 +11,6 @@ public class GameMenuManager : Singleton<GameMenuManager>
 
     public void ActivateMenu(EGameMenuType menuType)
     {
-        print("activated" + menuType);
         if (_currentMenuType.Item2 && menuType != _currentMenuType.Item1)
         {
             _previousMenuType = menuType;

@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class BuildingSaleController : MonoBehaviour
 {
+    [SerializeField] private GameObject parent;
     [SerializeField] private Building building;
 
     public string SaleText =>
@@ -16,6 +17,6 @@ public class BuildingSaleController : MonoBehaviour
         if (!RestrictionHelper.TryPassRestrictions(building.Info.SaleRestrictions,
                 new BuildingRestrictionInfo(building, building.Info.Price))) return;
         OnSale.Invoke();
-        Destroy(gameObject);
+        Destroy(parent);
     }
 }

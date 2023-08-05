@@ -33,11 +33,16 @@ public class EnergyCurrentVisualizer : MonoBehaviour
         Activate();
     }
     
-    public void Deactivate()
+    public void TryDeactivate()
     {
         if (!_active) return;
-        _active = false;
         currentContainer.OnCurrentsChanged.RemoveListener(Refresh);
+        Deactivate();
+    }
+
+    private void Deactivate()
+    {
+        _active = false;
         foreach (var current in _currentVisuals)
         {
             Destroy(current.gameObject);
