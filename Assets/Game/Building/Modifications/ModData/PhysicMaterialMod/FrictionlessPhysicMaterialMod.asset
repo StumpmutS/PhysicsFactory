@@ -21,3 +21,4 @@ MonoBehaviour:
     saleRestrictions:
     - {fileID: 11400000, guid: b541687ff8852b44893c7db935c8e0f4, type: 2}
     price: 0.1
+    saleMultiplier: 0.5

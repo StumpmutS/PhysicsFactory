@@ -20,4 +20,6 @@ public class BuildingInfo
     public bool RestrictToAxes => restrictToAxes;
     [SerializeField] private float price;
     public float Price => price;
+    [SerializeField, Range(0, 1)] private float saleMultiplier = 1;
+    public float SaleMultiplier => saleMultiplier;
 }

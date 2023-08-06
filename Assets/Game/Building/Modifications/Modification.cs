@@ -34,6 +34,6 @@ public abstract class Modification : MonoBehaviour
 
     private ModificationRestrictionInfo GenerateRestrictionInfo(Building building)
     {
-        return new ModificationRestrictionInfo(building, _modInfo.Price);
+        return new ModificationRestrictionInfo(building, _modInfo.Price, _modInfo.SaleMultiplier);
     }
 }

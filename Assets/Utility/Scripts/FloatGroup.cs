@@ -48,6 +48,7 @@ namespace Utility.Scripts
         public void Remove(T key)
         {
             Floats.Remove(key);
+            OnFloatsChanged.Invoke();
         }
     }
 }

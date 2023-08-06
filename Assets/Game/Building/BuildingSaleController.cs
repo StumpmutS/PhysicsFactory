@@ -8,14 +8,14 @@ public class BuildingSaleController : MonoBehaviour
     [SerializeField] private Building building;
 
     public string SaleText =>
-        $"Sell {building.Info.Label}: ${SupplyCalculator.CalculatePrice(building.Info.Price, building):F2}";
+        $"Sell {building.Info.Label}: ${SupplyCalculator.CalculatePrice(building.Info.Price, building, building.Info.SaleMultiplier):F2}";
 
     public UnityEvent OnSale;
 
     public void Sell()
     {
         if (!RestrictionHelper.TryPassRestrictions(building.Info.SaleRestrictions,
-                new BuildingRestrictionInfo(building, building.Info.Price))) return;
+                new BuildingRestrictionInfo(building, building.Info.Price, building.Info.SaleMultiplier))) return;
         OnSale.Invoke();
         Destroy(parent);
     }

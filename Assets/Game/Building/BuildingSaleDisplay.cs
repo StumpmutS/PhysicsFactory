@@ -5,6 +5,7 @@ using Utility.Scripts;
 
 public class BuildingSaleDisplay : SelectableDisplay<BuildingSaleController>
 {
+    [SerializeField] private GameObject container;
     [SerializeField] private Button button;
     [SerializeField] private TMP_Text text;
 
@@ -24,6 +25,7 @@ public class BuildingSaleDisplay : SelectableDisplay<BuildingSaleController>
 
     protected override void SetupSelectionDisplay(Selectable selectable, BuildingSaleController saleController)
     {
+        container.SetActive(true);
         _saleController = saleController;
         button.gameObject.SetActive(true);
         text.text = _saleController.SaleText;
@@ -31,6 +33,7 @@ public class BuildingSaleDisplay : SelectableDisplay<BuildingSaleController>
     
     protected override void RemoveSelectionDisplay(Selectable selectable)
     {
+        container.SetActive(false);
         button.gameObject.SetActive(false);
     }
 }

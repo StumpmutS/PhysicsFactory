@@ -15,4 +15,6 @@ public class ModificationInfo
     public List<Restriction<ModificationRestrictionInfo>> SaleRestrictions => saleRestrictions;
     [SerializeField] private float price;
     public float Price => price;
+    [SerializeField, Range(0, 1)] private float saleMultiplier = 1;
+    public float SaleMultiplier => saleMultiplier;
 }

@@ -164,7 +164,7 @@ MonoBehaviour:
   spawnedObject: {fileID: 5329831554418432110, guid: deeef34d1fa0fdc42828bf03c0fbab80,
     type: 3}
   spawnPoint: {fileID: 6436729031371312901}
-  spawnRate: 0.5
+  spawnRate: 0.1
 --- !u!1 &8434063955419007228
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,5 +209,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9842191ae57543759a3bf7968111fad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minStartingVelocity: {x: -0.1, y: -0.5, z: 0.5}
-  maxStartingVelocity: {x: 0.1, y: 0.5, z: 10}
+  minStartingForce: {x: 0, y: 0, z: 0}
+  maxStartingForce: {x: 0, y: 0, z: 0}

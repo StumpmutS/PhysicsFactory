@@ -8,6 +8,7 @@ public class ModificationContainer : MonoBehaviour
 {
     [SerializeField] private Transform transformContainer;
     [SerializeField] private Building modifiedBuilding;
+    public Building ModifiedBuilding => modifiedBuilding;
     [SerializeField] private List<ModificationData> modifications;
     public Dictionary<ModificationData, bool> Modifications =>
         modifications.ToDictionary(m => m, m => _activeModifications.Keys.Contains(m));
@@ -37,5 +38,13 @@ public class ModificationContainer : MonoBehaviour
         _activeModifications.Remove(modificationData);
         Destroy(modification.gameObject);
         return true;
+    }
+
+    public void HandleBuildingSold()
+    {
+        foreach (var modificationData in modifications)
+        {
+            TrySellModification(modificationData);
+        }
     }
 }

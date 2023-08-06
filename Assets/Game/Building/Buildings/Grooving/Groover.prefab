@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a06cab5850444e4a49ab55786506fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transformContainer: {fileID: 0}
+  transformContainer: {fileID: 4630017910087679439}
   modifiedBuilding: {fileID: 3236320739920693371}
   modifications:
   - {fileID: 11400000, guid: 2d85187f199692d48ac8c8926ab3c52e, type: 2}
@@ -312,7 +312,19 @@ MonoBehaviour:
   building: {fileID: 3236320739920693371}
   OnSale:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4321694990234368073}
+        m_TargetAssemblyTypeName: ModificationContainer, Assembly-CSharp
+        m_MethodName: HandleBuildingSold
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4064962101165396298
 MonoBehaviour:
   m_ObjectHideFlags: 0

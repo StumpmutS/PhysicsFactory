@@ -96,6 +96,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3839337824668993528}
+  - {fileID: 678660680852010525}
   m_Father: {fileID: 7126770400204695799}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -164,7 +165,19 @@ MonoBehaviour:
   building: {fileID: 9049643205730369263}
   OnSale:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2688160724254296471}
+        m_TargetAssemblyTypeName: ModificationContainer, Assembly-CSharp
+        m_MethodName: HandleBuildingSold
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3286921890406014748
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +291,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5294531800018333000}
-  - {fileID: 678660680852010525}
   - {fileID: 7885983389225386539}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -302,7 +314,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7126770400204695799}
+    m_TransformParent: {fileID: 5294531800018333000}
     m_Modifications:
     - target: {fileID: 377348039135719189, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
@@ -312,7 +324,7 @@ PrefabInstance:
     - target: {fileID: 4803528034805517438, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4803528034805517438, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
@@ -337,17 +349,17 @@ PrefabInstance:
     - target: {fileID: 4803528034805517438, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4803528034805517438, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4803528034805517438, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4803528034805517438, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}

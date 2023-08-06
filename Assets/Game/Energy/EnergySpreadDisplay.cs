@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using Utility.Scripts;
@@ -18,7 +19,6 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
         container.SetActive(true);
         _controller = controller;
         SetText(controller.Spenders.CurrentTotal, controller.Spenders.MaxTotal);
-        selectable.OnDeselect.AddListener(RemoveSelectionDisplay);
         controller.Spenders.OnFloatsChanged += HandleSpendersChanged;
         foreach (var kvp in controller.Spenders.Floats)
         {
@@ -58,6 +58,14 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
             {
                 SetupNewSelector(kvp.Key, kvp.Value);
             }
+        }
+
+        var selectorsCopy = _selectors.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        foreach (var kvp in selectorsCopy)
+        {
+            if (_controller.Spenders.Floats.ContainsKey(kvp.Key)) continue;
+            Destroy(kvp.Value.gameObject);
+            _selectors.Remove(kvp.Key);
         }
         
         SetText(_controller.Spenders.CurrentTotal, _controller.Spenders.MaxTotal);
