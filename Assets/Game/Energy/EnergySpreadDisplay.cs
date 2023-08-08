@@ -2,6 +2,7 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utility.Scripts;
 
 public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
@@ -9,10 +10,10 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
     [SerializeField] private GameObject container;
     [SerializeField] private LayoutDisplay layout;
     [SerializeField] private TMP_Text text;
-    [SerializeField] private SignedFloatSelector signedIntegerSelectorPrefab;
+    [SerializeField] private LabeledSignedFloatSelector floatSelectorPrefab;
 
     private EnergySpreadController _controller;
-    private Dictionary<IEnergySpender, SignedFloatSelector> _selectors = new();
+    private Dictionary<IEnergySpender, LabeledSignedFloatSelector> _selectors = new();
 
     protected override void SetupSelectionDisplay(Selectable selectable, EnergySpreadController controller)
     {
@@ -33,15 +34,16 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
 
     private void SetupNewSelector(IEnergySpender spender, SignedFloat value)
     {
-        var selector = CreateFloatSelector(spender, value);
+        var selector = CreateFloatSelector(spender, value, spender.SpenderInfo.Label);
         _selectors[spender] = selector;
         layout.Add(selector.transform);
     }
 
-    private SignedFloatSelector CreateFloatSelector(object callbackObj, SignedFloat value)
+    private LabeledSignedFloatSelector CreateFloatSelector(object callbackObj, SignedFloat value, string label)
     {
-        var selector = Instantiate(signedIntegerSelectorPrefab);
+        var selector = Instantiate(floatSelectorPrefab);
         selector.Init(value, callbackObj);
+        selector.SetLabel(label);
         selector.OnChanged += HandleSelectorChanged;
         return selector;
     }
@@ -53,6 +55,7 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
             if (_selectors.TryGetValue(kvp.Key, out var selector))
             {
                 selector.UpdateVisuals(kvp.Value);
+                selector.SetLabel(kvp.Key.SpenderInfo.Label);
             }
             else
             {

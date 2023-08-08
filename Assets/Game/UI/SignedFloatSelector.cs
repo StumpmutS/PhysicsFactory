@@ -1,12 +1,13 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utility.Scripts;
 
 public class SignedFloatSelector : MonoBehaviour
 {
-    [SerializeField] private TMP_Text text;
+    [FormerlySerializedAs("text")] [SerializeField] private TMP_Text floatText;
     [SerializeField] private Toggle toggle;
     
     private SignedFloat _signedFloat;
@@ -55,7 +56,7 @@ public class SignedFloatSelector : MonoBehaviour
     public void UpdateVisuals(SignedFloat value)
     {
         _signedFloat = value;
-        text.text = value.Value.ToString("F2");
+        floatText.text = value.Value.ToString("F2");
         toggle.isOn = value.Positive;
     }
 }

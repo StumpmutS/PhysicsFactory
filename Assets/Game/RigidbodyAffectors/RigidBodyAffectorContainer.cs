@@ -10,19 +10,23 @@ public class RigidBodyAffectorContainer : MonoBehaviour
 
     private void Awake()
     {
-        foreach (var affector in GetComponentsInChildren<RigidBodyAffector>())
+        foreach (var affector in containerTransform.GetComponentsInChildren<RigidBodyAffector>())
         {
-            AddAffector(affector);
+            SetAffector(affector.GetType(), affector);
         }
     }
 
     public RigidBodyAffector AddAffector(RigidBodyAffector affectorPrefab)
     {
-        var type = affectorPrefab.GetType();
         var affector = Instantiate(affectorPrefab, containerTransform);
+        SetAffector(affectorPrefab.GetType(), affector);
+        return affector;
+    }
+
+    private void SetAffector(Type type, RigidBodyAffector affector)
+    {
         if (_affectors.TryGetValue(type, out var currentAffector)) Destroy(currentAffector.gameObject);
         _affectors[type] = affector;
-        return affector;
     }
 
     public void RemoveAffector(RigidBodyAffector affector)
