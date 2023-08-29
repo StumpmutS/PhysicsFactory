@@ -12,7 +12,6 @@ public abstract class SelectableDisplay<T> : MonoBehaviour where T : Component
     private void HandleSelection(Selectable selectable)
     {
         if (!selectable.MainObject.TryGetComponent<T>(out var component)) return;
-        
         SetupSelectionDisplay(selectable, component);
         selectable.OnDeselect.AddListener(HandleDeselection);
     }

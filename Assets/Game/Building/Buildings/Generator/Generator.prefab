@@ -179,7 +179,8 @@ GameObject:
   - component: {fileID: 6574510647520500109}
   - component: {fileID: 9186603668778472721}
   - component: {fileID: 4266242984734301}
-  m_Layer: 0
+  - component: {fileID: 8020193255096309217}
+  m_Layer: 7
   m_Name: GeneratorMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,6 +315,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentContainer: {fileID: 9186603668778472721}
   generator: 1
+--- !u!114 &8020193255096309217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7723004265237654679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 010fed144462439ebc64bd37f8143b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  node: {fileID: 4266242984734301}
+  range: {x: 9, y: 9, z: 9}
+  offset: {x: 0, y: 0.5, z: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1001 &1297693354741087531
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,7 +11,15 @@ public class EnergyNode : MonoBehaviour
     [SerializeField] private CurrentContainer currentContainer;
     [SerializeField] private bool generator;
 
-    public bool CanConnect(EnergyNode other, out CurrentContainer sender, out CurrentContainer receiver)
+    public bool TryConnect(EnergyNode other)
+    {
+        if (!CanConnect(other, out var sender, out var receiver)) return false;
+        
+        InitiateCurrent(sender, receiver, other);
+        return true;
+    }
+    
+    private bool CanConnect(EnergyNode other, out CurrentContainer sender, out CurrentContainer receiver)
     {
         sender = generator ? currentContainer : other.currentContainer;
         receiver = generator ? other.currentContainer : currentContainer;

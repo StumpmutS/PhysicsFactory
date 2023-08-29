@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spenderInfo:
     Label: Sticky
-  energyToForceMultiplier: 1
+  energyToForceMultiplier: 4

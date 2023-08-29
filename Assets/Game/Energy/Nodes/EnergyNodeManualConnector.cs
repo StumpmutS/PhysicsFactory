@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Utility.Scripts;
 
-public class EnergyNodeConnector : Singleton<EnergyNodeConnector>
+public class EnergyNodeManualConnector : Singleton<EnergyNodeManualConnector>
 {
     private HashSet<EnergyNode> _nodes = new();
 
@@ -31,15 +32,7 @@ public class EnergyNodeConnector : Singleton<EnergyNodeConnector>
 
     private bool AttemptConnection(EnergyNode node)
     {
-        bool connected = false;
-        foreach (var other in _nodes)
-        {
-            if (!node.CanConnect(other, out var sender, out var receiver)) continue;
-            connected = true;
-            node.InitiateCurrent(sender, receiver, other);
-        }
-
-        return connected;
+        return _nodes.Any(node.TryConnect);
     }
 
     private void AddNode(EnergyNode node)

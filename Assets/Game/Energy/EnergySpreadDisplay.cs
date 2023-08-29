@@ -84,5 +84,7 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
     {
         container.SetActive(false);
         layout.Clear();
+        _selectors.Clear();
+        if (_controller != null) _controller.Spenders.OnFloatsChanged -= HandleSpendersChanged;
     }
 }
