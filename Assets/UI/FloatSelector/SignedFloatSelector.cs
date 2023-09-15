@@ -1,17 +1,15 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utility.Scripts;
 
 public class SignedFloatSelector : MonoBehaviour
 {
-    [FormerlySerializedAs("text")] [SerializeField] private TMP_Text floatText;
-    [SerializeField] private Toggle toggle;
-    
     private SignedFloat _signedFloat;
-    private SignedFloat SignedFloat
+    public SignedFloat SignedFloat
     {
         get => _signedFloat;
         set
@@ -22,18 +20,20 @@ public class SignedFloatSelector : MonoBehaviour
         }
     }
     private object _callbackObj;
+    private float _maxValue;
     
-    public event Action<object, SignedFloat> OnChanged = delegate {  };
+    public UnityEvent<object, SignedFloat> OnChanged;
 
-    public void Init(SignedFloat value, object callbackObj)
+    public void Init(SignedFloat value, object callbackObj, float maxValue = float.MaxValue)
     {
         _callbackObj = callbackObj;
         SignedFloat = value;
-        UpdateVisuals(value);
+        _maxValue = maxValue;
     }
 
     public void HandleAdd()
     {
+        if (SignedFloat.Value >= _maxValue) return;
         SignedFloat = new SignedFloat(SignedFloat.Value + 1, SignedFloat.Positive);
     }
 
@@ -51,12 +51,5 @@ public class SignedFloatSelector : MonoBehaviour
     private void HandleChange()
     {
         OnChanged.Invoke(_callbackObj, SignedFloat);
-    }
-
-    public void UpdateVisuals(SignedFloat value)
-    {
-        _signedFloat = value;
-        floatText.text = value.Value.ToString("F2");
-        toggle.isOn = value.Positive;
     }
 }

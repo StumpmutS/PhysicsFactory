@@ -1,9 +1,11 @@
+using System;
 using FMPUtils.Extensions;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class SpringController : MonoBehaviour
 {
+    [SerializeField, Range(-1, 1)] private float startValue = 0;
     [SerializeField] private float frequency;
     [SerializeField] private float damping;
 
@@ -13,7 +15,14 @@ public class SpringController : MonoBehaviour
     private bool _pressed;
 
     public UnityEvent<float, float> OnSpringValueChanged;
-    
+
+    private void Start()
+    {
+        _targetValue = startValue;
+        _currentValue = startValue;
+        OnSpringValueChanged.Invoke(_currentValue, _targetValue);
+    }
+
     public void Update()
     {
         SpringMotion.CalcDampedSimpleHarmonicMotion(ref _currentValue, ref _currentVelocity, 

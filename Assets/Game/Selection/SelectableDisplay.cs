@@ -12,7 +12,8 @@ public abstract class SelectableDisplay<T> : MonoBehaviour where T : Component
     private void HandleSelection(Selectable selectable)
     {
         if (!selectable.MainObject.TryGetComponent<T>(out var component)) return;
-        SetupSelectionDisplay(selectable, component);
+        
+        SetupSelectionDisplay(component);
         selectable.OnDeselect.AddListener(HandleDeselection);
     }
 
@@ -20,27 +21,27 @@ public abstract class SelectableDisplay<T> : MonoBehaviour where T : Component
     {
         if (!selectable.MainObject.TryGetComponent<T>(out var component)) return;
         
-        SetupEngagementDisplay(selectable, component);
+        SetupEngagementDisplay(component);
         selectable.OnDisengage.AddListener(HandleDisengagement);
     }
 
-    protected virtual void SetupSelectionDisplay(Selectable selectable, T component) { }
+    protected virtual void SetupSelectionDisplay(T component) { }
 
-    protected virtual void SetupEngagementDisplay(Selectable selectable, T component) { }
+    protected virtual void SetupEngagementDisplay(T component) { }
 
     private void HandleDeselection(Selectable selectable)
     {
         selectable.OnDeselect.RemoveListener(HandleDeselection);
-        RemoveSelectionDisplay(selectable);
+        RemoveSelectionDisplay();
     }
 
     private void HandleDisengagement(Selectable selectable)
     {
         selectable.OnDisengage.RemoveListener(HandleDisengagement);
-        RemoveEngagementDisplay(selectable);
+        RemoveEngagementDisplay();
     }
 
-    protected virtual void RemoveSelectionDisplay(Selectable selectable) { }
+    protected virtual void RemoveSelectionDisplay() { }
 
-    protected virtual void RemoveEngagementDisplay(Selectable selectable) { }
+    protected virtual void RemoveEngagementDisplay() { }
 }

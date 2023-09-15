@@ -24,6 +24,7 @@ public class EnergyCurrent
     }
     
     public event Action OnChargeChanged = delegate { }; 
+    public event Action<EnergyCurrent> OnShutDown = delegate { };
 
     private void SendCharge()
     {
@@ -38,7 +39,6 @@ public class EnergyCurrent
 
     public void ShutDown()
     {
-        Sender.RemoveCurrent(this);
-        Receiver.RemoveCurrent(this);
+        OnShutDown.Invoke(this);
     }
 }

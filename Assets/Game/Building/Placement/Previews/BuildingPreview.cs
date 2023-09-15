@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class BuildingPreview : MonoBehaviour
 {
     [SerializeField] protected BuildingInfoTransmitter buildingPrefab;
 #pragma warning disable CS0108, CS0114
-    [SerializeField] private Renderer renderer;
+    [SerializeField] private List<PreviewRendererInfo> rendererInfo;
 #pragma warning restore CS0108, CS0114
     [SerializeField] private ColorInfo previewColors;
 
@@ -31,8 +32,13 @@ public abstract class BuildingPreview : MonoBehaviour
 
     private void SetMeshColor(Color color)
     {
-        var mats = renderer.materials;
-        mats[0].color = color;
-        renderer.materials = mats;
+        float originalAlpha = color.a;
+        foreach (var info in rendererInfo)
+        {
+            var mats = info.Renderer.materials;
+            color.a = info.OverrideAlpha ? info.Alpha : originalAlpha;
+            mats[0].color = color;
+            info.Renderer.materials = mats;
+        }
     }
 }

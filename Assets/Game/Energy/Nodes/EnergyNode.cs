@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Utility.Scripts;
 
 public class EnergyNode : MonoBehaviour
 {
     [SerializeField] private CurrentContainer currentContainer;
-    [SerializeField] private bool generator;
+    [SerializeField] private ENodeType nodeType;
+    public ENodeType NodeType => nodeType;
 
     public bool TryConnect(EnergyNode other)
     {
@@ -21,9 +19,21 @@ public class EnergyNode : MonoBehaviour
     
     private bool CanConnect(EnergyNode other, out CurrentContainer sender, out CurrentContainer receiver)
     {
-        sender = generator ? currentContainer : other.currentContainer;
-        receiver = generator ? other.currentContainer : currentContainer;
-        return other.generator != generator;
+        sender = nodeType == ENodeType.Generator ? currentContainer : other.currentContainer;
+        receiver = nodeType == ENodeType.Spender ? currentContainer : other.currentContainer;
+        return other.nodeType != nodeType;
+    }
+
+    public void ShutDownNodeConnection(EnergyNode other)
+    {
+        foreach (var current in currentContainer.Currents.ToList())
+        {
+            if ((current.Sender == currentContainer && current.Receiver == other.currentContainer) ||
+                (current.Sender == other.currentContainer && current.Receiver == currentContainer))
+            {
+                current.ShutDown();
+            }
+        }
     }
     
     public void InitiateCurrent(CurrentContainer from, CurrentContainer to, EnergyNode other)

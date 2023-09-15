@@ -1,32 +1,47 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class EnergyNodeAutoConnector : MonoBehaviour
 {
+    [SerializeField] private EnergyNodeFinder nodeFinder;
     [SerializeField] private EnergyNode node;
-    [SerializeField] private Vector3 range;
-    [SerializeField] private Vector3 offset;
-    [SerializeField] private LayerMask layerMask;
-    
+
+    private HashSet<EnergyNode> _connectedNodes = new();
+
+    private void Awake()
+    {
+        nodeFinder.OnRangeUpdated.AddListener(_ => RefreshNodes(nodeFinder.Nodes));
+    }
+
     private void Start()
     {
         BuildingManager.Instance.OnBuildingAdded.AddListener(HandleBuildingAdded);
-        ConnectAllInRange();
+        ConnectNodes(nodeFinder.Nodes);
     }
 
     private void HandleBuildingAdded()
     {
-        ConnectAllInRange();
+        RefreshNodes(nodeFinder.Nodes);
     }
 
-    private void ConnectAllInRange()
+    private void RefreshNodes(List<EnergyNode> nodes)
     {
-        var colliders = new Collider[100];
-        Physics.OverlapBoxNonAlloc(offset + transform.position, range, colliders, Quaternion.identity, layerMask);
-        foreach (var collider in colliders)
+        foreach (var connectedNode in _connectedNodes.ToList())
         {
-            if (collider == null || !collider.TryGetComponent<EnergyNode>(out var other)) continue;
+            if (nodes.Contains(connectedNode)) continue;
+            node.ShutDownNodeConnection(connectedNode);
+            _connectedNodes.Remove(connectedNode);
+        }
+        ConnectNodes(nodes);
+    }
 
-            node.TryConnect(other);
+    private void ConnectNodes(List<EnergyNode> nodes)
+    {
+        foreach (var other in nodes)
+        {
+            if (node.TryConnect(other)) _connectedNodes.Add(other);
         }
     }
 }

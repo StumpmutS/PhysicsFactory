@@ -2,12 +2,12 @@
 
 public class BuildingDisplay : SelectableDisplay<Building>
 {
-    protected override void SetupSelectionDisplay(Selectable selectable, Building building)
+    protected override void SetupSelectionDisplay(Building building)
     {
         GameMenuManager.Instance.ActivatePriorityMenu(EGameMenuType.Building);
     }
     
-    protected override void RemoveSelectionDisplay(Selectable selectable)
+    protected override void RemoveSelectionDisplay()
     {
         GameMenuManager.Instance.DeactivateMenu(EGameMenuType.Building);
     }

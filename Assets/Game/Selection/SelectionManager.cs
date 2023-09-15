@@ -36,22 +36,23 @@ public class SelectionManager : Singleton<SelectionManager>
     {
         var results = new RaycastHit[128];
         Physics.RaycastNonAlloc(MainCameraRef.Cam.ScreenPointToRay(Input.mousePosition), results, maxSearchDistance, selectableLayer);
+        results = results.Where(hit => hit.collider != null)
+            .OrderBy(hit => Vector3.SqrMagnitude(hit.point - MainCameraRef.Cam.transform.position)).ToArray();
+        if (results.Length == 0)
+        {
+            SetHovered(null);
+            return;
+        }
 
         foreach (var hit in results)
         {
-            if (hit.collider == null) break;
-
             if (!hit.collider.TryGetComponent<Selectable>(out var selectable) || !_prioritizedSelectables.Contains(selectable)) continue;
             
             SetHovered(selectable);
             return;
         }
 
-        if (results[0].collider != null && results[0].collider.TryGetComponent<Selectable>(out var firstSelectable))
-        {
-            SetHovered(firstSelectable);
-        }
-        else SetHovered(null);
+        SetHovered(results[0].collider.TryGetComponent<Selectable>(out var firstSelectable) ? firstSelectable : null);
     }
 
     private void SetHovered(Selectable selectable)

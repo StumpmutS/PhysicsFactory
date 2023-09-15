@@ -21,11 +21,11 @@ namespace Utility.Scripts
             return true;
         }
 
-        public static Vector3 ClampZero(this Vector3 vector3)
+        public static Vector3 MinValueOf(this Vector3 vector3, float min)
         {
-            if (vector3.x < 0) vector3.x = 0;
-            if (vector3.y < 0) vector3.y = 0;
-            if (vector3.z < 0) vector3.z = 0;
+            if (vector3.x < min) vector3.x = min;
+            if (vector3.y < min) vector3.y = min;
+            if (vector3.z < min) vector3.z = min;
             return vector3;
         }
 

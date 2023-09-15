@@ -12,7 +12,7 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
     private ModificationContainer _modificationContainer;
     private Dictionary<ModificationData, LabeledCallbackButton> _buttons = new();
 
-    protected override void SetupSelectionDisplay(Selectable selectable, ModificationContainer modificationContainer)
+    protected override void SetupSelectionDisplay(ModificationContainer modificationContainer)
     {
         container.SetActive(true);
         _buttons.Clear();
@@ -61,7 +61,7 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
         SetButton(_buttons[modification], modification, _modificationContainer.Modifications[modification]);
     }
     
-    protected override void RemoveSelectionDisplay(Selectable selectable)
+    protected override void RemoveSelectionDisplay()
     {
         container.SetActive(false);
         layout.Clear();

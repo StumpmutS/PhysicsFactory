@@ -14,14 +14,16 @@ public class CurrentContainer : MonoBehaviour
         if (!Currents.Add(current)) return;
         
         current.OnChargeChanged += HandleChargeChanged;
+        current.OnShutDown += RemoveCurrent;
         OnCurrentsChanged.Invoke();
     }
     
-    public void RemoveCurrent(EnergyCurrent current)
+    private void RemoveCurrent(EnergyCurrent current)
     {
         if (!Currents.Remove(current)) return;
         
         current.OnChargeChanged -= HandleChargeChanged;
+        current.OnShutDown -= RemoveCurrent;
         OnCurrentsChanged.Invoke();
     }
 
@@ -30,12 +32,17 @@ public class CurrentContainer : MonoBehaviour
         OnCurrentsChanged.Invoke();
     }
 
-    private void OnDestroy()
+    private void ShutDownCurrents()
     {
         var currentsCopy = Currents.ToList();
         foreach (var current in currentsCopy)
         {
             current.ShutDown();
         }
+    }
+
+    private void OnDestroy()
+    {
+        ShutDownCurrents();
     }
 }

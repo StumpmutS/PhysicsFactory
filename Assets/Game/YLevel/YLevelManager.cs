@@ -23,7 +23,6 @@ public class YLevelManager : Singleton<YLevelManager>
 
     public void ChangeLevels(Vector2 value)
     {
-        print($"v2 {value}");
         YLevel += Mathf.RoundToInt(value.y);
     }
 }

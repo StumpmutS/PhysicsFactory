@@ -2,7 +2,6 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utility.Scripts;
 
 public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
@@ -15,7 +14,7 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
     private EnergySpreadController _controller;
     private Dictionary<IEnergySpender, LabeledSignedFloatSelector> _selectors = new();
 
-    protected override void SetupSelectionDisplay(Selectable selectable, EnergySpreadController controller)
+    protected override void SetupSelectionDisplay(EnergySpreadController controller)
     {
         container.SetActive(true);
         _controller = controller;
@@ -44,17 +43,18 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
         var selector = Instantiate(floatSelectorPrefab);
         selector.Init(value, callbackObj);
         selector.SetLabel(label);
-        selector.OnChanged += HandleSelectorChanged;
+        selector.OnChanged.AddListener(HandleSelectorChanged);
         return selector;
     }
 
     private void HandleSpendersChanged()
     {
-        foreach (var kvp in _controller.Spenders.Floats)
+        var floatsCopy = _controller.Spenders.Floats.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        foreach (var kvp in floatsCopy)
         {
             if (_selectors.TryGetValue(kvp.Key, out var selector))
             {
-                selector.UpdateVisuals(kvp.Value);
+                selector.SignedFloat = kvp.Value;
                 selector.SetLabel(kvp.Key.SpenderInfo.Label);
             }
             else
@@ -80,7 +80,7 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
         _controller.Spenders.SetValue(spender, value);
     }
 
-    protected override void RemoveSelectionDisplay(Selectable selectable)
+    protected override void RemoveSelectionDisplay()
     {
         container.SetActive(false);
         layout.Clear();

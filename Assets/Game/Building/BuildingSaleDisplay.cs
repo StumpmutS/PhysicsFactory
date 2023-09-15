@@ -23,7 +23,7 @@ public class BuildingSaleDisplay : SelectableDisplay<BuildingSaleController>
         _saleController.Sell();
     }
 
-    protected override void SetupSelectionDisplay(Selectable selectable, BuildingSaleController saleController)
+    protected override void SetupSelectionDisplay(BuildingSaleController saleController)
     {
         container.SetActive(true);
         _saleController = saleController;
@@ -31,7 +31,7 @@ public class BuildingSaleDisplay : SelectableDisplay<BuildingSaleController>
         text.text = _saleController.SaleText;
     }
     
-    protected override void RemoveSelectionDisplay(Selectable selectable)
+    protected override void RemoveSelectionDisplay()
     {
         container.SetActive(false);
         button.gameObject.SetActive(false);

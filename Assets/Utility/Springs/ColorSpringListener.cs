@@ -8,9 +8,14 @@ public abstract class ColorSpringListener : SpringListener
     
     private Color _origValue;
     
-    private void Start()
+    private void Awake()
     {
         _origValue = useSetValue ? origValue : GetOrig();
+        UpdateValues();
+    }
+
+    private void UpdateValues()
+    {
         if (useSetValue) return;
 
         minValue = _origValue * minMultiplier;
@@ -18,6 +23,12 @@ public abstract class ColorSpringListener : SpringListener
     }
 
     protected abstract Color GetOrig();
+
+    public void SetOrig(Color color)
+    {
+        _origValue = color;
+        UpdateValues();
+    }
 
     public override void HandleSpringValue(float amount, float target)
     {
@@ -28,6 +39,9 @@ public abstract class ColorSpringListener : SpringListener
                 break;
             case < 0:
                 ChangeValue(_origValue + (_origValue - minValue) * amount);
+                break;
+            default:
+                ChangeValue(_origValue);
                 break;
         }
     }
