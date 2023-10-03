@@ -41,7 +41,7 @@ public class CurrentContainer : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    public void HandleSale()
     {
         ShutDownCurrents();
     }

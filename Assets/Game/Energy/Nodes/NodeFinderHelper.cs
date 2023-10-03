@@ -7,6 +7,7 @@ public static class NodeFinderHelper
     {
         var colliders = new Collider[100];
         var extents = (range + .5f) * Vector3.one - .01f * Vector3.one;
+        Physics.SyncTransforms();
         Physics.OverlapBoxNonAlloc(transform.position + offset, extents, colliders, Quaternion.identity, layerMask);
         
         List<EnergyNode> nodes = new();

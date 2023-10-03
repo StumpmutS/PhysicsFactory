@@ -9,6 +9,10 @@ public class Building : MonoBehaviour
     {
         Info = info;
         transform.localScale = transformToCopy.localScale;
+    }
+    
+    private void Start()
+    {
         BuildingManager.Instance.AddBuilding(this);
     }
 

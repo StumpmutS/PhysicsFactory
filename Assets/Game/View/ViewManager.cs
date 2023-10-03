@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Utility.Scripts;
 
 public class ViewManager : Singleton<ViewManager>
@@ -11,6 +12,8 @@ public class ViewManager : Singleton<ViewManager>
     public EView CurrentView { get; private set; }
 
     private HashSet<Viewable> _viewables = new();
+
+    public UnityEvent OnViewChanged;
 
     private void Start()
     {
@@ -46,5 +49,6 @@ public class ViewManager : Singleton<ViewManager>
             if (viewable.View != view) continue;
             viewable.Activate();
         }
+        OnViewChanged.Invoke();
     }
 }
