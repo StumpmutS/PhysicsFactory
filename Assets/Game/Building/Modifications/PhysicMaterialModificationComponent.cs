@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 
-public class PhysicMaterialModification : Modification
+public class PhysicMaterialModificationComponent : ModificationComponent
 {
     [SerializeField] private PhysicMaterial material;
 
     private Collider _collider;
     private PhysicMaterial _previousMaterial;
     
-    protected override void Activate()
+    public override void Activate(Transform mainTransform)
     {
-        if (!_mainTransform.TryGetComponent<Collider>(out var foundCollider)) return;
+        if (!mainTransform.TryGetComponent<Collider>(out var foundCollider)) return;
 
         _collider = foundCollider;
         _previousMaterial = foundCollider.material;
@@ -17,7 +17,7 @@ public class PhysicMaterialModification : Modification
         foundCollider.material = material;
     }
 
-    protected override void Deactivate()
+    public override void Deactivate()
     {
         if (_previousMaterial == null || _collider == null) return;
         _collider.material = _previousMaterial;

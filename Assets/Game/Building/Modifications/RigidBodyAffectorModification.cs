@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Utility.Scripts;
 
-public class RigidBodyAffectorModification : Modification
+public class RigidBodyAffectorModification : ModificationComponent
 {
     [SerializeField] private RigidBodyAffector rigidBodyAffectorPrefab;
 
@@ -10,18 +10,18 @@ public class RigidBodyAffectorModification : Modification
     private EnergySpreadController _spreadController;
     private IEnergySpender _spender;
 
-    protected override void Activate()
+    public override void Activate(Transform mainTransform)
     {
-        _container = _mainTransform.AddOrGetComponent<RigidBodyAffectorContainer>();
+        _container = mainTransform.AddOrGetComponent<RigidBodyAffectorContainer>();
         _affector = _container.AddAffector(rigidBodyAffectorPrefab);
         if (_affector is not IEnergySpender spender ||
-            !_mainTransform.TryGetComponent<EnergySpreadController>(out var spreadController)) return;
+            !mainTransform.TryGetComponent<EnergySpreadController>(out var spreadController)) return;
         spreadController.RegisterSpender(spender);
         _spreadController = spreadController;
         _spender = spender;
     }
 
-    protected override void Deactivate()
+    public override void Deactivate()
     {
         if (_container != null) _container.RemoveAffector(_affector);
         if (_spreadController != null && _spender != null)

@@ -154,7 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91457f02d1854a3cb4a708c0a8a97a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetNodeType: 1
+  nodeType:
+    searchKeyWord: node
+    targetTypeAssemblyQName: SpenderNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   finder: {fileID: 5367981027734394732}
 --- !u!114 &5367981027734394732
 MonoBehaviour:

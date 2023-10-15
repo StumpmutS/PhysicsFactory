@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f86eb6650b9529f4fa7960ac9170c51c, type: 3}
-  m_Name: StickRigidBodyAffectorMod
+  m_Name: FrictionlessPhysicMaterialMod
   m_EditorClassIdentifier: 
   info:
-    modificationPrefab: {fileID: -501964343080440856, guid: d8a978ce9d393f8468baedb4091b6fbd,
+    modificationPrefab: {fileID: 4547405215875242661, guid: 7f9a8898e140cbe419c2ba22cee4a598,
       type: 3}
-    label: Sticky
+    label: Frictionless
     activationRestrictions:
-    - {fileID: 11400000, guid: 705fe0e12c2b2c0459d5b77ddd4e22c6, type: 2}
+    - {fileID: 11400000, guid: f1a511772bb780a4a9e0a138aaef7e5c, type: 2}
     saleRestrictions:
-    - {fileID: 11400000, guid: af4c52482bfd8454083a73803ff514f8, type: 2}
-    price: 1
+    - {fileID: 11400000, guid: b541687ff8852b44893c7db935c8e0f4, type: 2}
+    price: 0.1
+    saleMultiplier: 0.5

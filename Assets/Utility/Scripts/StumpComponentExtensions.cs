@@ -23,5 +23,17 @@ namespace Utility.Scripts
 
             return found;
         }
+
+        public static bool TryGetComponentInChildren<T>(this Component component, out T result) where T : Component
+        {
+            result = component.GetComponentInChildren<T>();
+            return result != null;
+        }
+
+        public static bool TryGetComponentInChildren<T>(this GameObject gameObject, out T result) where T : Component
+        {
+            result = gameObject.GetComponentInChildren<T>();
+            return result != null;
+        }
     }
 }

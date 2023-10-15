@@ -1,11 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public abstract class Modification : MonoBehaviour
+public class Modification : MonoBehaviour
 {
+    [SerializeField] private List<ModificationComponent> componentPrefabs;
+
     private ModificationInfo _modInfo;
     private ModificationRestrictionInfo _restrictionInfo;
+    private Transform _mainTransform;
+    private List<ModificationComponent> _activeComponents = new();
 
-    protected Transform _mainTransform;
     
     public void Init(ModificationInfo info, Transform mainTransform)
     {
@@ -20,8 +24,17 @@ public abstract class Modification : MonoBehaviour
         Activate();
         return true;
     }
-    
-    protected abstract void Activate();
+
+    private void Activate()
+    {
+        Deactivate();
+        foreach (var prefab in componentPrefabs)
+        {
+            var component = Instantiate(prefab, transform);
+            component.Activate(_mainTransform);
+            _activeComponents.Add(component);
+        }
+    }
 
     public bool TryDeactivate()
     {
@@ -30,7 +43,15 @@ public abstract class Modification : MonoBehaviour
         return true;
     }
 
-    protected abstract void Deactivate();
+    private void Deactivate()
+    {
+        foreach (var component in _activeComponents)
+        {
+            component.Deactivate();
+            Destroy(component.gameObject);
+        }
+        _activeComponents.Clear();
+    }
 
     private ModificationRestrictionInfo GenerateRestrictionInfo(Building building)
     {

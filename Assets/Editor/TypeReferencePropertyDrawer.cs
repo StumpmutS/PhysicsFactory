@@ -48,10 +48,7 @@ public class TypeReferencePropertyDrawer : PropertyDrawer
         Dictionary<string, string> availableAssemblyQNames = new();
         foreach (var (name, assemblyQName) in availableTypeTuples)
         {
-            if (!availableAssemblyQNames.ContainsKey(name))
-            {
-                availableAssemblyQNames.Add(name, assemblyQName);
-            }
+            availableAssemblyQNames.TryAdd(name, assemblyQName);
         }
         var availableTypeNames = availableAssemblyQNames.Keys.Where(s => s.ToLower().Contains(search.ToLower())).OrderBy(s => s).ToList();
         
@@ -70,10 +67,7 @@ public class TypeReferencePropertyDrawer : PropertyDrawer
 
     private TypeReferencePropertyData RefreshPropertyData(SerializedProperty property)
     {
-        if (!_perPropertyData.ContainsKey(property.propertyPath))
-        {
-            _perPropertyData[property.propertyPath] = new TypeReferencePropertyData();
-        }
+        _perPropertyData.TryAdd(property.propertyPath, new TypeReferencePropertyData());
         return _perPropertyData[property.propertyPath];
     }
 }

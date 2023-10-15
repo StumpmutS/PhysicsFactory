@@ -13,6 +13,23 @@ public class SelectionManager : Singleton<SelectionManager>
     private Selectable _selected;
     private HashSet<Selectable> _engaged = new();
     private HashSet<Selectable> _prioritizedSelectables = new();
+    private bool _disabled;
+    private HashSet<object> _disablers = new();
+
+    public void Enable(object caller)
+    {
+        _disablers.Remove(caller);
+        if (_disablers.Count < 1) _disabled = false;
+    }
+
+    public void Disable(object caller)
+    {
+        _disabled = true;
+        _disablers.Add(caller);
+        TryStopHover();
+        TryDeselect();
+        DisengageAll();
+    }
     
     public void PrioritizeSelectables(IEnumerable<Selectable> selectables)
     {
@@ -57,26 +74,49 @@ public class SelectionManager : Singleton<SelectionManager>
 
     private void SetHovered(Selectable selectable)
     {
+        if (_disabled) return;
+
         if (selectable == _hovered) return;
-        if (_hovered != null) _hovered.StopHover();
+        TryStopHover();
         _hovered = selectable;
         if (selectable == null) return;
         selectable.Hover();
+        selectable.OnHoverStop.AddListener(HandleEarlyHoverStop);
+    }
+
+    private void TryStopHover()
+    {
+        if (_hovered == null) return;
+        
+        _hovered.OnHoverStop.RemoveListener(HandleEarlyHoverStop);
+        _hovered.StopHover();
+    }
+
+    private void HandleEarlyHoverStop(Selectable selectable)
+    {
+        selectable.OnHoverStop.RemoveListener(HandleEarlyHoverStop);
+        if (_hovered == selectable) _hovered = null;
     }
 
     public void SelectHovered()
     {
-        if (_selected != null)
-        {
-            _selected.OnDeselect.RemoveListener(HandleEarlyDeselect);
-            _selected.Deselect();
-        }
+        if (_disabled) return;
+
+        TryDeselect();
         if (_hovered != null)
         {
-            _hovered.Select(); 
             _hovered.OnDeselect.AddListener(HandleEarlyDeselect);
+            _hovered.Select();
         }
         _selected = _hovered;
+    }
+
+    private void TryDeselect()
+    {
+        if (_selected == null) return;
+       
+        _selected.OnDeselect.RemoveListener(HandleEarlyDeselect);
+        _selected.Deselect();
     }
 
     private void HandleEarlyDeselect(Selectable selectable)
@@ -87,6 +127,8 @@ public class SelectionManager : Singleton<SelectionManager>
 
     public void EngageHovered()
     {
+        if (_disabled) return;
+
         if (_hovered != null)
         {
             _engaged.Add(_hovered);

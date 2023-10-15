@@ -59,11 +59,21 @@ public class Selectable : MonoBehaviour
         OnDisengage.Invoke(this);
     }
 
+    private void OnDisable()
+    {
+        DeactivateInteractions();
+    }
+
     private void OnDestroy()
+    {
+        DeactivateInteractions();
+        SelectionEvents.Instance.DeregisterSelectable(this);
+    }
+
+    private void DeactivateInteractions()
     {
         StopHover();
         Disengage();
         Deselect();
-        SelectionEvents.Instance.DeregisterSelectable(this);
     }
 }

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Utility.Scripts;
 
 public class NodeHighlighter : MonoBehaviour
 {
-    [SerializeField] private ENodeType targetNodeType; 
+    [SerializeField] private TypeReference nodeType;
     [SerializeField] private EnergyNodeFinder finder;
 
     private HashSet<Highlightable> _highlighted = new();
@@ -24,7 +25,7 @@ public class NodeHighlighter : MonoBehaviour
 
     private void HighlightNodes(List<EnergyNode> nodes)
     {
-        var highlightables = nodes.Where(n => n.NodeType == targetNodeType)
+        var highlightables = nodes.Where(n => n.GetType() == nodeType.TargetType)
             .Select(n => n.GetComponent<Highlightable>())
             .Where(h => h != null);
         _highlighted = highlightables.ToHashSet();

@@ -20,6 +20,8 @@ public class InputTranslationManager : Singleton<InputTranslationManager>
     public UnityEvent<Vector2> OnLevelChange;
     public UnityEvent OnResetDown;
     public UnityEvent OnResetUp;
+    public UnityEvent OnGridDown;
+    public UnityEvent OnGridUp;
 
     public void Move(InputAction.CallbackContext ctx)
     {
@@ -106,6 +108,23 @@ public class InputTranslationManager : Singleton<InputTranslationManager>
         else
         {
             OnResetUp.Invoke();
+        }
+    }
+
+    private bool _cachedGridValue;
+    public void Grid(InputAction.CallbackContext ctx)
+    {
+        var value = ctx.ReadValueAsButton();
+        if (value == _cachedGridValue) return;
+        _cachedGridValue = value;
+        
+        if (value)
+        {
+            OnGridDown.Invoke();
+        }
+        else
+        {
+            OnGridUp.Invoke();
         }
     }
 }

@@ -3,11 +3,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class EnergyNode : MonoBehaviour
+public abstract class EnergyNode : MonoBehaviour
 {
     [SerializeField] private CurrentContainer currentContainer;
-    [SerializeField] private ENodeType nodeType;
-    public ENodeType NodeType => nodeType;
+    public CurrentContainer CurrentContainer => currentContainer;
 
     public bool TryConnect(EnergyNode other)
     {
@@ -16,13 +15,8 @@ public class EnergyNode : MonoBehaviour
         InitiateCurrent(sender, receiver, other);
         return true;
     }
-    
-    private bool CanConnect(EnergyNode other, out CurrentContainer sender, out CurrentContainer receiver)
-    {
-        sender = nodeType == ENodeType.Generator ? currentContainer : other.currentContainer;
-        receiver = nodeType == ENodeType.Spender ? currentContainer : other.currentContainer;
-        return other.nodeType != nodeType;
-    }
+
+    public abstract bool CanConnect(EnergyNode other, out CurrentContainer sender, out CurrentContainer receiver);
 
     public void ShutDownNodeConnection(EnergyNode other)
     {
@@ -36,7 +30,7 @@ public class EnergyNode : MonoBehaviour
         }
     }
     
-    public void InitiateCurrent(CurrentContainer from, CurrentContainer to, EnergyNode other)
+    private void InitiateCurrent(CurrentContainer from, CurrentContainer to, EnergyNode other)
     {
         if (currentContainer.Currents.Any(current => current.Sender == from && current.Receiver == to)) return;
         var current = new EnergyCurrent(from, to);

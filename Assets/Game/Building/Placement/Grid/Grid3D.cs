@@ -7,7 +7,6 @@ using Utility.Scripts;
 public class Grid3D : MonoBehaviour
 {
     [SerializeField] private Vector3 origin;
-    public Vector3 Origin => origin;
     [SerializeField] private Vector3 dimensions;
     public Vector3 Dimensions => dimensions;
     [SerializeField] private int cellSize;
@@ -45,5 +44,18 @@ public class Grid3D : MonoBehaviour
             }
             Grid.Add(yList);
         }
+    }
+
+    public Vector3 GetIntersectedPosition(Ray ray, int yIndex)
+    {
+        var yDistance = ray.origin.y - yIndex;
+        var result = (ray.origin + ray.direction * Mathf.Abs(yDistance / ray.direction.y)) * cellSize;
+        
+        return new Vector3(ConvertToCellPosition(result.x), ConvertToCellPosition(result.y), ConvertToCellPosition(result.z));
+    }
+
+    private float ConvertToCellPosition(float number)
+    {
+        return number - number % cellSize + Mathf.Sign(number) * cellSize / 2f;
     }
 }

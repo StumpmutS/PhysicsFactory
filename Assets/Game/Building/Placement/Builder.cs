@@ -7,42 +7,43 @@ using Object = UnityEngine.Object;
 
 public class Builder
 {
-    private GridProjector _gridProjector;
+    private Grid3D _grid;
     private BuildingInfo _info;
     private BuildingPreview _mainPreview;
     private Stack<Vector3> _selectedLocations = new();
     private Stack<Vector3> _restrictedAxes = new();
 
-    public Builder(GridProjector gridProjector, BuildingInfo info)
+    public Builder(Grid3D grid, BuildingInfo info)
     {
-        _gridProjector = gridProjector;
+        _grid = grid;
         _info = info;
         _mainPreview = Object.Instantiate(_info.PreviewPrefab);
         _mainPreview.gameObject.SetActive(false);
         _restrictedAxes.Push(Vector3.zero);
         
-        _gridProjector.OnCellHovered += HandleCellHovered;
-        _gridProjector.OnCellSelected += HandleCellSelected;
         InputTranslationManager.Instance.OnResetDown.AddListener(HandleReset);
+        InputTranslationManager.Instance.OnInteractNonUIUp.AddListener(HandleInteract);
     }
 
     public event Action OnBuildComplete = delegate { };
 
-    private void HandleCellHovered(Cell3D cell)
+    public void Tick()
     {
-        var position = RoundAxes(cell.GetPosition(), out _);
+        var position = RoundAxes(_grid.GetIntersectedPosition(MainCameraRef.Cam.ScreenPointToRay(Input.mousePosition),
+                    YLevelManager.Instance.YLevel), out _);
         var hoveredLocations = new List<Vector3>(_selectedLocations.Reverse())
         {
             position
         };
         _mainPreview.gameObject.SetActive(true);
-        _mainPreview.StretchTo(hoveredLocations, cell.Info.Size);
+        _mainPreview.StretchTo(hoveredLocations, _grid.CellSize);
         UpdateRestrictions();
     }
 
-    private void HandleCellSelected(Cell3D cell)
+    private void HandleInteract()
     {
-        var position = RoundAxes(cell.GetPosition(), out var newRestriction);
+        var position = RoundAxes(_grid.GetIntersectedPosition(MainCameraRef.Cam.ScreenPointToRay(Input.mousePosition),
+            YLevelManager.Instance.YLevel), out var newRestriction);
         _selectedLocations.Push(position);
         _restrictedAxes.Push(newRestriction);
         UpdateRestrictions();
@@ -81,9 +82,8 @@ public class Builder
 
     public void Destroy()
     {
-        _gridProjector.OnCellHovered -= HandleCellHovered;
-        _gridProjector.OnCellSelected -= HandleCellSelected;
         InputTranslationManager.Instance.OnResetDown.RemoveListener(HandleReset);
+        InputTranslationManager.Instance.OnInteractNonUIUp.RemoveListener(HandleInteract);
         Object.Destroy(_mainPreview.gameObject);
     }
 
