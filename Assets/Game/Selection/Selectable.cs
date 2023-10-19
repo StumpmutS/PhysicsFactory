@@ -18,7 +18,7 @@ public class Selectable : MonoBehaviour
     public UnityEvent<Selectable> OnEngage;
     public UnityEvent<Selectable> OnDisengage;
 
-    private void Awake()
+    private void Start()
     {
         SelectionEvents.Instance.RegisterSelectable(this);
     }

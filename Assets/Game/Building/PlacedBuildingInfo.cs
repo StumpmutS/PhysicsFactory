@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
 
 public class PlacedBuildingInfo
 {
@@ -17,4 +17,7 @@ public class PlacedBuildingInfo
         SaleRestrictions = saleRestrictions;
         SaleMultiplier = saleMultiplier;
     }
+
+    public PlacedBuildingInfo(BuildingInfo info, float volume) : this(info.Label, volume, info.Price,
+        info.SaleRestrictions, info.SaleMultiplier) { }
 }

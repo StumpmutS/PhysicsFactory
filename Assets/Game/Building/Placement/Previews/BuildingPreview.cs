@@ -17,7 +17,7 @@ public abstract class BuildingPreview : MonoBehaviour
     public void Place(BuildingInfo info)
     {
         var building = Instantiate(buildingPrefab);
-        building.Init(new PlacedBuildingInfo(info.Label, Volume, info.Price, info.SaleRestrictions, info.SaleMultiplier), transform);
+        building.Init(new PlacedBuildingInfo(info, Volume), transform);
     }
     
     public void Pass()

@@ -20,11 +20,12 @@ public class StickRigidBodyAffector : RigidBodyAffector, IEnergySpender
         GenerateInwardForce(collision);
     }
 
+    private readonly List<ContactPoint> _contactPoints = new();
+
     private void GenerateInwardForce(Collision collision)
     {
-        var contacts = new List<ContactPoint>();
-        collision.GetContacts(contacts);
-        foreach (var contact in contacts)
+        collision.GetContacts(_contactPoints);
+        foreach (var contact in _contactPoints)
         {
             collision.rigidbody.AddForceAtPosition
                 (contact.normal * energyToForceMultiplier * _charge, contact.point);

@@ -1,4 +1,3 @@
-using System;
 using FMPUtils.Extensions;
 using UnityEngine;
 using UnityEngine.Events;
