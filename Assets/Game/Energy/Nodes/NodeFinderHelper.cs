@@ -3,15 +3,20 @@ using UnityEngine;
 
 public static class NodeFinderHelper
 {
+    private static readonly Collider[] Colliders = new Collider[1024];
+    
     public static List<EnergyNode> FindNodesInRange(float range, Transform transform, Vector3 offset, LayerMask layerMask)
     {
-        var colliders = new Collider[100];
+        for (int i = 0; i < Colliders.Length; i++)
+        {
+            Colliders[i] = null;
+        }
         var extents = (range + .5f) * Vector3.one - .01f * Vector3.one;
         Physics.SyncTransforms();
-        Physics.OverlapBoxNonAlloc(transform.position + offset, extents, colliders, Quaternion.identity, layerMask);
+        Physics.OverlapBoxNonAlloc(transform.position + offset, extents, Colliders, Quaternion.identity, layerMask);
         
         List<EnergyNode> nodes = new();
-        foreach (var collider in colliders)
+        foreach (var collider in Colliders)
         {
             if (collider == null || !collider.TryGetComponent<EnergyNode>(out var other)) continue;
             nodes.Add(other);

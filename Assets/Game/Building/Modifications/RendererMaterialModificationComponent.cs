@@ -5,19 +5,18 @@ public class RendererMaterialModificationComponent : ModificationComponent
 {
     [SerializeField] private Material swapMaterial;
 
-    private Renderer _renderer;
+    private MaterialManager _materialManager;
     private Material _defaultMaterial;
     
     public override void Activate(Transform mainTransform)
     {
-        if (!mainTransform.TryGetComponentInChildren(out _renderer)) return;
+        if (!mainTransform.TryGetComponentInChildren(out _materialManager)) return;
         
-        _defaultMaterial = _renderer.material;
-        _renderer.material = swapMaterial;
+        _defaultMaterial = _materialManager.SwapMaterial(swapMaterial);
     }
 
     public override void Deactivate()
     {
-        if (_renderer != null) _renderer.material = _defaultMaterial;
+        if (_materialManager != null) _materialManager.SwapMaterial(_defaultMaterial);
     }
 }

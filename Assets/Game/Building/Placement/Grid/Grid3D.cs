@@ -48,14 +48,20 @@ public class Grid3D : MonoBehaviour
 
     public Vector3 GetIntersectedPosition(Ray ray, int yIndex)
     {
-        var yDistance = ray.origin.y - yIndex;
+        var yDistance = ray.origin.y - yIndex + dimensions.y / 2;
         var result = (ray.origin + ray.direction * Mathf.Abs(yDistance / ray.direction.y)) * cellSize;
         
         return new Vector3(ConvertToCellPosition(result.x), ConvertToCellPosition(result.y), ConvertToCellPosition(result.z));
     }
-
+    
     private float ConvertToCellPosition(float number)
     {
+        number += .0001f; //Favor positive when whole number, important for negative y levels
         return number - number % cellSize + Mathf.Sign(number) * cellSize / 2f;
+    }
+
+    public Cell3DInfo GetCell(Vector3Int cellIndex)
+    {
+        return Grid[cellIndex.x + (int) dimensions.x / 2][cellIndex.y + (int) dimensions.y / 2][cellIndex.z + (int) dimensions.z / 2];
     }
 }

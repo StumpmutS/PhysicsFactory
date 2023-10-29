@@ -49,19 +49,25 @@ public class SelectionManager : Singleton<SelectionManager>
         UpdateHovered();
     }
 
+    private readonly RaycastHit[] _raycastResults = new RaycastHit[128];
+    
     private void UpdateHovered()
     {
-        var results = new RaycastHit[128];
-        Physics.RaycastNonAlloc(MainCameraRef.Cam.ScreenPointToRay(Input.mousePosition), results, maxSearchDistance, selectableLayer);
-        results = results.Where(hit => hit.collider != null)
+        for (int i = 0; i < _raycastResults.Length; i++)
+        {
+            _raycastResults[i] = default;
+        }
+        
+        Physics.RaycastNonAlloc(MainCameraRef.Cam.ScreenPointToRay(Input.mousePosition), _raycastResults, maxSearchDistance, selectableLayer);
+        var filteredResults = _raycastResults.Where(hit => hit.collider != null)
             .OrderBy(hit => Vector3.SqrMagnitude(hit.point - MainCameraRef.Cam.transform.position)).ToArray();
-        if (results.Length == 0)
+        if (filteredResults.Length == 0)
         {
             SetHovered(null);
             return;
         }
 
-        foreach (var hit in results)
+        foreach (var hit in filteredResults)
         {
             if (!hit.collider.TryGetComponent<Selectable>(out var selectable) || !_prioritizedSelectables.Contains(selectable)) continue;
             
@@ -69,7 +75,7 @@ public class SelectionManager : Singleton<SelectionManager>
             return;
         }
 
-        SetHovered(results[0].collider.TryGetComponent<Selectable>(out var firstSelectable) ? firstSelectable : null);
+        SetHovered(filteredResults[0].collider.TryGetComponent<Selectable>(out var firstSelectable) ? firstSelectable : null);
     }
 
     private void SetHovered(Selectable selectable)

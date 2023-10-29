@@ -4,8 +4,8 @@ using Utility.Scripts;
 
 public class YLevelManager : Singleton<YLevelManager>
 {
-    [SerializeField] private int minLevel, maxLevel;
-    
+    [SerializeField] private int minLevel, startLevel, maxLevel;
+
     private int _yLevel;
     public int YLevel
     {
@@ -20,6 +20,12 @@ public class YLevelManager : Singleton<YLevelManager>
     }
 
     public UnityEvent<int> OnYLevelChanged;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _yLevel = startLevel;
+    }
 
     public void ChangeLevels(Vector2 value)
     {

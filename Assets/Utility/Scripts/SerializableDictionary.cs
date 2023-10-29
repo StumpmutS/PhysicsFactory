@@ -11,8 +11,12 @@ namespace Utility.Scripts
         [SerializeField] private List<TKey> _keys = new();
         [SerializeField] private List<TValue> _values = new();
 
+        private bool _valid;
+        
         public void OnBeforeSerialize()
         {
+            if (!_valid) return;
+            
             _keys.Clear();
             _values.Clear();
 
@@ -22,19 +26,27 @@ namespace Utility.Scripts
 
         public void OnAfterDeserialize()
         {
+            Validate();
+            if (!_valid) return;
+            
             Clear();
 
-            for (int i = 0; i != Mathf.Max(_keys.Count, _values.Count); i++)
+            for (int i = 0; i < _keys.Count; i++)
             {
-                if (_keys.Count <= i || _values.Count <= i)
-                {
-                    Add(default, default);
-                }
-                else
-                {
-                    Add(_keys[i], _values[i]);
-                }
+                TryAdd(_keys[i], _values.Count <= i ? default : _values[i]);
             }
+        }
+
+        private void Validate()
+        {
+            if (_keys.Count != _keys.Distinct().Count())
+            {
+                Debug.LogError("Dictionary has duplicate keys");
+                _valid = false;
+                return;
+            }
+
+            _valid = true;
         }
     }
 }
