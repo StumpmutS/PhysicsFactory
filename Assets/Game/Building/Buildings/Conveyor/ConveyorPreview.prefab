@@ -42,6 +42,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1420943047198050759}
   - component: {fileID: 6590985248286571543}
+  - component: {fileID: 2520248649283758924}
+  - component: {fileID: 8935787038724571191}
+  - component: {fileID: 2671866235596767345}
   m_Layer: 0
   m_Name: ConveyorPreview
   m_TagString: Untagged
@@ -80,10 +83,66 @@ MonoBehaviour:
   buildingPrefab: {fileID: 2926680181560606962, guid: 2f2640e9078f39c4cbb048384bbcc121,
     type: 3}
   rendererInfo:
-  - overrideAlpha: 0
-    alpha: 0
+  - overrideAlpha: 1
+    alpha: 0.3
     renderer: {fileID: 7637131471690168982}
   previewColors: {fileID: 11400000, guid: 23b59f967a90fca4198ecf3bb7c955a4, type: 2}
+--- !u!114 &2520248649283758924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4630935832885597222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e92179da4af4f328caef3c87cd37360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 7637131471690168982}
+  materialPairs: {fileID: 11400000, guid: 0f37b19fd943c174a8aaea155a1d47ee, type: 2}
+--- !u!114 &8935787038724571191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4630935832885597222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608b4996a25c2ff48a41583dfcfb30b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialManager: {fileID: 2520248649283758924}
+  scaleReference: {fileID: 1420943047198050759}
+  conveyor: {fileID: 0}
+--- !u!114 &2671866235596767345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4630935832885597222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9062d84a8c4294a117ada49ca2bdc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnUpdate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8935787038724571191}
+        m_TargetAssemblyTypeName: ConveyorMatDriver, Assembly-CSharp
+        m_MethodName: UpdateMaterial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7936343225123379751
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +183,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7936343225123379751}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -5495902117074765545, guid: 0303e93d80309ca41813b0673b08be19, type: 3}
 --- !u!23 &7637131471690168982
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -145,7 +204,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 961b21ad2f6899740a813a2d797ae18f, type: 2}
+  - {fileID: 2100000, guid: ed632e6bf5bf4954ea061dd75e40be0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

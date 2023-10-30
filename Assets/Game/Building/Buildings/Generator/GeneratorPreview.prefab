@@ -133,8 +133,8 @@ MonoBehaviour:
   buildingPrefab: {fileID: 6657367101063419230, guid: cc243238367b75847b71c26217872531,
     type: 3}
   rendererInfo:
-  - overrideAlpha: 0
-    alpha: 0
+  - overrideAlpha: 1
+    alpha: 0.3
     renderer: {fileID: 3897377271347392471}
   - overrideAlpha: 1
     alpha: 0.2
@@ -274,7 +274,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8ca30fd03c06f974eb4baa15f28b0ec6, type: 2}
+  - {fileID: 2100000, guid: f20a4a1eb416d934c84c5a48c6f7fd0c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

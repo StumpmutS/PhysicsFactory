@@ -137,7 +137,13 @@ public class SelectionManager : Singleton<SelectionManager>
 
         if (_hovered != null)
         {
-            _engaged.Add(_hovered);
+            if (!_engaged.Add(_hovered))
+            {
+                _engaged.Remove(_hovered);
+                _hovered.OnDisengage.RemoveListener(HandleEarlyDisengage);
+                _hovered.Disengage();
+                return;
+            }
             _hovered.Engage();
             _hovered.OnDisengage.AddListener(HandleEarlyDisengage);
             return;

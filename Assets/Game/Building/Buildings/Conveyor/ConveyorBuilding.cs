@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-public class GrooverBuilding : Building, IEnergySpender
+public class ConveyorBuilding : Building, IEnergySpender
 {
     [SerializeField] private float energyToSpeedMultiplier;
 #pragma warning disable CS0108, CS0114

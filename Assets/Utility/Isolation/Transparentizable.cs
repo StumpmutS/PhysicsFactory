@@ -8,14 +8,15 @@ public class Transparentizable : MonoBehaviour
     [SerializeField] protected Transform mainTransform;
     [SerializeField] protected MaterialManager materialManager;
     [SerializeField] private float epsilon = .0001f;
-    
-    private static readonly int MinYUntransparentized = Shader.PropertyToID("_MinYUntransparentized");
+    protected virtual float Epsilon => epsilon;
+
+        private static readonly int MinYUntransparentized = Shader.PropertyToID("_MinYUntransparentized");
     private static readonly int MaxYUntransparentized = Shader.PropertyToID("_MaxYUntransparentized");
 
     public void Transparentize(int yLevel)
     {
         YLevelConverter.Instance.WorldMinMax(yLevel, yLevel + 1, out var min, out var max);
-        var localEpsilon = epsilon;
+        var localEpsilon = Epsilon;
         var adjustedScale = (mainTransform.rotation * mainTransform.localScale).Abs();
         if (mainTransform.position.y + adjustedScale.y / 2 > max || mainTransform.position.y - adjustedScale.y / 2 < min)
         {

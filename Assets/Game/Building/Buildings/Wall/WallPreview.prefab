@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf706adca98671442be799e940be8fd3, type: 2}
+  - {fileID: 2100000, guid: 70092467223e9ed41bc9379a3f6ddcf2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -163,7 +163,7 @@ MonoBehaviour:
   buildingPrefab: {fileID: 5718836290251932433, guid: b487e7cc6c53b20499b61c5c359221af,
     type: 3}
   rendererInfo:
-  - overrideAlpha: 0
-    alpha: 0
+  - overrideAlpha: 1
+    alpha: 0.3
     renderer: {fileID: 4289619956957397161}
   previewColors: {fileID: 11400000, guid: 23b59f967a90fca4198ecf3bb7c955a4, type: 2}

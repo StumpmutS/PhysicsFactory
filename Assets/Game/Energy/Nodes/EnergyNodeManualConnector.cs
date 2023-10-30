@@ -32,7 +32,13 @@ public class EnergyNodeManualConnector : Singleton<EnergyNodeManualConnector>
 
     private bool AttemptConnection(EnergyNode node)
     {
-        return _nodes.Any(node.TryConnect);
+        bool connected = false;
+        foreach (var other in _nodes)
+        {
+            if (node.TryConnect(other)) connected = true;
+        }
+
+        return connected;
     }
 
     private void AddNode(EnergyNode node)

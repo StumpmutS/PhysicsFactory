@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialManager: {fileID: 8880628289592055204}
   scaleReference: {fileID: 7068006180143690200}
-  groover: {fileID: 3236320739920693371}
+  conveyor: {fileID: 3236320739920693371}
 --- !u!1 &5614799982898544609
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 4306624479307438632}
   - component: {fileID: 8880628289592055204}
   m_Layer: 7
-  m_Name: GrooverMain
+  m_Name: ConveyorMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
