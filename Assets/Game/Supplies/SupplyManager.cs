@@ -26,9 +26,9 @@ public class SupplyManager : Singleton<SupplyManager>
         CurrentSupplyCount = startingSupply;
     }
 
-    public void DepositDolboid(Dolboid dolboid)
+    public void DepositDolboid(Dolboid dolboid, DepositEffects effects)
     {
-        CurrentSupplyCount += SupplyCalculator.CalculatePrice(dolboid);
+        CurrentSupplyCount += effects.Multiplier * SupplyCalculator.CalculatePrice(dolboid);
     }
 
     public void SpendSupply(float amount)

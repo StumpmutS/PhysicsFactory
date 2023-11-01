@@ -17,7 +17,7 @@ public abstract class ChargeVisuals : MonoBehaviour
         UpdateText();
     }
 
-    private void UpdateText()
+    public void UpdateText()
     {
         text.text = TextValue;
     }

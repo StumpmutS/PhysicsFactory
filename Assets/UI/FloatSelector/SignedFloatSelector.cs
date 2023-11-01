@@ -31,16 +31,9 @@ public class SignedFloatSelector : MonoBehaviour
         _maxValue = maxValue;
     }
 
-    public void HandleAdd()
+    public void AddValue(float value)
     {
-        if (SignedFloat.Value >= _maxValue) return;
-        SignedFloat = new SignedFloat(SignedFloat.Value + 1, SignedFloat.Positive);
-    }
-
-    public void HandleSubtract()
-    {
-        if (SignedFloat.Value <= 0) return;
-        SignedFloat = new SignedFloat(Mathf.Max(0, SignedFloat.Value - 1), SignedFloat.Positive);
+        SignedFloat = new SignedFloat(Mathf.Clamp(SignedFloat.Value + value, 0, _maxValue), SignedFloat.Positive);
     }
 
     public void HandleSignChange(bool value)

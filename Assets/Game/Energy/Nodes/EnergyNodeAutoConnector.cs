@@ -49,7 +49,7 @@ public class EnergyNodeAutoConnector : MonoBehaviour
         foreach (var connectedNode in _connectedNodes.ToList())
         {
             if (nodes.Contains(connectedNode)) continue;
-            node.ShutDownNodeConnection(connectedNode);
+            node.TryDisconnect(connectedNode);
             _connectedNodes.Remove(connectedNode);
         }
         ConnectNodes(nodes);

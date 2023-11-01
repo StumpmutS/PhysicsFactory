@@ -2,14 +2,11 @@
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-public class ConveyorBuilding : Building, IEnergySpender
+public class ConveyorBuilding : Building
 {
-    [SerializeField] private float energyToSpeedMultiplier;
 #pragma warning disable CS0108, CS0114
     [SerializeField] private Rigidbody rigidbody;
 #pragma warning restore CS0108, CS0114
-    [FormerlySerializedAs("info")] [SerializeField] private EnergySpenderInfo spenderInfo;
-    public EnergySpenderInfo SpenderInfo => spenderInfo;
 
     private float _currentSpeed;
     public float CurrentSpeed
@@ -23,20 +20,17 @@ public class ConveyorBuilding : Building, IEnergySpender
         }
     }
 
-    private float _charge;
-
     public UnityEvent OnSpeedChanged;
+
+    public void SetSpeed(float amount)
+    {
+        CurrentSpeed = amount;
+    }
 
     private void FixedUpdate()
     {
         var pos = rigidbody.position;
         rigidbody.position -= transform.forward * CurrentSpeed * Time.fixedDeltaTime;
         rigidbody.MovePosition(pos);
-    }
-
-    public void SetEnergyLevel(float amount)
-    {
-        _charge = amount;
-        CurrentSpeed = _charge * energyToSpeedMultiplier;
     }
 }

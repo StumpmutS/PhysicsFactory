@@ -18,16 +18,21 @@ public abstract class EnergyNode : MonoBehaviour
 
     public abstract bool CanConnect(EnergyNode other, out CurrentContainer sender, out CurrentContainer receiver);
 
-    public void ShutDownNodeConnection(EnergyNode other)
+    public bool TryDisconnect(EnergyNode other)
     {
-        foreach (var current in currentContainer.Currents.ToList())
+        bool disconnected = false;
+        var currentsCopy = currentContainer.Currents.ToList();
+        foreach (var current in currentsCopy)
         {
             if ((current.Sender == currentContainer && current.Receiver == other.currentContainer) ||
                 (current.Sender == other.currentContainer && current.Receiver == currentContainer))
             {
+                disconnected = true;
                 current.ShutDown();
             }
         }
+
+        return disconnected;
     }
     
     private void InitiateCurrent(CurrentContainer from, CurrentContainer to, EnergyNode other)

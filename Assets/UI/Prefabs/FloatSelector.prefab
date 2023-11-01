@@ -618,7 +618,7 @@ PrefabInstance:
     - target: {fileID: 1742082066703294635, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1742082066703294635, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
@@ -633,12 +633,17 @@ PrefabInstance:
     - target: {fileID: 1742082066703294635, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleSubtract
+      value: AddValue
       objectReference: {fileID: 0}
     - target: {fileID: 1742082066703294635, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SignedFloatSelector, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742082066703294635, guid: c917cc48afe46a045ac77e0efa1c8de3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1742082066703294635, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
@@ -648,7 +653,7 @@ PrefabInstance:
     - target: {fileID: 5578479549079246521, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
       propertyPath: m_Name
-      value: SubtractButton
+      value: Subtract1Button
       objectReference: {fileID: 0}
     - target: {fileID: 7973089614690218544, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
@@ -915,7 +920,7 @@ PrefabInstance:
     - target: {fileID: 1742082066703294635, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1742082066703294635, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
@@ -930,12 +935,17 @@ PrefabInstance:
     - target: {fileID: 1742082066703294635, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HandleAdd
+      value: AddValue
       objectReference: {fileID: 0}
     - target: {fileID: 1742082066703294635, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SignedFloatSelector, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1742082066703294635, guid: c917cc48afe46a045ac77e0efa1c8de3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1742082066703294635, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
@@ -945,7 +955,7 @@ PrefabInstance:
     - target: {fileID: 5578479549079246521, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
       propertyPath: m_Name
-      value: AddButton
+      value: Add1Button
       objectReference: {fileID: 0}
     - target: {fileID: 7973089614690218544, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}

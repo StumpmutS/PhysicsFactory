@@ -16,7 +16,7 @@ public class PlacementManager : Singleton<PlacementManager>
     {
         if (_builder != null) Unload();
 
-        SelectionManager.Instance.Disable(this);
+        SelectionDisabler.Disable(this);
         Loaded = true;
         _builder = new Builder(grid, info);
         _builder.OnBuildComplete += HandleBuildComplete;
@@ -36,7 +36,7 @@ public class PlacementManager : Singleton<PlacementManager>
     {
         if (!Loaded) return;
 
-        SelectionManager.Instance.Enable(this);
+        SelectionDisabler.Enable(this);
         Loaded = false;
         _builder.OnBuildComplete -= HandleBuildComplete;
         _builder.Destroy();

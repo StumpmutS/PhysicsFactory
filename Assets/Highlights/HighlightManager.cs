@@ -28,6 +28,8 @@ public class HighlightManager : Singleton<HighlightManager>
     {
         foreach (var highlightable in highlightables)
         {
+            if (!_highlightables.ContainsKey(highlightable)) continue;
+            
             _highlightables[highlightable].Remove(caller);
             if (_highlightables[highlightable].Count < 1) highlightable.DeactivateHighlight();
         }

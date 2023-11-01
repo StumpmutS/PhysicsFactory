@@ -144,8 +144,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2752813090362715034}
-  - component: {fileID: 8426610650634362124}
   - component: {fileID: 8062628779138084431}
+  - component: {fileID: 8426610650634362124}
+  - component: {fileID: 106965989775597209}
   - component: {fileID: 7395375513954414770}
   - component: {fileID: 805993069194821877}
   - component: {fileID: 2283376075115382519}
@@ -179,28 +180,6 @@ Transform:
   - {fileID: 3531234384780359416}
   m_Father: {fileID: 3145065180169592707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8426610650634362124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9072914151740507663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b448f7975cf3d846bf6bf09d1131f10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spenderInfo:
-    Label: 
-  spawnedObject: {fileID: 5329831554418432110, guid: deeef34d1fa0fdc42828bf03c0fbab80,
-    type: 3}
-  spawnPoint: {fileID: 6436729031371312901}
-  spawnRateBase: 1.07177
-  spawnDelayTime: 0
-  OnSpawnStart:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!65 &8062628779138084431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -222,6 +201,55 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8426610650634362124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9072914151740507663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b448f7975cf3d846bf6bf09d1131f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnedObject: {fileID: 5329831554418432110, guid: deeef34d1fa0fdc42828bf03c0fbab80,
+    type: 3}
+  spawnPoint: {fileID: 6436729031371312901}
+  spawnDelayTime: 0
+  OnSpawnStart:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &106965989775597209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9072914151740507663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784b9eedc11c4b318c282b08665c1a73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spenderInfo:
+    Label: Spawner
+  OnChargeChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8426610650634362124}
+        m_TargetAssemblyTypeName: SpawnerBuilding, Assembly-CSharp
+        m_MethodName: SetTargetTime
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  exponentBase: 1.07177
 --- !u!114 &7395375513954414770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storage: {fileID: 805993069194821877}
   startingSpenders:
-  - {fileID: 8426610650634362124}
+  - {fileID: 106965989775597209}
 --- !u!114 &805993069194821877
 MonoBehaviour:
   m_ObjectHideFlags: 0

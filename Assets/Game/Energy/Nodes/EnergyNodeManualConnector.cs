@@ -1,58 +1,44 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Utility.Scripts;
 
-public class EnergyNodeManualConnector : Singleton<EnergyNodeManualConnector>
+public class EnergyNodeManualConnector : MonoBehaviour
 {
-    private HashSet<EnergyNode> _nodes = new();
-
-    public void HandleEngaged(Selectable selectable)
+    [SerializeField] private EnergyNode node;
+    [SerializeField] private EnergyNodeAutoConnector autoConnector;
+    
+    private bool _active;
+    
+    public void TryActivate()
     {
-        if (!selectable.MainObject.TryGetComponent<EnergyNode>(out var node)) return;
-        selectable.OnDisengage.AddListener(HandleDisengaged);
-
-        if (AttemptConnection(node))
-        {
-            SelectionManager.Instance.DisengageAll();
-            ClearNodes();
-            return;
-        }
-
-        AddNode(node);
+        if (_active) return;
+        _active = true;
+        
+        SelectionEvents.Instance.OnEngaged.AddListener(HandleEngaged);
+    }
+    
+    public void TryDeactivate()
+    {
+        if (!_active) return;
+        _active = false;
+        
+        SelectionEvents.Instance.OnEngaged.RemoveListener(HandleEngaged);
     }
 
-    private void HandleDisengaged(Selectable selectable)
+    private void HandleEngaged(Selectable selectable)
     {
-        selectable.OnDisengage.RemoveListener(HandleDisengaged);
-        if (!selectable.MainObject.TryGetComponent<EnergyNode>(out var node)) return;
-        RemoveNode(node);
+        if (!selectable.MainObject.TryGetComponent<EnergyNode>(out var foundNode)) return;
+        if (!AttemptConnectAction(foundNode)) return;
+        
+        autoConnector.Locked = true;
+        SelectionManager.Instance.DisengageAll();
     }
 
-    private bool AttemptConnection(EnergyNode node)
+    private bool AttemptConnectAction(EnergyNode other)
     {
-        bool connected = false;
-        foreach (var other in _nodes)
-        {
-            if (node.TryConnect(other)) connected = true;
-        }
-
-        return connected;
-    }
-
-    private void AddNode(EnergyNode node)
-    {
-        _nodes.Add(node);
-    }
-
-    private void RemoveNode(EnergyNode node)
-    {
-        _nodes.Remove(node);
-    }
-
-    private void ClearNodes()
-    {
-        _nodes.Clear();
+        return node.TryDisconnect(other) || node.TryConnect(other);
     }
 }

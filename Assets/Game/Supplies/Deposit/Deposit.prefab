@@ -51,6 +51,8 @@ MonoBehaviour:
   dolboidLayer:
     serializedVersion: 2
     m_Bits: 8
+  depositEffects:
+    multiplier: 1
 --- !u!65 &814713375487839893
 BoxCollider:
   m_ObjectHideFlags: 0
