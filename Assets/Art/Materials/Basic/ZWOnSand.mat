@@ -117,7 +117,7 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 1
-    - _TransparentizedAlpha: 0.3
+    - _TransparentizedAlpha: 0.1
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class SingleLevelTransparentizable : Transparentizable
+﻿public class SingleLevelTransparentizable : Transparentizable
 {
     protected override float Epsilon => 1f;
 

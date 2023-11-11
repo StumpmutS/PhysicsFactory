@@ -1,9 +1,5 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 using Utility.Scripts;
 
 public class SignedFloatSelector : MonoBehaviour

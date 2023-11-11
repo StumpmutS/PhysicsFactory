@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-public class PlacementRestrictionInfo
+﻿public class PlacementRestrictionInfo
 {
     public BuildingPreview Preview;
     public float Price;

@@ -1,14 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ConveyorMatDriver : MonoBehaviour
 {
     [SerializeField] private MaterialManager materialManager;
     [SerializeField] private Transform scaleReference;
-    [SerializeField] private ConveyorBuilding conveyor;
+    [SerializeField] private Conveyor conveyor;
 
     private Material _material;
     private static readonly int FixedTime = Shader.PropertyToID("_FixedTime");

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using Utility.Scripts;
 
@@ -8,36 +6,38 @@ public class PlacementManager : Singleton<PlacementManager>
 {
     [SerializeField] private Grid3D grid;
 
-    public bool Loaded { get; private set; }
-    
+    private bool _loaded;
     private Builder _builder;
+
+    public UnityEvent OnPlacementFinished;
 
     public void Load(BuildingInfo info)
     {
         if (_builder != null) Unload();
 
         SelectionDisabler.Disable(this);
-        Loaded = true;
+        _loaded = true;
         _builder = new Builder(grid, info);
         _builder.OnBuildComplete += HandleBuildComplete;
     }
 
     private void Update()
     {
-        if (Loaded) _builder.Tick();
+        if (_loaded) _builder.Tick();
     }
 
     private void HandleBuildComplete()
     {
         Unload();
+        OnPlacementFinished.Invoke();
     }
 
     public void Unload()
     {
-        if (!Loaded) return;
+        if (!_loaded) return;
 
         SelectionDisabler.Enable(this);
-        Loaded = false;
+        _loaded = false;
         _builder.OnBuildComplete -= HandleBuildComplete;
         _builder.Destroy();
         _builder = null;

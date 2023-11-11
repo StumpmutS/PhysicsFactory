@@ -5,32 +5,55 @@ public class PlacementDisplay : MonoBehaviour
 {
     [SerializeField] private List<BuildingData> buildings;
     [SerializeField] private LayoutDisplay layoutDisplay;
-    [SerializeField] private LabeledCallbackButton buttonPrefab;
+    [SerializeField] private LabeledCallbackToggle togglePrefab;
 
+    private HashSet<LabeledCallbackToggle> _toggles = new();
     private BuildingInfo _activeInfo;
     
     private void Start()
     {
         foreach (var building in buildings)
         {
-            var button = Instantiate(buttonPrefab);
-            button.Init(HandleClicked, building);
-            button.SetText(building.Info.Label);
-            layoutDisplay.Add(button.transform);
+            var toggle = Instantiate(togglePrefab);
+            toggle.Init(HandleToggled, building, false);
+            toggle.SetText(building.Info.Label);
+            if (toggle.transform is not RectTransform rectTransform) return;
+            layoutDisplay.Add(rectTransform);
+            _toggles.Add(toggle);
         }
+        
+        PlacementManager.Instance.OnPlacementFinished.AddListener(HandlePlacementFinished);
     }
 
-    private void HandleClicked(object obj)
+    private void HandlePlacementFinished()
+    {
+        foreach (var toggle in _toggles)
+        {
+            toggle.SetToggleValue(false);
+        }
+
+        _activeInfo = null;
+    }
+
+    private void HandleToggled(object obj, bool value)
     {
         if (obj is not BuildingData data) return;
 
-        if (data.Info == _activeInfo && PlacementManager.Instance.Loaded)
+        if (!value && data.Info == _activeInfo)
         {
             PlacementManager.Instance.Unload();
-            return;
+            _activeInfo = null;
         }
-        
-        _activeInfo = data.Info;
-        PlacementManager.Instance.Load(data.Info);
+
+        if (value && data.Info != _activeInfo)
+        {
+            PlacementManager.Instance.Load(data.Info);
+            _activeInfo = data.Info;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (PlacementManager.Instance != null) PlacementManager.Instance.OnPlacementFinished.RemoveListener(HandlePlacementFinished);
     }
 }

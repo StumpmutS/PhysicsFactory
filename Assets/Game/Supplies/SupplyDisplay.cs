@@ -1,10 +1,9 @@
-using System;
 using TMPro;
 using UnityEngine;
 
 public class SupplyDisplay : MonoBehaviour
 {
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private ScrollingNumberText text;
 
     private void Start()
     {
@@ -14,7 +13,7 @@ public class SupplyDisplay : MonoBehaviour
 
     private void HandleSupplyChanged(float amount)
     {
-        text.text = $"Supply: ${amount:F2}";
+        text.SetValue(amount);
     }
 
     private void OnDestroy()

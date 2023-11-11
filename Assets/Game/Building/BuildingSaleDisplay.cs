@@ -1,7 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility.Scripts;
 
 public class BuildingSaleDisplay : SelectableDisplay<BuildingSaleController>
 {

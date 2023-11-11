@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5119089084866388210}
   m_Layer: 0
-  m_Name: EnergyCurrent
+  m_Name: EnergyCurrentVisuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

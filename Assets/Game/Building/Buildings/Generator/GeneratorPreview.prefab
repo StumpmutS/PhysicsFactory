@@ -137,7 +137,7 @@ MonoBehaviour:
     alpha: 0.3
     renderer: {fileID: 3897377271347392471}
   - overrideAlpha: 1
-    alpha: 0.2
+    alpha: 0.07843138
     renderer: {fileID: 8258276173146956205}
   previewColors: {fileID: 11400000, guid: 23b59f967a90fca4198ecf3bb7c955a4, type: 2}
   dimensions: {x: 1, y: 1, z: 1}

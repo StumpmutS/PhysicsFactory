@@ -11,8 +11,8 @@ public class SupplyManager : Singleton<SupplyManager>
         get => _currentSupplyCount;
         private set
         {
-            _currentSupplyCount = value;
-            OnSupplyChanged.Invoke(value);
+            _currentSupplyCount = Mathf.Clamp(value, 0, float.MaxValue);
+            OnSupplyChanged.Invoke(_currentSupplyCount);
         }
     }
 

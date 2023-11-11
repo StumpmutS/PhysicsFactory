@@ -13,7 +13,8 @@ public class NodeFinderDisplay : SelectableDisplay<EnergyNodeFinder>
         container.SetActive(true);
         var selector = CreateFloatSelector(nodeFinder);
         selector.OnChanged.AddListener(HandleSelectorChanged);
-        layout.Add(selector.transform);
+        if (selector.transform is not RectTransform rectTransform) return;
+        layout.Add(rectTransform);
     }
 
     private void HandleSelectorChanged(object obj, SignedFloat value)

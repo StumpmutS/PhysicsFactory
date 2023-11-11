@@ -1,8 +1,5 @@
-﻿using System;
-using System.Linq;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using Utility.Scripts;
 
 public abstract class ChargeVisuals : MonoBehaviour
 {

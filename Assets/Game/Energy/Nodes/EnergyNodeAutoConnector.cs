@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -61,5 +60,10 @@ public class EnergyNodeAutoConnector : MonoBehaviour
         {
             if (node.TryConnect(other)) _connectedNodes.Add(other);
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (BuildingManager.Instance != null) BuildingManager.Instance.OnBuildingAdded.RemoveListener(HandleBuildingAdded);
     }
 }

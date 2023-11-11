@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Utility.Scripts;
 
 public class ModificationDisplay : SelectableDisplay<ModificationContainer>
 {
@@ -21,7 +20,8 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
         {
             var button = CreateButton(kvp.Key, kvp.Value);
             _buttons[kvp.Key] = button;
-            layout.Add(button.transform);
+            if (button.transform is not RectTransform rectTransform) return;
+            layout.Add(rectTransform);
         }
     }
 

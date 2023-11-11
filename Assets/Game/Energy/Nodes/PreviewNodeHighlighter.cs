@@ -1,6 +1,4 @@
-﻿using System;
-
-public class PreviewNodeHighlighter : NodeHighlighter
+﻿public class PreviewNodeHighlighter : NodeHighlighter
 {
     private void Update()
     {

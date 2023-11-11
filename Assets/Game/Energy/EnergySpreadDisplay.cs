@@ -35,7 +35,8 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
     {
         var selector = CreateFloatSelector(spender, value, spender.SpenderInfo.Label);
         _selectors[spender] = selector;
-        layout.Add(selector.transform);
+        if (selector.transform is not RectTransform rectTransform) return;
+        layout.Add(rectTransform);
     }
 
     private LabeledSignedFloatSelector CreateFloatSelector(object callbackObj, SignedFloat value, string label)

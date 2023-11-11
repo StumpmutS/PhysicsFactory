@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 public abstract class SelectableDisplay<T> : MonoBehaviour where T : Component
 {

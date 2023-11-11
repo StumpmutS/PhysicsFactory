@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class NodeAutoConnectorDisplay : SelectableDisplay<EnergyNodeAutoConnector>
@@ -18,7 +17,8 @@ public class NodeAutoConnectorDisplay : SelectableDisplay<EnergyNodeAutoConnecto
         _toggle = Instantiate(togglePrefab);
         _toggle.isOn = connector.Locked;
         _toggle.onValueChanged.AddListener(HandleToggleChanged);
-        layout.Add(_toggle.transform);
+        if (_toggle.transform is not RectTransform rectTransform) return;
+        layout.Add(rectTransform);
         _nodeAutoConnector.OnLockChanged.AddListener(HandleLockedChanged);
     }
 

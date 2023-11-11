@@ -1,6 +1,4 @@
-﻿using Utility.Scripts;
-
-public class BuildingDisplay : SelectableDisplay<Building>
+﻿public class BuildingDisplay : SelectableDisplay<Building>
 {
     protected override void SetupSelectionDisplay(Building building)
     {

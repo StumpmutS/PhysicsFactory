@@ -5,6 +5,8 @@ using Utility.Scripts;
 
 public class InputTranslationManager : Singleton<InputTranslationManager>
 {
+    public bool ControlHeld { get; private set; }
+    
     public UnityEvent<Vector2> OnMove;
     public UnityEvent<Vector2> OnLook;
     public UnityEvent OnInteractDown;
@@ -145,5 +147,16 @@ public class InputTranslationManager : Singleton<InputTranslationManager>
         {
             OnIsolateUp.Invoke();
         }
+    }
+
+    private bool _cachedControlValue;
+
+    public void Control(InputAction.CallbackContext ctx)
+    {
+        var value = ctx.ReadValueAsButton();
+        if (value == _cachedControlValue) return;
+        _cachedControlValue = value;
+
+        ControlHeld = value;
     }
 }

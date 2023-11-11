@@ -10,7 +10,6 @@ public class Modification : MonoBehaviour
     private Transform _mainTransform;
     private List<ModificationComponent> _activeComponents = new();
 
-    
     public void Init(ModificationInfo info, Transform mainTransform)
     {
         _modInfo = info;

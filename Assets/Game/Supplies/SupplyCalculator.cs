@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public static class SupplyCalculator
+﻿public static class SupplyCalculator
 {
     public static float CalculatePrice(Dolboid dolboid)
     {

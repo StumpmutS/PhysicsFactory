@@ -1,14 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class FreeLookFOVController : MonoBehaviour
 {
     [SerializeField] private CinemachineFreeLook cinemachineFreeLook;
-    [SerializeField] private float defaultFOV = 40;
     [SerializeField] private float minFov, maxFov;
     [SerializeField] private float zoomSpeed = 1;
     [SerializeField] private float zoomLerpSpeed = 1;
@@ -19,17 +14,20 @@ public class FreeLookFOVController : MonoBehaviour
         set => cinemachineFreeLook.m_Lens.FieldOfView = Mathf.Clamp(value, minFov, maxFov);
     }
 
+    private float _defaultFOV = 40;
     private float _fovTarget;
-    
     private float FovTarget
     {
         get => _fovTarget;
         set => _fovTarget = Mathf.Clamp(value, minFov, maxFov);
     }
 
-    private void Start()
+    private void Awake()
     {
-        Fov = defaultFOV;
+        _defaultFOV = cinemachineFreeLook.m_Lens.FieldOfView;
+        maxFov = Mathf.Max(maxFov, _defaultFOV);
+        minFov = Mathf.Min(minFov, _defaultFOV);
+        Fov = _defaultFOV;
         FovTarget = Fov;
     }
 

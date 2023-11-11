@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Utility.Scripts;
 
 public class SelectableSquasher : MonoBehaviour

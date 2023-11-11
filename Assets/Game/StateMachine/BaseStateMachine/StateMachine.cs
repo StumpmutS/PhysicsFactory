@@ -42,11 +42,10 @@ public class StateMachine
     {
         foreach (var transition in _transitions)
         {
-            if (transition.Decision())
-            {
-                SetState(transition.From, transition.To);
-                return;
-            }
+            if (!transition.Decision()) continue;
+            
+            SetState(transition.From, transition.To);
+            return;
         }
     }
 
