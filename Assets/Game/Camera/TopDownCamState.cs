@@ -2,14 +2,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RTSCamState : State
+public class TopDownCamState : State
 {
     private CinemachineInputProvider _inputProvider;
     private InputActionReference _emptyInput;
     private CinemachineFreeLook _freeLook;
     private float _resetTransitionSpeed;
 
-    public RTSCamState(CinemachineInputProvider inputProvider, InputActionReference emptyInput, CinemachineFreeLook freeLook, float resetTransitionSpeed)
+    public TopDownCamState(CinemachineInputProvider inputProvider, InputActionReference emptyInput, CinemachineFreeLook freeLook, float resetTransitionSpeed)
     {
         _inputProvider = inputProvider;
         _emptyInput = emptyInput;

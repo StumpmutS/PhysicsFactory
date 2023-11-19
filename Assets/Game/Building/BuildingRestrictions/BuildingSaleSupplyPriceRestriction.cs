@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Restrictions/Buildings/Sale/SupplyPrice")]
+[CreateAssetMenu(menuName = "Restrictions/Building/Sale/SupplyPrice")]
 public class BuildingSaleSupplyPriceRestriction : Restriction<BuildingRestrictionInfo>
 {
-    public override bool CheckRestriction(BuildingRestrictionInfo info) => true;
+    protected override ERestrictionFailureType RestrictionFailureType => ERestrictionFailureType.Supply;
+
+    protected override bool Check(BuildingRestrictionInfo restrictionInfo, RestrictionFailureInfo failureInfo) => true;
 
     public override void PassRestriction(BuildingRestrictionInfo info)
     {

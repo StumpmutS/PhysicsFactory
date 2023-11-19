@@ -9,10 +9,11 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
     [SerializeField] private GameObject container;
     [SerializeField] private LayoutDisplay layout;
     [SerializeField] private TMP_Text text;
-    [SerializeField] private LabeledSignedFloatSelector floatSelectorPrefab;
+    [SerializeField] private SignedFloatSelector floatSelectorPrefab;
+    [SerializeField] private ComponentAdder labelAdder;
 
     private EnergySpreadController _controller;
-    private Dictionary<IEnergySpender, LabeledSignedFloatSelector> _selectors = new();
+    private Dictionary<IEnergySpender, SignedFloatSelector> _selectors = new();
 
     protected override void SetupSelectionDisplay(EnergySpreadController controller)
     {
@@ -39,11 +40,11 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
         layout.Add(rectTransform);
     }
 
-    private LabeledSignedFloatSelector CreateFloatSelector(object callbackObj, SignedFloat value, string label)
+    private SignedFloatSelector CreateFloatSelector(object callbackObj, SignedFloat value, string labelValue)
     {
         var selector = Instantiate(floatSelectorPrefab);
         selector.Init(value, callbackObj);
-        selector.SetLabel(label);
+        SetLabel(selector.gameObject, labelValue);
         selector.OnChanged.AddListener(HandleSelectorChanged);
         return selector;
     }
@@ -56,7 +57,7 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
             if (_selectors.TryGetValue(kvp.Key, out var selector))
             {
                 selector.SignedFloat = kvp.Value;
-                selector.SetLabel(kvp.Key.SpenderInfo.Label);
+                Label.SetLabel(selector, kvp.Key.SpenderInfo.Label);
             }
             else
             {
@@ -79,6 +80,12 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
     {
         if (callbackObj is not IEnergySpender spender) return;
         _controller.Spenders.SetValue(spender, value);
+    }
+
+    private void SetLabel(GameObject gameObj, string value)
+    {
+        var label = (Label) labelAdder.AddOrGetTo(gameObj);
+        label.SetLabel(value);
     }
 
     protected override void RemoveSelectionDisplay()

@@ -3,9 +3,13 @@
 [CreateAssetMenu(menuName = "Restrictions/Placement/SupplyPrice")]
 public class SupplyPriceRestriction : Restriction<PlacementRestrictionInfo>
 {
-    public override bool CheckRestriction(PlacementRestrictionInfo info)
+    protected override ERestrictionFailureType RestrictionFailureType => ERestrictionFailureType.Supply;
+    
+    protected override bool Check(PlacementRestrictionInfo restrictionInfo, RestrictionFailureInfo failureInfo)
     {
-        return SupplyManager.Instance.CurrentSupplyCount >= SupplyCalculator.CalculatePrice(info.Price, info.Preview);
+        var supply = SupplyCalculator.CalculatePrice(restrictionInfo.Price, restrictionInfo.Preview);
+        failureInfo.Supply = supply;
+        return SupplyManager.Instance.CurrentSupplyCount >= supply;
     }
 
     public override void PassRestriction(PlacementRestrictionInfo info)

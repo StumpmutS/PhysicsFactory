@@ -1,22 +1,29 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Utility.Scripts
 {
     //So that zero can be positive or negative
     public struct SignedInt
     {
-        public uint Value;
+        private int _value;
+        public int Value
+        {
+            get => _value;
+            set => _value = Mathf.Abs(value);
+        }
+        
         public bool Positive;
 
-        public SignedInt(uint value, bool positive)
+        public SignedInt(int value, bool positive)
         {
-            Value = value;
+            _value = Mathf.Abs(value);
             Positive = positive;
         }
 
         public int AsInt()
         {
-            return (int) Value * (Positive ? 1 : -1);
+            return Value * (Positive ? 1 : -1);
         }
         
         public bool Equals(SignedInt other)

@@ -40,4 +40,9 @@ public class FreeLookFOVController : MonoBehaviour
     {
         Fov = Mathf.Lerp(Fov, FovTarget, zoomLerpSpeed * Time.deltaTime);
     }
+
+    public void Reset()
+    {
+        FovTarget = _defaultFOV;
+    }
 }

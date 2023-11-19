@@ -29,7 +29,7 @@ public class PlacementDisplay : MonoBehaviour
     {
         foreach (var toggle in _toggles)
         {
-            toggle.SetToggleValue(false);
+            toggle.Toggle.isOn = false;
         }
 
         _activeInfo = null;

@@ -12,4 +12,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1303ed980ed47f78708c1b31ab960ca, type: 3}
   m_Name: ConveyorBuildingCollisionRestriction
   m_EditorClassIdentifier: 
-  supplyRequired: 0

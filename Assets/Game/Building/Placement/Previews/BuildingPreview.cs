@@ -7,7 +7,7 @@ public abstract class BuildingPreview : MonoBehaviour
 #pragma warning disable CS0108, CS0114
     [SerializeField] private List<PreviewRendererInfo> rendererInfo;
 #pragma warning restore CS0108, CS0114
-    [SerializeField] private ColorInfo previewColors;
+    [SerializeField] private ColorData previewColors;
 
     public abstract float Volume { get; }
 

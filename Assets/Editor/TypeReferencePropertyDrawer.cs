@@ -60,7 +60,10 @@ public class TypeReferencePropertyDrawer : PropertyDrawer
             selectedIndex = availableTypeNames.IndexOf(type.Name);
         }
         selectedIndex = EditorGUI.Popup(position, "Selected Type", selectedIndex, availableTypeNames.ToArray());
-        _targetAssemblyQNameProperty.stringValue = availableAssemblyQNames[availableTypeNames[selectedIndex]];
+        if (selectedIndex >= 0)
+        {
+            _targetAssemblyQNameProperty.stringValue = availableAssemblyQNames[availableTypeNames[selectedIndex]];
+        }
         
         EditorGUI.indentLevel--;
     }

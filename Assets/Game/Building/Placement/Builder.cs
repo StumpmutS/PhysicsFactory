@@ -26,6 +26,7 @@ public class Builder
     }
 
     public event Action OnBuildComplete = delegate { };
+    public event Action<RestrictionFailureInfo> OnBuildFailure = delegate { };
 
     public void Tick()
     {
@@ -47,8 +48,12 @@ public class Builder
         _selectedLocations.Push(position);
         _restrictedAxes.Push(newRestriction);
         UpdateRestrictions();
-        
-        if (_selectedLocations.Count >= _info.AnchorCellAmount) CompleteBuild();
+
+        if (_selectedLocations.Count < _info.AnchorCellAmount) return;
+        if (TryCompleteBuild()) return;
+
+        _selectedLocations.Pop();
+        _restrictedAxes.Pop();
     }
 
     private void HandleReset()
@@ -69,7 +74,7 @@ public class Builder
     
     private void UpdateRestrictions()
     {
-        if (RestrictionHelper.CheckRestrictions(_info.PlacementRestrictions, GenerateRestrictionInfo()))
+        if (RestrictionHelper.CheckRestrictions(_info.PlacementRestrictions, GenerateRestrictionInfo(), new RestrictionFailureInfo()))
         {
             _mainPreview.Pass();
             return;
@@ -87,12 +92,17 @@ public class Builder
         Object.Destroy(_mainPreview.gameObject);
     }
 
-    private void CompleteBuild()
+    private bool TryCompleteBuild()
     {
-        if (RestrictionHelper.TryPassRestrictions(_info.PlacementRestrictions, GenerateRestrictionInfo()))
+        var failureInfo = new RestrictionFailureInfo();
+        if (!RestrictionHelper.TryPassRestrictions(_info.PlacementRestrictions, GenerateRestrictionInfo(), failureInfo))
         {
-            _mainPreview.Place(_info);
+            OnBuildFailure.Invoke(failureInfo);
+            return false;
         }
+        
+        _mainPreview.Place(_info);
         OnBuildComplete.Invoke();
+        return true;
     }
 }

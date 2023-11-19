@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 736867f102394af29a6824fb4742f1a5, type: 3}
   m_Name: WallSupplyPriceRestriction
   m_EditorClassIdentifier: 
+  restrictionFailureType: 1

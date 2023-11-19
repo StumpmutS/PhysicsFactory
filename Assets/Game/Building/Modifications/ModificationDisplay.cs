@@ -1,64 +1,84 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using Utility.Scripts;
 
 public class ModificationDisplay : SelectableDisplay<ModificationContainer>
 {
     [SerializeField] private GameObject container;
     [SerializeField] private LayoutDisplay layout;
-    [SerializeField] private LabeledCallbackButton buttonPrefab;
+    [SerializeField] private LabeledCallbackToggle togglePrefab;
+    [SerializeField] private IconData restrictedIcon;
 
     private ModificationContainer _modificationContainer;
-    private Dictionary<ModificationData, LabeledCallbackButton> _buttons = new();
+    private Dictionary<ModificationData, LabeledCallbackToggle> _toggles = new();
 
     protected override void SetupSelectionDisplay(ModificationContainer modificationContainer)
     {
         container.SetActive(true);
-        _buttons.Clear();
+        _toggles.Clear();
         _modificationContainer = modificationContainer;
-        foreach (var kvp in modificationContainer.Modifications)
+        _modificationContainer.AddOrGetComponent<GeneralRefreshEvent>().OnRefresh.AddListener(GeneralRefresh);
+        foreach (var kvp in modificationContainer.ModificationsActive)
         {
-            var button = CreateButton(kvp.Key, kvp.Value);
-            _buttons[kvp.Key] = button;
-            if (button.transform is not RectTransform rectTransform) return;
+            var toggle = CreateToggle(kvp.Key, kvp.Value);
+            _toggles[kvp.Key] = toggle;
+            if (toggle.transform is not RectTransform rectTransform) return;
             layout.Add(rectTransform);
         }
+        GeneralRefresh();
     }
 
-    private LabeledCallbackButton CreateButton(ModificationData modificationData, bool active)
+    private LabeledCallbackToggle CreateToggle(ModificationData modificationData, bool active)
     {
-        var button = Instantiate(buttonPrefab);
-        SetButton(button, modificationData, active);
-        return button;
+        var toggle = Instantiate(togglePrefab);
+        SetToggle(toggle, modificationData, active);
+        return toggle;
     }
     
-    private void SetButton(LabeledCallbackButton button, ModificationData modData, bool active)
+    private void SetToggle(LabeledCallbackToggle toggle, ModificationData modData, bool active)
     {
-        Set(active ? HandleSellPressed : HandleActivatePressed, active ? "Sell " : "Buy ",
-            ": $" + (active
-                ? SupplyCalculator.CalculatePrice(modData.Info.Price, _modificationContainer.ModifiedBuilding, modData.Info.SaleMultiplier)
-                : SupplyCalculator.CalculatePrice(modData.Info.Price, _modificationContainer.ModifiedBuilding))
-            .ToString("F2"));
-        
-        void Set(Action<object> action, string pre, string post)
+        toggle.Init(HandleToggle, modData, active);
+        toggle.SetText(modData.Info.Label);
+    }
+
+    private void HandleToggle(object callbackObj, bool value)
+    {
+        if (callbackObj is not ModificationData modification) return;
+        if (value) HandleActivatePressed(modification);
+        else HandleSellPressed(modification);
+    }
+
+    private void HandleActivatePressed(ModificationData modData)
+    {
+        var failureInfo = new RestrictionFailureInfo();
+        if (!_modificationContainer.TryActivateModification(modData, failureInfo))
         {
-            button.Init(action, modData);
-            button.SetText(pre + modData.Info.Label + post);
+            RestrictionFailureDisplay.Instance.DisplayFailure(failureInfo);
         }
+        SetToggle(_toggles[modData], modData, _modificationContainer.ModificationsActive[modData]);
     }
 
-    private void HandleActivatePressed(object callbackObj)
+    private void HandleSellPressed(ModificationData modData)
     {
-        if (callbackObj is not ModificationData modification) return;
-        _modificationContainer.TryActivateModification(modification);
-        SetButton(_buttons[modification], modification, _modificationContainer.Modifications[modification]);
+        _modificationContainer.TrySellModification(modData);
+        SetToggle(_toggles[modData], modData, _modificationContainer.ModificationsActive[modData]);
     }
 
-    private void HandleSellPressed(object callbackObj)
+    private void GeneralRefresh()
     {
-        if (callbackObj is not ModificationData modification) return;
-        _modificationContainer.TrySellModification(modification);
-        SetButton(_buttons[modification], modification, _modificationContainer.Modifications[modification]);
+        foreach (var kvp in _toggles)
+        {
+            var restrictionInfo = ModificationHelpers.GenerateRestrictionInfo(_modificationContainer.ModifiedBuilding, kvp.Key.Info);
+            var failureInfo = new RestrictionFailureInfo();
+            if (RestrictionHelper.CheckRestrictions(kvp.Key.Info.ActivationRestrictions, restrictionInfo, failureInfo))
+            {
+                kvp.Value.Toggle.RemoveOneComponent<RestrictionUIBlocker>();
+                continue;
+            }
+            
+            var blocker = kvp.Value.Toggle.AddOrGetComponent<RestrictionUIBlocker>();
+            blocker.Init(failureInfo.FailureType, restrictedIcon.Icon);
+        }
     }
     
     protected override void RemoveSelectionDisplay()

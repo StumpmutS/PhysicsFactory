@@ -18,7 +18,8 @@ MonoBehaviour:
     label: Frictionless
     activationRestrictions:
     - {fileID: 11400000, guid: f1a511772bb780a4a9e0a138aaef7e5c, type: 2}
+    - {fileID: 11400000, guid: ab56a61cb2ea22140854b139380e31c0, type: 2}
     saleRestrictions:
-    - {fileID: 11400000, guid: b541687ff8852b44893c7db935c8e0f4, type: 2}
+    - {fileID: 11400000, guid: 48f7d22a953fab943af99d943ed1a7f8, type: 2}
     price: 0.1
     saleMultiplier: 0.5

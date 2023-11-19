@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class StateMachine
 {
     private List<Transition> _transitions = new();
+    private List<Transition> _anyTransitions = new();
     private State _defaultState;
     private State _currentState;
 
@@ -21,6 +22,11 @@ public class StateMachine
     public void AddTransition(State from, State to, Func<bool> decision)
     {
         _transitions.Add(new Transition(from, to, decision));
+    }
+
+    public void AddAnyTransition(State to, Func<bool> decision)
+    {
+        _anyTransitions.Add(new Transition(null, to, decision));
     }
 
     private void SetState(State from, State to)
@@ -45,6 +51,14 @@ public class StateMachine
             if (!transition.Decision()) continue;
             
             SetState(transition.From, transition.To);
+            return;
+        }
+
+        foreach (var transition in _anyTransitions)
+        {
+            if (!transition.Decision()) continue;
+
+            SetState(_currentState, transition.To);
             return;
         }
     }

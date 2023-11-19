@@ -19,6 +19,6 @@ MonoBehaviour:
     activationRestrictions:
     - {fileID: 11400000, guid: 705fe0e12c2b2c0459d5b77ddd4e22c6, type: 2}
     saleRestrictions:
-    - {fileID: 11400000, guid: af4c52482bfd8454083a73803ff514f8, type: 2}
+    - {fileID: 11400000, guid: d2e62d8ea7d71264383955de31b5ca8d, type: 2}
     price: 1
     saleMultiplier: 1

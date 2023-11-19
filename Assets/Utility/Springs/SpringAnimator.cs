@@ -6,10 +6,16 @@ using UnityEngine;
 public class SpringAnimator : MonoBehaviour
 {
     [SerializeField] private SpringController spring;
+    [SerializeField] private bool playOnEnable;
     [SerializeField] private List<SpringAnimationData> animationData;
 
     private int _animationIndex;
     private float _timer;
+
+    private void OnEnable()
+    {
+        if (playOnEnable) PlayAnimation();
+    }
 
     public void PlayAnimation() => StartCoroutine(PlayComponent(0));
 

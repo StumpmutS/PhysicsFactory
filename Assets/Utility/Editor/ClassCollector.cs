@@ -11,7 +11,9 @@ public static class ClassCollector
     {
         var appDomain = AppDomain.CurrentDomain;
         var assemblies = appDomain.GetAssemblies();
-        return (from assembly in assemblies from type in assembly.GetTypes() where type.IsSubclassOf(parent) select type).ToArray();
+        return assemblies.SelectMany(assembly => assembly.GetTypes())
+            .Where(t => t.IsSubclassOf(parent))
+            .Select(t => t).ToArray();
     }
 
     public static IEnumerable<FieldInfo> GetFieldsWithAttribute<T>(Type fromType) where T : Attribute

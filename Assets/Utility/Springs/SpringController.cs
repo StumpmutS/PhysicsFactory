@@ -8,6 +8,7 @@ public class SpringController : MonoBehaviour
     [SerializeField] private float frequency;
     [SerializeField] private float damping;
 
+    private bool _targetSet;
     private float _targetValue;
     private float _currentValue;
     private float _currentVelocity;
@@ -15,10 +16,19 @@ public class SpringController : MonoBehaviour
 
     public UnityEvent<float, float> OnSpringValueChanged;
 
-    private void Start()
+    private void Awake()
+    {
+        if (!_targetSet) Init();
+    }
+
+    private void Init()
     {
         _targetValue = startValue;
         _currentValue = startValue;
+    }
+
+    private void Start()
+    {
         OnSpringValueChanged.Invoke(_currentValue, _targetValue);
     }
 
@@ -36,6 +46,11 @@ public class SpringController : MonoBehaviour
 
     public void SetTarget(float value)
     {
+        if (!_targetSet)
+        {
+            Init();
+            _targetSet = true;
+        }
         _targetValue = Mathf.Clamp(value, -1, 1);
     }
 }

@@ -8,12 +8,12 @@ public class ModificationContainer : MonoBehaviour
     [SerializeField] private Building modifiedBuilding;
     public Building ModifiedBuilding => modifiedBuilding;
     [SerializeField] private List<ModificationData> modifications;
-    public Dictionary<ModificationData, bool> Modifications =>
+    public Dictionary<ModificationData, bool> ModificationsActive =>
         modifications.ToDictionary(m => m, m => _activeModifications.Keys.Contains(m));
 
     private Dictionary<ModificationData, Modification> _activeModifications = new();
 
-    public bool TryActivateModification(ModificationData modificationData)
+    public bool TryActivateModification(ModificationData modificationData, RestrictionFailureInfo failureInfo)
     {
         var modification = Instantiate(modificationData.Info.ModificationPrefab, transformContainer);
         if (!_activeModifications.TryAdd(modificationData, modification))
@@ -22,7 +22,8 @@ public class ModificationContainer : MonoBehaviour
             return false;
         }
         modification.Init(modificationData.Info, transform);
-        if (modification.TryActivate(modifiedBuilding)) return true;
+        if (modification.TryActivate(modifiedBuilding, failureInfo)) return true;
+        
         _activeModifications.Remove(modificationData);
         Destroy(modification.gameObject);
         return false;

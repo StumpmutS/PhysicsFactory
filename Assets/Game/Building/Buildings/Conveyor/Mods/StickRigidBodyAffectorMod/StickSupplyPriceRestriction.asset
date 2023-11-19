@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd565d313164456e8299e14cd1094a49, type: 3}
   m_Name: StickSupplyPriceRestriction
   m_EditorClassIdentifier: 
+  restrictionFailureType: 1

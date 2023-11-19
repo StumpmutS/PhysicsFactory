@@ -3,9 +3,15 @@ using System.Linq;
 
 public static class RestrictionHelper
 {
-    public static bool CheckRestrictions<T>(IEnumerable<Restriction<T>> restrictions, T info)
+    public static bool CheckRestrictions<T>(IEnumerable<Restriction<T>> restrictions, T info, RestrictionFailureInfo failureInfo)
     {
-        return restrictions.All(restriction => restriction.CheckRestriction(info));
+        bool passed = true;
+        foreach (var restriction in restrictions)
+        {
+            if (!restriction.CheckRestriction(info, failureInfo)) passed = false;
+        }
+
+        return passed;
     }
     
     public static void PassRestrictions<T>(IEnumerable<Restriction<T>> restrictions, T info)
@@ -16,11 +22,11 @@ public static class RestrictionHelper
         }
     }
 
-    public static bool TryPassRestrictions<T>(IEnumerable<Restriction<T>> restrictions, T info)
+    public static bool TryPassRestrictions<T>(IEnumerable<Restriction<T>> restrictions, T info, RestrictionFailureInfo failureInfo)
     {
         var restrictionList = restrictions.ToList();
-        var value = CheckRestrictions(restrictionList, info);
-        if (value) PassRestrictions(restrictionList, info);
-        return value;
+        var passed = CheckRestrictions(restrictionList, info, failureInfo);
+        if (passed) PassRestrictions(restrictionList, info);
+        return passed;
     }
 }

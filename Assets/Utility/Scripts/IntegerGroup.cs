@@ -49,7 +49,7 @@ namespace Utility.Scripts
             var difference = (int) value.Value - Integers[key].Value;
             if (available < difference)
             {
-                Integers[key] = new SignedInt((uint)Mathf.Abs(Integers[key].Value + available), value.Positive);
+                Integers[key] = new SignedInt((int)Mathf.Abs(Integers[key].Value + available), value.Positive);
             }
             else Integers[key] = value;
             

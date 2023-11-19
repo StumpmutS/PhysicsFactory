@@ -19,6 +19,7 @@ public class PlacementManager : Singleton<PlacementManager>
         _loaded = true;
         _builder = new Builder(grid, info);
         _builder.OnBuildComplete += HandleBuildComplete;
+        _builder.OnBuildFailure += HandleBuildFailure;
     }
 
     private void Update()
@@ -32,6 +33,11 @@ public class PlacementManager : Singleton<PlacementManager>
         OnPlacementFinished.Invoke();
     }
 
+    private void HandleBuildFailure(RestrictionFailureInfo failureInfo)
+    {
+        RestrictionFailureDisplay.Instance.DisplayFailure(failureInfo);
+    }
+
     public void Unload()
     {
         if (!_loaded) return;
@@ -39,6 +45,7 @@ public class PlacementManager : Singleton<PlacementManager>
         SelectionDisabler.Enable(this);
         _loaded = false;
         _builder.OnBuildComplete -= HandleBuildComplete;
+        _builder.OnBuildFailure -= HandleBuildFailure;
         _builder.Destroy();
         _builder = null;
     }

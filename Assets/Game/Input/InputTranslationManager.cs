@@ -26,6 +26,8 @@ public class InputTranslationManager : Singleton<InputTranslationManager>
     public UnityEvent OnGridUp;
     public UnityEvent OnIsolateDown;
     public UnityEvent OnIsolateUp;
+    public UnityEvent OnHomeDown;
+    public UnityEvent OnHomeUp;
 
     public void Move(InputAction.CallbackContext ctx)
     {
@@ -158,5 +160,22 @@ public class InputTranslationManager : Singleton<InputTranslationManager>
         _cachedControlValue = value;
 
         ControlHeld = value;
+    }
+
+    private bool _cachedHomeValue;
+    public void Home(InputAction.CallbackContext ctx)
+    {
+        var value = ctx.ReadValueAsButton();
+        if (value == _cachedHomeValue) return;
+        _cachedHomeValue = value;
+        
+        if (value)
+        {
+            OnHomeDown.Invoke();
+        }
+        else
+        {
+            OnHomeUp.Invoke();
+        }
     }
 }

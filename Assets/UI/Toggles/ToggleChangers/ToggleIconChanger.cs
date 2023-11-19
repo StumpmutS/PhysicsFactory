@@ -7,7 +7,7 @@ public class ToggleIconChanger : ToggleChanger
     [SerializeField] private Sprite toggledSprite;
     [SerializeField] private Sprite untoggledSprite;
     
-    protected override void HandleToggle(bool value)
+    protected override void ChangeValue(bool value)
     {
         image.sprite = value ? toggledSprite : untoggledSprite;
     }

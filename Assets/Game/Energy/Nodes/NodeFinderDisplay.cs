@@ -4,7 +4,7 @@ using Utility.Scripts;
 public class NodeFinderDisplay : SelectableDisplay<EnergyNodeFinder>
 {
     [SerializeField] private GameObject container;
-    [SerializeField] private LabeledSignedFloatSelector floatSelectorPrefab;
+    [SerializeField] private SignedFloatSelector floatSelectorPrefab;
     [SerializeField] private LayoutDisplay layout;
     [SerializeField] private string sizeLabel = "Size";
 
@@ -28,7 +28,7 @@ public class NodeFinderDisplay : SelectableDisplay<EnergyNodeFinder>
     {
         var selector = Instantiate(floatSelectorPrefab);
         selector.Init(new SignedFloat(nodeFinder.Range, true), nodeFinder, nodeFinder.MaxRange);
-        selector.SetLabel(sizeLabel);
+        Label.SetLabel(selector, sizeLabel);
         return selector;
     }
 

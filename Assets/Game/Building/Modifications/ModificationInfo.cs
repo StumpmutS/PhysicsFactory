@@ -9,10 +9,10 @@ public class ModificationInfo
     public Modification ModificationPrefab => modificationPrefab;
     [SerializeField] private string label;
     public string Label => label;
-    [SerializeField] private List<Restriction<ModificationRestrictionInfo>> activationRestrictions;
-    public List<Restriction<ModificationRestrictionInfo>> ActivationRestrictions => activationRestrictions;
-    [SerializeField] private List<Restriction<ModificationRestrictionInfo>> saleRestrictions;
-    public List<Restriction<ModificationRestrictionInfo>> SaleRestrictions => saleRestrictions;
+    [SerializeField] private List<Restriction<BuildingRestrictionInfo>> activationRestrictions;
+    public List<Restriction<BuildingRestrictionInfo>> ActivationRestrictions => activationRestrictions;
+    [SerializeField] private List<Restriction<BuildingRestrictionInfo>> saleRestrictions;
+    public List<Restriction<BuildingRestrictionInfo>> SaleRestrictions => saleRestrictions;
     [SerializeField] private float price;
     public float Price => price;
     [SerializeField, Range(0, 1)] private float saleMultiplier = 1;

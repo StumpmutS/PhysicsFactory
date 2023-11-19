@@ -12,15 +12,18 @@ public class FreeLookController : MonoBehaviour
     [SerializeField] private float resetTransitionSpeed;
 
     private StateMachine _stateMachine;
-    private bool _freeLookActive;
+    private bool _inspecting;
+    private bool _home;
     
     private void Awake()
     {
-        var topDownCam = new RTSCamState(inputProvider, emptyVector2Input, freeLook, resetTransitionSpeed);
+        var topDownCam = new TopDownCamState(inputProvider, emptyVector2Input, freeLook, resetTransitionSpeed);
         var freeLookCam = new FreeLookCamState(inputProvider, lookInput);
+        var lockedCam = new LockedCamState(inputProvider, emptyVector2Input);
         _stateMachine = new StateMachine(topDownCam);
-        _stateMachine.AddTransition(topDownCam, freeLookCam, () => _freeLookActive);
-        _stateMachine.AddTransition(freeLookCam, topDownCam, () => !_freeLookActive);
+        _stateMachine.AddAnyTransition(topDownCam, () => _home);
+        _stateMachine.AddAnyTransition(freeLookCam, () => _inspecting);
+        _stateMachine.AddTransition(freeLookCam, lockedCam, () => !_inspecting && !_home);
     }
 
     private void Start()
@@ -35,6 +38,13 @@ public class FreeLookController : MonoBehaviour
 
     public void Inspect(bool value)
     {
-        _freeLookActive = value;
+        _inspecting = value;
+        _home = false;
+    }
+
+    public void Home()
+    {
+        _home = true;
+        _inspecting = false;
     }
 }

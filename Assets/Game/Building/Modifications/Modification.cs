@@ -6,7 +6,7 @@ public class Modification : MonoBehaviour
     [SerializeField] private List<ModificationComponent> componentPrefabs;
 
     private ModificationInfo _modInfo;
-    private ModificationRestrictionInfo _restrictionInfo;
+    private BuildingRestrictionInfo _restrictionInfo;
     private Transform _mainTransform;
     private List<ModificationComponent> _activeComponents = new();
 
@@ -15,11 +15,11 @@ public class Modification : MonoBehaviour
         _modInfo = info;
         _mainTransform = mainTransform;
     }
-    
-    public bool TryActivate(Building building)
+
+    public bool TryActivate(Building building, RestrictionFailureInfo failureInfo)
     {
-        _restrictionInfo = GenerateRestrictionInfo(building);
-        if (!RestrictionHelper.TryPassRestrictions(_modInfo.ActivationRestrictions, _restrictionInfo)) return false;
+        _restrictionInfo = ModificationHelpers.GenerateRestrictionInfo(building, _modInfo);
+        if (!RestrictionHelper.TryPassRestrictions(_modInfo.ActivationRestrictions, _restrictionInfo, failureInfo)) return false;
         Activate();
         return true;
     }
@@ -37,7 +37,7 @@ public class Modification : MonoBehaviour
 
     public bool TryDeactivate()
     {
-        if (!RestrictionHelper.TryPassRestrictions(_modInfo.SaleRestrictions, _restrictionInfo)) return false;
+        if (!RestrictionHelper.TryPassRestrictions(_modInfo.SaleRestrictions, _restrictionInfo, new RestrictionFailureInfo())) return false;
         Deactivate();
         return true;
     }
@@ -50,10 +50,5 @@ public class Modification : MonoBehaviour
             Destroy(component.gameObject);
         }
         _activeComponents.Clear();
-    }
-
-    private ModificationRestrictionInfo GenerateRestrictionInfo(Building building)
-    {
-        return new ModificationRestrictionInfo(building, _modInfo.Price, _modInfo.SaleMultiplier);
     }
 }

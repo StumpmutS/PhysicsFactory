@@ -77,6 +77,7 @@ GameObject:
   - component: {fileID: 2688160724254296471}
   - component: {fileID: 7484125215652056233}
   - component: {fileID: 8234195866719595784}
+  - component: {fileID: 1202966920060059513}
   m_Layer: 7
   m_Name: WallMain
   m_TagString: Untagged
@@ -194,6 +195,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderer: {fileID: 5773142692090928610}
   materialPairs: {fileID: 11400000, guid: 0f37b19fd943c174a8aaea155a1d47ee, type: 2}
+--- !u!114 &1202966920060059513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3131869614542946599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8312cf4a7024c31bc88ed38e796a8d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrades:
+  - {fileID: 11400000, guid: bb8a0fdfeeaa3714a93978f1f4c256a1, type: 2}
+  building: {fileID: 9049643205730369263}
+  OnUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDowngrade:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3286921890406014748
 GameObject:
   m_ObjectHideFlags: 0

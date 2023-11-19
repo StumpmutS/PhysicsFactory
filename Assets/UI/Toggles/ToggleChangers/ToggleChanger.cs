@@ -12,8 +12,13 @@ public abstract class ToggleChanger : MonoBehaviour
 
     private void Start()
     {
-        HandleToggle(toggle.isOn);
+        ChangeValue(toggle.isOn);
     }
 
-    protected abstract void HandleToggle(bool value);
+    private void HandleToggle(bool value)
+    {
+        ChangeValue(toggle.isOn);
+    }
+    
+    protected abstract void ChangeValue(bool value);
 }
