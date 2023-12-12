@@ -51,4 +51,10 @@ public class Modification : MonoBehaviour
         }
         _activeComponents.Clear();
     }
+
+    public bool CheckRestrictions(Building building, RestrictionFailureInfo failureInfo)
+    {
+        _restrictionInfo = ModificationHelpers.GenerateRestrictionInfo(building, _modInfo);
+        return RestrictionHelper.CheckRestrictions(_modInfo.ActivationRestrictions, _restrictionInfo, failureInfo);
+    }
 }

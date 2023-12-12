@@ -29,7 +29,7 @@ public class ModificationContainer : MonoBehaviour
         return false;
     }
 
-    public bool TrySellModification(ModificationData modificationData)
+    public bool TryDeactivateModification(ModificationData modificationData)
     {
         if (!_activeModifications.TryGetValue(modificationData, out var modification)) return false;
         if (!modification.TryDeactivate()) return false;
@@ -39,11 +39,21 @@ public class ModificationContainer : MonoBehaviour
         return true;
     }
 
+    public void CheckModifications()
+    {
+        var copy = new Dictionary<ModificationData, Modification>(_activeModifications);
+        foreach (var kvp in copy)
+        {
+            if (kvp.Value.CheckRestrictions(modifiedBuilding, new RestrictionFailureInfo())) continue;
+            TryDeactivateModification(kvp.Key);
+        }
+    }
+    
     public void HandleBuildingSold()
     {
         foreach (var modificationData in modifications)
         {
-            TrySellModification(modificationData);
+            TryDeactivateModification(modificationData);
         }
     }
 }

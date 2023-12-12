@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 7484125215652056233}
   - component: {fileID: 8234195866719595784}
   - component: {fileID: 1202966920060059513}
+  - component: {fileID: 2607749314140233495}
   m_Layer: 7
   m_Name: WallMain
   m_TagString: Untagged
@@ -216,6 +217,33 @@ MonoBehaviour:
   OnDowngrade:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2607749314140233495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3131869614542946599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80f319514774ef88d08454f8ddba89f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnRefresh:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2688160724254296471}
+        m_TargetAssemblyTypeName: ModificationContainer, Assembly-CSharp
+        m_MethodName: CheckModifications
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3286921890406014748
 GameObject:
   m_ObjectHideFlags: 0

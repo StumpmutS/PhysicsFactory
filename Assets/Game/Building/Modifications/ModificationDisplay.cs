@@ -11,6 +11,7 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
     [SerializeField] private IconData restrictedIcon;
 
     private ModificationContainer _modificationContainer;
+    private GeneralRefreshEvent _generalRefreshEvent;
     private Dictionary<ModificationData, LabeledCallbackToggle> _toggles = new();
 
     protected override void SetupSelectionDisplay(ModificationContainer modificationContainer)
@@ -18,7 +19,8 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
         container.SetActive(true);
         _toggles.Clear();
         _modificationContainer = modificationContainer;
-        _modificationContainer.AddOrGetComponent<GeneralRefreshEvent>().OnRefresh.AddListener(GeneralRefresh);
+        _generalRefreshEvent = _modificationContainer.AddOrGetComponent<GeneralRefreshEvent>();
+        _generalRefreshEvent.OnRefresh.AddListener(GeneralRefresh);
         foreach (var kvp in modificationContainer.ModificationsActive)
         {
             var toggle = CreateToggle(kvp.Key, kvp.Value);
@@ -46,7 +48,7 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
     {
         if (callbackObj is not ModificationData modification) return;
         if (value) HandleActivatePressed(modification);
-        else HandleSellPressed(modification);
+        else HandleDeactivatePressed(modification);
     }
 
     private void HandleActivatePressed(ModificationData modData)
@@ -59,9 +61,9 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
         SetToggle(_toggles[modData], modData, _modificationContainer.ModificationsActive[modData]);
     }
 
-    private void HandleSellPressed(ModificationData modData)
+    private void HandleDeactivatePressed(ModificationData modData)
     {
-        _modificationContainer.TrySellModification(modData);
+        _modificationContainer.TryDeactivateModification(modData);
         SetToggle(_toggles[modData], modData, _modificationContainer.ModificationsActive[modData]);
     }
 
@@ -79,11 +81,13 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
             
             var blocker = kvp.Value.Toggle.AddOrGetComponent<RestrictionUIBlocker>();
             blocker.Init(failureInfo.FailureType, restrictedIcon.Icon);
+            kvp.Value.Toggle.isOn = false;
         }
     }
     
     protected override void RemoveSelectionDisplay()
     {
+        if (_generalRefreshEvent != null) _generalRefreshEvent.OnRefresh.RemoveListener(GeneralRefresh);
         container.SetActive(false);
         layout.Clear();
     }
