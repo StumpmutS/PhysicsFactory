@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Utility.Scripts;
+using Utility.Scripts.Extensions;
 using Random = UnityEngine.Random;
 
 public class RuntimeDepositGenerator : MonoBehaviour

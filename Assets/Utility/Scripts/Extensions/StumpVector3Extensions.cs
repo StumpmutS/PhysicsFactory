@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Utility.Scripts
+namespace Utility.Scripts.Extensions
 {
     public static class StumpVector3Extensions
     {

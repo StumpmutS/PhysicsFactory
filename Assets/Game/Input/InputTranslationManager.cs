@@ -28,6 +28,8 @@ public class InputTranslationManager : Singleton<InputTranslationManager>
     public UnityEvent OnIsolateUp;
     public UnityEvent OnHomeDown;
     public UnityEvent OnHomeUp;
+    public UnityEvent OnEscapeDown;
+    public UnityEvent OnEscapeUp;
 
     public void Move(InputAction.CallbackContext ctx)
     {
@@ -176,6 +178,23 @@ public class InputTranslationManager : Singleton<InputTranslationManager>
         else
         {
             OnHomeUp.Invoke();
+        }
+    }
+
+    private bool _cachedEscapeValue;
+    public void Escape(InputAction.CallbackContext ctx)
+    {
+        var value = ctx.ReadValueAsButton();
+        if (value == _cachedEscapeValue) return;
+        _cachedEscapeValue = value;
+        
+        if (value)
+        {
+            OnEscapeDown.Invoke();
+        }
+        else
+        {
+            OnEscapeUp.Invoke();
         }
     }
 }

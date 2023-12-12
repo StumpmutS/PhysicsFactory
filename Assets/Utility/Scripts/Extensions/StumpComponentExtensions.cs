@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Utility.Scripts
+namespace Utility.Scripts.Extensions
 {
     public static class StumpComponentExtensions
     {

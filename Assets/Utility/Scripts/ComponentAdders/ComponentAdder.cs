@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Utility.Scripts.Extensions;
 
 namespace Utility.Scripts
 {

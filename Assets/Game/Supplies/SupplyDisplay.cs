@@ -7,7 +7,7 @@ public class SupplyDisplay : MonoBehaviour
 
     private void Start()
     {
-        SupplyManager.Instance.OnSupplyChanged += HandleSupplyChanged;
+        SupplyManager.Instance.OnSupplyChanged.AddListener(HandleSupplyChanged);
         HandleSupplyChanged(SupplyManager.Instance.CurrentSupplyCount);
     }
 
@@ -20,7 +20,7 @@ public class SupplyDisplay : MonoBehaviour
     {
         if (SupplyManager.Instance != null)
         {
-            SupplyManager.Instance.OnSupplyChanged -= HandleSupplyChanged;
+            SupplyManager.Instance.OnSupplyChanged.RemoveListener(HandleSupplyChanged);
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 using Utility.Scripts;
 
-public class SupplyManager : Singleton<SupplyManager>
+public class SupplyManager : Singleton<SupplyManager>, ISaveable, ILoadable
 {
     [SerializeField] private float startingSupply;
 
@@ -18,7 +19,8 @@ public class SupplyManager : Singleton<SupplyManager>
 
     private float _currentSupplyCount;
     
-    public event Action<float> OnSupplyChanged = delegate {  };
+    public UnityEvent<float> OnSupplyChanged = new();
+    public event Action<ILoadable> OnLoadComplete = delegate {  };
 
     protected override void Awake()
     {
@@ -39,5 +41,16 @@ public class SupplyManager : Singleton<SupplyManager>
     public void AddSupply(float amount)
     {
         CurrentSupplyCount += amount;
+    }
+
+    public void Save(SaveData data)
+    {
+        data.SupplyInfo.Supply = _currentSupplyCount;
+    }
+
+    public void Load(SaveData data)
+    {
+        _currentSupplyCount = data.SupplyInfo.Supply;
+        OnLoadComplete.Invoke(this);
     }
 }

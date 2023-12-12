@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Utility.Scripts;
+using Utility.Scripts.Extensions;
 
 [CreateAssetMenu(menuName = "Defaults/MaterialPairs")]
 public class MaterialPairs : ScriptableObject

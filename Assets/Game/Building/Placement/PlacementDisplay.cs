@@ -9,6 +9,7 @@ public class PlacementDisplay : MonoBehaviour
 
     private HashSet<LabeledCallbackToggle> _toggles = new();
     private BuildingInfo _activeInfo;
+    private bool _listeningUnload;
     
     private void Start()
     {
@@ -22,17 +23,30 @@ public class PlacementDisplay : MonoBehaviour
             _toggles.Add(toggle);
         }
         
-        PlacementManager.Instance.OnPlacementFinished.AddListener(HandlePlacementFinished);
+        ListenOnUnload();
     }
 
-    private void HandlePlacementFinished()
+    private void ListenOnUnload()
     {
+        if (_listeningUnload) return;
+        _listeningUnload = true;
+        PlacementManager.Instance.OnUnload.AddListener(HandlePlacementUnload);
+    }
+
+    private void StopListenOnUnload()
+    {
+        _listeningUnload = false;
+        PlacementManager.Instance.OnUnload.RemoveListener(HandlePlacementUnload);
+    }
+    
+    private void HandlePlacementUnload()
+    {
+        _activeInfo = null;
+        
         foreach (var toggle in _toggles)
         {
             toggle.Toggle.isOn = false;
         }
-
-        _activeInfo = null;
     }
 
     private void HandleToggled(object obj, bool value)
@@ -41,12 +55,14 @@ public class PlacementDisplay : MonoBehaviour
 
         if (!value && data.Info == _activeInfo)
         {
+            StopListenOnUnload();
             PlacementManager.Instance.Unload();
             _activeInfo = null;
         }
 
         if (value && data.Info != _activeInfo)
         {
+            ListenOnUnload();
             PlacementManager.Instance.Load(data.Info);
             _activeInfo = data.Info;
         }
@@ -54,6 +70,6 @@ public class PlacementDisplay : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (PlacementManager.Instance != null) PlacementManager.Instance.OnPlacementFinished.RemoveListener(HandlePlacementFinished);
+        if (PlacementManager.Instance != null) StopListenOnUnload();
     }
 }

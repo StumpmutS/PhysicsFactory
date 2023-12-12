@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Utility.Scripts
+namespace Utility.Scripts.Extensions
 {
     public static class StumpDictionaryExtensions
     {

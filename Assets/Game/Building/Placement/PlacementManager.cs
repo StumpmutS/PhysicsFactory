@@ -1,22 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using Utility.Scripts;
 
-public class PlacementManager : Singleton<PlacementManager>
+public class PlacementManager : Singleton<PlacementManager>, IEscapable
 {
     [SerializeField] private Grid3D grid;
 
     private bool _loaded;
     private Builder _builder;
 
-    public UnityEvent OnPlacementFinished;
+    public UnityEvent OnUnload;
 
     public void Load(BuildingInfo info)
     {
-        if (_builder != null) Unload();
-
-        SelectionDisabler.Disable(this);
         _loaded = true;
+        EscapeManager.Instance.RegisterEscapable(this);
+        SelectionDisabler.Disable(this);
+        ClearBuilder();
         _builder = new Builder(grid, info);
         _builder.OnBuildComplete += HandleBuildComplete;
         _builder.OnBuildFailure += HandleBuildFailure;
@@ -30,7 +32,6 @@ public class PlacementManager : Singleton<PlacementManager>
     private void HandleBuildComplete()
     {
         Unload();
-        OnPlacementFinished.Invoke();
     }
 
     private void HandleBuildFailure(RestrictionFailureInfo failureInfo)
@@ -42,11 +43,25 @@ public class PlacementManager : Singleton<PlacementManager>
     {
         if (!_loaded) return;
 
+        EscapeManager.Instance.DeregisterEscapable(this);
         SelectionDisabler.Enable(this);
         _loaded = false;
+        ClearBuilder();
+        OnUnload.Invoke();
+    }
+
+    private void ClearBuilder()
+    {
+        if (_builder == null) return;
+        
         _builder.OnBuildComplete -= HandleBuildComplete;
         _builder.OnBuildFailure -= HandleBuildFailure;
         _builder.Destroy();
         _builder = null;
+    }
+    
+    public void Escape()
+    {
+        Unload();
     }
 }

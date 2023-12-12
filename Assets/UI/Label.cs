@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using Utility.Scripts;
+using Utility.Scripts.Extensions;
 
 public class Label : MonoBehaviour, IInitializableComponent<TMP_Text>
 {
