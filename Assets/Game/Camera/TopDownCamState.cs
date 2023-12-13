@@ -20,7 +20,6 @@ public class TopDownCamState : State
     public override void Enter()
     {
         _inputProvider.XYAxis = _emptyInput;
-        _freeLook.GetRig(0).DestroyCinemachineComponent<CinemachineHardLookAt>();
     }
 
     public override void Tick()

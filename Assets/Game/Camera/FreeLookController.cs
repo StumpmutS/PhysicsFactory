@@ -6,8 +6,8 @@ using UnityEngine.Serialization;
 public class FreeLookController : MonoBehaviour
 {
     [SerializeField] private CinemachineInputProvider inputProvider;
-    [FormerlySerializedAs("defaultInput")] [SerializeField] private InputActionReference lookInput;
-    [FormerlySerializedAs("emptyInput")] [SerializeField] private InputActionReference emptyVector2Input;
+    [SerializeField] private InputActionReference lookInput;
+    [SerializeField] private InputActionReference emptyVector2Input;
     [SerializeField] private CinemachineFreeLook freeLook;
     [SerializeField] private float resetTransitionSpeed;
 
