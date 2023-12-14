@@ -4,7 +4,7 @@ using Utility.Scripts;
 
 public class GameMenuManager : Singleton<GameMenuManager>
 {
-    [SerializeField] private SerializableDictionary<EGameMenuType, GameMenu> gameMenus;
+    [SerializeField] private SerializableDictionary<EGameMenuType, Activatable> gameMenus;
 
     private EGameMenuType _previousMenuType = EGameMenuType.None;
     private Tuple<EGameMenuType, bool> _currentMenuType = new (EGameMenuType.None, false);

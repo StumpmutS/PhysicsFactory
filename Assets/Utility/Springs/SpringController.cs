@@ -1,9 +1,12 @@
+using System;
 using FMPUtils.Extensions;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class SpringController : MonoBehaviour
 {
+    [SerializeField] private DeltaTimeReference timeReference;
     [SerializeField, Range(-1, 1)] private float startValue = 0;
     [SerializeField] private float frequency;
     [SerializeField] private float damping;
@@ -35,7 +38,7 @@ public class SpringController : MonoBehaviour
     public void Update()
     {
         SpringMotion.CalcDampedSimpleHarmonicMotion(ref _currentValue, ref _currentVelocity, 
-            _targetValue, Time.deltaTime, frequency, damping);
+            _targetValue, timeReference.DeltaTime, frequency, damping);
         OnSpringValueChanged.Invoke(_currentValue, _targetValue);
     }
 

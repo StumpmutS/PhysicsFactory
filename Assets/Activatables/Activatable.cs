@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class GameMenu : MonoBehaviour
+public class Activatable : MonoBehaviour
 {
     public UnityEvent OnActivation;
     public UnityEvent OnDeactivation;
@@ -18,8 +18,11 @@ public class GameMenu : MonoBehaviour
 
     private void Activate()
     {
+        HandleActivation();
         OnActivation.Invoke();
     }
+
+    protected virtual void HandleActivation() { }
 
     public void TryDeactivate()
     {
@@ -31,6 +34,9 @@ public class GameMenu : MonoBehaviour
 
     private void Deactivate()
     {
+        HandleDeactivation();
         OnDeactivation.Invoke();
     }
+    
+    protected virtual void HandleDeactivation() { }
 }

@@ -7,9 +7,8 @@ public class ViewMenuToggleInvoker : MonoBehaviour
 
     public UnityEvent<EView> OnActivate;
     
-    public void Activate(bool value)
+    public void Activate()
     {
-        if (!value) return;
         OnActivate.Invoke(view);
     }
 }

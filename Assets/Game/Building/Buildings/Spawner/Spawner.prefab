@@ -1061,6 +1061,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3229885156522611340, guid: 26d5b242048789344975a27e0231b9ad,
         type: 3}
+      propertyPath: timeReference
+      value: 
+      objectReference: {fileID: 11400000, guid: 356d115067b41a64291935d3ca382960,
+        type: 2}
+    - target: {fileID: 3229885156522611340, guid: 26d5b242048789344975a27e0231b9ad,
+        type: 3}
       propertyPath: OnSpringValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1182,6 +1188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spring: {fileID: 7733806851905969182}
+  playOnEnable: 0
   animationData:
   - springTarget: 1
     time: 0.4

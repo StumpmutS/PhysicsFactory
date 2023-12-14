@@ -4,9 +4,10 @@ using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Utility.Scripts;
 
-public class PlacementManager : Singleton<PlacementManager>, IEscapable
+public class PlacementManager : Singleton<PlacementManager>, IPoppable
 {
     [SerializeField] private Grid3D grid;
+    [SerializeField] private PoppableStack escapeStack;
 
     private bool _loaded;
     private Builder _builder;
@@ -16,7 +17,7 @@ public class PlacementManager : Singleton<PlacementManager>, IEscapable
     public void Load(BuildingInfo info)
     {
         _loaded = true;
-        EscapeManager.Instance.RegisterEscapable(this);
+        escapeStack.RegisterPoppable(this);
         SelectionDisabler.Disable(this);
         ClearBuilder();
         _builder = new Builder(grid, info);
@@ -43,7 +44,7 @@ public class PlacementManager : Singleton<PlacementManager>, IEscapable
     {
         if (!_loaded) return;
 
-        EscapeManager.Instance.DeregisterEscapable(this);
+        escapeStack.DeregisterPoppable(this);
         SelectionDisabler.Enable(this);
         _loaded = false;
         ClearBuilder();
@@ -60,7 +61,7 @@ public class PlacementManager : Singleton<PlacementManager>, IEscapable
         _builder = null;
     }
     
-    public void Escape()
+    public void Pop()
     {
         Unload();
     }

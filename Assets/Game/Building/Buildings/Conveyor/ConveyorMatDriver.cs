@@ -7,9 +7,10 @@ public class ConveyorMatDriver : MonoBehaviour
     [SerializeField] private Conveyor conveyor;
 
     private Material _material;
-    private static readonly int FixedTime = Shader.PropertyToID("_FixedTime");
-    private static readonly int Speed = Shader.PropertyToID("_Speed");
-    private static readonly int Scale = Shader.PropertyToID("_Scale");
+    private float Speed => conveyor == null ? 0 : conveyor.CurrentSpeed;
+    private static readonly int FixedTimeProperty = Shader.PropertyToID("_FixedTime");
+    private static readonly int SpeedProperty = Shader.PropertyToID("_Speed");
+    private static readonly int ScaleProperty = Shader.PropertyToID("_Scale");
 
     private void Awake()
     {
@@ -29,15 +30,15 @@ public class ConveyorMatDriver : MonoBehaviour
     
     private void SetMaterial()
     {
-        materialManager.ModifyMaterial(Scale, 
+        materialManager.ModifyMaterial(ScaleProperty, 
             (id, material) => material.SetFloat(id, scaleReference.localScale.z));
-        materialManager.ModifyMaterial(Speed,
-            (id, material) => material.SetFloat(id, conveyor == null ? 0 : conveyor.CurrentSpeed));
+        materialManager.ModifyMaterial(SpeedProperty,
+            (id, material) => material.SetFloat(id, Speed));
     }
 
     private void FixedUpdate()
     {
-        materialManager.ModifyMaterial(FixedTime, (id, material) => material.SetFloat(id, Time.fixedTime));
+        materialManager.ModifyMaterial(FixedTimeProperty, (id, material) => material.SetFloat(id, Time.fixedTime));
     }
 
     private void OnDestroy()

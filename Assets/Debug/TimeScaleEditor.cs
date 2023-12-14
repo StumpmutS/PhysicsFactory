@@ -4,7 +4,7 @@ public class TimeScaleEditor : MonoBehaviour
 {
     [SerializeField] private float timeScale = 1;
     
-    void Update()
+    private void Update()
     {
         Time.timeScale = timeScale;
     }
