@@ -1,8 +1,8 @@
 ﻿using System;
 
-public interface ILoadable
+public interface ILoadable<TData>
 {
-    public event Action<ILoadable> OnLoadComplete;
+    public event Action<ILoadable<TData>> OnLoadComplete;
     
-    public void Load(SaveData data);
+    public void Load(TData data);
 }

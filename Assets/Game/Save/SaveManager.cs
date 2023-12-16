@@ -1,36 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using Utility.Scripts;
 
 public class SaveManager : Singleton<SaveManager>
 {
-    [SerializeField] private string localSaveFileName;
+    [SerializeField] private string saveDirectoryName = "Saves";
+    [SerializeField] private string defaultLocalSaveFileName;
     
     private LocalSaveHandler _localSaveHandler;
-    private HashSet<ILoadable> _completedLoadables = new();
-    private int _loadTarget;
 
-    public UnityEvent<SaveData> OnSave = new();
-    public UnityEvent<SaveData> OnLoad = new();
+    public UnityEvent<SaveData> OnStartSave = new();
+    public UnityEvent<SaveData> OnStartLoad = new();
     public UnityEvent OnLoadComplete = new();
 
     protected override void Awake()
     {
         base.Awake();
-        _localSaveHandler = new LocalSaveHandler(localSaveFileName, Application.persistentDataPath);
+        _localSaveHandler = new LocalSaveHandler(defaultLocalSaveFileName,
+            Path.Combine(Application.persistentDataPath, saveDirectoryName));
     }
 
-    public void Save()
+    public void Save(SaveInfo info)
     {
-        var saveData = new SaveData();
-        
-        foreach (var saveable in FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<ISaveable>())
-        {
-            saveable.Save(saveData);
-        }
+        var saveData = new SaveData(info);
+
+        SaveHelpers.GroupSave(SaveHelpers.GetSaveables<SaveData>(), saveData);
         
         _localSaveHandler.Save(saveData);
     }
@@ -38,29 +36,20 @@ public class SaveManager : Singleton<SaveManager>
     public void Load()
     {
         var saveData = _localSaveHandler.Load();
-        var loadables = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<ILoadable>().ToHashSet();
-        _completedLoadables.Clear();
-        _loadTarget = loadables.Count;
-        
-        foreach (var loadable in loadables)
-        {
-            loadable.OnLoadComplete += HandleLoadComplete;
-            loadable.Load(saveData);
-        }
+        var loadables = SaveHelpers.GetLoadables<SaveData>();
+        var loader = new SaveHelpers.Loader<SaveData>(loadables, saveData);
+        loader.OnComplete += HandleLoadComplete;
+        loader.Load();
     }
 
-    private void HandleLoadComplete(ILoadable loadable)
+    private void HandleLoadComplete(SaveHelpers.Loader<SaveData> loader)
     {
-        loadable.OnLoadComplete -= HandleLoadComplete;
-        _completedLoadables.Add(loadable);
-        if (_completedLoadables.Count == _loadTarget)
-        {
-            OnLoadComplete.Invoke();
-        }
+        loader.OnComplete -= HandleLoadComplete;
+        OnLoadComplete.Invoke();
     }
     
     private void OnApplicationQuit()
     {
-        Save();
+        //Save(new SaveInfo("Auto"));
     }
 }

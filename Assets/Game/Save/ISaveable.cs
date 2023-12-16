@@ -1,6 +1,6 @@
 ﻿using UnityEngine.Serialization;
 
-public interface ISaveable
+public interface ISaveable<TData>
 {
-    public void Save(SaveData data);
+    public void Save(TData data);
 }

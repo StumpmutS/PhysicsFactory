@@ -3,20 +3,21 @@ using UnityEngine;
 
 public class LocalSaveHandler
 {
-    private string _fileName;
-    private string _filePath;
+    private string _defaultFileName;
+    private string _storagePath;
 
-    public LocalSaveHandler(string fileName, string filePath)
+    public LocalSaveHandler(string defaultFileName, string storagePath)
     {
-        _fileName = fileName;
-        _filePath = filePath;
+        _defaultFileName = defaultFileName;
+        _storagePath = storagePath;
     }
     
     public void Save(SaveData data)
     {
         var json = JsonUtility.ToJson(data, true);
-        Directory.CreateDirectory(_filePath);
-        var fullPath = Path.Combine(_filePath, _fileName);
+        var dirPath = Path.Combine(_storagePath, data.SaveInfo.Id);
+        Directory.CreateDirectory(dirPath);
+        var fullPath = Path.Combine(dirPath, _defaultFileName);
         
         using (var stream = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
         {
@@ -31,11 +32,11 @@ public class LocalSaveHandler
 
     public SaveData Load()
     {
-        var fullPath = Path.Combine(_fileName, _filePath);
+        var fullPath = Path.Combine(_defaultFileName, _storagePath);
         if (!File.Exists(fullPath))
         {
             Debug.LogError($"Could not find file at path {fullPath}");
-            return new SaveData();
+            return null;
         }
         
         string json;

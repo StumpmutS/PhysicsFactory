@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Utility.Scripts;
 
-public class SupplyManager : Singleton<SupplyManager>, ISaveable, ILoadable
+public class SupplyManager : Singleton<SupplyManager>, ISaveable<LevelData>, ILoadable<LevelData>
 {
     [SerializeField] private float startingSupply;
 
@@ -20,7 +20,7 @@ public class SupplyManager : Singleton<SupplyManager>, ISaveable, ILoadable
     private float _currentSupplyCount;
     
     public UnityEvent<float> OnSupplyChanged = new();
-    public event Action<ILoadable> OnLoadComplete = delegate {  };
+    public event Action<ILoadable<LevelData>> OnLoadComplete = delegate { };
 
     protected override void Awake()
     {
@@ -43,12 +43,12 @@ public class SupplyManager : Singleton<SupplyManager>, ISaveable, ILoadable
         CurrentSupplyCount += amount;
     }
 
-    public void Save(SaveData data)
+    public void Save(LevelData data)
     {
         data.SupplyInfo.Supply = _currentSupplyCount;
     }
 
-    public void Load(SaveData data)
+    public void Load(LevelData data)
     {
         _currentSupplyCount = data.SupplyInfo.Supply;
         OnLoadComplete.Invoke(this);

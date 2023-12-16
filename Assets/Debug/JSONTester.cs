@@ -8,14 +8,16 @@ using Utility.Scripts;
 public class JSONTester : MonoBehaviour
 {
     [SerializeField] private Tester tester;
+    [SerializeField] private SaveData saveData;
     
     [ContextMenu("TestJSON")]
     private void TestJSON()
     {
         tester.typeReference.SetTargetType(typeof(RendererMaterialModificationComponent));
-        var json = JsonUtility.ToJson(tester, true);
+        //saveData.SaveInfo = new SaveInfo("Bob's Level", "Auto", new SerializableDateTime(DateTime.Now));
+        var json = JsonUtility.ToJson(saveData, true);
         Debug.Log(json);
-        var fromJson = JsonUtility.FromJson<Tester>(json);
+        var fromJson = JsonUtility.FromJson<SaveData>(json);
     }
 
     [Serializable]

@@ -7,7 +7,7 @@ public class Dolboid : MonoBehaviour
 
     public DolboidInfo CurrentInfo { get; private set; }
 
-    public event Action<DolboidInfo> OnDolboidChanged = delegate {  };
+    public event Action<DolboidInfo> OnDolboidChanged = delegate { };
 
     private void Awake()
     {

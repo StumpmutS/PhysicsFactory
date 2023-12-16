@@ -3,11 +3,12 @@
 [Serializable]
 public class SaveData
 {
-    public SupplySaveInfo SupplyInfo;
-    //public SerializableDictionary<string, BuildingSaveInfo> PlacedBuildings;
+    public SaveInfo SaveInfo;
+    public LevelData LevelData;
 
-    public SaveData()
+    public SaveData(SaveInfo saveInfo)
     {
-        SupplyInfo = new SupplySaveInfo();
+        SaveInfo = saveInfo;
+        LevelData = new LevelData();
     }
 }
