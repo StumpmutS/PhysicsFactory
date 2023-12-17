@@ -4,10 +4,10 @@ public class Building : MonoBehaviour
 {
     public PlacedBuildingInfo Info { get; private set; }
 
-    public void Init(PlacedBuildingInfo info, Transform transformToCopy)
+    public void Init(PlacedBuildingInfo info)
     {
         Info = info;
-        transform.localScale = transformToCopy.localScale;
+        transform.localScale = info.TransformData.LocalScale;
     }
     
     private void Start()

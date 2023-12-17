@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class BuildingInfo
+public class BuildingPlacementInfo
 {
     [SerializeField] private string label;
     public string Label => label;

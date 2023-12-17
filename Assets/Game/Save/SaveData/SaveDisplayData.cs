@@ -1,13 +1,13 @@
 ﻿using System;
 
 [Serializable]
-public class SaveDisplayInfo
+public class SaveDisplayData
 {
     public string Name;
     public string Type;
     public SerializableDateTime DateTime;
     
-    public SaveDisplayInfo(string name, string saveType, SerializableDateTime dateTime)
+    public SaveDisplayData(string name, string saveType, SerializableDateTime dateTime)
     {
         Name = name;
         Type = saveType;

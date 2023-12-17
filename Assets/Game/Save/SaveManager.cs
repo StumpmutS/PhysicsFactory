@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -37,14 +38,12 @@ public class SaveManager : Singleton<SaveManager>
     {
         var saveData = _localSaveHandler.Load();
         var loadables = SaveHelpers.GetLoadables<SaveData>();
-        var loader = new SaveHelpers.Loader<SaveData>(loadables, saveData);
-        loader.OnComplete += HandleLoadComplete;
-        loader.Load();
+        var loader = new UnorderedLoader(loadables.Select(l => new LoadableData(() => l.Load(saveData))));
+        loader.Load().OnComplete += HandleLoadComplete;
     }
 
-    private void HandleLoadComplete(SaveHelpers.Loader<SaveData> loader)
+    private void HandleLoadComplete(LoadingInfo _)
     {
-        loader.OnComplete -= HandleLoadComplete;
         OnLoadComplete.Invoke();
     }
     

@@ -1,14 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class LevelData
 {
-    public LevelInfo LevelInfo;
-    public SupplySaveInfo SupplyInfo;
-
-    public LevelData()
-    {
-        LevelInfo = new LevelInfo();
-        SupplyInfo = new SupplySaveInfo();
-    }
+    public LevelInfo LevelInfo = new();
+    public SupplySaveData supplyData = new();
+    public List<BuildingSaveData> BuildingSaveData = new();
 }

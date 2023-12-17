@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using Utility.Scripts;
 
 [Serializable]
 public class PlacedBuildingInfo
@@ -15,16 +17,19 @@ public class PlacedBuildingInfo
     public List<Restriction<BuildingRestrictionInfo>> SaleRestrictions => saleRestrictions;
     [SerializeField] private float saleMultiplier;
     public float SaleMultiplier => saleMultiplier;
-
-    public PlacedBuildingInfo(string label, float volume, float price, List<Restriction<BuildingRestrictionInfo>> saleRestrictions, float saleMultiplier)
+    [SerializeField] private TransformData transformData;
+    public TransformData TransformData => transformData;
+    
+    public PlacedBuildingInfo(string label, float volume, float price, List<Restriction<BuildingRestrictionInfo>> saleRestrictions, float saleMultiplier, TransformData transformData)
     {
         this.label = label;
         this.volume = volume;
         this.price = price;
         this.saleRestrictions = saleRestrictions;
         this.saleMultiplier = saleMultiplier;
+        this.transformData = transformData;
     }
 
-    public PlacedBuildingInfo(BuildingInfo info, float volume) : this(info.Label, volume, info.Price,
-        info.SaleRestrictions, info.SaleMultiplier) { }
+    public PlacedBuildingInfo(BuildingPlacementInfo info, float volume, TransformData transformData) : this(info.Label, volume, info.Price,
+        info.SaleRestrictions, info.SaleMultiplier, transformData) { }
 }

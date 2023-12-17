@@ -20,7 +20,6 @@ public class SupplyManager : Singleton<SupplyManager>, ISaveable<LevelData>, ILo
     private float _currentSupplyCount;
     
     public UnityEvent<float> OnSupplyChanged = new();
-    public event Action<ILoadable<LevelData>> OnLoadComplete = delegate { };
 
     protected override void Awake()
     {
@@ -45,12 +44,17 @@ public class SupplyManager : Singleton<SupplyManager>, ISaveable<LevelData>, ILo
 
     public void Save(LevelData data)
     {
-        data.SupplyInfo.Supply = _currentSupplyCount;
+        data.supplyData.Supply = _currentSupplyCount;
     }
 
-    public void Load(LevelData data)
+    public LoadingInfo Load(LevelData data)
     {
-        _currentSupplyCount = data.SupplyInfo.Supply;
-        OnLoadComplete.Invoke(this);
+        CurrentSupplyCount = data.supplyData.Supply;
+        var loadingInfo = new LoadingInfo(() => 100)
+        {
+            Result = this,
+            Status = ELoadCompletionStatus.Succeeded
+        };
+        return loadingInfo;
     }
 }

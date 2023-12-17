@@ -9,12 +9,12 @@ using Object = UnityEngine.Object;
 public class Builder
 {
     private Grid3D _grid;
-    private BuildingInfo _info;
+    private BuildingPlacementInfo _info;
     private BuildingPreview _mainPreview;
     private Stack<Vector3> _selectedLocations = new();
     private Stack<Vector3> _restrictedAxes = new();
 
-    public Builder(Grid3D grid, BuildingInfo info)
+    public Builder(Grid3D grid, BuildingPlacementInfo info)
     {
         _grid = grid;
         _info = info;

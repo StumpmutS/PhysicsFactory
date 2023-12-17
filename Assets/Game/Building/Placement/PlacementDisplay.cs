@@ -8,7 +8,7 @@ public class PlacementDisplay : MonoBehaviour
     [SerializeField] private LabeledCallbackToggle togglePrefab;
 
     private HashSet<LabeledCallbackToggle> _toggles = new();
-    private BuildingInfo _activeInfo;
+    private BuildingPlacementInfo _activeInfo;
     private bool _listeningUnload;
     
     private void Start()

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Utility.Scripts;
 
 public abstract class BuildingPreview : MonoBehaviour
 {
@@ -13,10 +14,10 @@ public abstract class BuildingPreview : MonoBehaviour
 
     public abstract void StretchTo(List<Vector3> locations, int cellSize);
     
-    public void Place(BuildingInfo info)
+    public void Place(BuildingPlacementInfo info)
     {
         var building = Instantiate(buildingPrefab);
-        building.Init(new PlacedBuildingInfo(info, Volume), transform);
+        building.Init(new PlacedBuildingInfo(info, Volume, new TransformData(transform)));
     }
     
     public void Pass()

@@ -14,7 +14,7 @@ public class PlacementManager : Singleton<PlacementManager>, IPoppable
 
     public UnityEvent OnUnload;
 
-    public void Load(BuildingInfo info)
+    public void Load(BuildingPlacementInfo info)
     {
         _loaded = true;
         escapeStack.RegisterPoppable(this);

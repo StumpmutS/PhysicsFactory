@@ -9,7 +9,7 @@ public class SaveInvoker : MonoBehaviour
     {
         SaveManager.Instance.Save(
             new SaveInfo(
-                new SaveDisplayInfo(
+                new SaveDisplayData(
                     LevelManager.Instance.Name, 
                     saveType, 
                     new SerializableDateTime(DateTime.Now))));

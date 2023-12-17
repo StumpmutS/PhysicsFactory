@@ -6,8 +6,6 @@ using Utility.Scripts;
 public class LevelManager : Singleton<LevelManager>, ISaveable<SaveData>, ILoadable<SaveData>
 {
     public string Name { get; private set; }
-
-    public event Action<ILoadable<SaveData>> OnLoadComplete = delegate { };
     
     public void Save(SaveData data)
     {
@@ -16,19 +14,12 @@ public class LevelManager : Singleton<LevelManager>, ISaveable<SaveData>, ILoada
         SaveHelpers.GroupSave(SaveHelpers.GetSaveables<LevelData>(), data.LevelData);
     }
 
-    public void Load(SaveData data)
+    public LoadingInfo Load(SaveData data)
     {
         Name = data.LevelData.LevelInfo.Name;
         
         var loadables = SaveHelpers.GetLoadables<LevelData>();
-        var loader = new SaveHelpers.Loader<LevelData>(loadables, data.LevelData);
-        loader.OnComplete += HandleLoadComplete;
-        loader.Load();
-    }
-
-    private void HandleLoadComplete(SaveHelpers.Loader<LevelData> loader)
-    {
-        loader.OnComplete -= HandleLoadComplete;
-        OnLoadComplete.Invoke(this);
+        var loader = new UnorderedLoader(loadables.Select(l => new LoadableData(() => l.Load(data.LevelData))));
+        return loader.Load();
     }
 }
