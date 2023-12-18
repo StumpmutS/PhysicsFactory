@@ -1,12 +1,19 @@
 ﻿using System;
 using System.Linq;
-using UnityEngine;
 using Utility.Scripts;
 
 public class LevelManager : Singleton<LevelManager>, ISaveable<SaveData>, ILoadable<SaveData>
 {
     public string Name { get; private set; }
-    
+
+    private void Start()
+    {
+        if (LevelDataContainer.Instance != null && LevelDataContainer.Instance.LevelData != null)
+        {
+            Load(LevelDataContainer.Instance.LevelData);
+        }
+    }
+
     public void Save(SaveData data)
     {
         data.LevelData.LevelInfo.Name = "TestLevel";
@@ -14,12 +21,14 @@ public class LevelManager : Singleton<LevelManager>, ISaveable<SaveData>, ILoada
         SaveHelpers.GroupSave(SaveHelpers.GetSaveables<LevelData>(), data.LevelData);
     }
 
-    public LoadingInfo Load(SaveData data)
+    public LoadingInfo Load(SaveData data) => Load(data.LevelData);
+
+    private LoadingInfo Load(LevelData data)
     {
-        Name = data.LevelData.LevelInfo.Name;
+        Name = data.LevelInfo.Name;
         
         var loadables = SaveHelpers.GetLoadables<LevelData>();
-        var loader = new UnorderedLoader(loadables.Select(l => new LoadableData(() => l.Load(data.LevelData))));
+        var loader = new UnorderedLoader(loadables.Select(l => new LoadableData(() => l.Load(data))));
         return loader.Load();
     }
 }

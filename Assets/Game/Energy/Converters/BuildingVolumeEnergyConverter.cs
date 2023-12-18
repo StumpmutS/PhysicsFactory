@@ -6,6 +6,6 @@ public class BuildingVolumeEnergyConverter : EnergyConverter
     
     public override float ConvertEnergy(float charge)
     {
-        return charge / building.Info.Volume;
+        return charge / building.Data.Volume;
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class BuildingSaleController : MonoBehaviour
@@ -7,14 +8,14 @@ public class BuildingSaleController : MonoBehaviour
     [SerializeField] private Building building;
 
     public string SaleText =>
-        $"Sell {building.Info.Label}: ${SupplyCalculator.CalculatePrice(building.Info.Price, building, building.Info.SaleMultiplier):F2}";
+        $"Sell {building.Data.Label}: ${SupplyCalculator.CalculatePrice(building.Data.Price, building, building.Data.SaleMultiplier):F2}";
 
     public UnityEvent OnSale;
 
     public void Sell()
     {
-        if (!RestrictionHelper.TryPassRestrictions(building.Info.SaleRestrictions,
-                new BuildingRestrictionInfo(building, building.Info.Price, building.Info.SaleMultiplier),
+        if (!RestrictionHelper.TryPassRestrictions(building.Data.SaleRestrictionRefs.Select(c => c.Data),
+                new BuildingRestrictionInfo(building, building.Data.Price, building.Data.SaleMultiplier),
                 new RestrictionFailureInfo())) return;
         OnSale.Invoke();
         Destroy(parent);

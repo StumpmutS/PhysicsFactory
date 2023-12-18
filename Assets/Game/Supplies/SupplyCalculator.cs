@@ -7,7 +7,7 @@
     
     public static float CalculatePrice(float price, Building building, float priceMultiplier = 1)
     {
-        return price * building.Info.Volume * priceMultiplier;
+        return price * building.Data.Volume * priceMultiplier;
     }
     
     public static float CalculatePrice(float price, BuildingPreview preview, float priceMultiplier = 1)

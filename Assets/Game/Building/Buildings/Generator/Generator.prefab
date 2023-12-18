@@ -79,9 +79,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c921e4ce44cb4fa1bcc807fa57115afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabReference:
+    m_AssetGUID: cc243238367b75847b71c26217872531
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   optionalStartInfo:
     label: 
     placementRestrictions: []
+    saleRestrictionRefs: []
     saleRestrictions: []
     previewPrefab: {fileID: 0}
     anchorCellAmount: 0
@@ -371,9 +377,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentContainer: {fileID: 9186603668778472721}
   energyGenerated: 10
-  OnCurrentsChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1197471430415948019
 MonoBehaviour:
   m_ObjectHideFlags: 0

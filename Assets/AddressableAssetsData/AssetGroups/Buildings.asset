@@ -41,6 +41,24 @@ MonoBehaviour:
     m_SerializedLabels:
     - Building
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d55e4ec8b3250614a82fa9ebaf183512
+    m_Address: Assets/Game/Building/Buildings/Conveyor/ConveyorSalePriceRestriction.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SaleRestriction
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6177eb3f5192bd747bd25f3f2604e11f
+    m_Address: Assets/Game/Building/Buildings/Generator/GeneratorSupplyPriceRestriction.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SaleRestriction
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb490c57cbddc4d47b30985b0bf6dff1
+    m_Address: Assets/Game/Building/Buildings/Wall/WallSaleSupplyPriceRestriction.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SaleRestriction
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d2d3607da753be649add1ec63153bacd, type: 2}
   m_SchemaSet:

@@ -2,12 +2,12 @@
 
 public class Building : MonoBehaviour
 {
-    public PlacedBuildingInfo Info { get; private set; }
+    public PlacedBuildingData Data { get; private set; }
 
-    public void Init(PlacedBuildingInfo info)
+    public void Init(PlacedBuildingData data)
     {
-        Info = info;
-        transform.localScale = info.TransformData.LocalScale;
+        Data = data;
+        transform.localScale = data.TransformData.LocalScale;
     }
     
     private void Start()

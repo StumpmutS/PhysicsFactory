@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 [Serializable]
 public class BuildingPlacementInfo
@@ -9,7 +10,9 @@ public class BuildingPlacementInfo
     public string Label => label;
     [SerializeField] private List<Restriction<PlacementRestrictionInfo>> placementRestrictions;
     public List<Restriction<PlacementRestrictionInfo>> PlacementRestrictions => placementRestrictions;
-    [SerializeField] private List<Restriction<BuildingRestrictionInfo>> saleRestrictions;
+    [SerializeField] private List<AssetRefContainer<Restriction<BuildingRestrictionInfo>>> saleRestrictionRefs;
+    public List<AssetRefContainer<Restriction<BuildingRestrictionInfo>>> SaleRestrictionRefs => saleRestrictionRefs;
+    [SerializeField] private List<Restriction<BuildingRestrictionInfo>> saleRestrictions; //TODO: remove
     public List<Restriction<BuildingRestrictionInfo>> SaleRestrictions => saleRestrictions;
     [SerializeField] private BuildingPreview previewPrefab;
     public BuildingPreview PreviewPrefab => previewPrefab;
@@ -21,4 +24,12 @@ public class BuildingPlacementInfo
     public float Price => price;
     [SerializeField, Range(0, 1)] private float saleMultiplier = 1;
     public float SaleMultiplier => saleMultiplier;
+}
+
+[Serializable]
+public class AssetRefContainer<T>
+{
+    [SerializeField] private AssetReference reference;
+    public AssetReference Reference => reference;
+    public T Data;
 }

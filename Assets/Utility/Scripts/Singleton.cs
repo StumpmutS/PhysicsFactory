@@ -8,6 +8,12 @@ namespace Utility.Scripts
     
         protected virtual void Awake()
         {
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            
             Instance = (T) this;
         }
     }

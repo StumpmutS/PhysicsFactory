@@ -49,9 +49,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c921e4ce44cb4fa1bcc807fa57115afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabReference:
+    m_AssetGUID: 2f2640e9078f39c4cbb048384bbcc121
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   optionalStartInfo:
     label: 
     placementRestrictions: []
+    saleRestrictionRefs: []
     saleRestrictions: []
     previewPrefab: {fileID: 0}
     anchorCellAmount: 0

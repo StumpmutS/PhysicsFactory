@@ -80,9 +80,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c921e4ce44cb4fa1bcc807fa57115afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabReference:
+    m_AssetGUID: 0a16023d86eac05468079a71a07ac4e0
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   optionalStartInfo:
     label: Spawner
     placementRestrictions: []
+    saleRestrictionRefs: []
     saleRestrictions: []
     previewPrefab: {fileID: 0}
     anchorCellAmount: 0

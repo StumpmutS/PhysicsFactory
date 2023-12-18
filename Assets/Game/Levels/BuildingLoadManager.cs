@@ -10,7 +10,7 @@ public class BuildingLoadManager : Singleton<BuildingLoadManager>, ILoadable<Bui
     [SerializeField] private int assetRefInstantiationPercentWeight;
     
     private LoadingInfo _loadingInfo;
-    private Dictionary<BuildingInfoTransmitter, BuildingSaveData> _initializedTransmitters = new();
+    private Dictionary<GameObject, BuildingSaveData> _initializedTransmitters = new();
     private LoadingInfo _transmitterInfo;
     private LoadingInfo _phaseInfo;
 
@@ -32,14 +32,13 @@ public class BuildingLoadManager : Singleton<BuildingLoadManager>, ILoadable<Bui
 
     private void HandleRefInstantiated(LoadingInfo result, BuildingSaveData data)
     {
-        if (result.Status == ELoadCompletionStatus.Failed || result.Result is not GameObject go || !go.TryGetComponent<BuildingInfoTransmitter>(out var transmitter))
+        if (result.Status == ELoadCompletionStatus.Failed || result.Result is not GameObject go)
         {
             Debug.LogError($"Error instantiating asset reference, result was: {result.Result}");
             return;
         }
 
-        transmitter.Init(data.BuildingInfo);
-        _initializedTransmitters.Add(transmitter, data);
+        _initializedTransmitters.Add(go, data);
     }
 
     private void HandleTransmittersInitialized(LoadingInfo loadingInfo)
@@ -50,21 +49,23 @@ public class BuildingLoadManager : Singleton<BuildingLoadManager>, ILoadable<Bui
                 kvp.Key.GetComponentsInChildren<ILoadable<TData>>()
                     .Select(l => new LoadableData(() => l.Load(dataSelector.Invoke(kvp.Value))))));
         }
-
+        
         //Use methods so that GetComponents is called after each phase in case a relevant component is added in a previous phase
+        UnorderedLoader PlacedBuildingLoader() => CreateLoader(data => data.PlacedBuildingSaveData);
         UnorderedLoader UpgradeLoader() => CreateLoader(data => data.UpgradeSaveData);
         UnorderedLoader ModificationLoader() => CreateLoader(data => data.ModificationSaveData);
         UnorderedLoader CurrentLoader() => CreateLoader(data => data.CurrentSaveData);
         UnorderedLoader EnergyLoader() => CreateLoader(data => data.EnergySpreadSaveData);
-        UnorderedLoader BuildingLoader() => CreateLoader(data => data);
+        UnorderedLoader GeneralBuildingLoader() => CreateLoader(data => data); //final pass for any new components
 
         var phaseLoader = new OrderedLoader(new []
         {
+            new LoadableData(() => PlacedBuildingLoader().Load()),
             new LoadableData(() => UpgradeLoader().Load()),
             new LoadableData(() => ModificationLoader().Load()),
             new LoadableData(() => CurrentLoader().Load()),
             new LoadableData(() => EnergyLoader().Load()),
-            new LoadableData(() => BuildingLoader().Load())
+            new LoadableData(() => GeneralBuildingLoader().Load())
         });
 
         _phaseInfo = phaseLoader.Load();
