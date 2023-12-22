@@ -4,12 +4,12 @@ using UnityEngine;
 
 public static class LocalDataPersistenceHandler
 {
-    public static void SaveTo(SaveData data, string storagePath, string defaultFileName)
+    public static void SaveTo(SaveData data, LocalSavePathInfo pathData)
     {
         var json = JsonUtility.ToJson(data, true);
-        var dirPath = Path.Combine(storagePath, data.SaveInfo.Id);
+        var dirPath = Path.Combine(pathData.SaveDirectoryPath, data.SaveInfo.Id);
         Directory.CreateDirectory(dirPath);
-        var fullPath = Path.Combine(dirPath, defaultFileName);
+        var fullPath = Path.Combine(dirPath, pathData.DefaultLocalSaveFileName);
         
         using (var stream = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
         {
@@ -22,12 +22,12 @@ public static class LocalDataPersistenceHandler
         Debug.Log($"Data saved, path: {fullPath}\ndata:\n{json}");
     }
 
-    public static IEnumerable<SaveData> GetSaves(string defaultFileName, string storagePath)
+    public static IEnumerable<SaveData> GetSaves(LocalSavePathInfo pathInfo)
     {
-        foreach (var info in new DirectoryInfo(storagePath).EnumerateDirectories())
+        foreach (var info in new DirectoryInfo(pathInfo.SaveDirectoryPath).EnumerateDirectories())
         {
             var id = info.Name;
-            var saveFilePath = Path.Combine(storagePath, id, defaultFileName);
+            var saveFilePath = Path.Combine(pathInfo.SaveDirectoryPath, id, pathInfo.DefaultLocalSaveFileName);
             if (!File.Exists(saveFilePath))
             {
                 Debug.LogError($"Could not find file at path {saveFilePath}");

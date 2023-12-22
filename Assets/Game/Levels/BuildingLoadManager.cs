@@ -7,7 +7,7 @@ using Utility.Scripts;
 
 public class BuildingLoadManager : Singleton<BuildingLoadManager>, ILoadable<BuildingSaveData[]>
 {
-    [SerializeField] private int assetRefInstantiationPercentWeight;
+    [SerializeField, Range(0, 100)] private int assetRefInstantiationPercentWeight;
     
     private LoadingInfo _loadingInfo;
     private Dictionary<GameObject, BuildingSaveData> _initializedTransmitters = new();

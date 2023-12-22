@@ -10,7 +10,7 @@ namespace Utility.Scripts
         {
             get
             {
-                _mainCamera ??= Camera.main;
+                if (_mainCamera == null) _mainCamera = Camera.main;
                 return _mainCamera;
             }
         }

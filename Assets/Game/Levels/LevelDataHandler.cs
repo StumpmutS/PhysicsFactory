@@ -2,7 +2,7 @@
 using System.Linq;
 using Utility.Scripts;
 
-public class LevelManager : Singleton<LevelManager>, ISaveable<SaveData>, ILoadable<SaveData>
+public class LevelDataHandler : Singleton<LevelDataHandler>, ISaveable<SaveData>, ILoadable<SaveData>
 {
     public string Name { get; private set; }
 

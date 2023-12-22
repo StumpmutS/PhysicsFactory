@@ -16,7 +16,7 @@ public class PlacementDisplay : MonoBehaviour
         foreach (var building in buildings)
         {
             var toggle = Instantiate(togglePrefab);
-            toggle.Init(HandleToggled, building, false);
+            toggle.Init(new CallbackToggleData(HandleToggled, building, false));
             toggle.SetText(building.Info.Label);
             if (toggle.transform is not RectTransform rectTransform) return;
             layoutDisplay.Add(rectTransform);

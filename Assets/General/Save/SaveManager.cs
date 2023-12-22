@@ -4,7 +4,7 @@ using Utility.Scripts;
 
 public class SaveManager : Singleton<SaveManager>
 {
-    [SerializeField] private LocalSavePathData localSavePathData;
+    [SerializeField] private LocalSavePathSO localSavePathSo;
     
     public void Save(SaveInfo info)
     {
@@ -12,7 +12,6 @@ public class SaveManager : Singleton<SaveManager>
 
         SaveHelpers.GroupSave(SaveHelpers.GetSaveables<SaveData>(), saveData);
 
-        LocalDataPersistenceHandler.SaveTo(saveData, localSavePathData.LocalSavePathInfo.SaveDirectoryPath,
-            localSavePathData.LocalSavePathInfo.DefaultLocalSaveFileName);
+        LocalDataPersistenceHandler.SaveTo(saveData, localSavePathSo.LocalSavePathInfo);
     }
 }

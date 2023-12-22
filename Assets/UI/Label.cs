@@ -15,6 +15,12 @@ public class Label : MonoBehaviour, IInitializableComponent<TMP_Text>
 
     public void SetLabel(string value)
     {
+        if (text == null)
+        {
+            Debug.LogWarning("No text component referenced");
+            return;
+        }
+        
         text.text = value;
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Defaults/LocalSavePathData")]
-public class LocalSavePathData : ScriptableObject
+public class LocalSavePathSO : ScriptableObject
 {
     [SerializeField] private LocalSavePathInfo localSavePathInfo;
     public LocalSavePathInfo LocalSavePathInfo => localSavePathInfo;

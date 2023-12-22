@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using Utility.Scripts;
 using Utility.Scripts.Extensions;
+using Object = UnityEngine.Object;
 
 public class LayoutDisplay : MonoBehaviour
 {
@@ -21,6 +22,19 @@ public class LayoutDisplay : MonoBehaviour
         if (layoutGroup == null) layoutGroup = GetComponent<LayoutGroup>();
     }
 
+    public void AddPrefab<T>(T prefab, Action<T> initCallback) where T : Component
+    {
+        var instantiated = Instantiate(prefab);
+        if (instantiated.transform is not RectTransform rectTransform)
+        {
+            Destroy(instantiated.gameObject);
+            return;
+        }
+        
+        initCallback.Invoke(instantiated);
+        Add(rectTransform);
+    }
+    
     public void Add(RectTransform rectTransform)
     {
         if (!Children.Add(rectTransform)) return;

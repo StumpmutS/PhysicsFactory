@@ -40,7 +40,7 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
     
     private void SetToggle(LabeledCallbackToggle toggle, ModificationData modData, bool active)
     {
-        toggle.Init(HandleToggle, modData, active);
+        toggle.Init(new CallbackToggleData(HandleToggle, modData, active));
         toggle.SetText(modData.Info.Label);
     }
 

@@ -15,11 +15,11 @@ public class CallbackToggle : MonoBehaviour
         toggle.onValueChanged.AddListener(HandleToggleChanged);
     }
 
-    public void Init(Action<object, bool> callback, object callbackObject, bool currentValue)
+    public void Init(CallbackToggleData data)
     {
-        toggle.isOn = currentValue;
-        _callback = callback;
-        _callbackObject = callbackObject;
+        toggle.isOn = data.Value;
+        _callback = data.Callback;
+        _callbackObject = data.CallbackObject;
     }
 
     private void HandleToggleChanged(bool value)
@@ -30,5 +30,19 @@ public class CallbackToggle : MonoBehaviour
     private void OnDestroy()
     {
         if (toggle != null) toggle.onValueChanged.RemoveListener(HandleToggleChanged);
+    }
+}
+
+public class CallbackToggleData
+{
+    public Action<object, bool> Callback { get; }
+    public object CallbackObject { get; }
+    public bool Value { get; }
+
+    public CallbackToggleData(Action<object, bool> callback, object callbackObject, bool value)
+    {
+        Callback = callback;
+        CallbackObject = callbackObject;
+        Value = value;
     }
 }
