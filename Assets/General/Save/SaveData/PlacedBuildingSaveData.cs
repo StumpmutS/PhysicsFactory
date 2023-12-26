@@ -9,28 +9,24 @@ public class PlacedBuildingSaveData
 
     private LoadingInfo _loadingInfo;
 
+    public PlacedBuildingSaveData(PlacedBuildingData data)
+    {
+        this.data = data;
+    }
+    
+    /// <summary>
+    /// Loading result is <see cref="PlacedBuildingData"/>
+    /// </summary>
     public LoadingInfo LoadGameReadyData()
     {
         var info = new OrderedLoader(data.SaleRestrictionRefs.Select(r =>
-            new LoadableData(() => LoadingInfo.From(r.Reference.LoadAssetAsync<Restriction<BuildingRestrictionInfo>>()),
-                info => HandleRefLoaded(info, r)))).Load();
+            new LoadableData(() => LoadingInfo.From(AssetRefHelpers.LoadOrGet<Restriction<BuildingRestrictionInfo>>(r.Reference)),
+                info => AssetRefHelpers.HandleRefContainerLoaded(info, r)))).Load();
         
         _loadingInfo = new LoadingInfo(() => info.Percentage);
         info.OnComplete += HandleLoadComplete;
         
         return _loadingInfo;
-    }
-
-    private void HandleRefLoaded(LoadingInfo info, AssetRefContainer<Restriction<BuildingRestrictionInfo>> refContainer)
-    {
-        if (info.Status == ELoadCompletionStatus.Failed || info.Result is not Restriction<BuildingRestrictionInfo> restriction)
-        {
-            Debug.LogError($"Error loading asset reference, result was: {info.Result}");
-            refContainer.Data = null;
-            return;
-        }
-
-        refContainer.Data = restriction;
     }
 
     private void HandleLoadComplete(LoadingInfo info)

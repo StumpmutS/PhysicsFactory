@@ -3,20 +3,19 @@ using System.Linq;
 using UnityEngine;
 using Utility.Scripts;
 
-public class NodeHighlighter : MonoBehaviour
+public class NodeHighlighter : Activatable
 {
     [SerializeField] private TypeReference nodeType;
     [SerializeField] private EnergyNodeFinder finder;
 
     private HashSet<Highlightable> _highlighted = new();
     
-    public void Activate()
+    protected override void HandleActivation()
     {
-        Deactivate();
         HighlightNodes(finder.Nodes);
     }
-
-    public void Deactivate()
+    
+    protected override void HandleDeactivation()
     {
         HighlightManager.Instance.UnHighlight(this, _highlighted);
         _highlighted.Clear();

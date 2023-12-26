@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Upgradeable : MonoBehaviour, IRefreshable
+public class Upgradeable : MonoBehaviour, IRefreshable, ISaveable<BuildingSaveData>, ILoadable<UpgradeSaveData>
 {
     [SerializeField] private List<UpgradeData> upgrades;
     [SerializeField] private Building building;
@@ -48,5 +48,22 @@ public class Upgradeable : MonoBehaviour, IRefreshable
     private BuildingRestrictionInfo GenerateRestrictionInfo(UpgradeInfo upgrade)
     {
         return new BuildingRestrictionInfo(building, upgrade.Price, upgrade.SaleMultiplier);
+    }
+
+    public void Save(BuildingSaveData data, AssetRefCollection _)
+    {
+        data.UpgradeSaveData = new UpgradeSaveData(Level);
+    }
+
+    public LoadingInfo Load(UpgradeSaveData data, AssetRefCollection _)
+    {
+        Level = data.Level;
+        var info = new LoadingInfo(() => 100)
+        {
+            Result = data,
+            Status = ELoadCompletionStatus.Succeeded
+        };
+        info.Complete();
+        return info;
     }
 }

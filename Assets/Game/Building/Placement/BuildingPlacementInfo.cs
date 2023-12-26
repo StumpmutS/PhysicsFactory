@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 [Serializable]
 public class BuildingPlacementInfo
@@ -24,12 +23,4 @@ public class BuildingPlacementInfo
     public float Price => price;
     [SerializeField, Range(0, 1)] private float saleMultiplier = 1;
     public float SaleMultiplier => saleMultiplier;
-}
-
-[Serializable]
-public class AssetRefContainer<T>
-{
-    [SerializeField] private AssetReference reference;
-    public AssetReference Reference => reference;
-    public T Data;
 }

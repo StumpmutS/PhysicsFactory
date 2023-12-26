@@ -12,7 +12,7 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
 
     private ModificationContainer _modificationContainer;
     private GeneralRefreshEvent _generalRefreshEvent;
-    private Dictionary<ModificationData, LabeledCallbackToggle> _toggles = new();
+    private Dictionary<AssetRefContainer<ModificationSO>, LabeledCallbackToggle> _toggles = new();
 
     protected override void SetupSelectionDisplay(ModificationContainer modificationContainer)
     {
@@ -31,49 +31,49 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
         GeneralRefresh();
     }
 
-    private LabeledCallbackToggle CreateToggle(ModificationData modificationData, bool active)
+    private LabeledCallbackToggle CreateToggle(AssetRefContainer<ModificationSO> modificationRef, bool active)
     {
         var toggle = Instantiate(togglePrefab);
-        SetToggle(toggle, modificationData, active);
+        SetToggle(toggle, modificationRef, active);
         return toggle;
     }
     
-    private void SetToggle(LabeledCallbackToggle toggle, ModificationData modData, bool active)
+    private void SetToggle(LabeledCallbackToggle toggle, AssetRefContainer<ModificationSO> modRef, bool active)
     {
-        toggle.Init(new CallbackToggleData(HandleToggle, modData, active));
-        toggle.SetText(modData.Info.Label);
+        toggle.Init(new CallbackToggleData(HandleToggle, modRef, active));
+        toggle.SetText(modRef.Asset.Data.Label);
     }
 
     private void HandleToggle(object callbackObj, bool value)
     {
-        if (callbackObj is not ModificationData modification) return;
-        if (value) HandleActivatePressed(modification);
-        else HandleDeactivatePressed(modification);
+        if (callbackObj is not AssetRefContainer<ModificationSO> modificationRef) return;
+        if (value) HandleActivatePressed(modificationRef);
+        else HandleDeactivatePressed(modificationRef);
     }
 
-    private void HandleActivatePressed(ModificationData modData)
+    private void HandleActivatePressed(AssetRefContainer<ModificationSO> modRef)
     {
         var failureInfo = new RestrictionFailureInfo();
-        if (!_modificationContainer.TryActivateModification(modData, failureInfo))
+        if (!_modificationContainer.TryActivateModification(modRef, failureInfo))
         {
             RestrictionFailureDisplay.Instance.DisplayFailure(failureInfo);
         }
-        SetToggle(_toggles[modData], modData, _modificationContainer.ModificationsActive[modData]);
+        SetToggle(_toggles[modRef], modRef, _modificationContainer.ModificationsActive[modRef]);
     }
 
-    private void HandleDeactivatePressed(ModificationData modData)
+    private void HandleDeactivatePressed(AssetRefContainer<ModificationSO> modRef)
     {
-        _modificationContainer.TryDeactivateModification(modData);
-        SetToggle(_toggles[modData], modData, _modificationContainer.ModificationsActive[modData]);
+        _modificationContainer.TryDeactivateModification(modRef);
+        SetToggle(_toggles[modRef], modRef, _modificationContainer.ModificationsActive[modRef]);
     }
 
     private void GeneralRefresh()
     {
         foreach (var kvp in _toggles)
         {
-            var restrictionInfo = ModificationHelpers.GenerateRestrictionInfo(_modificationContainer.ModifiedBuilding, kvp.Key.Info);
+            var restrictionInfo = ModificationHelpers.GenerateRestrictionInfo(_modificationContainer.ModifiedBuilding, kvp.Key.Asset.Data);
             var failureInfo = new RestrictionFailureInfo();
-            if (RestrictionHelper.CheckRestrictions(kvp.Key.Info.ActivationRestrictions, restrictionInfo, failureInfo))
+            if (RestrictionHelper.CheckRestrictions(kvp.Key.Asset.Data.ActivationRestrictions, restrictionInfo, failureInfo))
             {
                 kvp.Value.Toggle.RemoveOneComponent<RestrictionUIBlocker>();
                 continue;

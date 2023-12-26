@@ -1,7 +1,7 @@
 ﻿public static class ModificationHelpers
 {
-    public static BuildingRestrictionInfo GenerateRestrictionInfo(Building building, ModificationInfo info)
+    public static BuildingRestrictionInfo GenerateRestrictionInfo(Building building, ModificationData data)
     {
-        return new BuildingRestrictionInfo(building, info.Price, info.SaleMultiplier);
+        return new BuildingRestrictionInfo(building, data.Price, data.SaleMultiplier);
     }
 }

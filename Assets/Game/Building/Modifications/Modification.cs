@@ -5,26 +5,27 @@ public class Modification : MonoBehaviour
 {
     [SerializeField] private List<ModificationComponent> componentPrefabs;
 
-    private ModificationInfo _modInfo;
-    private BuildingRestrictionInfo _restrictionInfo;
+    private ModificationData _modData;
+    private Building _building;
     private Transform _mainTransform;
     private List<ModificationComponent> _activeComponents = new();
 
-    public void Init(ModificationInfo info, Transform mainTransform)
+    public void Init(ModificationData data, Building building, Transform mainTransform)
     {
-        _modInfo = info;
+        _modData = data;
+        _building = building;
         _mainTransform = mainTransform;
     }
 
-    public bool TryActivate(Building building, RestrictionFailureInfo failureInfo)
+    public bool TryActivate(RestrictionFailureInfo failureInfo)
     {
-        _restrictionInfo = ModificationHelpers.GenerateRestrictionInfo(building, _modInfo);
-        if (!RestrictionHelper.TryPassRestrictions(_modInfo.ActivationRestrictions, _restrictionInfo, failureInfo)) return false;
-        Activate();
+        var restrictionInfo = ModificationHelpers.GenerateRestrictionInfo(_building, _modData);
+        if (!RestrictionHelper.TryPassRestrictions(_modData.ActivationRestrictions, restrictionInfo, failureInfo)) return false;
+        ForceActivate();
         return true;
     }
 
-    private void Activate()
+    public void ForceActivate()
     {
         Deactivate();
         foreach (var prefab in componentPrefabs)
@@ -37,7 +38,8 @@ public class Modification : MonoBehaviour
 
     public bool TryDeactivate()
     {
-        if (!RestrictionHelper.TryPassRestrictions(_modInfo.SaleRestrictions, _restrictionInfo, new RestrictionFailureInfo())) return false;
+        var restrictionInfo = ModificationHelpers.GenerateRestrictionInfo(_building, _modData);
+        if (!RestrictionHelper.TryPassRestrictions(_modData.SaleRestrictions, restrictionInfo, new RestrictionFailureInfo())) return false;
         Deactivate();
         return true;
     }
@@ -52,9 +54,9 @@ public class Modification : MonoBehaviour
         _activeComponents.Clear();
     }
 
-    public bool CheckRestrictions(Building building, RestrictionFailureInfo failureInfo)
+    public bool CheckRestrictions(RestrictionFailureInfo failureInfo)
     {
-        _restrictionInfo = ModificationHelpers.GenerateRestrictionInfo(building, _modInfo);
-        return RestrictionHelper.CheckRestrictions(_modInfo.ActivationRestrictions, _restrictionInfo, failureInfo);
+        var restrictionInfo = ModificationHelpers.GenerateRestrictionInfo(_building, _modData);
+        return RestrictionHelper.CheckRestrictions(_modData.ActivationRestrictions, restrictionInfo, failureInfo);
     }
 }

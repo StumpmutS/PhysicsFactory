@@ -316,6 +316,8 @@ GameObject:
   - component: {fileID: 5633931920916618137}
   - component: {fileID: 3212717737895028727}
   - component: {fileID: 1619538960554571032}
+  - component: {fileID: 1239597809014037526}
+  - component: {fileID: 226145445145044611}
   m_Layer: 7
   m_Name: GeneratorMain
   m_TagString: Untagged
@@ -389,6 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0d4a58fc4e4f75999acae36e2518ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  identifiableObject: {fileID: 226145445145044611}
 --- !u!114 &6839993792191197506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef85129605e4ca799656a0b9764e217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  identifiableObject: {fileID: 0}
   OnCurrentsChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -515,8 +519,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5633931920916618137}
-        m_TargetAssemblyTypeName: NodeHighlighter, Assembly-CSharp
-        m_MethodName: Activate
+        m_TargetAssemblyTypeName: Activatable, Assembly-CSharp
+        m_MethodName: RefreshActivation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -538,6 +542,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1f5a749d22454a8022213392360fe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnActivation:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeactivation:
+    m_PersistentCalls:
+      m_Calls: []
   nodeType:
     searchKeyWord: node
     targetTypeAssemblyQName: SpenderNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
@@ -571,6 +581,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   node: {fileID: 1724471759510975065}
   autoConnector: {fileID: 8020193255096309217}
+--- !u!114 &1239597809014037526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7723004265237654679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942fe49ab3d24e938af37f0fff4decc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoConnector: {fileID: 8020193255096309217}
+  finder: {fileID: 1551491421839816752}
+--- !u!114 &226145445145044611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7723004265237654679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ebd7682fc6453b89ba5ebd124f8eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1297693354741087531
 PrefabInstance:
   m_ObjectHideFlags: 0

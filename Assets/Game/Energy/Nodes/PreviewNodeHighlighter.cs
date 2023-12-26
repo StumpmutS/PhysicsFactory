@@ -1,12 +1,19 @@
-﻿public class PreviewNodeHighlighter : NodeHighlighter
+﻿using System;
+
+public class PreviewNodeHighlighter : NodeHighlighter
 {
+    private void Start()
+    {
+        HandleActivation();
+    }
+
     private void Update()
     {
-        Activate();
+        RefreshActivation();
     }
 
     private void OnDestroy()
     {
-        Deactivate();
+        TryDeactivate();
     }
 }

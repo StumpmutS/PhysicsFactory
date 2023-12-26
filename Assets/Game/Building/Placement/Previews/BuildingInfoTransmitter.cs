@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Utility.Scripts;
 
-public class BuildingInfoTransmitter : MonoBehaviour, ILoadable<PlacedBuildingSaveData> //or maybe pbi save data
+public class BuildingInfoTransmitter : MonoBehaviour, ISaveable<LevelData>, ILoadable<PlacedBuildingSaveData>
 {
     [SerializeField, Tooltip("This prefab")] private AssetReference prefabReference;
     [SerializeField] private BuildingPlacementInfo optionalStartInfo;
@@ -24,10 +25,21 @@ public class BuildingInfoTransmitter : MonoBehaviour, ILoadable<PlacedBuildingSa
         building.Init(data);
     }
 
-    public LoadingInfo Load(PlacedBuildingSaveData data)
+    public void Save(LevelData data, AssetRefCollection assetRefCollection)
+    {
+        var buildingSaveData = new BuildingSaveData
+        {
+            BuildingPrefabReferenceIndex = assetRefCollection.Add(prefabReference)
+        };
+        SaveHelpers.GroupSave(GetComponentsInChildren<ISaveable<BuildingSaveData>>(), buildingSaveData, assetRefCollection);
+        
+        data.BuildingSaveData ??= new List<BuildingSaveData>();
+        data.BuildingSaveData.Add(buildingSaveData);
+    }
+
+    public LoadingInfo Load(PlacedBuildingSaveData data, AssetRefCollection _)
     {
         var loadingInfo = data.LoadGameReadyData();
-        
         _loadingInfo = new LoadingInfo(() => loadingInfo.Percentage);
         loadingInfo.OnComplete += HandleLoadComplete;
         
@@ -38,7 +50,7 @@ public class BuildingInfoTransmitter : MonoBehaviour, ILoadable<PlacedBuildingSa
     {
         if (info.Result is not PlacedBuildingData data)
         {
-            Debug.LogError($"Error converting save data, result was: {info.Result}");
+            Debug.LogError($"Problem converting save data, result was: {info.Result}");
         }
         else Init(data);
         

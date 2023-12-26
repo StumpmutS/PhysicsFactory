@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class GeneratorNode : EnergyNode
 {
-    [SerializeField, Tooltip("Optional")] private EnergyNodeFinder nodeFinder;
+    [SerializeField] private EnergyNodeFinder nodeFinder;
     
     public override bool CanConnect(EnergyNode other, out CurrentContainer sender, out CurrentContainer receiver)
     {

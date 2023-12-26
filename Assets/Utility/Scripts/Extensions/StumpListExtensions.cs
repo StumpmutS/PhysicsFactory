@@ -49,9 +49,9 @@ namespace Utility.Scripts.Extensions
                 list.RemoveRange(targetSize, list.Count - targetSize);
             }
 
-            while (list.Count < targetSize)
+            if (list.Count < targetSize)
             {
-                list.Add(default);
+                list.AddRange(new T[targetSize - list.Count]);
             }
         }
     }

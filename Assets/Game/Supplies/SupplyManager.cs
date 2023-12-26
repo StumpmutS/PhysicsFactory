@@ -42,19 +42,20 @@ public class SupplyManager : Singleton<SupplyManager>, ISaveable<LevelData>, ILo
         CurrentSupplyCount += amount;
     }
 
-    public void Save(LevelData data)
+    public void Save(LevelData data, AssetRefCollection _)
     {
-        data.supplyData.Supply = _currentSupplyCount;
+        data.SupplyData.Supply = _currentSupplyCount;
     }
 
-    public LoadingInfo Load(LevelData data)
+    public LoadingInfo Load(LevelData data, AssetRefCollection _)
     {
-        CurrentSupplyCount = data.supplyData.Supply;
+        CurrentSupplyCount = data.SupplyData.Supply;
         var loadingInfo = new LoadingInfo(() => 100)
         {
             Result = this,
             Status = ELoadCompletionStatus.Succeeded
         };
+        loadingInfo.Complete();
         return loadingInfo;
     }
 }

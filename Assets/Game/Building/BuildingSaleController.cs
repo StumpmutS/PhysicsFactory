@@ -14,7 +14,7 @@ public class BuildingSaleController : MonoBehaviour
 
     public void Sell()
     {
-        if (!RestrictionHelper.TryPassRestrictions(building.Data.SaleRestrictionRefs.Select(c => c.Data),
+        if (!RestrictionHelper.TryPassRestrictions(building.Data.SaleRestrictionRefs.Select(c => c.Asset),
                 new BuildingRestrictionInfo(building, building.Data.Price, building.Data.SaleMultiplier),
                 new RestrictionFailureInfo())) return;
         OnSale.Invoke();

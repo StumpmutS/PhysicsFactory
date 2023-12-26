@@ -24,6 +24,13 @@ public class Activatable : MonoBehaviour
 
     protected virtual void HandleActivation() { }
 
+    public void RefreshActivation()
+    {
+        if (!_active) return;
+        
+        Activate();
+    }
+
     public void TryDeactivate()
     {
         if (!_active) return;

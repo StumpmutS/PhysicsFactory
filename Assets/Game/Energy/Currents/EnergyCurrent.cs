@@ -20,17 +20,10 @@ public class EnergyCurrent
     {
         Sender = from;
         Receiver = to;
-        SendCharge();
     }
     
     public event Action OnChargeChanged = delegate { }; 
     public event Action<EnergyCurrent> OnShutDown = delegate { };
-
-    private void SendCharge()
-    {
-        Sender.AddCurrent(this);
-        Receiver.AddCurrent(this);
-    }
 
     public void SetCharge(float value)
     {

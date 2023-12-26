@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class CurrentSaveData
 {
-    public string Placeholder;
+    public List<ConnectionSaveData> ConnectionSaveData = new();
 }

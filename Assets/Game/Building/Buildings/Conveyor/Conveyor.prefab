@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 4306624479307438632}
   - component: {fileID: 8880628289592055204}
   - component: {fileID: 3687587335354862021}
+  - component: {fileID: 8400887641792901073}
   m_Layer: 7
   m_Name: ConveyorMain
   m_TagString: Untagged
@@ -255,6 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae70750e2b0c47c9ab544c76b41702d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  identifiableObject: {fileID: 8400887641792901073}
 --- !u!114 &4720149657636638283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,7 +389,12 @@ MonoBehaviour:
   transformContainer: {fileID: 4630017910087679439}
   modifiedBuilding: {fileID: 3236320739920693371}
   modifications:
-  - {fileID: 11400000, guid: 2d85187f199692d48ac8c8926ab3c52e, type: 2}
+  - reference:
+      m_AssetGUID: 2d85187f199692d48ac8c8926ab3c52e
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Asset: {fileID: 11400000, guid: 2d85187f199692d48ac8c8926ab3c52e, type: 2}
 --- !u!114 &3913423946289221152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef85129605e4ca799656a0b9764e217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  identifiableObject: {fileID: 0}
   OnCurrentsChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -502,6 +510,18 @@ MonoBehaviour:
   currentContainer: {fileID: 4418704929865240508}
   currentVisualsPrefab: {fileID: 2127817943294552290, guid: eb8fabe301f827148879ab2362dcf7cd,
     type: 3}
+--- !u!114 &8400887641792901073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5614799982898544609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ebd7682fc6453b89ba5ebd124f8eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6893692433659650155
 GameObject:
   m_ObjectHideFlags: 0

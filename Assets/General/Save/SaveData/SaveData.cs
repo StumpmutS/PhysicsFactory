@@ -4,10 +4,11 @@
 public class SaveData
 {
     public SaveInfo SaveInfo;
-    public LevelData LevelData = new();
+    public LevelData LevelData;
 
-    public SaveData(SaveInfo saveInfo)
+    public SaveData(SaveInfo saveInfo, LevelData levelData)
     {
         SaveInfo = saveInfo;
+        LevelData = levelData;
     }
 }

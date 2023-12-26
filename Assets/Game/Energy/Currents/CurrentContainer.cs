@@ -5,9 +5,11 @@ using UnityEngine.Events;
 
 public class CurrentContainer : MonoBehaviour
 {
+    [SerializeField] private IdentifiableObject identifiableObject;
+    
     public HashSet<EnergyCurrent> Currents { get; private set; } = new();
 
-    public UnityEvent OnCurrentsChanged;
+    public UnityEvent OnCurrentsChanged = new();
     
     public void AddCurrent(EnergyCurrent current)
     {

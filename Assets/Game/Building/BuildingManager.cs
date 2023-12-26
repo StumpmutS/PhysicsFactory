@@ -10,7 +10,9 @@ public class BuildingManager : Singleton<BuildingManager>
 
     public void AddBuilding(Building building)
     {
-        if (_buildings.Add(building)) OnBuildingAdded.Invoke();
+        if (!_buildings.Add(building)) return;
+        
+        OnBuildingAdded.Invoke();
     }
 
     public void RemoveBuilding(Building building)

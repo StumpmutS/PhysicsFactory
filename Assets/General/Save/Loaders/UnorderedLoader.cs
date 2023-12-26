@@ -16,12 +16,18 @@ public class UnorderedLoader : Loader
 
     protected override void PerformLoad()
     {
-        _loadingLoadables = _loadableData.Select(data =>
+        if (_loadableData.Count == 0)
         {
-            var info = data.Loadable.Invoke();
-            info.OnComplete += i => HandleLoadComplete(i, data.Callback);
-            return info;
-        }).ToList();
+            FinishLoad(ELoadCompletionStatus.Succeeded);
+            return;
+        }
+        _loadingLoadables = _loadableData.Select(d => d.Loadable.Invoke()).ToList();
+        for (int i = 0; i < _loadingLoadables.Count; i++)
+        {
+            var info = _loadingLoadables[i];
+            var callback = _loadableData[i].Callback;
+            info.OnComplete += li => HandleLoadComplete(li, callback);
+        }
     }
 
     private void HandleLoadComplete(LoadingInfo loadingInfo, Action<LoadingInfo> callback)

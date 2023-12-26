@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 8234195866719595784}
   - component: {fileID: 1202966920060059513}
   - component: {fileID: 2607749314140233495}
+  - component: {fileID: 1847699510781467655}
   m_Layer: 7
   m_Name: WallMain
   m_TagString: Untagged
@@ -137,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d27ba6c76607e449ef753ee429b153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  identifiableObject: {fileID: 1847699510781467655}
 --- !u!114 &2688160724254296471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +154,12 @@ MonoBehaviour:
   transformContainer: {fileID: 7885983389225386539}
   modifiedBuilding: {fileID: 9049643205730369263}
   modifications:
-  - {fileID: 11400000, guid: 1da77fd26f6954b41924d3f65a62ccdd, type: 2}
+  - reference:
+      m_AssetGUID: 1da77fd26f6954b41924d3f65a62ccdd
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_EditorAssetChanged: 0
+    Asset: {fileID: 11400000, guid: 1da77fd26f6954b41924d3f65a62ccdd, type: 2}
 --- !u!114 &7484125215652056233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +251,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1847699510781467655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3131869614542946599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ebd7682fc6453b89ba5ebd124f8eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3286921890406014748
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,9 +392,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c921e4ce44cb4fa1bcc807fa57115afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabReference:
+    m_AssetGUID: b487e7cc6c53b20499b61c5c359221af
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   optionalStartInfo:
     label: 
     placementRestrictions: []
+    saleRestrictionRefs: []
     saleRestrictions: []
     previewPrefab: {fileID: 0}
     anchorCellAmount: 0

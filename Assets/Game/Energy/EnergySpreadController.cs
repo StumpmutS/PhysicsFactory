@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utility.Scripts;
 
-public class EnergySpreadController : MonoBehaviour
+public class EnergySpreadController : MonoBehaviour, ISaveable<BuildingSaveData>, ILoadable<EnergySpreadSaveData>
 {
     [FormerlySerializedAs("container")] [SerializeField] private EnergyStorage storage;
     [SerializeField] private List<Component> startingSpenders;
@@ -53,5 +54,39 @@ public class EnergySpreadController : MonoBehaviour
     {
         if (storage != null) storage.OnChargeChanged.RemoveListener(HandleChargeChanged);
         if (Spenders != null) Spenders.OnFloatsChanged -= HandleSpendersChanged;
+    }
+
+    public void Save(BuildingSaveData data, AssetRefCollection assetRefCollection)
+    {
+        data.EnergySpreadSaveData ??= new EnergySpreadSaveData();
+        data.EnergySpreadSaveData.MaxTotal = Spenders.MaxTotal;
+        data.EnergySpreadSaveData.Spread ??= new SerializableDictionary<string, SerializableSignedFloat>();
+        foreach (var kvp in Spenders.Floats)
+        {
+            data.EnergySpreadSaveData.Spread[kvp.Key.SpenderInfo.Label] = new SerializableSignedFloat(kvp.Value);
+        }
+        data.EnergySpreadSaveData.Spread.ForceUpdate();
+    }
+
+    public LoadingInfo Load(EnergySpreadSaveData data, AssetRefCollection assetRefCollection)
+    {
+        Spenders.MaxTotal = data.MaxTotal;
+        var floatsCopy = Spenders.Floats.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+        foreach (var kvp in floatsCopy)
+        {
+            var label = kvp.Key.SpenderInfo.Label;
+            if (data.Spread.TryGetValue(label, out var value))
+            {
+                Spenders.SetValue(kvp.Key, value.ToSignedFloat());
+            }
+        }
+
+        var info = new LoadingInfo(() => 100)
+        {
+            Status = ELoadCompletionStatus.Succeeded,
+            Result = data
+        };
+        info.Complete();
+        return info;
     }
 }

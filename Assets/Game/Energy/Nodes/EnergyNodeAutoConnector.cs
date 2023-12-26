@@ -33,7 +33,7 @@ public class EnergyNodeAutoConnector : MonoBehaviour
     private void Start()
     {
         BuildingManager.Instance.OnBuildingAdded.AddListener(HandleBuildingAdded);
-        ConnectNodes(nodeFinder.Nodes);
+        RefreshNodes(nodeFinder.Nodes);
     }
 
     private void HandleBuildingAdded()
@@ -56,6 +56,8 @@ public class EnergyNodeAutoConnector : MonoBehaviour
 
     private void ConnectNodes(List<EnergyNode> nodes)
     {
+        if (LevelDataHandler.Instance == null || !LevelDataHandler.Instance.Loaded) return;
+
         foreach (var other in nodes)
         {
             if (node.TryConnect(other)) _connectedNodes.Add(other);

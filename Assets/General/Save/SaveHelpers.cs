@@ -14,11 +14,11 @@ public static class SaveHelpers
         return UnityEngine.Object.FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<ILoadable<T>>();
     }
     
-    public static void GroupSave<T>(IEnumerable<ISaveable<T>> saveables, T data)
+    public static void GroupSave<T>(IEnumerable<ISaveable<T>> saveables, T data, AssetRefCollection assetRefCollection)
     {
         foreach (var saveable in saveables)
         {
-            saveable.Save(data);
+            saveable.Save(data, assetRefCollection);
         }
     }
 }

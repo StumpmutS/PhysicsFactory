@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public abstract class Loader
 {
@@ -41,6 +42,7 @@ public abstract class Loader
 
     protected void FinishLoad(ELoadCompletionStatus status)
     {
+        if (!_isLoading) return;
         _isLoading = false;
         
         _loadingInfo.Result = this;

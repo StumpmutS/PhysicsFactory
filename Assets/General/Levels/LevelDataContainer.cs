@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 using Utility.Scripts;
 
 public class LevelDataContainer : Singleton<LevelDataContainer>
@@ -8,6 +9,6 @@ public class LevelDataContainer : Singleton<LevelDataContainer>
     protected override void Awake()
     {
         base.Awake();
-        DontDestroyOnLoad(gameObject);
+        if (gameObject != null) DontDestroyOnLoad(gameObject);
     }
 }

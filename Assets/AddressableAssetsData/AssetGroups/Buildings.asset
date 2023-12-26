@@ -59,6 +59,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - SaleRestriction
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a27e6ffa5b991142a85eec0cfab0ad2
+    m_Address: Assets/Game/Building/Buildings/Generator/GeneratorSaleSupplyPriceRestriction.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SaleRestriction
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1da77fd26f6954b41924d3f65a62ccdd
+    m_Address: Assets/Game/Building/Buildings/Wall/Mods/FrictionlessMod/FrictionlessPhysicMaterialMod.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Modification
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d2d3607da753be649add1ec63153bacd, type: 2}
   m_SchemaSet:
