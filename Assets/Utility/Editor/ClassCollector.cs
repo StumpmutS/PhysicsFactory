@@ -5,33 +5,36 @@ using System.Reflection;
 using UnityEditor;
 using Object = UnityEngine.Object;
 
-public static class ClassCollector
+namespace Utility.Editor
 {
-    public static Type[] GetTypesInheritingFrom(Type parent)
+    public static class ClassCollector
     {
-        var appDomain = AppDomain.CurrentDomain;
-        var assemblies = appDomain.GetAssemblies();
-        return assemblies.SelectMany(assembly => assembly.GetTypes())
-            .Where(t => t.IsSubclassOf(parent))
-            .Select(t => t).ToArray();
-    }
-
-    public static IEnumerable<FieldInfo> GetFieldsWithAttribute<T>(Type fromType) where T : Attribute
-    {
-        return fromType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-            .Where(f => f.GetCustomAttributes(typeof(T), true).Length > 0);
-    }
-
-    public static List<T> GetAssetsOfType<T>() where T : Object
-    {
-        List<T> assets = new();
-        var guids = AssetDatabase.FindAssets($"t:{typeof(T)}");
-        foreach (var guid in guids)
+        public static Type[] GetTypesInheritingFrom(Type parent)
         {
-            var assetPath = AssetDatabase.GUIDToAssetPath(guid);
-            var asset = AssetDatabase.LoadAssetAtPath<T>(assetPath);
-            if(asset != null) assets.Add(asset);
+            var appDomain = AppDomain.CurrentDomain;
+            var assemblies = appDomain.GetAssemblies();
+            return assemblies.SelectMany(assembly => assembly.GetTypes())
+                .Where(t => t.IsSubclassOf(parent))
+                .Select(t => t).ToArray();
         }
-        return assets;
+
+        public static IEnumerable<FieldInfo> GetFieldsWithAttribute<T>(Type fromType) where T : Attribute
+        {
+            return fromType.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                .Where(f => f.GetCustomAttributes(typeof(T), true).Length > 0);
+        }
+
+        public static List<T> GetAssetsOfType<T>() where T : Object
+        {
+            List<T> assets = new();
+            var guids = AssetDatabase.FindAssets($"t:{typeof(T)}");
+            foreach (var guid in guids)
+            {
+                var assetPath = AssetDatabase.GUIDToAssetPath(guid);
+                var asset = AssetDatabase.LoadAssetAtPath<T>(assetPath);
+                if(asset != null) assets.Add(asset);
+            }
+            return assets;
+        }
     }
 }

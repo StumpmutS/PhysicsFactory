@@ -26,6 +26,7 @@ public class NodeHighlighter : Activatable
         var highlightables = nodes.Where(n => n.GetType() == nodeType.TargetType)
             .Select(n => n.GetComponent<Highlightable>())
             .Where(h => h != null);
+        HighlightManager.Instance.UnHighlight(this, _highlighted.Where(h => !highlightables.Contains(h)));
         _highlighted = highlightables.ToHashSet();
         HighlightManager.Instance.Highlight(this, _highlighted);
     }

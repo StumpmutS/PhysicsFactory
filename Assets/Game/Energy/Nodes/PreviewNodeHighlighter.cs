@@ -4,7 +4,7 @@ public class PreviewNodeHighlighter : NodeHighlighter
 {
     private void Start()
     {
-        HandleActivation();
+        TryActivate();
     }
 
     private void Update()
