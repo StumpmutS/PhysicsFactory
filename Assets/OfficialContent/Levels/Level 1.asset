@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007c9d51215e4123a2ebbf0dbfc3db21, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  LevelData:
+    LevelInfo:
+      SerializableGuid:
+        stringGuid: 039ca0a5-4353-4d88-9b07-42d989f026fc
+      Name: Level 1
+      SerializableLastUpdatedTimeStamp:
+        stringDate: 01/02/2024 05:39:40
+    AssetRefCollection:
+      references:
+      - m_AssetGUID: b6a073ae7837fc646a7088a63b7023da
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 8eeb3e60c071cde4dae8cf02a5c50e13
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 89b24cf42c7da6a43a2eb67baa6e9dd2
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 33691f24951d46a4981eae0e13caee6b
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: edfd6fe33f8e1c54680c52b1269cf0e7
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 6d15519e89b73894588b25cbdb3b2995
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+    SupplyData:
+      Supply: 250
+    BuildingSaveData:
+    - IdentifiableObjectSaveData:
+        Id: 0
+      EditorBuildingPrefabReferenceId: 4
+      SessionBuildingPrefabReferenceId: 3
+      PlacedBuildingSaveData:
+        data:
+          label: Wall
+          volume: 56
+          price: 0
+          saleMultiplier: 0
+          transformData:
+            WorldPosition: {x: -1.5, y: 4, z: 6.5}
+            WorldRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+            LocalScale: {x: 1, y: 8, z: 7}
+          saleRestrictionRefs: []
+      UpgradeSaveData:
+        Level: 0
+      ModificationSaveData:
+        ActiveModificationIndexes: 05000000
+      GeneratorSaveData:
+        Locked: 0
+        Range: 0
+      CurrentSaveData:
+        ConnectionSaveData: []
+      EnergySpreadSaveData:
+        MaxTotal: 0
+        Spread:
+          keys: []
+          values: []
+    PlacementSaveData:
+      BuildingAssetRefIds: 000000000100000002000000
+    Options:
+      keys: []
+      values: []

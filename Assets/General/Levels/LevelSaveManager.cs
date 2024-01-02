@@ -8,11 +8,7 @@ public class LevelSaveManager : Singleton<LevelSaveManager>
     
     public void SaveLevel(LevelInfo levelInfo)
     {
-        var assetRefCollection = new AssetRefCollection();
-        var levelData = new LevelData(levelInfo, assetRefCollection);
-
-        SaveHelpers.GroupSave(SaveHelpers.GetSaveables<LevelData>(), levelData, assetRefCollection);
-
+        var levelData = LevelSaveHelpers.GetCurrentLevelData(levelInfo);
         LocalDataPersistenceHandler.SaveTo(levelData, levelData.LevelInfo.Id, localPathSo.LocalPathData);
     }
 }

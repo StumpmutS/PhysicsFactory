@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Duplicate Asset Isolation
+  m_EditorClassIdentifier: 
+  m_GroupName: Duplicate Asset Isolation
+  m_Data:
+    m_SerializedData: []
+  m_GUID: c9226650f1e931c479fbc68725f8c087
+  m_SerializeEntries:
+  - m_GUID: 23b59f967a90fca4198ecf3bb7c955a4
+    m_Address: Assets/Data/Colors/PreviewColors.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5fce219c4eaed04e94f965e72357872
+    m_Address: Assets/Art/Materials/Basic/ZWOnSand.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 955006b32bd4a294eb03cf558dff89bd
+    m_Address: Assets/Art/Shaders/PFDefaultLitShader.shadergraph
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0f37b19fd943c174a8aaea155a1d47ee
+    m_Address: Assets/Art/Materials/ZWMaterialPairs.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f20a4a1eb416d934c84c5a48c6f7fd0c
+    m_Address: Assets/Art/Materials/Basic/ZWOffSand.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 872d592d5adb31a4c9164fa61b535a64
+    m_Address: Assets/Art/Materials/Basic/ZWOffUnlitBlack.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76656fdd54d19414c852de3dd564351c
+    m_Address: Assets/Art/Shaders/PFDefaultUnlitShader.shadergraph
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c7f55dc70e5e2f46be647af0bcbaf0b
+    m_Address: Assets/Art/Materials/Basic/ZWOnMetallicWhite.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed632e6bf5bf4954ea061dd75e40be0f
+    m_Address: Assets/Art/Materials/Advanced/ZWOffGrooverMat.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7cb4c08ae6d7e064e970883f82cb9e3e
+    m_Address: Assets/Art/Shaders/Groover.shadergraph
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41b1f1d1533e2e24bbb0c3fcda487ebc
+    m_Address: Assets/Art/Shaders/Line.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 56a2091a2f7a3454d960902093cbca39
+    m_Address: Assets/Art/Materials/Basic/ZWOnUnlitBlack.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6341e8b87420d5b48b12cd2816f7abd1
+    m_Address: Assets/Art/Materials/Advanced/ZWOffPipeMat.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6792c4bcc73aca4590c3f798dec02d0
+    m_Address: Assets/Art/Shaders/Pipe.shadergraph
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 70092467223e9ed41bc9379a3f6ddcf2
+    m_Address: Assets/Art/Materials/Basic/ZWOffDarkGrey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0bb884d5655117f48bc162c5c5e66635
+    m_Address: Assets/Art/Materials/Basic/ZWOnDarkGrey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 92c32ac4b5850ea498d09d61d97465a8
+    m_Address: Assets/Art/Materials/Advanced/ZWOnPipeMat.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7381e94c9727cd49832727085f87f90
+    m_Address: Assets/Art/Materials/Basic/ZWOffWhite.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0fdef5e29bd8c2144b74f77e26b1434e
+    m_Address: Assets/Art/Materials/Basic/ZWOffMetallicWhite.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f04feb9194928294ebc7b3213f512410
+    m_Address: Assets/Art/Materials/Advanced/ZWOnGrooverMat.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04bcb511907447245ac914d8151d19cf
+    m_Address: Assets/Art/Materials/Basic/ZWOnWhite.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77e83606d77456441a02154c36b4bf33
+    m_Address: Assets/Data/Colors/SelectionColors.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11dbd34752417454aa11db1781119e81
+    m_Address: Assets/Game/Building/Buildings/LevelSession/Wall/WallBlocker.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f9a8898e140cbe419c2ba22cee4a598
+    m_Address: Assets/Game/Building/Buildings/LevelSession/Wall/Mods/FrictionlessMod/FrictionlessMod.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ca20f561a14cdf4d80f4c190308a425
+    m_Address: Assets/Game/Building/Buildings/LevelSession/Wall/Mods/FrictionlessMod/RendererMaterialModComponent.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2971c16519638aa408e1b507043006f7
+    m_Address: Assets/Game/Building/Buildings/LevelSession/Wall/Mods/FrictionlessMod/PhysicMaterialModComponent.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 55c6cc05b1deeab40bc9e5650f7e7ebc
+    m_Address: Assets/Game/Building/Buildings/LevelSession/Wall/Mods/FrictionlessMod/FrictionlessPhysicMaterial.physicMaterial
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: d2d3607da753be649add1ec63153bacd, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 7e2f3b825a3278d489e71bad8e5aa0f2, type: 2}
+    - {fileID: 11400000, guid: c777e08585766b04abece42523ef8886, type: 2}

@@ -83,6 +83,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - PlacementSO
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89b24cf42c7da6a43a2eb67baa6e9dd2
+    m_Address: Generator
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlacementSO
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8eeb3e60c071cde4dae8cf02a5c50e13
+    m_Address: Wall
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlacementSO
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d2d3607da753be649add1ec63153bacd, type: 2}
   m_SchemaSet:

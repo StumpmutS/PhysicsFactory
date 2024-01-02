@@ -7,7 +7,7 @@ namespace Utility.Scripts.Extensions
     {
         public static float Truncate(this float value, int decimalPlaces)
         {
-            var epsilon = Mathf.Pow(10, -decimalPlaces - 3);
+            var epsilon = Mathf.Pow(10, -decimalPlaces - 2);
             value += epsilon;
             
             if (decimalPlaces < 0)
