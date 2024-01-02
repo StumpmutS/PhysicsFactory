@@ -3,24 +3,29 @@ using UnityEngine;
 
 public class PlacementDisplay : MonoBehaviour
 {
-    [SerializeField] private List<BuildingData> buildings;
+    [SerializeField] private DataService<BuildingPlacementData> placementService;
     [SerializeField] private LayoutDisplay layoutDisplay;
     [SerializeField] private LabeledCallbackToggle togglePrefab;
 
     private HashSet<LabeledCallbackToggle> _toggles = new();
-    private BuildingPlacementInfo _activeInfo;
+    private BuildingPlacementData _activeData;
     private bool _listeningUnload;
-    
-    private void Start()
+
+    public void HandleBuildingsReady() => Display(placementService.RequestData());
+
+    private void Display(IEnumerable<BuildingPlacementData> buildings)
     {
+        _toggles.Clear();
+        layoutDisplay.Clear();
+        
         foreach (var building in buildings)
         {
-            var toggle = Instantiate(togglePrefab);
-            toggle.Init(new CallbackToggleData(HandleToggled, building, false));
-            toggle.SetText(building.Info.Label);
-            if (toggle.transform is not RectTransform rectTransform) return;
-            layoutDisplay.Add(rectTransform);
-            _toggles.Add(toggle);
+            layoutDisplay.AddPrefab(togglePrefab, toggle =>
+            {
+                toggle.Init(new CallbackToggleData(HandleToggled, building, false));
+                toggle.SetText(building.Label); 
+                _toggles.Add(toggle);
+            });
         }
         
         ListenOnUnload();
@@ -41,7 +46,7 @@ public class PlacementDisplay : MonoBehaviour
     
     private void HandlePlacementUnload()
     {
-        _activeInfo = null;
+        _activeData = null;
         
         foreach (var toggle in _toggles)
         {
@@ -51,20 +56,20 @@ public class PlacementDisplay : MonoBehaviour
 
     private void HandleToggled(object obj, bool value)
     {
-        if (obj is not BuildingData data) return;
+        if (obj is not BuildingPlacementData data) return;
 
-        if (!value && data.Info == _activeInfo)
+        if (!value && data == _activeData)
         {
             StopListenOnUnload();
             PlacementManager.Instance.Unload();
-            _activeInfo = null;
+            _activeData = null;
         }
 
-        if (value && data.Info != _activeInfo)
+        if (value && data != _activeData)
         {
             ListenOnUnload();
-            PlacementManager.Instance.Load(data.Info);
-            _activeInfo = data.Info;
+            PlacementManager.Instance.Load(data);
+            _activeData = data;
         }
     }
 

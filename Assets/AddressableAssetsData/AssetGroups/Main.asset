@@ -16,12 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 1eb20dbe0413fe54d8989fc9d0bfa1d4
-  m_SerializeEntries:
-  - m_GUID: 2d85187f199692d48ac8c8926ab3c52e
-    m_Address: Assets/Game/Building/Buildings/Conveyor/Mods/StickRigidBodyAffectorMod/StickRigidBodyAffectorMod.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d2d3607da753be649add1ec63153bacd, type: 2}
   m_SchemaSet:

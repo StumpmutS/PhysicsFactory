@@ -15,7 +15,8 @@ public class SelectionEvents : Singleton<SelectionEvents>
 
     public void RegisterSelectable(Selectable selectable)
     {
-        _selectables.Add(selectable);
+        if (!_selectables.Add(selectable)) return;
+        
         selectable.OnHover.AddListener(HandleHover);
         selectable.OnHoverStop.AddListener(HandleHoverStop);
         selectable.OnSelect.AddListener(HandleSelection);
@@ -26,7 +27,7 @@ public class SelectionEvents : Singleton<SelectionEvents>
 
     public void DeregisterSelectable(Selectable selectable)
     {
-        _selectables.Remove(selectable);
+        if (!_selectables.Remove(selectable)) return;
         selectable.OnHover.RemoveListener(HandleHover);
         selectable.OnHoverStop.RemoveListener(HandleHoverStop);
         selectable.OnSelect.RemoveListener(HandleSelection);

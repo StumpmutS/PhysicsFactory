@@ -27,19 +27,21 @@ public class SupplyManager : Singleton<SupplyManager>, ISaveable<LevelData>, ILo
         CurrentSupplyCount = startingSupply;
     }
 
+    public void SetSupply(float value) => CurrentSupplyCount = value;
+
     public void DepositDolboid(Dolboid dolboid, DepositEffects effects)
     {
-        CurrentSupplyCount += effects.Multiplier * SupplyCalculator.CalculatePrice(dolboid);
+        SetSupply(CurrentSupplyCount + effects.Multiplier * SupplyCalculator.CalculatePrice(dolboid));
     }
 
     public void SpendSupply(float amount)
     {
-        CurrentSupplyCount -= amount;
+        SetSupply(CurrentSupplyCount - amount);
     }
 
     public void AddSupply(float amount)
     {
-        CurrentSupplyCount += amount;
+        SetSupply(CurrentSupplyCount + amount);
     }
 
     public void Save(LevelData data, AssetRefCollection _)
@@ -49,13 +51,8 @@ public class SupplyManager : Singleton<SupplyManager>, ISaveable<LevelData>, ILo
 
     public LoadingInfo Load(LevelData data, AssetRefCollection _)
     {
-        CurrentSupplyCount = data.SupplyData.Supply;
-        var loadingInfo = new LoadingInfo(() => 100)
-        {
-            Result = this,
-            Status = ELoadCompletionStatus.Succeeded
-        };
-        loadingInfo.Complete();
-        return loadingInfo;
+        SetSupply(data.SupplyData.Supply);
+
+        return LoadingInfo.Completed(data.SupplyData, ELoadCompletionStatus.Succeeded);
     }
 }

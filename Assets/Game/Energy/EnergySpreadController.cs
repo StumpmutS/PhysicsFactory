@@ -65,7 +65,7 @@ public class EnergySpreadController : MonoBehaviour, ISaveable<BuildingSaveData>
         {
             data.EnergySpreadSaveData.Spread[kvp.Key.SpenderInfo.Label] = new SerializableSignedFloat(kvp.Value);
         }
-        data.EnergySpreadSaveData.Spread.ForceUpdate();
+        data.EnergySpreadSaveData.Spread.OnBeforeSerialize();
     }
 
     public LoadingInfo Load(EnergySpreadSaveData data, AssetRefCollection assetRefCollection)
@@ -81,12 +81,6 @@ public class EnergySpreadController : MonoBehaviour, ISaveable<BuildingSaveData>
             }
         }
 
-        var info = new LoadingInfo(() => 100)
-        {
-            Status = ELoadCompletionStatus.Succeeded,
-            Result = data
-        };
-        info.Complete();
-        return info;
+        return LoadingInfo.Completed(data, ELoadCompletionStatus.Succeeded);
     }
 }

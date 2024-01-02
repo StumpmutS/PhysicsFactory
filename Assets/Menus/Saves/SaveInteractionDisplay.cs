@@ -1,28 +1,17 @@
 ﻿using System.Globalization;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class SaveInteractionDisplay : MonoBehaviour
+public class SaveInteractionDisplay : DataSelectionInteractionDisplay<SaveDisplayData>
 {
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text saveTypeText;
     [SerializeField] private TMP_Text dateTimeText;
-
-    private SaveDisplayData _data;
-
-    public UnityEvent<SaveDisplayData> OnLoadRequest = new();
     
-    public void Init(SaveDisplayData data)
+    protected override void Display(SaveDisplayData data)
     {
-        _data = data;
         nameText.text = data.SaveData.SaveInfo.Name;
-        saveTypeText.text = data.SaveData.SaveInfo.SaveType;
-        dateTimeText.text = data.SaveData.SaveInfo.DateTime.DateTime.ToString(CultureInfo.InvariantCulture);
-    }
-
-    public void RequestLoad()
-    {
-        OnLoadRequest.Invoke(_data);
+        saveTypeText.text = $"{data.SaveData.SaveInfo.SaveType} Save";
+        dateTimeText.text = data.SaveData.SaveInfo.DateTime.ToString(CultureInfo.InvariantCulture);
     }
 }

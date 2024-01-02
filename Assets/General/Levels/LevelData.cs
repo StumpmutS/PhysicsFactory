@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using Utility.Scripts;
 
 [Serializable]
 public class LevelData
 {
-    public LevelInfo LevelInfo = new();
-    public AssetRefCollection AssetRefCollection = new();
+    public LevelInfo LevelInfo;
+    public AssetRefCollection AssetRefCollection;
     public SupplySaveData SupplyData = new();
     public List<BuildingSaveData> BuildingSaveData = new();
+    public PlacementSaveData PlacementSaveData = new();
+    public SerializableDictionary<string, string> Options = new();
 
-    public LevelData(AssetRefCollection assetRefCollection)
+    public LevelData(LevelInfo levelInfo, AssetRefCollection assetRefCollection)
     {
+        LevelInfo = levelInfo;
         AssetRefCollection = assetRefCollection;
     }
 }

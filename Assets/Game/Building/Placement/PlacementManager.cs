@@ -14,13 +14,13 @@ public class PlacementManager : Singleton<PlacementManager>, IPoppable
 
     public UnityEvent OnUnload;
 
-    public void Load(BuildingPlacementInfo info)
+    public void Load(BuildingPlacementData data)
     {
         _loaded = true;
         escapeStack.RegisterPoppable(this);
         SelectionDisabler.Disable(this);
         ClearBuilder();
-        _builder = new Builder(grid, info);
+        _builder = new Builder(grid, data);
         _builder.OnBuildComplete += HandleBuildComplete;
         _builder.OnBuildFailure += HandleBuildFailure;
     }

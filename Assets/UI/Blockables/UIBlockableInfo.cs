@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class UIBlockableInfo
 {
-    public IconInfo MainIcon;
-    public List<IconInfo> FeedbackIcons;
+    public IconData MainIcon;
+    public List<IconData> FeedbackIcons;
 
-    public UIBlockableInfo(IconInfo mainIcon, List<IconInfo> feedbackIcons)
+    public UIBlockableInfo(IconData mainIcon, List<IconData> feedbackIcons)
     {
         MainIcon = mainIcon;
         FeedbackIcons = feedbackIcons;

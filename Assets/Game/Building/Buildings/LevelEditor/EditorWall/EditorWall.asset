@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60720b370d724520bb8fad94ae54cae9, type: 3}
+  m_Name: EditorWall
+  m_EditorClassIdentifier: 
+  buildingPlacementData:
+    label: Wall
+    placementRestrictions: []
+    saleRestrictionRefs: []
+    previewPrefab: {fileID: 2540602208335935273, guid: 74c2025a3b8515340a91c1be52740720,
+      type: 3}
+    anchorCellAmount: 4
+    restrictToAxes: 1
+    price: 0
+    saleMultiplier: 0

@@ -6,7 +6,8 @@ using UnityEngine.Serialization;
 public class BuildingSaveData
 {
     public IdentifiableObjectSaveData IdentifiableObjectSaveData;
-    public int BuildingPrefabReferenceIndex;
+    public int EditorBuildingPrefabReferenceId = -1;
+    public int SessionBuildingPrefabReferenceId = -1;
     public PlacedBuildingSaveData PlacedBuildingSaveData;
     public UpgradeSaveData UpgradeSaveData;
     public ModificationSaveData ModificationSaveData;

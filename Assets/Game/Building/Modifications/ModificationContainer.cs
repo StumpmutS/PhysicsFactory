@@ -108,13 +108,7 @@ public class ModificationContainer : MonoBehaviour, ISaveable<BuildingSaveData>,
             ForceActivateModification(assetRef);
         }
 
-        var info = new LoadingInfo(() => 100)
-        {
-            Result = _activeModifications,
-            Status = ELoadCompletionStatus.Succeeded
-        };
-        info.Complete();
-        return info;
+        return LoadingInfo.Completed(_activeModifications, ELoadCompletionStatus.Succeeded);
     }
 
     private void ForceActivateModification(AssetRefContainer<ModificationSO> modificationRef)

@@ -58,4 +58,16 @@ public class LoadingInfo
 
         return info;
     }
+
+    public static LoadingInfo Completed(object result, ELoadCompletionStatus status, Exception exception = null)
+    {
+        var info = new LoadingInfo(() => 100)
+        {
+            Result = result,
+            Status = status,
+            Exception = exception
+        };
+        info.Complete();
+        return info;
+    }
 }

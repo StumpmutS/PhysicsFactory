@@ -18,58 +18,70 @@ MonoBehaviour:
   m_GUID: 4a801731905520140a130fdb9034bba4
   m_SerializeEntries:
   - m_GUID: cc243238367b75847b71c26217872531
-    m_Address: Assets/Game/Building/Buildings/Generator/Generator.prefab
+    m_Address: Generator
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Building
+    - SessionBuilding
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2f2640e9078f39c4cbb048384bbcc121
-    m_Address: Assets/Game/Building/Buildings/Conveyor/Conveyor.prefab
+    m_Address: Conveyor
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Building
+    - SessionBuilding
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0a16023d86eac05468079a71a07ac4e0
-    m_Address: Assets/Game/Building/Buildings/Spawner/Spawner.prefab
+    m_Address: Spawner
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Building
+    - SessionBuilding
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b487e7cc6c53b20499b61c5c359221af
-    m_Address: Assets/Game/Building/Buildings/Wall/Wall.prefab
+    m_Address: Wall
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Building
+    - SessionBuilding
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d55e4ec8b3250614a82fa9ebaf183512
-    m_Address: Assets/Game/Building/Buildings/Conveyor/ConveyorSalePriceRestriction.asset
+    m_Address: ConveyorSalePriceRestriction
     m_ReadOnly: 0
     m_SerializedLabels:
     - SaleRestriction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6177eb3f5192bd747bd25f3f2604e11f
-    m_Address: Assets/Game/Building/Buildings/Generator/GeneratorSupplyPriceRestriction.asset
+    m_Address: GeneratorSupplyPriceRestriction
     m_ReadOnly: 0
     m_SerializedLabels:
     - SaleRestriction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cb490c57cbddc4d47b30985b0bf6dff1
-    m_Address: Assets/Game/Building/Buildings/Wall/WallSaleSupplyPriceRestriction.asset
+    m_Address: WallSaleSupplyPriceRestriction
     m_ReadOnly: 0
     m_SerializedLabels:
     - SaleRestriction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9a27e6ffa5b991142a85eec0cfab0ad2
-    m_Address: Assets/Game/Building/Buildings/Generator/GeneratorSaleSupplyPriceRestriction.asset
+    m_Address: GeneratorSaleSupplyPriceRestriction
     m_ReadOnly: 0
     m_SerializedLabels:
     - SaleRestriction
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1da77fd26f6954b41924d3f65a62ccdd
-    m_Address: Assets/Game/Building/Buildings/Wall/Mods/FrictionlessMod/FrictionlessPhysicMaterialMod.asset
+    m_Address: FrictionlessPhysicMaterialMod
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Modification
+    - SessionModification
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d85187f199692d48ac8c8926ab3c52e
+    m_Address: StickRigidBodyAffectorMod
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SessionModification
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6a073ae7837fc646a7088a63b7023da
+    m_Address: Conveyor
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - PlacementSO
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d2d3607da753be649add1ec63153bacd, type: 2}

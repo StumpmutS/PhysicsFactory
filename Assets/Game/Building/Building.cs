@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Building : MonoBehaviour, ISaveable<BuildingSaveData>
 {
@@ -7,10 +8,13 @@ public class Building : MonoBehaviour, ISaveable<BuildingSaveData>
     
     public PlacedBuildingData Data { get; private set; }
 
+    public UnityEvent OnInitialized = new();
+
     public void Init(PlacedBuildingData data)
     {
         Data = data;
         transform.localScale = data.TransformData.LocalScale;
+        OnInitialized.Invoke();
     }
 
     private void Start()

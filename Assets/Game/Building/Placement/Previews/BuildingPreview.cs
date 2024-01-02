@@ -14,10 +14,10 @@ public abstract class BuildingPreview : MonoBehaviour
 
     public abstract void StretchTo(List<Vector3> locations, int cellSize);
     
-    public void Place(BuildingPlacementInfo info)
+    public void Place(BuildingPlacementData data)
     {
         var building = Instantiate(buildingPrefab);
-        building.Init(new PlacedBuildingData(info, Volume, new TransformData(transform)));
+        building.Init(new PlacedBuildingData(data, Volume, new TransformData(transform)));
     }
     
     public void Pass()

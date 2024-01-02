@@ -9,16 +9,16 @@ using Object = UnityEngine.Object;
 public class Builder
 {
     private Grid3D _grid;
-    private BuildingPlacementInfo _info;
+    private BuildingPlacementData _data;
     private BuildingPreview _mainPreview;
     private Stack<Vector3> _selectedLocations = new();
     private Stack<Vector3> _restrictedAxes = new();
 
-    public Builder(Grid3D grid, BuildingPlacementInfo info)
+    public Builder(Grid3D grid, BuildingPlacementData data)
     {
         _grid = grid;
-        _info = info;
-        _mainPreview = Object.Instantiate(_info.PreviewPrefab);
+        _data = data;
+        _mainPreview = Object.Instantiate(_data.PreviewPrefab);
         _mainPreview.gameObject.SetActive(false);
         _restrictedAxes.Push(Vector3.zero);
         
@@ -50,7 +50,7 @@ public class Builder
         _restrictedAxes.Push(newRestriction);
         UpdateRestrictions();
 
-        if (_selectedLocations.Count < _info.AnchorCellAmount) return;
+        if (_selectedLocations.Count < _data.AnchorCellAmount) return;
         if (TryCompleteBuild()) return;
 
         _selectedLocations.Pop();
@@ -66,7 +66,7 @@ public class Builder
     private Vector3 RoundAxes(Vector3 pos, out Vector3 newRestriction)
     {
         newRestriction = default;
-        if (!_info.RestrictToAxes || _selectedLocations.Count < 1) return pos;
+        if (!_data.RestrictToAxes || _selectedLocations.Count < 1) return pos;
         
         var restrictedDirection = (pos - _selectedLocations.Peek()).RoundToAxis(_restrictedAxes.Peek(), Vector3.up);
         newRestriction = _restrictedAxes.Peek() + restrictedDirection;
@@ -75,7 +75,7 @@ public class Builder
     
     private void UpdateRestrictions()
     {
-        if (RestrictionHelper.CheckRestrictions(_info.PlacementRestrictions, GenerateRestrictionInfo(), new RestrictionFailureInfo()))
+        if (RestrictionHelper.CheckRestrictions(_data.PlacementRestrictions, GenerateRestrictionInfo(), new RestrictionFailureInfo()))
         {
             _mainPreview.Pass();
             return;
@@ -84,7 +84,7 @@ public class Builder
         _mainPreview.Deny();
     }
 
-    private PlacementRestrictionInfo GenerateRestrictionInfo() => new (_mainPreview, _info.Price);
+    private PlacementRestrictionInfo GenerateRestrictionInfo() => new (_mainPreview, _data.Price);
 
     public void Destroy()
     {
@@ -96,13 +96,13 @@ public class Builder
     private bool TryCompleteBuild()
     {
         var failureInfo = new RestrictionFailureInfo();
-        if (!RestrictionHelper.TryPassRestrictions(_info.PlacementRestrictions, GenerateRestrictionInfo(), failureInfo))
+        if (!RestrictionHelper.TryPassRestrictions(_data.PlacementRestrictions, GenerateRestrictionInfo(), failureInfo))
         {
             OnBuildFailure.Invoke(failureInfo);
             return false;
         }
         
-        _mainPreview.Place(_info);
+        _mainPreview.Place(_data);
         OnBuildComplete.Invoke();
         return true;
     }

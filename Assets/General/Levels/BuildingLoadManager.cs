@@ -6,6 +6,8 @@ using Utility.Scripts;
 
 public class BuildingLoadManager : Singleton<BuildingLoadManager>, ILoadable<LevelData>
 {
+    [SerializeField] private LevelOptionsSO editorOptionsSo;
+    
     private LoadingInfo _loadingInfo;
     private Dictionary<GameObject, BuildingSaveData> _initializedTransmitters = new();
     private LoadingInfo _phaseInfo;
@@ -18,7 +20,7 @@ public class BuildingLoadManager : Singleton<BuildingLoadManager>, ILoadable<Lev
 
         foreach (var buildingSaveData in data.BuildingSaveData)
         {
-            var asset = assetRefCollection.Get<GameObject>(buildingSaveData.BuildingPrefabReferenceIndex);
+            var asset = LevelLoadingHelpers.GetBuildingAsset(editorOptionsSo, data, buildingSaveData, assetRefCollection);
             if (asset == default)
             {
                 _loadingInfo.Exception = new Exception("Problem retrieving asset from collection, see above error logs");
@@ -32,7 +34,7 @@ public class BuildingLoadManager : Singleton<BuildingLoadManager>, ILoadable<Lev
         
         return _loadingInfo;
     }
-
+    
     private void HandleTransmittersInitialized(AssetRefCollection assetRefCollection)
     {
         //Create loaders on demand so that GetComponents is called after each phase in case a relevant component is added in a previous phase

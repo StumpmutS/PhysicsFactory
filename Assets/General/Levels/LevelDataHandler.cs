@@ -4,7 +4,7 @@ using Utility.Scripts;
 
 public class LevelDataHandler : Singleton<LevelDataHandler>, ISaveable<SaveData>
 {
-    public string Name { get; private set; }
+    public LevelInfo Info { get; private set; }
     public bool Loaded { get; private set; }
 
     private void Start()
@@ -17,14 +17,12 @@ public class LevelDataHandler : Singleton<LevelDataHandler>, ISaveable<SaveData>
 
     public void Save(SaveData data, AssetRefCollection assetRefCollection)
     {
-        data.LevelData.LevelInfo.Name = "TestLevel";
-        
         SaveHelpers.GroupSave(SaveHelpers.GetSaveables<LevelData>(), data.LevelData, assetRefCollection);
     }
 
     private void Load(LevelData data, AssetRefCollection assetRefCollection)
     {
-        Name = data.LevelInfo.Name;
+        Info = data.LevelInfo;
         Loaded = false;
         
         var loadables = SaveHelpers.GetLoadables<LevelData>();

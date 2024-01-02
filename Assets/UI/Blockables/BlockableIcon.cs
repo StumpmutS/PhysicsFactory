@@ -2,31 +2,22 @@
 using UnityEngine.UI;
 using Utility.Scripts;
 
-public class BlockableIcon : MonoBehaviour, IUIBlockable, IInitializableComponent<Image>
+public class BlockableIcon : MonoBehaviour, IUIBlockable, IInitializableComponent<IconController>
 {
-    [SerializeField] private Image icon;
+    [SerializeField] private IconController icon;
 
-    private IconInfo _defaultIconInfo;
-    
-    public void Init(Image imagePrefab)
+    public void Init(IconController iconPrefab)
     {
-        icon = Instantiate(imagePrefab, transform, false);
+        icon = Instantiate(iconPrefab, transform, false);
     }
     
     public void Block(UIBlockableInfo info)
     {
-        _defaultIconInfo = new IconInfo(icon.sprite, icon.color);
-        SetIcon(info.MainIcon);
+        icon.SetIcon(info.MainIcon);
     }
 
     public void Unblock()
     {
-        SetIcon(_defaultIconInfo);
-    }
-
-    private void SetIcon(IconInfo info)
-    {
-        icon.sprite = info.Sprite;
-        icon.color = info.Color;
+        icon.ResetIcon();
     }
 }

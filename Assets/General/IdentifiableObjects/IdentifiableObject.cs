@@ -24,12 +24,7 @@ public class IdentifiableObject : MonoBehaviour, ISaveable<IdentifiableObjectSav
     {
         Id = data.Id;
         ObjectIdManager.Instance.IdentifyObject(this, Id);
-        var info = new LoadingInfo(() => 100)
-        {
-            Status = ELoadCompletionStatus.Succeeded,
-            Result = Id
-        };
-        info.Complete();
-        return info;
+
+        return LoadingInfo.Completed(Id, ELoadCompletionStatus.Succeeded);
     }
 }

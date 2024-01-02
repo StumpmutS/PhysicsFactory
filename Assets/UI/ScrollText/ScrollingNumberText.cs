@@ -24,7 +24,7 @@ public class ScrollingNumberText : MonoBehaviour
 
     public void SetValue(float value)
     {
-        int decimalAdjustedValue = Mathf.CeilToInt(Mathf.Abs(value) * Mathf.Pow(10, decimalPlaces));
+        int decimalAdjustedValue = (int) Math.Round(Mathf.Abs(value) * Mathf.Pow(10, decimalPlaces), MidpointRounding.AwayFromZero);
         var current = _digits.Last;
         int index = 0;
         while (true)

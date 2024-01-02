@@ -31,6 +31,6 @@ public class PlacedBuildingData
         this.saleRestrictionRefs = saleRestrictionRefs;
     }
     
-    public PlacedBuildingData(BuildingPlacementInfo info, float volume, TransformData transformData)
-        : this(info.Label, volume, info.Price, info.SaleMultiplier, transformData, info.SaleRestrictionRefs) { }
+    public PlacedBuildingData(BuildingPlacementData data, float volume, TransformData transformData)
+        : this(data.Label, volume, data.Price, data.SaleMultiplier, transformData, data.SaleRestrictionRefs) { }
 }

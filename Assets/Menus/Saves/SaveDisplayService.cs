@@ -2,12 +2,12 @@
 using System.Linq;
 using UnityEngine;
 
-public class SaveDisplayService : MonoBehaviour
+public class SaveDisplayService : DataService<SaveDisplayData>
 {
-    [SerializeField] private LocalSavePathSO pathSo;
+    [SerializeField] protected LocalPathSO pathSo;
 
-    public IEnumerable<SaveDisplayData> RequestData()
+    public override IEnumerable<SaveDisplayData> RequestData()
     {
-        return LocalDataPersistenceHandler.GetSaves(pathSo.LocalSavePathInfo).Select(s => new SaveDisplayData(s));
+        return LocalDataPersistenceHandler.GetPathJsonData<SaveData>(pathSo.LocalPathData).Select(s => new SaveDisplayData(s));
     }
 }

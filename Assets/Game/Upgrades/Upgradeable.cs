@@ -58,12 +58,7 @@ public class Upgradeable : MonoBehaviour, IRefreshable, ISaveable<BuildingSaveDa
     public LoadingInfo Load(UpgradeSaveData data, AssetRefCollection _)
     {
         Level = data.Level;
-        var info = new LoadingInfo(() => 100)
-        {
-            Result = data,
-            Status = ELoadCompletionStatus.Succeeded
-        };
-        info.Complete();
-        return info;
+
+        return LoadingInfo.Completed(data, ELoadCompletionStatus.Succeeded);
     }
 }

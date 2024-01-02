@@ -19,7 +19,7 @@ public class Conveyor : MonoBehaviour
         }
     }
 
-    public UnityEvent OnSpeedChanged;
+    public UnityEvent OnSpeedChanged = new();
 
     public void SetSpeed(float amount)
     {

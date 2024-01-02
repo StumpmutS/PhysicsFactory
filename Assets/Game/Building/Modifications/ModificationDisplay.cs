@@ -8,7 +8,7 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
     [SerializeField] private GameObject container;
     [SerializeField] private LayoutDisplay layout;
     [SerializeField] private LabeledCallbackToggle togglePrefab;
-    [SerializeField] private IconData restrictedIcon;
+    [SerializeField] private IconSO restrictedIcon;
 
     private ModificationContainer _modificationContainer;
     private GeneralRefreshEvent _generalRefreshEvent;

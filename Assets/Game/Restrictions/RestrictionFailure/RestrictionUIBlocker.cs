@@ -4,16 +4,16 @@ using Utility.Scripts;
 
 public class RestrictionUIBlocker : UIBlocker
 {
-    public void Init(ERestrictionFailureType failureType, IconInfo restrictedIcon)
+    public void Init(ERestrictionFailureType failureType, IconData restrictedIcon)
     {
         var restrictionFeedbackInfo = failureType.GetFlaggedValues().Select(e => RestrictionFeedbackReference.Instance.FailureInfo[e]);
         
         Init(GenerateBlockerInfo(restrictionFeedbackInfo, restrictedIcon));
     }
 
-    private UIBlockerInfo GenerateBlockerInfo(IEnumerable<RestrictionFeedbackInfo> restrictionFeedbackInfos, IconInfo restrictedIcon)
+    private UIBlockerInfo GenerateBlockerInfo(IEnumerable<RestrictionFeedbackInfo> restrictionFeedbackInfos, IconData restrictedIcon)
     {
-        var feedbackIcons = new List<IconInfo>();
+        var feedbackIcons = new List<IconData>();
         var blockableInfo = new UIBlockableInfo(restrictedIcon, feedbackIcons);
         var componentAdders = new HashSet<ComponentAdder>();
         var blockerInfo = new UIBlockerInfo(blockableInfo, componentAdders);

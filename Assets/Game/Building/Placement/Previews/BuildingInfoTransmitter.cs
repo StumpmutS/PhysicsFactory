@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Serialization;
 using Utility.Scripts;
 
 public class BuildingInfoTransmitter : MonoBehaviour, ISaveable<LevelData>, ILoadable<PlacedBuildingSaveData>
 {
-    [SerializeField, Tooltip("This prefab")] private AssetReference prefabReference;
-    [SerializeField] private BuildingPlacementInfo optionalStartInfo;
+    [FormerlySerializedAs("prefabReference")] [SerializeField] private AssetReference sessionPrefabReference;
+    [FormerlySerializedAs("optionalStartInfo")] [SerializeField] private BuildingPlacementData optionalStartData;
     [SerializeField] private float optionalStartVolume;
     [SerializeField] private Building building;
 
@@ -14,8 +15,8 @@ public class BuildingInfoTransmitter : MonoBehaviour, ISaveable<LevelData>, ILoa
     
     private void Awake()
     {
-        if (optionalStartInfo.Label != string.Empty)
-            Init(new PlacedBuildingData(optionalStartInfo, optionalStartVolume, new TransformData(transform)));
+        if (optionalStartData.Label != string.Empty)
+            Init(new PlacedBuildingData(optionalStartData, optionalStartVolume, new TransformData(transform)));
     }
 
     public void Init(PlacedBuildingData data)
@@ -27,14 +28,17 @@ public class BuildingInfoTransmitter : MonoBehaviour, ISaveable<LevelData>, ILoa
 
     public void Save(LevelData data, AssetRefCollection assetRefCollection)
     {
-        var buildingSaveData = new BuildingSaveData
-        {
-            BuildingPrefabReferenceIndex = assetRefCollection.Add(prefabReference)
-        };
+        var buildingSaveData = new BuildingSaveData();
+        SaveData(buildingSaveData, assetRefCollection);
         SaveHelpers.GroupSave(GetComponentsInChildren<ISaveable<BuildingSaveData>>(), buildingSaveData, assetRefCollection);
         
         data.BuildingSaveData ??= new List<BuildingSaveData>();
         data.BuildingSaveData.Add(buildingSaveData);
+    }
+
+    protected virtual void SaveData(BuildingSaveData buildingSaveData, AssetRefCollection assetRefCollection)
+    {
+        buildingSaveData.SessionBuildingPrefabReferenceId = assetRefCollection.Add(sessionPrefabReference);
     }
 
     public LoadingInfo Load(PlacedBuildingSaveData data, AssetRefCollection _)

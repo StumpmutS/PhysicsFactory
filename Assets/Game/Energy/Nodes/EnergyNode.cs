@@ -66,12 +66,6 @@ public abstract class EnergyNode : MonoBehaviour, ISaveable<BuildingSaveData>, I
             InitiateCurrent(fromContainer, toContainer);
         }
 
-        var info = new LoadingInfo(() => 100)
-        {
-            Result = data,
-            Status = ELoadCompletionStatus.Succeeded
-        };
-        info.Complete();
-        return info;
+        return LoadingInfo.Completed(data, ELoadCompletionStatus.Succeeded);
     }
 }

@@ -1,15 +1,13 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class SaveDisplayToggle : MonoBehaviour
+public class SaveDisplayToggle : DisplayCallbackToggle<SaveDisplayData>
 {
-    [SerializeField] private CallbackToggle callbackToggle;
     [SerializeField] private TMP_Text text;
 
-    public void Init(SaveDisplayData saveDisplayData, CallbackToggleData callbackToggleData)
+    protected override void DisplayData(SaveDisplayData displayData)
     {
-        callbackToggle.Init(callbackToggleData);
-        var info = saveDisplayData.SaveData.SaveInfo;
-        text.text = $"{info.Name} - {info.DateTime.DateTime}";
+        var info = displayData.SaveData.SaveInfo;
+        text.text = $"{info.Name} - {info.DateTime}";
     }
 }
