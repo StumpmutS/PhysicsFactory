@@ -13,8 +13,7 @@ public static class PathHelpers
             #endif
             
             #if UNITY_WEBGL
-                Debug.Log("WebGL");
-                return Application.persistentDataPath;
+                return "idbfs/PF-af08976d1236117cda5eb688e86f4661"; //MD2 hash
             #endif
 
             return Application.persistentDataPath;
