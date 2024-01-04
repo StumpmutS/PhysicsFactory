@@ -7,20 +7,18 @@ public static class NodeFinderHelper
     
     public static List<EnergyNode> FindNodesInRange(float range, Transform transform, Vector3 offset, LayerMask layerMask)
     {
-        for (int i = 0; i < Colliders.Length; i++)
-        {
-            Colliders[i] = null;
-        }
+        List<EnergyNode> nodes = new();
         var extents = (range + .5f) * Vector3.one - .01f * Vector3.one;
         Physics.SyncTransforms();
-        Physics.OverlapBoxNonAlloc(transform.position + offset, extents, Colliders, Quaternion.identity, layerMask);
+        var found = Physics.OverlapBoxNonAlloc(transform.position + offset, extents, Colliders, Quaternion.identity, layerMask);
         
-        List<EnergyNode> nodes = new();
-        foreach (var collider in Colliders)
+        for (int i = 0; i < found; i++)
         {
+            var collider = Colliders[i];
             if (collider == null || !collider.TryGetComponent<EnergyNode>(out var other)) continue;
             nodes.Add(other);
         }
+
         return nodes;
     }
 }

@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8683671209243130875}
-  - component: {fileID: 3945434422174935522}
+  - component: {fileID: 1907927485439986569}
   m_Layer: 0
   m_Name: WallPreview
   m_TagString: Untagged
@@ -148,7 +148,7 @@ Transform:
   - {fileID: 7963950796682989336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3945434422174935522
+--- !u!114 &1907927485439986569
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6469219595458747301}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2365094ab8af4d409ae462b61b1d0ce2, type: 3}
+  m_Script: {fileID: 11500000, guid: 07964892e6874f98938224bd2d65aee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: 5718836290251932433, guid: b487e7cc6c53b20499b61c5c359221af,

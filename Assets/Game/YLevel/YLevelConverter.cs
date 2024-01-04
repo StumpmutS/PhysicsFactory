@@ -8,7 +8,7 @@ public class YLevelConverter : Singleton<YLevelConverter>
     public float YLevelToWorld(int yLevel = -1)
     {
         if (yLevel < 0) yLevel = YLevelManager.Instance.YLevel;
-        return yLevel - (int) (grid.Dimensions.y / 2f * grid.CellSize + grid.CellSize / 2f);
+        return yLevel - (int) (grid.Extents.y + .5f);
     }
 
     public void WorldMinMax(int minYLevel, int maxYLevel, out float min, out float max)

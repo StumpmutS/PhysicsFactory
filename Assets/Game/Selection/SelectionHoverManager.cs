@@ -39,33 +39,30 @@ public class SelectionHoverManager : MonoBehaviour
         UpdateHovered();
     }
 
-    private readonly RaycastHit[] _raycastResults = new RaycastHit[128];
+    private static readonly RaycastHit[] RaycastResults = new RaycastHit[128];
     
     private void UpdateHovered()
     {
-        for (int i = 0; i < _raycastResults.Length; i++)
-        {
-            _raycastResults[i] = default;
-        }
-        
-        Physics.RaycastNonAlloc(MainCameraRef.Cam.ScreenPointToRay(Input.mousePosition), _raycastResults, maxSearchDistance, selectableLayer);
-        var filteredResults = _raycastResults.Where(hit => hit.collider != null)
-            .OrderBy(hit => Vector3.SqrMagnitude(hit.point - MainCameraRef.Cam.transform.position)).ToArray();
-        if (filteredResults.Length == 0)
+        var found = Physics.RaycastNonAlloc(MainCameraRef.Cam.ScreenPointToRay(Input.mousePosition), RaycastResults, maxSearchDistance, selectableLayer);
+        if (found == 0)
         {
             SetHovered(null);
             return;
         }
+        
+        var filteredResults = RaycastResults.Take(found)
+            .OrderBy(hit => Vector3.SqrMagnitude(hit.point - MainCameraRef.Cam.transform.position)).ToArray();
 
         foreach (var hit in filteredResults)
         {
-            if (!hit.collider.TryGetComponent<Selectable>(out var selectable) || !_prioritizedSelectables.Contains(selectable)) continue;
-            
+            if (!hit.collider.TryGetComponent<Selectable>(out var selectable) ||
+                !_prioritizedSelectables.Contains(selectable)) continue;
+
             SetHovered(selectable);
             return;
         }
 
-        SetHovered(filteredResults[0].collider.TryGetComponent<Selectable>(out var firstSelectable) ? firstSelectable : null);
+        SetHovered(filteredResults[0].collider.GetComponent<Selectable>());
     }
 
     private void SetHovered(Selectable selectable)

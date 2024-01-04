@@ -2,10 +2,10 @@
 
 public class Cell3D : MonoBehaviour
 {
-    public Cell3DInfo Info { get; private set; }
+    public Cell3DData Data { get; private set; }
 
-    public void Init(Cell3DInfo info)
+    public void Init(Cell3DData data)
     {
-        Info = info;
+        Data = data;
     }
 }

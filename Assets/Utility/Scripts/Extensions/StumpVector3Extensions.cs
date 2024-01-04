@@ -36,7 +36,7 @@ namespace Utility.Scripts.Extensions
             return vector3;
         }
 
-        public static Vector3 RoundToAxis(this Vector3 vector3, Vector3 exclude = default, Vector3 prioritize = default)
+        public static Vector3 IsolateAxis(this Vector3 vector3, Vector3 exclude = default, Vector3 prioritize = default)
         {
             //exclusion
             var x = exclude.x is > .01f or < -.01f ? 0 : Mathf.Abs(vector3.x);

@@ -1,21 +1,17 @@
 ﻿using UnityEngine;
 
-public class Cell3DInfo
+public class Cell3DData
 {
-    public bool Occupied;
-    public Grid3D Grid { get; }
     public int XIndex { get; }
     public int YIndex { get; }
     public int ZIndex { get; }
     public Vector3 Center { get; }
-    public int Size { get; }
 
-    public Cell3DInfo(int xIndex, int yIndex, int zIndex, Vector3 center, int size)
+    public Cell3DData(int xIndex, int yIndex, int zIndex, Vector3 center)
     {
         XIndex = xIndex;
         YIndex = yIndex;
         ZIndex = zIndex;
         Center = center;
-        Size = size;
     }
 }

@@ -6,12 +6,12 @@ public class PlacementCollisionRestriction : Restriction<PlacementRestrictionInf
 {
     protected override ERestrictionFailureType RestrictionFailureType => ERestrictionFailureType.PlacementCollision;
 
+    private static readonly Collider[] Colliders = new Collider[1];
+
     protected override bool Check(PlacementRestrictionInfo restrictionInfo, RestrictionFailureInfo failureInfo)
     {
-        var results = new Collider[4];
-        Physics.OverlapBoxNonAlloc(restrictionInfo.Preview.transform.position,
-            restrictionInfo.Preview.transform.localScale / 2 - Vector3.one * .005f, results,
-            restrictionInfo.Preview.transform.rotation, LayerManager.Instance.BuildingLayer);
-        return results.All(c => c == null);
+        return Physics.OverlapBoxNonAlloc(restrictionInfo.Preview.transform.position,
+            restrictionInfo.Preview.transform.localScale / 2 - Vector3.one * .005f, Colliders,
+            restrictionInfo.Preview.transform.rotation, LayerManager.Instance.BuildingLayer) < 1;
     }
 }

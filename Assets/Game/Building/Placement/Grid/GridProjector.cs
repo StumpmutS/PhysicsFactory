@@ -70,8 +70,8 @@ public class GridProjector : MonoBehaviour
 
     private void SetCell(Cell3D cell, int yIndex)
     {
-        var xIndex = cell.Info.XIndex;
-        var zIndex = cell.Info.ZIndex;
+        var xIndex = cell.Data.XIndex;
+        var zIndex = cell.Data.ZIndex;
         cell.transform.position = grid.Grid[xIndex][yIndex][zIndex].Center;
         cell.Init(grid.Grid[xIndex][yIndex][zIndex]);
     }

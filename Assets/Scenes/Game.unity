@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.030431753, g: 0.020559845, b: 0.061690044, a: 1}
+  m_IndirectSpecularColor: {r: 0.008572734, g: 0.0023094187, b: 0.04094262, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2014,7 +2014,7 @@ Transform:
   m_Children:
   - {fileID: 2064000313}
   m_Father: {fileID: 256024306}
-  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 34.1, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3219,7 +3219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minLevel: 0
   startLevel: 50
-  maxLevel: 100
+  maxLevel: 99
   OnYLevelChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3981,8 +3981,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 110, y: 109.5, z: 110}
-  m_Center: {x: 0, y: 5, z: 0}
+  m_Size: {x: 120, y: 120, z: 120}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &688299996
 GameObject:
   m_ObjectHideFlags: 0

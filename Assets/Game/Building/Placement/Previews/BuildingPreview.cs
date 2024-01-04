@@ -2,18 +2,14 @@
 using UnityEngine;
 using Utility.Scripts;
 
-public abstract class BuildingPreview : MonoBehaviour
+public class BuildingPreview : MonoBehaviour
 {
     [SerializeField] protected BuildingInfoTransmitter buildingPrefab;
-#pragma warning disable CS0108, CS0114
     [SerializeField] private List<PreviewRendererInfo> rendererInfo;
-#pragma warning restore CS0108, CS0114
     [SerializeField] private ColorData previewColors;
 
-    public abstract float Volume { get; }
+    public float Volume => transform.localScale.x * transform.localScale.y * transform.localScale.z;
 
-    public abstract void StretchTo(List<Vector3> locations, int cellSize);
-    
     public void Place(BuildingPlacementData data)
     {
         var building = Instantiate(buildingPrefab);

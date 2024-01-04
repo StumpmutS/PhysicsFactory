@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1993024587223374693}
-  - component: {fileID: 8014081326541741142}
+  - component: {fileID: 1653671641426422630}
   - component: {fileID: 1272348244420021668}
   - component: {fileID: 5367981027734394732}
   m_Layer: 0
@@ -118,7 +118,7 @@ Transform:
   - {fileID: 9065485172576143881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8014081326541741142
+--- !u!114 &1653671641426422630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4213017590832439434}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc7e1a9b394f4d648f98c855c0977ed3, type: 3}
+  m_Script: {fileID: 11500000, guid: 07964892e6874f98938224bd2d65aee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: 6657367101063419230, guid: cc243238367b75847b71c26217872531,
@@ -137,11 +137,9 @@ MonoBehaviour:
     alpha: 0.3
     renderer: {fileID: 3897377271347392471}
   - overrideAlpha: 1
-    alpha: 0.07843138
+    alpha: 0.15
     renderer: {fileID: 8258276173146956205}
   previewColors: {fileID: 11400000, guid: 23b59f967a90fca4198ecf3bb7c955a4, type: 2}
-  dimensions: {x: 1, y: 1, z: 1}
-  defaultDirection: {x: 0, y: 0, z: -1}
 --- !u!114 &1272348244420021668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91457f02d1854a3cb4a708c0a8a97a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnActivation:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeactivation:
+    m_PersistentCalls:
+      m_Calls: []
   nodeType:
     searchKeyWord: node
     targetTypeAssemblyQName: SpenderNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,

@@ -12,7 +12,7 @@ public class SerializableGuid
         {
             if (Guid.TryParse(stringGuid, out var guid)) return guid;
             
-            Debug.LogError($"Could not parse GUID from \"{stringGuid}\"");
+            Debug.LogWarning($"Could not parse GUID from \"{stringGuid}\"");
             return default;
         }
     }
