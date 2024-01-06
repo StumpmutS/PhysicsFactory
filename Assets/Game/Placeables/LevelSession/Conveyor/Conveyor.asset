@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60720b370d724520bb8fad94ae54cae9, type: 3}
+  m_Name: Conveyor
+  m_EditorClassIdentifier: 
+  buildingPlacementData:
+    label: Conveyor
+    placementProcessors:
+    - {fileID: 11400000, guid: dc00bfd3719e7a14bba4a1a53f3a0cb8, type: 2}
+    - {fileID: 11400000, guid: 93dfc941a4a440a4eb4f90e817d7a053, type: 2}
+    - {fileID: 11400000, guid: 68fd61fb13b59514cab33800959ef064, type: 2}
+    - {fileID: 11400000, guid: d3d41abb72ed2ae48bf5ddad74dede4f, type: 2}
+    placementRestrictions:
+    - {fileID: 11400000, guid: 07db2f424290dbe459ea3903f14344bd, type: 2}
+    - {fileID: 11400000, guid: cfaaf258aef0c1a48b6e28bd77fe3e94, type: 2}
+    saleRestrictionRefs:
+    - reference:
+        m_AssetGUID: d55e4ec8b3250614a82fa9ebaf183512
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      Asset: {fileID: 11400000, guid: d55e4ec8b3250614a82fa9ebaf183512, type: 2}
+    previewPrefab: {fileID: 6736046812309348576, guid: b83aead0776a003498b3c8d58c0e4ece,
+      type: 3}
+    anchorCellAmount: 2
+    price: 1
+    saleMultiplier: 1

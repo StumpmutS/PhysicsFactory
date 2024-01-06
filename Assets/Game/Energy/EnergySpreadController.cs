@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Utility.Scripts;
 
-public class EnergySpreadController : MonoBehaviour, ISaveable<BuildingSaveData>, ILoadable<EnergySpreadSaveData>
+public class EnergySpreadController : MonoBehaviour, ISaveable<PlaceableSaveData>, ILoadable<EnergySpreadSaveData>
 {
     [FormerlySerializedAs("container")] [SerializeField] private EnergyStorage storage;
     [SerializeField] private List<Component> startingSpenders;
@@ -56,7 +56,7 @@ public class EnergySpreadController : MonoBehaviour, ISaveable<BuildingSaveData>
         if (Spenders != null) Spenders.OnFloatsChanged -= HandleSpendersChanged;
     }
 
-    public void Save(BuildingSaveData data, AssetRefCollection assetRefCollection)
+    public void Save(PlaceableSaveData data, AssetRefCollection assetRefCollection)
     {
         data.EnergySpreadSaveData ??= new EnergySpreadSaveData();
         data.EnergySpreadSaveData.MaxTotal = Spenders.MaxTotal;

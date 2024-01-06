@@ -1403,7 +1403,6 @@ Transform:
   - {fileID: 1332525639}
   - {fileID: 823364394}
   - {fileID: 1282431942}
-  - {fileID: 1571772336}
   - {fileID: 1965997839}
   - {fileID: 1016057722}
   - {fileID: 1034258438}
@@ -1414,6 +1413,7 @@ Transform:
   - {fileID: 1182324713}
   - {fileID: 1663801594}
   - {fileID: 697523689}
+  - {fileID: 1050025567}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &235520581
@@ -1477,7 +1477,7 @@ Transform:
   m_GameObject: {fileID: 256024305}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.3, y: 0, z: 0.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2784,28 +2784,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa6200350424633a634a78c0f67c3a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildings:
-  - buildingContainer:
+  placementData:
+  - placementContainer:
       reference:
         m_AssetGUID: b6a073ae7837fc646a7088a63b7023da
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
       Asset: {fileID: 11400000, guid: b6a073ae7837fc646a7088a63b7023da, type: 2}
-  - buildingContainer:
+  - placementContainer:
       reference:
         m_AssetGUID: 8eeb3e60c071cde4dae8cf02a5c50e13
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
       Asset: {fileID: 11400000, guid: 8eeb3e60c071cde4dae8cf02a5c50e13, type: 2}
-  - buildingContainer:
+  - placementContainer:
       reference:
         m_AssetGUID: 89b24cf42c7da6a43a2eb67baa6e9dd2
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
       Asset: {fileID: 11400000, guid: 89b24cf42c7da6a43a2eb67baa6e9dd2, type: 2}
+  - placementContainer:
+      reference:
+        m_AssetGUID: 8a5a49d3dd4e58a4ea9fbbf2e405f0e3
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      Asset: {fileID: 11400000, guid: 8a5a49d3dd4e58a4ea9fbbf2e405f0e3, type: 2}
 --- !u!114 &378940162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2823,7 +2830,7 @@ MonoBehaviour:
     type: 3}
   toggleLayoutDisplay: {fileID: 1906912994}
   placementPersistenceHandler: {fileID: 1097567672}
-  OnBuildingsChanged:
+  OnPlacementContainersChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1097567672}
@@ -4299,15 +4306,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262484acbccc44a99d83df29e4f19252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  editModeBuildings:
+  editModePlacementSos:
   - {fileID: 11400000, guid: 8bb9be79ffb992e4cbf5e8ca1ee5d50b, type: 2}
+  - {fileID: 11400000, guid: 80edb85c7a717604e8689243e07be5cc, type: 2}
   persistenceHandler: {fileID: 1097567672}
-  OnBuildingsReady:
+  OnPlacementReady:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 708074594}
         m_TargetAssemblyTypeName: PlacementDisplay, Assembly-CSharp
-        m_MethodName: HandleBuildingsReady
+        m_MethodName: HandlePlacementReady
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5359,7 +5367,7 @@ GameObject:
   - component: {fileID: 871763650}
   - component: {fileID: 871763651}
   m_Layer: 0
-  m_Name: BuildingManager
+  m_Name: PlaceableManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5392,7 +5400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2167cd3b6f0143f29fc8c62f646a6bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnBuildingAdded:
+  OnPlaceableAdded:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &876229849
@@ -5414,7 +5422,7 @@ GameObject:
   - component: {fileID: 876229858}
   - component: {fileID: 876229859}
   m_Layer: 5
-  m_Name: BuildingMenu
+  m_Name: SelectedMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7268,7 +7276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   failureInfo:
-    keys: 00000000010000000200000004000000
+    keys: 0000000001000000020000000400000008000000
     values:
     - text: 
       icon:
@@ -7305,6 +7313,16 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 672aa0e7b11ba3040ad48477834b9196, type: 2}
       - {fileID: 11400000, guid: ce0107975d4fdc0488f2f20f779a2786, type: 2}
       - {fileID: 11400000, guid: e9264ec94a6f6434f8ffc01200b913c3, type: 2}
+    - text: Must be placed on an extraction site
+      icon:
+        sprite: {fileID: 0}
+        color: {r: 1, g: 0, b: 0, a: 1}
+      componentAdders:
+      - {fileID: 11400000, guid: 2c3d3eaf6cefa824d9acc0025199c594, type: 2}
+      - {fileID: 11400000, guid: 616aa990079d57f41af7b8fbbba0529a, type: 2}
+      - {fileID: 11400000, guid: 672aa0e7b11ba3040ad48477834b9196, type: 2}
+      - {fileID: 11400000, guid: ce0107975d4fdc0488f2f20f779a2786, type: 2}
+      - {fileID: 11400000, guid: e9264ec94a6f6434f8ffc01200b913c3, type: 2}
 --- !u!114 &1034258441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7318,6 +7336,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flasher: {fileID: 1520993340}
+--- !u!1 &1050025566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1050025567}
+  - component: {fileID: 1050025568}
+  m_Layer: 0
+  m_Name: ResourceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1050025567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050025566}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 200333254}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1050025568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050025566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ce42f7c5ba44f990326289441137d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceModifiers:
+    keys: 00000000
+    values:
+    - List: []
 --- !u!1 &1063196980
 GameObject:
   m_ObjectHideFlags: 0
@@ -7665,9 +7731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddb9a7c7ba34aadbcd1c3269881cb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origin: {x: 0, y: 0, z: 0}
   dimensions: {x: 100, y: 100, z: 100}
-  cellSize: 1
 --- !u!4 &1079496047
 Transform:
   m_ObjectHideFlags: 0
@@ -7734,12 +7798,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a7b60687b34ea19a0d9a0d682f472a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnBuildingsLoaded:
+  OnPlacementSosLoaded:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 708074597}
         m_TargetAssemblyTypeName: PlacementService, Assembly-CSharp
-        m_MethodName: HandleBuildingsLoaded
+        m_MethodName: HandlePlacementLoaded
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7879,9 +7943,9 @@ MonoBehaviour:
           references: []
         SupplyData:
           Supply: 0
-        BuildingSaveData: []
+        PlaceableSaveData: []
         PlacementSaveData:
-          BuildingAssetRefIds: 
+          PlacementAssetRefIds: 
         Options:
           keys: []
           values: []
@@ -7923,38 +7987,9 @@ MonoBehaviour:
         references: []
       SupplyData:
         Supply: 0
-      BuildingSaveData:
-      - IdentifiableObjectSaveData:
-          Id: 0
-        EditorBuildingPrefabReferenceId: -1
-        SessionBuildingPrefabReferenceId: -1
-        PlacedBuildingSaveData:
-          data:
-            label: 
-            volume: 0
-            price: 0
-            saleMultiplier: 0
-            transformData:
-              WorldPosition: {x: 0, y: 0, z: 0}
-              WorldRotation: {x: 0, y: 0, z: 0, w: 0}
-              LocalScale: {x: 0, y: 0, z: 0}
-            saleRestrictionRefs: []
-        UpgradeSaveData:
-          Level: 0
-        ModificationSaveData:
-          ActiveModificationIndexes: 
-        GeneratorSaveData:
-          Locked: 0
-          Range: 0
-        CurrentSaveData:
-          ConnectionSaveData: []
-        EnergySpreadSaveData:
-          MaxTotal: 0
-          Spread:
-            keys: []
-            values: []
+      PlaceableSaveData: []
       PlacementSaveData:
-        BuildingAssetRefIds: 
+        PlacementAssetRefIds: 
       Options:
         keys: []
         values: []
@@ -9062,6 +9097,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8196820718104579741, guid: d99dbfae7a8f19a43b2cc0e1ddb8404b,
         type: 3}
+      propertyPath: modifiers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8196820718104579741, guid: d99dbfae7a8f19a43b2cc0e1ddb8404b,
+        type: 3}
+      propertyPath: 'modifiers.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fc001ae6600fb4a4c818e9a53782b575,
+        type: 2}
+    - target: {fileID: 8196820718104579741, guid: d99dbfae7a8f19a43b2cc0e1ddb8404b,
+        type: 3}
       propertyPath: depositEffects.multiplier
       value: -1
       objectReference: {fileID: 0}
@@ -10020,7 +10066,7 @@ GameObject:
   - component: {fileID: 1482891879}
   - component: {fileID: 1482891880}
   m_Layer: 0
-  m_Name: BuildingLoadManager
+  m_Name: PlaceableLoadManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10236,56 +10282,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
---- !u!1 &1571772335
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1571772336}
-  - component: {fileID: 1571772337}
-  m_Layer: 0
-  m_Name: LayerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1571772336
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1571772335}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 200333254}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1571772337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1571772335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31281698d10e448784e45a023d64af8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dolboidLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  buildingLayer:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!1 &1594409924
 GameObject:
   m_ObjectHideFlags: 0
@@ -11430,7 +11426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1757655599}
   m_Layer: 0
-  m_Name: Building/Placement
+  m_Name: Placement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12702,7 +12698,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 1
     m_SpeedMode: 0
-    m_MaxSpeed: 0.5
+    m_MaxSpeed: 0.2
     m_AccelTime: 0.2
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y

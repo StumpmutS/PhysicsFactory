@@ -32,11 +32,11 @@ public class EnergyNodeAutoConnector : MonoBehaviour
 
     private void Start()
     {
-        BuildingManager.Instance.OnBuildingAdded.AddListener(HandleBuildingAdded);
+        PlaceableManager.Instance.OnPlaceableAdded.AddListener(HandlePlaceableAdded);
         RefreshNodes(nodeFinder.Nodes);
     }
 
-    private void HandleBuildingAdded()
+    private void HandlePlaceableAdded()
     {
         RefreshNodes(nodeFinder.Nodes);
     }
@@ -66,6 +66,6 @@ public class EnergyNodeAutoConnector : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (BuildingManager.Instance != null) BuildingManager.Instance.OnBuildingAdded.RemoveListener(HandleBuildingAdded);
+        if (PlaceableManager.Instance != null) PlaceableManager.Instance.OnPlaceableAdded.RemoveListener(HandlePlaceableAdded);
     }
 }

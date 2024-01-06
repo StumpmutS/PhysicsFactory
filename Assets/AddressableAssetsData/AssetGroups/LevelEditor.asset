@@ -35,6 +35,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - EditorModification
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d84f788566d2db4393ce03a92c7c765
+    m_Address: EditorDefaultExtractionSite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - EditorBuilding
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7be1b72d585c53947b90658d2c0c7538
+    m_Address: SessionDefaultExtractionSite
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SessionBuilding
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d2d3607da753be649add1ec63153bacd, type: 2}
   m_SchemaSet:

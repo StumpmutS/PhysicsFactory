@@ -3,5 +3,5 @@
     None,
     Placement,
     Energy,
-    Building
+    Selected
 }

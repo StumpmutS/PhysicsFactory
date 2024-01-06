@@ -7,5 +7,5 @@ public enum ERestrictionFailureType
     Supply = 1,
     UpgradeLevel = 2,
     PlacementCollision = 4,
-    ExtractionAdjacent = 8
+    Extraction = 8
 }

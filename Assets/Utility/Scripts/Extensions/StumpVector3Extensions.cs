@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Utility.Scripts.Extensions
@@ -20,11 +21,14 @@ namespace Utility.Scripts.Extensions
             return true;
         }
 
-        public static Vector3 MinValueOf(this Vector3 vector3, float min)
+        public static Vector3 ClampValues(this Vector3 vector3, float min, float max)
         {
             if (vector3.x < min) vector3.x = min;
+            if (vector3.x > max) vector3.x = max;
             if (vector3.y < min) vector3.y = min;
+            if (vector3.y > max) vector3.y = max;
             if (vector3.z < min) vector3.z = min;
+            if (vector3.z > max) vector3.z = max;
             return vector3;
         }
 
@@ -34,6 +38,11 @@ namespace Utility.Scripts.Extensions
             vector3.y = Mathf.Abs(vector3.y);
             vector3.z = Mathf.Abs(vector3.z);
             return vector3;
+        }
+
+        public static Vector3 Invert(this Vector3 vector3)
+        {
+            return new Vector3(1 / vector3.x, 1 / vector3.y, 1 / vector3.z);
         }
 
         public static Vector3 IsolateAxis(this Vector3 vector3, Vector3 exclude = default, Vector3 prioritize = default)

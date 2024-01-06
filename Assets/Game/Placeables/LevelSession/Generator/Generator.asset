@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60720b370d724520bb8fad94ae54cae9, type: 3}
+  m_Name: Generator
+  m_EditorClassIdentifier: 
+  buildingPlacementData:
+    label: Generator
+    placementProcessors:
+    - {fileID: 11400000, guid: e3496256e726ffe4facc40aa1cda7aab, type: 2}
+    - {fileID: 11400000, guid: d380d2d88af2b794ba4dd5827a6839b0, type: 2}
+    - {fileID: 11400000, guid: d2d3e6b992e36ab41bf8700ebbd04b0d, type: 2}
+    placementRestrictions:
+    - {fileID: 11400000, guid: 6177eb3f5192bd747bd25f3f2604e11f, type: 2}
+    - {fileID: 11400000, guid: 5cf2881d04a26f44ba4019ef24c35a88, type: 2}
+    saleRestrictionRefs:
+    - reference:
+        m_AssetGUID: 9a27e6ffa5b991142a85eec0cfab0ad2
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      Asset: {fileID: 11400000, guid: 9a27e6ffa5b991142a85eec0cfab0ad2, type: 2}
+    previewPrefab: {fileID: 1653671641426422630, guid: 8130bd342c3200b43a94ae5ebc492777,
+      type: 3}
+    anchorCellAmount: 1
+    price: 10
+    saleMultiplier: 1

@@ -13,6 +13,6 @@ public class ScaleSpringListener : Vector3SpringListener
 
     protected override void ChangeValue(Vector3 value)
     {
-        targetTransform.localScale = value.MinValueOf(0);
+        targetTransform.localScale = value.ClampValues(0, float.MaxValue);
     }
 }

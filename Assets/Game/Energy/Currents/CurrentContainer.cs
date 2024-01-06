@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class CurrentContainer : MonoBehaviour
 {
-    [SerializeField] private IdentifiableObject identifiableObject;
-    
     public HashSet<EnergyCurrent> Currents { get; private set; } = new();
 
     public UnityEvent OnCurrentsChanged = new();
@@ -43,7 +42,7 @@ public class CurrentContainer : MonoBehaviour
         }
     }
 
-    public void HandleSale()
+    private void OnDestroy()
     {
         ShutDownCurrents();
     }

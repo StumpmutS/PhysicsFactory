@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60720b370d724520bb8fad94ae54cae9, type: 3}
+  m_Name: EditorDefaultExtractionSite
+  m_EditorClassIdentifier: 
+  placementData:
+    label: Default Extraction Site
+    placementProcessors:
+    - {fileID: 11400000, guid: 78c777f886a448740bc869e088c77b4c, type: 2}
+    - {fileID: 11400000, guid: 26dc7378909d59342b9cd74180b75761, type: 2}
+    - {fileID: 11400000, guid: cbecefea47bc8064e85387c43f087f03, type: 2}
+    - {fileID: 11400000, guid: f60e80b7120355a4c9f166edf2683b16, type: 2}
+    placementRestrictions: []
+    saleRestrictionRefs: []
+    previewPrefab: {fileID: 3014043695885284981, guid: 4fc869fd82442d446a0b70199064b7da,
+      type: 3}
+    anchorCellAmount: 4
+    price: 0
+    saleMultiplier: 0

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Utility.Scripts;
 
 public class RestrictionFailureDisplay : Singleton<RestrictionFailureDisplay>
@@ -9,7 +10,7 @@ public class RestrictionFailureDisplay : Singleton<RestrictionFailureDisplay>
     {
         if (!failureInfo.Failed) return;
 
-        var text = RestrictionFeedbackReference.Instance.FailureInfo[failureInfo.FailureType].Text;
+        var text = RestrictionFeedbackReference.Instance.GetFeedbackInfo(failureInfo.FailureType).Text;
         flasher.Flash(text);
     }
 }

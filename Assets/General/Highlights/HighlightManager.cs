@@ -17,7 +17,6 @@ public class HighlightManager : Singleton<HighlightManager>
 
     public void Highlight(object caller, IEnumerable<Highlightable> highlightables)
     {
-        print(caller);
         foreach (var highlightable in highlightables)
         {
             _highlightables[highlightable].Add(caller);

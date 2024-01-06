@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ZWMaterialPairs
   m_EditorClassIdentifier: 
   materials:
-    _keys:
+    keys:
     - {fileID: 2100000, guid: 0bb884d5655117f48bc162c5c5e66635, type: 2}
     - {fileID: 2100000, guid: 7c7f55dc70e5e2f46be647af0bcbaf0b, type: 2}
     - {fileID: 2100000, guid: b5fce219c4eaed04e94f965e72357872, type: 2}
@@ -21,7 +21,8 @@ MonoBehaviour:
     - {fileID: 2100000, guid: 92c32ac4b5850ea498d09d61d97465a8, type: 2}
     - {fileID: 2100000, guid: f04feb9194928294ebc7b3213f512410, type: 2}
     - {fileID: 2100000, guid: 56a2091a2f7a3454d960902093cbca39, type: 2}
-    _values:
+    - {fileID: 2100000, guid: c8fb40fd95c9db149a37275b5ad161fe, type: 2}
+    values:
     - {fileID: 2100000, guid: 70092467223e9ed41bc9379a3f6ddcf2, type: 2}
     - {fileID: 2100000, guid: 0fdef5e29bd8c2144b74f77e26b1434e, type: 2}
     - {fileID: 2100000, guid: f20a4a1eb416d934c84c5a48c6f7fd0c, type: 2}
@@ -29,3 +30,4 @@ MonoBehaviour:
     - {fileID: 2100000, guid: 6341e8b87420d5b48b12cd2816f7abd1, type: 2}
     - {fileID: 2100000, guid: ed632e6bf5bf4954ea061dd75e40be0f, type: 2}
     - {fileID: 2100000, guid: 872d592d5adb31a4c9164fa61b535a64, type: 2}
+    - {fileID: 2100000, guid: 1ec8d96cce23b5c428d7d5ef0788dcec, type: 2}

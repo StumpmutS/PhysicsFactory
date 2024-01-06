@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Dolboid
+  - Resource
   - Water
   - UI
   - Selectable
-  - Building
+  - PlacementCollision
   - Highlight
-  - 
+  - Snap
   - 
   - 
   - 

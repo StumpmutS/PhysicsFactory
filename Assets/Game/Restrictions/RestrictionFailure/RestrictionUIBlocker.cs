@@ -6,7 +6,8 @@ public class RestrictionUIBlocker : UIBlocker
 {
     public void Init(ERestrictionFailureType failureType, IconData restrictedIcon)
     {
-        var restrictionFeedbackInfo = failureType.GetFlaggedValues().Select(e => RestrictionFeedbackReference.Instance.FailureInfo[e]);
+        var restrictionFeedbackInfo = failureType.GetFlaggedValues()
+            .Select(e => RestrictionFeedbackReference.Instance.GetFeedbackInfo(e));
         
         Init(GenerateBlockerInfo(restrictionFeedbackInfo, restrictedIcon));
     }

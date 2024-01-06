@@ -2,20 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
-public class Upgradeable : MonoBehaviour, IRefreshable, ISaveable<BuildingSaveData>, ILoadable<UpgradeSaveData>
+public class Upgradeable : MonoBehaviour, IRefreshable, ISellable, ISaveable<PlaceableSaveData>, ILoadable<UpgradeSaveData>
 {
     [SerializeField] private List<UpgradeData> upgrades;
-    [SerializeField] private Building building;
-
+    [FormerlySerializedAs("building")] [SerializeField] private Placeable placeable;
+    
     public int Level { get; private set; }
     public int MaxLevel => upgrades.Count;
+
+    public float SalePrice
+    {
+        get
+        {
+            var result = 0f;
+            for (int i = Level; i > 0; i--)
+            {
+                result += SupplyCalculator.CalculatePrice(upgrades[i - 1].Info.Price, placeable, upgrades[i - 1].Info.SaleMultiplier);
+            }
+            return result;
+        }
+    }
     public float UpgradePrice => Level >= upgrades.Count
         ? -1
-        : SupplyCalculator.CalculatePrice(upgrades[Level].Info.Price, building);
+        : SupplyCalculator.CalculatePrice(upgrades[Level].Info.Price, placeable);
     public float DowngradePrice => Level <= 0
         ? -1
-        : SupplyCalculator.CalculatePrice(upgrades[Level - 1].Info.Price, building, upgrades[Level - 1].Info.SaleMultiplier);
+        : SupplyCalculator.CalculatePrice(upgrades[Level - 1].Info.Price, placeable, upgrades[Level - 1].Info.SaleMultiplier);
 
     public UnityEvent OnUpgrade = new();
     public UnityEvent OnDowngrade = new();
@@ -45,12 +59,12 @@ public class Upgradeable : MonoBehaviour, IRefreshable, ISaveable<BuildingSaveDa
         return true;
     }
 
-    private BuildingRestrictionInfo GenerateRestrictionInfo(UpgradeInfo upgrade)
+    private PlaceableRestrictionData GenerateRestrictionInfo(UpgradeInfo upgrade)
     {
-        return new BuildingRestrictionInfo(building, upgrade.Price, upgrade.SaleMultiplier);
+        return new PlaceableRestrictionData(placeable, upgrade.Price, upgrade.SaleMultiplier);
     }
 
-    public void Save(BuildingSaveData data, AssetRefCollection _)
+    public void Save(PlaceableSaveData data, AssetRefCollection _)
     {
         data.UpgradeSaveData = new UpgradeSaveData(Level);
     }

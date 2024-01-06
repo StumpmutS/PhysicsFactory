@@ -4,5 +4,9 @@ using Utility.Scripts;
 public class RestrictionFeedbackReference : Singleton<RestrictionFeedbackReference>
 {
     [SerializeField] private SerializableDictionary<ERestrictionFailureType, RestrictionFeedbackInfo> failureInfo;
-    public SerializableDictionary<ERestrictionFailureType, RestrictionFeedbackInfo> FailureInfo => failureInfo;
+
+    public RestrictionFeedbackInfo GetFeedbackInfo(ERestrictionFailureType failureType)
+    {
+        return failureInfo[failureType.AsSingleFlag()];
+    }
 }

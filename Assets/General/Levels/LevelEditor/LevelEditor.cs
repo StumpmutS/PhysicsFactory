@@ -35,11 +35,11 @@ public static class LevelLoadingHelpers
         return match;
     }
 
-    public static GameObject GetBuildingAsset(LevelOptionsSO editorOptionsSo, LevelData levelData, BuildingSaveData buildingSaveData, AssetRefCollection assetRefCollection)
+    public static GameObject GetPlaceableAsset(LevelOptionsSO editorOptionsSo, LevelData levelData, PlaceableSaveData placeableSaveData, AssetRefCollection assetRefCollection)
     {
         var id = CompareOptions(editorOptionsSo, levelData)
-            ? buildingSaveData.EditorBuildingPrefabReferenceId
-            : buildingSaveData.SessionBuildingPrefabReferenceId;
+            ? placeableSaveData.EditorPlaceablePrefabReferenceId
+            : placeableSaveData.SessionPlaceablePrefabReferenceId;
         return assetRefCollection.Get<GameObject>(id);
     }
 }

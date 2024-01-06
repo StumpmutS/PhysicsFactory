@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public abstract class EnergyNode : MonoBehaviour, ISaveable<BuildingSaveData>, ILoadable<CurrentSaveData>
+public abstract class EnergyNode : MonoBehaviour, ISaveable<PlaceableSaveData>, ILoadable<CurrentSaveData>
 {
     [SerializeField] private CurrentContainer currentContainer;
     public CurrentContainer CurrentContainer => currentContainer;
@@ -42,7 +42,7 @@ public abstract class EnergyNode : MonoBehaviour, ISaveable<BuildingSaveData>, I
         to.AddCurrent(current);
     }
 
-    public void Save(BuildingSaveData data, AssetRefCollection assetRefCollection)
+    public void Save(PlaceableSaveData data, AssetRefCollection assetRefCollection)
     {
         data.CurrentSaveData ??= new CurrentSaveData();
         data.CurrentSaveData.ConnectionSaveData ??= new List<ConnectionSaveData>();

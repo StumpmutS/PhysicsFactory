@@ -14,7 +14,7 @@ namespace Utility.Scripts
         {
             if (mask == 0) return 0;
             
-            for (int i = 0; i < 31; i++)
+            for (int i = 0; i < 32; i++)
             {
                 if (((1 << i) & mask) != 0) return i;
             }

@@ -1,22 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    [SerializeField] private Vector3 minStartingForce;
-    [SerializeField] private Vector3 maxStartingForce;
-    
-    public void Spawn(GameObject gameObject)
+    public void Spawn<T>(T obj, Action<T> initCallback = null) where T : Component
     {
-        var spawned = Instantiate(gameObject, transform.position, transform.rotation);
-
-        if (spawned.TryGetComponent<Rigidbody>(out var rigidbody))
-        {
-
-            var right = transform.right * Random.Range(minStartingForce.x, maxStartingForce.x);
-            var up = transform.up * Random.Range(minStartingForce.y, maxStartingForce.y);
-            var forward = transform.forward * Random.Range(minStartingForce.z, maxStartingForce.z);
-
-            rigidbody.AddForce(right + up + forward, ForceMode.Impulse);
-        }
+        var instantiated = Instantiate(obj, transform.position, transform.rotation);
+        initCallback?.Invoke(instantiated);
+    }
+    
+    public void Spawn(GameObject obj, Action<GameObject> initCallback = null)
+    {
+        var instantiated = Instantiate(obj, transform.position, transform.rotation);
+        initCallback?.Invoke(instantiated);
     }
 }
