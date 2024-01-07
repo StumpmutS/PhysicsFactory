@@ -423,7 +423,19 @@ MonoBehaviour:
   parent: {fileID: 987316448567878255}
   OnSale:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4418704929865240508}
+        m_TargetAssemblyTypeName: CurrentContainer, Assembly-CSharp
+        m_MethodName: ShutDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4259659376039487675
 MonoBehaviour:
   m_ObjectHideFlags: 0

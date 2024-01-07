@@ -8,7 +8,7 @@ public class PlaceablePreview : MonoBehaviour
     [FormerlySerializedAs("buildingPrefab")] [SerializeField] protected PlaceableTransmitter placeablePrefab;
     [SerializeField] private List<PreviewRendererData> rendererInfo;
     [SerializeField] private ColorData previewColors;
-
+    
     public float Volume => transform.localScale.x * transform.localScale.y * transform.localScale.z;
 
     public void Place(PlacementData data)

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521fb53d2a5f4b7f8f3fb6193277787c, type: 3}
   m_Name: ExtractorSnappedRestriction
   m_EditorClassIdentifier: 
-  restrictionFailureType: 0
-  snapType: 0
+  restrictionFailureType: 8
+  snapType: 1
   snapLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   maxSearchDistance: 200

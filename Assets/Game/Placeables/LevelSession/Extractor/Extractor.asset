@@ -22,6 +22,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 95b3fc8ec20689a44874b80c8ce3f857, type: 2}
     - {fileID: 11400000, guid: 0aff65c953a9b284e880322a2d9ea435, type: 2}
     - {fileID: 11400000, guid: e83266295e5e6be45beedd5c7192b6f0, type: 2}
+    - {fileID: 11400000, guid: 9c4503a0eb8d7584791bee3483f1e88e, type: 2}
     previewPrefab: {fileID: 1581857822560718748, guid: ecc524b65bab5334e9e1b4d5f81ee0c7,
       type: 3}
     anchorCellAmount: 1
