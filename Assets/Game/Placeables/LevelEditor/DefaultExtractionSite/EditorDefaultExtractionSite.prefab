@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4655169532136330565}
+  - component: {fileID: 4313525692070939856}
   - component: {fileID: 8697519599239129569}
   - component: {fileID: 3843326247299402646}
-  - component: {fileID: 4313525692070939856}
   - component: {fileID: 5251771492013874163}
   - component: {fileID: 653012577891764138}
   m_Layer: 7
@@ -39,6 +39,19 @@ Transform:
   - {fileID: 1152282364483360865}
   m_Father: {fileID: 2929576665306600752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4313525692070939856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3207187296168272421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ebd7682fc6453b89ba5ebd124f8eb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainTransform: {fileID: 2929576665306600752}
 --- !u!114 &8697519599239129569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,22 +82,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66b199b763e46c48e30441ce3161cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  identifiableObject: {fileID: 4313525692070939856}
   OnInitialized:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4313525692070939856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3207187296168272421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03ebd7682fc6453b89ba5ebd124f8eb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5251771492013874163
 MonoBehaviour:
   m_ObjectHideFlags: 0

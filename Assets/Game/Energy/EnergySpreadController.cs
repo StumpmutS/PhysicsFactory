@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Utility.Scripts;
 
-public class EnergySpreadController : MonoBehaviour, ISaveable<PlaceableSaveData>, ILoadable<EnergySpreadSaveData>
+public class EnergySpreadController : MonoBehaviour, ISaveable<SaveableObjectSaveData>, ILoadable<EnergySpreadSaveData>
 {
     [FormerlySerializedAs("container")] [SerializeField] private EnergyStorage storage;
     [SerializeField] private List<Component> startingSpenders;
@@ -39,11 +39,13 @@ public class EnergySpreadController : MonoBehaviour, ISaveable<PlaceableSaveData
 
     private void HandleChargeChanged(float value)
     {
+        print($"charge changed {value} {gameObject.name}");
         Spenders.MaxTotal = value;
     }
 
     private void HandleSpendersChanged()
     {
+        print($"charge changed {gameObject.name}");
         foreach (var kvp in Spenders.Floats)
         {
             kvp.Key.SetEnergyLevel(kvp.Value.AsFloat());
@@ -56,7 +58,7 @@ public class EnergySpreadController : MonoBehaviour, ISaveable<PlaceableSaveData
         if (Spenders != null) Spenders.OnFloatsChanged -= HandleSpendersChanged;
     }
 
-    public void Save(PlaceableSaveData data, AssetRefCollection assetRefCollection)
+    public void Save(SaveableObjectSaveData data, AssetRefCollection assetRefCollection)
     {
         data.EnergySpreadSaveData ??= new EnergySpreadSaveData();
         data.EnergySpreadSaveData.MaxTotal = Spenders.MaxTotal;

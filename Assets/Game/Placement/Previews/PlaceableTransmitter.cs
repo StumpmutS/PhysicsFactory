@@ -4,7 +4,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.Serialization;
 using Utility.Scripts;
 
-public class PlaceableTransmitter : MonoBehaviour, ISaveable<LevelData>, ILoadable<PlacedSaveData>
+public class PlaceableTransmitter : MonoBehaviour, ISaveable<SaveableObjectSaveData>, ILoadable<PlacedSaveData>
 {
     [FormerlySerializedAs("prefabReference")] [SerializeField] private AssetReference sessionPrefabReference;
     [FormerlySerializedAs("optionalStartInfo")] [SerializeField] private PlacementData optionalStartData;
@@ -26,19 +26,14 @@ public class PlaceableTransmitter : MonoBehaviour, ISaveable<LevelData>, ILoadab
         placeable.Init(data);
     }
 
-    public void Save(LevelData data, AssetRefCollection assetRefCollection)
+    public void Save(SaveableObjectSaveData data, AssetRefCollection assetRefCollection)
     {
-        var placeableSaveData = new PlaceableSaveData();
-        SaveData(placeableSaveData, assetRefCollection);
-        SaveHelpers.GroupSave(GetComponentsInChildren<ISaveable<PlaceableSaveData>>(), placeableSaveData, assetRefCollection);
-        
-        data.PlaceableSaveData ??= new List<PlaceableSaveData>();
-        data.PlaceableSaveData.Add(placeableSaveData);
+        SavePrefabData(data, assetRefCollection);
     }
 
-    protected virtual void SaveData(PlaceableSaveData placeableSaveData, AssetRefCollection assetRefCollection)
+    protected virtual void SavePrefabData(SaveableObjectSaveData saveableObjectSaveData, AssetRefCollection assetRefCollection)
     {
-        placeableSaveData.SessionPlaceablePrefabReferenceId = assetRefCollection.Add(sessionPrefabReference);
+        saveableObjectSaveData.PrefabReferenceIds[EPrefabSaveType.Session] = assetRefCollection.Add(sessionPrefabReference);
     }
 
     public LoadingInfo Load(PlacedSaveData data, AssetRefCollection _)

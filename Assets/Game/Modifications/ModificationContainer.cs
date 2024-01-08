@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class ModificationContainer : MonoBehaviour, ISaveable<PlaceableSaveData>, ILoadable<ModificationSaveData>
+public class ModificationContainer : MonoBehaviour, ISaveable<SaveableObjectSaveData>, ILoadable<ModificationSaveData>
 {
     [SerializeField] private Transform transformContainer;
     [FormerlySerializedAs("modifiedBuilding")] [SerializeField] private Placeable modifiedPlaceable;
@@ -76,7 +76,7 @@ public class ModificationContainer : MonoBehaviour, ISaveable<PlaceableSaveData>
         }
     }
 
-    public void Save(PlaceableSaveData data, AssetRefCollection assetRefCollection)
+    public void Save(SaveableObjectSaveData data, AssetRefCollection assetRefCollection)
     {
         data.ModificationSaveData ??= new ModificationSaveData();
         data.ModificationSaveData.ActiveModificationIndexes =

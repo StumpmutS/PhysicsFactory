@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public class GeneratorPersistenceHandler : MonoBehaviour, ISaveable<PlaceableSaveData>, ILoadable<GeneratorSaveData>
+public class GeneratorPersistenceHandler : MonoBehaviour, ISaveable<SaveableObjectSaveData>, ILoadable<GeneratorSaveData>
 {
     [SerializeField] private EnergyNodeAutoConnector autoConnector;
     [SerializeField] private EnergyNodeFinder finder;
     
-    public void Save(PlaceableSaveData data, AssetRefCollection assetRefCollection)
+    public void Save(SaveableObjectSaveData data, AssetRefCollection assetRefCollection)
     {
         data.GeneratorSaveData ??= new GeneratorSaveData();
         data.GeneratorSaveData.Locked = autoConnector.Locked;

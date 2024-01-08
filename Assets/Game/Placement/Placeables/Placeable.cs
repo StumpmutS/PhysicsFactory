@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class Placeable : MonoBehaviour, ISellable, ISaveable<PlaceableSaveData>
+public class Placeable : MonoBehaviour, ISellable, ISaveable<SaveableObjectSaveData>
 {
-    [SerializeField] private IdentifiableObject identifiableObject;
-    
     public PlacedData Data { get; private set; }
     public float SalePrice => SupplyCalculator.CalculatePrice(Data.Price, this, Data.SaleMultiplier);
 
@@ -27,10 +25,8 @@ public class Placeable : MonoBehaviour, ISellable, ISaveable<PlaceableSaveData>
         PlaceableManager.Instance.RemovePlaceable(this);
     }
 
-    public void Save(PlaceableSaveData data, AssetRefCollection assetRefCollection)
+    public void Save(SaveableObjectSaveData data, AssetRefCollection assetRefCollection)
     {
         data.PlacedSaveData = new PlacedSaveData(Data);
-        data.IdentifiableObjectSaveData ??= new IdentifiableObjectSaveData(-1);
-        identifiableObject.Save(data.IdentifiableObjectSaveData, assetRefCollection);
     }
 }

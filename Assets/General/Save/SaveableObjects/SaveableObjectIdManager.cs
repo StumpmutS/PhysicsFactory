@@ -2,12 +2,12 @@
 using Utility.Scripts;
 using Utility.Scripts.Extensions;
 
-public class ObjectIdManager : Singleton<ObjectIdManager>
+public class SaveableObjectIdManager : Singleton<SaveableObjectIdManager>
 {
-    private HashSet<IdentifiableObject> _objects = new();
-    private List<IdentifiableObject> _indexedObjects = new();
+    private HashSet<SaveableObject> _objects = new();
+    private List<SaveableObject> _indexedObjects = new();
 
-    public int AddObject(IdentifiableObject obj)
+    public int AddObject(SaveableObject obj)
     {
         if (!_objects.Add(obj)) return -1;
 
@@ -23,19 +23,19 @@ public class ObjectIdManager : Singleton<ObjectIdManager>
         return _indexedObjects.Count - 1;
     }
 
-    public void IdentifyObject(IdentifiableObject obj, int id)
+    public void IdentifyObject(SaveableObject obj, int id)
     {
         if (_indexedObjects.Count <= id) _indexedObjects.Equalize(id + 1);
         _indexedObjects[id] = obj;
     }
     
-    public void RemoveObject(IdentifiableObject identifiableObject)
+    public void RemoveObject(SaveableObject saveableObject)
     {
-        _objects.Remove(identifiableObject);
-        _indexedObjects.Remove(identifiableObject);
+        _objects.Remove(saveableObject);
+        _indexedObjects.Remove(saveableObject);
     }
 
-    public bool TryGet(int id, out IdentifiableObject obj)
+    public bool TryGet(int id, out SaveableObject obj)
     {
         if (id > -1 && id < _indexedObjects.Count)
         {

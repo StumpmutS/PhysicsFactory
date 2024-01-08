@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-public class Upgradeable : MonoBehaviour, IRefreshable, ISellable, ISaveable<PlaceableSaveData>, ILoadable<UpgradeSaveData>
+public class Upgradeable : MonoBehaviour, IRefreshable, ISellable, ISaveable<SaveableObjectSaveData>, ILoadable<UpgradeSaveData>
 {
     [SerializeField] private List<UpgradeData> upgrades;
     [FormerlySerializedAs("building")] [SerializeField] private Placeable placeable;
@@ -64,7 +64,7 @@ public class Upgradeable : MonoBehaviour, IRefreshable, ISellable, ISaveable<Pla
         return new PlaceableRestrictionData(placeable, upgrade.Price, upgrade.SaleMultiplier);
     }
 
-    public void Save(PlaceableSaveData data, AssetRefCollection _)
+    public void Save(SaveableObjectSaveData data, AssetRefCollection _)
     {
         data.UpgradeSaveData = new UpgradeSaveData(Level);
     }

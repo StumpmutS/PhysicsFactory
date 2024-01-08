@@ -5,9 +5,9 @@ public class EditorPlaceableTransmitter : PlaceableTransmitter
 {
     [SerializeField] private AssetReference levelEditorPrefabReference;
     
-    protected override void SaveData(PlaceableSaveData data, AssetRefCollection assetRefCollection)
+    protected override void SavePrefabData(SaveableObjectSaveData data, AssetRefCollection assetRefCollection)
     {
-        base.SaveData(data, assetRefCollection);
-        data.EditorPlaceablePrefabReferenceId = assetRefCollection.Add(levelEditorPrefabReference);
+        base.SavePrefabData(data, assetRefCollection);
+        data.PrefabReferenceIds[EPrefabSaveType.Editor] = assetRefCollection.Add(levelEditorPrefabReference);
     }
 }

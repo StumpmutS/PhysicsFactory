@@ -15,25 +15,17 @@ MonoBehaviour:
   LevelData:
     LevelInfo:
       SerializableGuid:
-        stringGuid: 2d83a125-c1ce-4272-9a81-0a329289105b
+        stringGuid: 0c8f1494-39ca-4be0-95a6-802413cfb767
       Name: Level 1
       SerializableLastUpdatedTimeStamp:
-        stringDate: 01/05/2024 05:04:57
+        stringDate: 01/07/2024 17:57:37
     AssetRefCollection:
       references:
-      - m_AssetGUID: b6a073ae7837fc646a7088a63b7023da
+      - m_AssetGUID: 7be1b72d585c53947b90658d2c0c7538
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
-      - m_AssetGUID: 8eeb3e60c071cde4dae8cf02a5c50e13
-        m_SubObjectName: 
-        m_SubObjectType: 
-        m_EditorAssetChanged: 0
-      - m_AssetGUID: 89b24cf42c7da6a43a2eb67baa6e9dd2
-        m_SubObjectName: 
-        m_SubObjectType: 
-        m_EditorAssetChanged: 0
-      - m_AssetGUID: 8a5a49d3dd4e58a4ea9fbbf2e405f0e3
+      - m_AssetGUID: 1d84f788566d2db4393ce03a92c7c765
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
@@ -45,53 +37,29 @@ MonoBehaviour:
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
-      - m_AssetGUID: 6d15519e89b73894588b25cbdb3b2995
+      - m_AssetGUID: b6a073ae7837fc646a7088a63b7023da
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
-      - m_AssetGUID: 7be1b72d585c53947b90658d2c0c7538
+      - m_AssetGUID: 8eeb3e60c071cde4dae8cf02a5c50e13
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
-      - m_AssetGUID: 1d84f788566d2db4393ce03a92c7c765
+      - m_AssetGUID: 8a5a49d3dd4e58a4ea9fbbf2e405f0e3
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 89b24cf42c7da6a43a2eb67baa6e9dd2
         m_SubObjectName: 
         m_SubObjectType: 
         m_EditorAssetChanged: 0
     SupplyData:
-      Supply: 400
-    PlaceableSaveData:
-    - IdentifiableObjectSaveData:
-        Id: 1
-      EditorPlaceablePrefabReferenceId: 5
-      SessionPlaceablePrefabReferenceId: 4
-      PlacedSaveData:
-        data:
-          label: Wall
-          volume: 12.000005
-          price: 0
-          saleMultiplier: 0
-          transformData:
-            WorldPosition: {x: 0, y: 1, z: 5.5}
-            WorldRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-            LocalScale: {x: 3.0000005, y: 2, z: 2.0000005}
-      UpgradeSaveData:
-        Level: 0
-      ModificationSaveData:
-        ActiveModificationIndexes: 06000000
-      GeneratorSaveData:
-        Locked: 0
-        Range: 0
-      CurrentSaveData:
-        ConnectionSaveData: []
-      EnergySpreadSaveData:
-        MaxTotal: 0
-        Spread:
-          keys: []
-          values: []
-    - IdentifiableObjectSaveData:
-        Id: 0
-      EditorPlaceablePrefabReferenceId: 8
-      SessionPlaceablePrefabReferenceId: 7
+      Supply: 200
+    SaveableObjectSaveData:
+    - Id: 0
+      PrefabReferenceIds:
+        keys: 0000000001000000
+        values: 0000000001000000
       PlacedSaveData:
         data:
           label: Default Extraction Site
@@ -99,8 +67,8 @@ MonoBehaviour:
           price: 0
           saleMultiplier: 0
           transformData:
-            WorldPosition: {x: 0, y: 1, z: 8}
-            WorldRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+            WorldPosition: {x: 0, y: 0, z: 11}
+            WorldRotation: {x: 0, y: -0.7071068, z: -0, w: 0.7071068}
             LocalScale: {x: 2, y: 2, z: 2.0000002}
       UpgradeSaveData:
         Level: 0
@@ -116,8 +84,40 @@ MonoBehaviour:
         Spread:
           keys: []
           values: []
+      ExtractorSaveData:
+        ExtractableId: 0
+    - Id: 1
+      PrefabReferenceIds:
+        keys: 0000000001000000
+        values: 0200000003000000
+      PlacedSaveData:
+        data:
+          label: Wall
+          volume: 4.0000005
+          price: 0
+          saleMultiplier: 0
+          transformData:
+            WorldPosition: {x: 0, y: 0, z: 7.5}
+            WorldRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+            LocalScale: {x: 2, y: 1.0000001, z: 2}
+      UpgradeSaveData:
+        Level: 0
+      ModificationSaveData:
+        ActiveModificationIndexes: 
+      GeneratorSaveData:
+        Locked: 0
+        Range: 0
+      CurrentSaveData:
+        ConnectionSaveData: []
+      EnergySpreadSaveData:
+        MaxTotal: 0
+        Spread:
+          keys: []
+          values: []
+      ExtractorSaveData:
+        ExtractableId: 0
     PlacementSaveData:
-      PlacementAssetRefIds: 00000000010000000200000003000000
+      PlacementAssetRefIds: 04000000050000000600000007000000
     Options:
       keys: []
       values: []

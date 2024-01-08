@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public abstract class EnergyNode : MonoBehaviour, ISaveable<PlaceableSaveData>, ILoadable<CurrentSaveData>
+public abstract class EnergyNode : MonoBehaviour, ISaveable<SaveableObjectSaveData>, ILoadable<CurrentSaveData>
 {
     [SerializeField] private CurrentContainer currentContainer;
     public CurrentContainer CurrentContainer => currentContainer;
@@ -42,14 +42,14 @@ public abstract class EnergyNode : MonoBehaviour, ISaveable<PlaceableSaveData>, 
         to.AddCurrent(current);
     }
 
-    public void Save(PlaceableSaveData data, AssetRefCollection assetRefCollection)
+    public void Save(SaveableObjectSaveData data, AssetRefCollection assetRefCollection)
     {
         data.CurrentSaveData ??= new CurrentSaveData();
         data.CurrentSaveData.ConnectionSaveData ??= new List<ConnectionSaveData>();
         foreach (var current in CurrentContainer.Currents)
         {
-            if (!current.Sender.TryGetComponent<IdentifiableObject>(out var fromObj) ||
-                !current.Receiver.TryGetComponent<IdentifiableObject>(out var toObj)) continue;
+            if (!current.Sender.TryGetComponent<SaveableObject>(out var fromObj) ||
+                !current.Receiver.TryGetComponent<SaveableObject>(out var toObj)) continue;
             data.CurrentSaveData.ConnectionSaveData.Add(new ConnectionSaveData(fromObj.Id, toObj.Id));
         }
     }
@@ -58,9 +58,9 @@ public abstract class EnergyNode : MonoBehaviour, ISaveable<PlaceableSaveData>, 
     {
         foreach (var connectionSaveData in data.ConnectionSaveData)
         {
-            if (!ObjectIdManager.Instance.TryGet(connectionSaveData.FromId, out var fromObj) ||
+            if (!SaveableObjectIdManager.Instance.TryGet(connectionSaveData.FromId, out var fromObj) ||
                 !fromObj.TryGetComponent<CurrentContainer>(out var fromContainer) ||
-                !ObjectIdManager.Instance.TryGet(connectionSaveData.ToId, out var toObj) ||
+                !SaveableObjectIdManager.Instance.TryGet(connectionSaveData.ToId, out var toObj) ||
                 !toObj.TryGetComponent<CurrentContainer>(out var toContainer)) continue;
             
             InitiateCurrent(fromContainer, toContainer);
