@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7371455062003078594}
   - component: {fileID: 4963330810019638772}
   - component: {fileID: 2050508950332341420}
-  - component: {fileID: 783665907657724048}
+  - component: {fileID: 7309004248170614566}
   m_Layer: 0
   m_Name: Toggle
   m_TagString: Untagged
@@ -191,7 +191,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &783665907657724048
+--- !u!114 &7309004248170614566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,7 +206,7 @@ MonoBehaviour:
   OnPointerEnterDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7411141200474761787}
+      - m_Target: {fileID: 3516326810447537825}
         m_TargetAssemblyTypeName: SpringController, Assembly-CSharp
         m_MethodName: SetTarget
         m_Mode: 4
@@ -221,7 +221,7 @@ MonoBehaviour:
   OnPointerEnterUp:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7411141200474761787}
+      - m_Target: {fileID: 3516326810447537825}
         m_TargetAssemblyTypeName: SpringController, Assembly-CSharp
         m_MethodName: SetTarget
         m_Mode: 4
@@ -236,7 +236,7 @@ MonoBehaviour:
   OnPointerExitDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7411141200474761787}
+      - m_Target: {fileID: 3516326810447537825}
         m_TargetAssemblyTypeName: SpringController, Assembly-CSharp
         m_MethodName: SetTarget
         m_Mode: 4
@@ -251,7 +251,7 @@ MonoBehaviour:
   OnPointerExitUp:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7411141200474761787}
+      - m_Target: {fileID: 3516326810447537825}
         m_TargetAssemblyTypeName: SpringController, Assembly-CSharp
         m_MethodName: SetTarget
         m_Mode: 4
@@ -266,7 +266,7 @@ MonoBehaviour:
   OnPointerDownEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7411141200474761787}
+      - m_Target: {fileID: 3516326810447537825}
         m_TargetAssemblyTypeName: SpringController, Assembly-CSharp
         m_MethodName: SetTarget
         m_Mode: 4
@@ -284,7 +284,7 @@ MonoBehaviour:
   OnPointerUpEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7411141200474761787}
+      - m_Target: {fileID: 3516326810447537825}
         m_TargetAssemblyTypeName: SpringController, Assembly-CSharp
         m_MethodName: SetTarget
         m_Mode: 4
@@ -575,29 +575,14 @@ PrefabInstance:
       propertyPath: OnSpringValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1651994985631347916, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651994985631347916, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651994985631347916, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651994985631347916, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2688284063396857271, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
         type: 3}
       propertyPath: OnSpringValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5029541526327376650, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
+        type: 3}
+      propertyPath: OnSpringValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5254047659690494650, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
@@ -646,11 +631,6 @@ PrefabInstance:
       propertyPath: OnDisabled.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 8031889766063037998, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
-        type: 3}
-      propertyPath: OnDisabled.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 7411141200474761787}
     - target: {fileID: 8031889766063037998, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
         type: 3}
       propertyPath: OnDisabled.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -823,6 +803,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8764855c3d7bb4e44802797d56e0acec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3516326810447537825 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5029541526327376650, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8430744843037826475}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71fabbdcfc5d6c849bcd75dc38b27389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4461419364212201233 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5254047659690494650, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
@@ -833,17 +825,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7411141200474761787 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1430363900615243664, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
-    type: 3}
-  m_PrefabInstance: {fileID: 8430744843037826475}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71fabbdcfc5d6c849bcd75dc38b27389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

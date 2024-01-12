@@ -14,7 +14,7 @@ public class RectOffsetSpringListener : Vector4SpringListener
 
     protected override void ChangeValue(Vector4 value)
     {
-        Vector4.Scale(value, new Vector4(1, 1, -1, -1));
+        value = Vector4.Scale(value, new Vector4(1, 1, -1, -1));
         targetRect.SetOffset(value);
     }
 }

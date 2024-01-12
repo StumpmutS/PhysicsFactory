@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7973089614690218544}
   - component: {fileID: 1742082066703294635}
   - component: {fileID: 5299037744938446934}
-  - component: {fileID: 4839519030467819610}
+  - component: {fileID: 2010009542848745032}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -107,7 +107,7 @@ MonoBehaviour:
   OnControlRightClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4839519030467819610
+--- !u!114 &2010009542848745032
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,7 +122,7 @@ MonoBehaviour:
   OnPointerEnterDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6464461252174855199}
+      - m_Target: {fileID: 1126824043149766789}
         m_TargetAssemblyTypeName: SpringController, Assembly-CSharp
         m_MethodName: SetTarget
         m_Mode: 4
@@ -137,7 +137,7 @@ MonoBehaviour:
   OnPointerEnterUp:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6464461252174855199}
+      - m_Target: {fileID: 1126824043149766789}
         m_TargetAssemblyTypeName: SpringController, Assembly-CSharp
         m_MethodName: SetTarget
         m_Mode: 4
@@ -152,7 +152,7 @@ MonoBehaviour:
   OnPointerExitDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6464461252174855199}
+      - m_Target: {fileID: 1126824043149766789}
         m_TargetAssemblyTypeName: SpringController, Assembly-CSharp
         m_MethodName: SetTarget
         m_Mode: 4
@@ -167,7 +167,7 @@ MonoBehaviour:
   OnPointerExitUp:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6464461252174855199}
+      - m_Target: {fileID: 1126824043149766789}
         m_TargetAssemblyTypeName: SpringController, Assembly-CSharp
         m_MethodName: SetTarget
         m_Mode: 4
@@ -182,7 +182,7 @@ MonoBehaviour:
   OnPointerDownEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6464461252174855199}
+      - m_Target: {fileID: 1126824043149766789}
         m_TargetAssemblyTypeName: SpringController, Assembly-CSharp
         m_MethodName: SetTarget
         m_Mode: 4
@@ -200,7 +200,7 @@ MonoBehaviour:
   OnPointerUpEntered:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6464461252174855199}
+      - m_Target: {fileID: 1126824043149766789}
         m_TargetAssemblyTypeName: SpringController, Assembly-CSharp
         m_MethodName: SetTarget
         m_Mode: 4
@@ -497,6 +497,18 @@ PrefabInstance:
       addedObject: {fileID: 7874829251638144767}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ac2e3a8796bfc9498e023acf1a7199f, type: 3}
+--- !u!114 &1126824043149766789 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5029541526327376650, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
+    type: 3}
+  m_PrefabInstance: {fileID: 5363731225449991055}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71fabbdcfc5d6c849bcd75dc38b27389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2074798702579592039 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6243369300337139944, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
@@ -509,15 +521,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5363731225449991055}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6464461252174855199 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1430363900615243664, guid: 7ac2e3a8796bfc9498e023acf1a7199f,
-    type: 3}
-  m_PrefabInstance: {fileID: 5363731225449991055}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71fabbdcfc5d6c849bcd75dc38b27389, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
