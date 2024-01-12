@@ -17,14 +17,21 @@ namespace Utility.Editor
                 if (target == null) continue;
             
                 var type = target.GetType();
-                foreach (var field in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+                while (type != null)
                 {
-                    if (field.Name == name)
+                    foreach (var field in type.GetFields(BindingFlags.Public | BindingFlags.NonPublic |
+                                                         BindingFlags.Instance))
                     {
-                        newTarget = target;
-                        return field;
+                        if (field.Name == name)
+                        {
+                            newTarget = target;
+                            return field;
+                        }
+
+                        foundTargets.Add(field.GetValue(target));
                     }
-                    foundTargets.Add(field.GetValue(target));
+
+                    type = type.BaseType;
                 }
             }
 

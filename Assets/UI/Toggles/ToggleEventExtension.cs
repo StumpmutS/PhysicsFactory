@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -6,8 +7,8 @@ public class ToggleEventExtension : MonoBehaviour
 {
     [SerializeField] private Toggle toggle;
 
-    public UnityEvent OnToggleOn;
-    public UnityEvent OnToggleOff;
+    public UnityEvent OnToggleOn = new();
+    public UnityEvent OnToggleOff = new();
     
     private void Awake()
     {

@@ -8,6 +8,12 @@ public class FloatSelectorTextListener : SignedFloatSelectorListener
     
     protected override void UpdateValue(SignedFloat value)
     {
+        if (text == null)
+        {
+            Debug.LogWarning($"Text has not been set in FloatSelectorTextListener on gameobject: {gameObject.name}");
+            return;
+        }
+        
         text.text = value.Value.ToString("F2");
     }
 }

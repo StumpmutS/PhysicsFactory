@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ToggleColors
   m_EditorClassIdentifier: 
   colors:
-  - {r: 0.25590363, g: 0.2961338, b: 0.3584906, a: 1}
-  - {r: 0, g: 0.39215687, b: 1, a: 1}
+  - {r: 0.69411767, g: 0.38039216, b: 0, a: 1}
+  - {r: 0.8509804, g: 0.53333336, b: 0, a: 1}

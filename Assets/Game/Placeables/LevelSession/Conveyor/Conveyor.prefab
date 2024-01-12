@@ -438,7 +438,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4418704929865240508}
         m_TargetAssemblyTypeName: CurrentContainer, Assembly-CSharp
-        m_MethodName: ShutDown
+        m_MethodName: ShutDownCurrents
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

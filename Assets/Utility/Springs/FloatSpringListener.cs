@@ -6,10 +6,11 @@ public abstract class FloatSpringListener : SpringListener
 
     private float _origValue;
     
-    private void Start()
+    private void Awake()
     {
-        _origValue = GetOrig();
+        _origValue = useSetValue ? origValue : GetOrig();
         if (useSetValue) return;
+        
         minValue = _origValue * minMultiplier;
         maxValue = _origValue * maxMultiplier;
     }
@@ -25,6 +26,9 @@ public abstract class FloatSpringListener : SpringListener
                 break;
             case < 0:
                 ChangeValue(_origValue + (_origValue - minValue) * amount, target);
+                break;
+            case 0:
+                ChangeValue(_origValue, target);
                 break;
         }
     }

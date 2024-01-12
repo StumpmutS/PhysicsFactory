@@ -13,6 +13,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: LockToggle
       objectReference: {fileID: 0}
+    - target: {fileID: 5071444044373881790, guid: 40ea79de0fa109449bf0501c760d74ef,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a3c64059e9c28034da12ed1fb7779cee,
+        type: 3}
+    - target: {fileID: 5071444044373881790, guid: 40ea79de0fa109449bf0501c760d74ef,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5071444044373881790, guid: 40ea79de0fa109449bf0501c760d74ef,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5071444044373881790, guid: 40ea79de0fa109449bf0501c760d74ef,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5071444044373881790, guid: 40ea79de0fa109449bf0501c760d74ef,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5885630998812757425, guid: 40ea79de0fa109449bf0501c760d74ef,
         type: 3}
       propertyPath: m_Sprite
@@ -160,18 +186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7644927736122497183 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5885630998812757425, guid: 40ea79de0fa109449bf0501c760d74ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 4302568704113104174}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8844481224051925650 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4686034584803342268, guid: 40ea79de0fa109449bf0501c760d74ef,
@@ -191,6 +205,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toggle: {fileID: 3434147456740525637}
-  image: {fileID: 7644927736122497183}
+  image: {fileID: 9067056726367479440}
   toggledSprite: {fileID: 21300000, guid: a3c64059e9c28034da12ed1fb7779cee, type: 3}
   untoggledSprite: {fileID: 21300000, guid: 4d317c54440e8a74a8154218ef00496e, type: 3}
+--- !u!114 &9067056726367479440 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5071444044373881790, guid: 40ea79de0fa109449bf0501c760d74ef,
+    type: 3}
+  m_PrefabInstance: {fileID: 4302568704113104174}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

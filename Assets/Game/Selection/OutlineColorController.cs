@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class OutlineColorController : MonoBehaviour
 {
-    [SerializeField] private ColorData colors;
+    [SerializeField] private ColorSO colors;
     [SerializeField] private Outline outline;
     [SerializeField] private Selectable selectable;
 

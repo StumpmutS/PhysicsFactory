@@ -33,17 +33,12 @@ public class CurrentContainer : MonoBehaviour
         OnCurrentsChanged.Invoke();
     }
 
-    private void ShutDownCurrents()
+    public void ShutDownCurrents()
     {
         var currentsCopy = Currents.ToList();
         foreach (var current in currentsCopy)
         {
             current.ShutDown();
         }
-    }
-
-    private void OnDestroy()
-    {
-        ShutDownCurrents();
     }
 }

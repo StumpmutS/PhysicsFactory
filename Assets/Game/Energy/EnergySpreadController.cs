@@ -39,13 +39,11 @@ public class EnergySpreadController : MonoBehaviour, ISaveable<SaveableObjectSav
 
     private void HandleChargeChanged(float value)
     {
-        print($"charge changed {value} {gameObject.name}");
         Spenders.MaxTotal = value;
     }
 
     private void HandleSpendersChanged()
     {
-        print($"charge changed {gameObject.name}");
         foreach (var kvp in Spenders.Floats)
         {
             kvp.Key.SetEnergyLevel(kvp.Value.AsFloat());

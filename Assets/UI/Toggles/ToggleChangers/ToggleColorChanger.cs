@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class ToggleColorChanger : ToggleChanger
 {
     [SerializeField] private Image targetImage;
-    [SerializeField] private ColorData colors;
+    [SerializeField] private ColorSO colors;
 
     protected override void ChangeValue(bool value)
     {

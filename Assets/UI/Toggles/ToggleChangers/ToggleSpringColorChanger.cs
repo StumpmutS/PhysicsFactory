@@ -3,7 +3,7 @@
 public class ToggleSpringColorChanger : ToggleChanger
 {
     [SerializeField] private ColorSpringListener colorSpring;
-    [SerializeField] private ColorData colors;
+    [SerializeField] private ColorSO colors;
 
     protected override void ChangeValue(bool value)
     {

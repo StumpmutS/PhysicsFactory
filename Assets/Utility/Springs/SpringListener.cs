@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(SpringController))]
 public abstract class SpringListener : MonoBehaviour
 {
     [SerializeField] protected bool useSetValue;

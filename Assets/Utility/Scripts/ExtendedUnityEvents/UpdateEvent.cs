@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Utility.Scripts
 {
     public class UpdateEvent : MonoBehaviour
     {
-        public UnityEvent OnUpdate;
+        public UnityEvent OnUpdate = new();
         
         private void Update()
         {

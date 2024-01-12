@@ -1,23 +1,38 @@
+using System;
 using UnityEngine;
 
 public abstract class ColorSpringListener : SpringListener
 {
-    [SerializeField, ShowIf(nameof(useSetValue), true)] private Color minValue, origValue, maxValue;
-    
-    private Color _origValue;
+    [SerializeField, ShowIf(nameof(useSetValue), true, 3)]
+    private ColorSelectionWrapper startingMinValue;
+    [SerializeField, ShowIf(nameof(useSetValue), true, 3)]
+    private ColorSelectionWrapper startingOrigValue;
+    [SerializeField, ShowIf(nameof(useSetValue), true, 3)]
+    private ColorSelectionWrapper startingMaxValue;
+
+    private Color _minValue, _origValue, _maxValue;
     
     private void Awake()
     {
-        _origValue = useSetValue ? origValue : GetOrig();
-        UpdateValues();
+        if (useSetValue)
+        {
+            _minValue = startingMinValue.Color; 
+            _origValue = startingOrigValue.Color;
+            _maxValue = startingMaxValue.Color;
+        }
+        else
+        {
+            _origValue = GetOrig();
+            UpdateValues();
+        }
     }
 
     private void UpdateValues()
     {
         if (useSetValue) return;
 
-        minValue = _origValue * minMultiplier;
-        maxValue = _origValue * maxMultiplier;
+        _minValue = _origValue * minMultiplier;
+        _maxValue = _origValue * maxMultiplier;
     }
 
     protected abstract Color GetOrig();
@@ -33,10 +48,10 @@ public abstract class ColorSpringListener : SpringListener
         switch (amount)
         {
             case > 0:
-                ChangeValue(_origValue + (maxValue - _origValue) * amount);
+                ChangeValue(_origValue + (_maxValue - _origValue) * amount);
                 break;
             case < 0:
-                ChangeValue(_origValue + (_origValue - minValue) * amount);
+                ChangeValue(_origValue + (_origValue - _minValue) * amount);
                 break;
             default:
                 ChangeValue(_origValue);
@@ -48,6 +63,12 @@ public abstract class ColorSpringListener : SpringListener
 
     public void SetMaxColor(Color color)
     {
-        maxValue = color;
+        _maxValue = color;
     }
+}
+
+[Serializable]
+public class IntWrapper
+{
+    public int inte;
 }

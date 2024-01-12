@@ -120,7 +120,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NebulaBlockingIntensity: 0.5
+    - _NebulaBlockingIntensity: 1.1
     - _NebulaIntensity: 0.5
     - _NebulaVariation: 3
     - _OcclusionStrength: 1
@@ -133,10 +133,10 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _StarAmount: 70
-    - _StarBlockingIntensity: 2
+    - _StarAmount: 100
+    - _StarBlockingIntensity: 3
     - _StarBlockingScale: 3
-    - _StarSize: 200
+    - _StarSize: 80
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1

@@ -2,7 +2,6 @@ using System;
 using FMPUtils.Extensions;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class SpringController : MonoBehaviour
 {
@@ -11,28 +10,47 @@ public class SpringController : MonoBehaviour
     [SerializeField] private float frequency;
     [SerializeField] private float damping;
 
-    private bool _targetSet;
+    private bool _initialized;
     private float _targetValue;
+    private float TargetValue
+    {
+        get
+        {
+            if (!_initialized) Init();
+            return _targetValue;
+        }
+        set
+        {
+            if (!_initialized) Init();
+            _targetValue = value;
+        }
+    }
     private float _currentValue;
     private float _currentVelocity;
     private bool _pressed;
 
-    public UnityEvent<float, float> OnSpringValueChanged;
+    public UnityEvent<float, float> OnSpringValueChanged = new();
 
     private void Awake()
     {
-        if (!_targetSet) Init();
+        foreach (var listener in GetComponents<SpringListener>())
+        {
+            OnSpringValueChanged.AddListener(listener.HandleSpringValue);
+        }
+        
+        if (!_initialized) Init();
     }
 
     private void Init()
     {
         _targetValue = startValue;
         _currentValue = startValue;
+        _initialized = true;
     }
 
     private void Start()
     {
-        OnSpringValueChanged.Invoke(_currentValue, _targetValue);
+        OnSpringValueChanged.Invoke(_currentValue, TargetValue);
     }
 
     public void Update()
@@ -49,11 +67,13 @@ public class SpringController : MonoBehaviour
 
     public void SetTarget(float value)
     {
-        if (!_targetSet)
-        {
-            Init();
-            _targetSet = true;
-        }
-        _targetValue = Mathf.Clamp(value, -1, 1);
+        TargetValue = Mathf.Clamp(value, -1, 1);
+    }
+
+    public void SetTargetAndValue(float value)
+    {
+        SetTarget(value);
+        _currentValue = value;
+        OnSpringValueChanged.Invoke(_currentValue, TargetValue);
     }
 }
