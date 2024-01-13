@@ -15,6 +15,16 @@ namespace Utility.Scripts
 
         private Dictionary<TKey, TValue> _dictionary = new();
         private bool _valid;
+        private bool Valid
+        {
+            get => _valid;
+            set
+            {
+                if (_valid == value) return;
+                if (!value) Debug.LogError("Dictionary has duplicate keys");
+                _valid = value;
+            }
+        }
 
         public TValue this[TKey key]
         {
@@ -37,7 +47,7 @@ namespace Utility.Scripts
         public void OnBeforeSerialize()
         {
             Validate();
-            if (!_valid) return;
+            if (!Valid) return;
             
             keys.Clear();
             values.Clear();
@@ -49,7 +59,7 @@ namespace Utility.Scripts
         public void OnAfterDeserialize()
         {
             Validate();
-            if (!_valid) return;
+            if (!Valid) return;
             
             Clear();
 
@@ -63,12 +73,11 @@ namespace Utility.Scripts
         {
             if (keys.Count != keys.Distinct().Count())
             {
-                Debug.LogError("Dictionary has duplicate keys");
-                _valid = false;
+                Valid = false;
                 return;
             }
 
-            _valid = true;
+            Valid = true;
         }
 
         #region IDictionary Implementation
