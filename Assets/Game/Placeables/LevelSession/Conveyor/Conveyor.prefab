@@ -55,7 +55,11 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   optionalStartData:
-    label: 
+    context:
+      Label: 
+      Summary: 
+      KeyCombinations: []
+      ContextReferences: []
     placementProcessors: []
     placementRestrictions: []
     previewPrefab: {fileID: 0}
@@ -169,6 +173,8 @@ GameObject:
   - component: {fileID: 4306624479307438632}
   - component: {fileID: 8880628289592055204}
   - component: {fileID: 3687587335354862021}
+  - component: {fileID: 5046291421389401347}
+  - component: {fileID: 4431729348424794642}
   m_Layer: 7
   m_Name: ConveyorMain
   m_TagString: Untagged
@@ -310,9 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696147a6c58c40b19beee7f34039e4a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spenderInfo:
-    Label: Conveyor
-  OnPowerChanged:
+  contextService: {fileID: 5046291421389401347}
+  OnChargeChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4720149657636638283}
@@ -521,6 +526,51 @@ MonoBehaviour:
   currentContainer: {fileID: 4418704929865240508}
   currentVisualsPrefab: {fileID: 2127817943294552290, guid: eb8fabe301f827148879ab2362dcf7cd,
     type: 3}
+--- !u!114 &5046291421389401347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5614799982898544609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3e322e1fa14754830c693e736063d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  startingData:
+    Label: Conveyor
+    Summary: 'Conveys things
+
+      {0}'
+    KeyCombinations:
+    - keyCodeCombination:
+      - keyCode: 308
+        optional: 0
+      - keyCode: 119
+        optional: 0
+      description: For testing
+    ContextReferences:
+    - {fileID: 4431729348424794642}
+--- !u!114 &4431729348424794642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5614799982898544609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c8b7b85d74d496baad7437d5b3652be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  storage: {fileID: 197613538122375830}
 --- !u!1 &6893692433659650155
 GameObject:
   m_ObjectHideFlags: 0

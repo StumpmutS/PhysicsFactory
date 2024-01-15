@@ -6,12 +6,12 @@ public class IconData
 {
     [SerializeField] private Sprite sprite;
     public Sprite Sprite => sprite;
-    [SerializeField] private Color color;
-    public Color Color => color;
+    [SerializeField] private ColorSelectionWrapper colorWrapper;
+    public Color Color => colorWrapper.Color;
 
     public IconData(Sprite sprite, Color color)
     {
         this.sprite = sprite;
-        this.color = color;
+        colorWrapper = new ColorSelectionWrapper(color);
     }
 }

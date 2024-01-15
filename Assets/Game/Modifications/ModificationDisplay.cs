@@ -7,12 +7,12 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
 {
     [SerializeField] private GameObject container;
     [SerializeField] private LayoutDisplay layout;
-    [SerializeField] private LabeledCallbackToggle togglePrefab;
+    [SerializeField] private CallbackToggle togglePrefab;
     [SerializeField] private IconSO restrictedIcon;
 
     private ModificationContainer _modificationContainer;
     private GeneralRefreshEvent _generalRefreshEvent;
-    private Dictionary<AssetRefContainer<ModificationSO>, LabeledCallbackToggle> _toggles = new();
+    private Dictionary<AssetRefContainer<ModificationSO>, CallbackToggle> _toggles = new();
 
     protected override void SetupSelectionDisplay(ModificationContainer modificationContainer)
     {
@@ -31,17 +31,20 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
         GeneralRefresh();
     }
 
-    private LabeledCallbackToggle CreateToggle(AssetRefContainer<ModificationSO> modificationRef, bool active)
+    private CallbackToggle CreateToggle(AssetRefContainer<ModificationSO> modificationRef, bool active)
     {
         var toggle = Instantiate(togglePrefab);
         SetToggle(toggle, modificationRef, active);
         return toggle;
     }
     
-    private void SetToggle(LabeledCallbackToggle toggle, AssetRefContainer<ModificationSO> modRef, bool active)
+    private void SetToggle(CallbackToggle toggle, AssetRefContainer<ModificationSO> modRef, bool active)
     {
         toggle.Init(new CallbackToggleData(HandleToggle, modRef, active));
-        toggle.SetText(modRef.Asset.Data.Label);
+        if (toggle.TryGetComponent<ContextDataContainer>(out var contextContainer))
+        {
+            contextContainer.SetData(modRef.Asset.Data.Context);
+        }
     }
 
     private void HandleToggle(object callbackObj, bool value)

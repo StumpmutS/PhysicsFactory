@@ -1,0 +1,315 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf076bb8620c4c398b89a98516501e3f, type: 3}
+  m_Name: DefaultWindowsKeyCodeData
+  m_EditorClassIdentifier: 
+  windowsIcons:
+    keys: 1b0000007f00000008000000090000000d000000300100002f0100003201000031010000340100003301000000010000300000000101000031000000020100003200000003010000330000000401000034000000050100003500000006010000360000000701000037000000080100003800000009010000390000006100000062000000630000006400000065000000660000006700000068000000690000006a0000006b0000006c0000006d0000006e0000006f000000700000007100000072000000730000007400000075000000760000007700000078000000790000007a000000
+    values:
+    - sprite: {fileID: 21300000, guid: e8436795426b4cf4c936d84d7af3142f, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 1c798d0f939f6a54cbb12d66e07541b0, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: e8436795426b4cf4c936d84d7af3142f, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 67f35db8cd6a01e48b69754aaafa0e2b, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: dc2cdc4d876735947b218d8263605b68, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 29374badc07d1d54285c13a3fa8c5d24, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 29374badc07d1d54285c13a3fa8c5d24, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 6b7120ee8bc8e9d47a08bfd940598fcd, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 6b7120ee8bc8e9d47a08bfd940598fcd, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: ac038749ba401424a8043bde5ea09cab, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: ac038749ba401424a8043bde5ea09cab, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 877543db874552947a37aa4b7a4bf871, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 877543db874552947a37aa4b7a4bf871, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 88e81abf796c1f94abe04214b7a60141, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 88e81abf796c1f94abe04214b7a60141, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 8665eb36131091a4ab03598b756dede3, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 8665eb36131091a4ab03598b756dede3, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: ebaa61ff1f35df54482a2b67f7f6afdd, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: ebaa61ff1f35df54482a2b67f7f6afdd, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 05b18d2132bb19b43a58473fecb168b9, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 05b18d2132bb19b43a58473fecb168b9, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: a86d922aa9638f242b770205a2cb1947, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: a86d922aa9638f242b770205a2cb1947, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 99ac77a7112541842a9e69794e668ce9, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 99ac77a7112541842a9e69794e668ce9, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: dd1307fb0bd1d1c4d8b8c0350f1c793b, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: dd1307fb0bd1d1c4d8b8c0350f1c793b, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: c189d7e975013e649b5ba29cc8fedfcb, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: c189d7e975013e649b5ba29cc8fedfcb, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: b45f49b41e3b53a49ae9e246511c6ac8, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: b45f49b41e3b53a49ae9e246511c6ac8, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 79125a1cf7dba74418a40cc54fca75e7, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: ee0967f718c6692499403f4e3832d5ea, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: c3bb9efbdfbfcc540ad95f1fe18019e6, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 87eb5233b5c524549a9817ad2751e515, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 0a638c840824a0e4c8c12785e6cd2178, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: b3a9385e0bd001f4c9697df92d18cec7, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: ba382faeb16f200439aaf27e590b8dd4, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: d8758d6a2ac31914d830fb7ceb012371, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 01a22a16047307c49a541f2a54e7ded9, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 9daf7c882f9660b4e9e3f2a6c9071a0c, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: e092c4dc15f428143bdee2d848363fc1, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 6e7ed5a664b9335459a1137de62442e2, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 6d6e709d8c775674780195a01a3ee999, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: af5f7af8c06162e418b439ab932f6c02, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 26d9217f64f09614cbeeac669cea37e0, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 2dbe10c359771b64f9c8b88b4bf3d295, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: d40665deabb7d144b98abb568a98b031, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 2a97ebd452ed3694bb771ea97e477912, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: bdc8c44839cc8f14cae27dd119199dad, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: acc01ab7ad68aca4090c73ac36b32b17, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 5f420fd96711ab64b923a178026f0b7b, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: a9562b899ebef6345a39dbd391b68e71, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: a1612053663742b43a64da399635eb61, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: 9fb10002111a83e4281c01341b4aa80e, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: c9f80f81287e9e942b72203fcd4e2d45, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+    - sprite: {fileID: 21300000, guid: a5ec279419e9e0449b1fe5343f336b51, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 0}
+  macOverrides:
+    keys: 3201000031010000
+    values:
+    - sprite: {fileID: 21300000, guid: 623b6b02d8f423349a9d5031b7f6216c, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 1}
+    - sprite: {fileID: 21300000, guid: 623b6b02d8f423349a9d5031b7f6216c, type: 3}
+      colorWrapper:
+        useSpecificColor: 0
+        colorSo: {fileID: 11400000, guid: 896e4e87771dfce43892f285f12d1f34, type: 2}
+        specificColor: {r: 0, g: 0, b: 0, a: 1}

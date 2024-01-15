@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEngine;
 
 namespace Utility.Editor
 {
@@ -37,6 +39,21 @@ namespace Utility.Editor
 
             maxRecursions--;
             return FindField(maxRecursions, foundTargets, name, out newTarget);
+        }
+
+        public static bool TryGetInheritedField(string fieldName, Type type, out FieldInfo fieldInfo)
+        {
+            while (type != null)
+            {
+                fieldInfo = type.GetField(fieldName,
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                if (fieldInfo != null) return true;
+
+                type = type.BaseType;
+            }
+
+            fieldInfo = null;
+            return false;
         }
     }
 }

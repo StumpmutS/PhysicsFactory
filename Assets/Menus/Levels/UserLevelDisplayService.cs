@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class UserLevelDisplayService : DataService<LevelDisplayData>
+public class UserLevelDisplayService : DataService<IEnumerable<LevelDisplayData>>
 {
     [SerializeField] protected LocalPathSO pathSo;
     

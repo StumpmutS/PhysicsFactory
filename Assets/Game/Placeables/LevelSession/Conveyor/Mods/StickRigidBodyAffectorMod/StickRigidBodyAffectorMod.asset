@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86eb6650b9529f4fa7960ac9170c51c, type: 3}
   m_Name: StickRigidBodyAffectorMod
   m_EditorClassIdentifier: 
-  info:
+  data:
     modificationPrefab: {fileID: -5559437310005652579, guid: abf0c29315818ce4bad8b1cc63ac7d5f,
       type: 3}
-    label: Sticky
+    context:
+      Label: Stick
+      Summary: Causes objects to stick
+      KeyCombinations: []
+      ContextReferences: []
     activationRestrictions:
     - {fileID: 11400000, guid: 705fe0e12c2b2c0459d5b77ddd4e22c6, type: 2}
-    saleRestrictions:
-    - {fileID: 11400000, guid: d2e62d8ea7d71264383955de31b5ca8d, type: 2}
     price: 1
     saleMultiplier: 1

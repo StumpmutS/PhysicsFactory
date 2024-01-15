@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class StickRigidBodyAffector : RigidBodyAffector, IEnergySpender
 {
-    [SerializeField] private EnergySpenderInfo spenderInfo;
-    public EnergySpenderInfo SpenderInfo => spenderInfo;
+    [SerializeField] private DataService<ContextData> contextService;
+    public ContextData Context => contextService.RequestData();
     [SerializeField] private float energyToForceMultiplier;
 
     private float _charge;

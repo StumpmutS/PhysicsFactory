@@ -11,7 +11,8 @@ public class SaleDisplay : SelectableDisplay<SaleController>
     [SerializeField] private TMP_Text text;
 
     private SaleController _saleController;
-    
+    private DataService<ContextData> _contextDataService;
+
     private void Awake()
     {
         button.onClick.AddListener(HandleClick);
@@ -37,13 +38,21 @@ public class SaleDisplay : SelectableDisplay<SaleController>
     private void RefreshDisplay()
     {
         var stringBuilder = new StringBuilder("Sell");
-        if (_saleController.TryGetComponent<ContextDataContainer>(out var contextDataContainer))
+        if (_saleController.TryGetComponent<DataService<ContextData>>(out _contextDataService))
         {
-            stringBuilder.Append($" {contextDataContainer.Data.Label}");
+            stringBuilder.Append($" {_contextDataService.RequestData().Label}");
+            _contextDataService.OnUpdated.AddListener(HandleServiceUpdate);
         }
         stringBuilder.Append($": ${_saleController.SalePriceSummation:F2}");
         
         text.text = stringBuilder.ToString();
+    }
+
+    private void HandleServiceUpdate(ContextData data)
+    {
+        if (_contextDataService != null) _contextDataService.OnUpdated.RemoveListener(HandleServiceUpdate);
+        _contextDataService = null;
+        RefreshDisplay();
     }
 
     protected override void RemoveSelectionDisplay()

@@ -63,7 +63,7 @@ public class EnergySpreadController : MonoBehaviour, ISaveable<SaveableObjectSav
         data.EnergySpreadSaveData.Spread ??= new SerializableDictionary<string, SerializableSignedFloat>();
         foreach (var kvp in Spenders.Floats)
         {
-            data.EnergySpreadSaveData.Spread[kvp.Key.SpenderInfo.Label] = new SerializableSignedFloat(kvp.Value);
+            data.EnergySpreadSaveData.Spread[kvp.Key.Context.Label] = new SerializableSignedFloat(kvp.Value);
         }
         data.EnergySpreadSaveData.Spread.OnBeforeSerialize();
     }
@@ -74,7 +74,7 @@ public class EnergySpreadController : MonoBehaviour, ISaveable<SaveableObjectSav
         var floatsCopy = Spenders.Floats.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         foreach (var kvp in floatsCopy)
         {
-            var label = kvp.Key.SpenderInfo.Label;
+            var label = kvp.Key.Context.Label;
             if (data.Spread.TryGetValue(label, out var value))
             {
                 Spenders.SetValue(kvp.Key, value.ToSignedFloat());

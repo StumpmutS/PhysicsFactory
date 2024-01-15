@@ -24,7 +24,7 @@ public class ServiceAlternator<TData> : DataService<TData>
         _currentService = service;
     }
     
-    public override IEnumerable<TData> RequestData()
+    public override TData RequestData()
     {
         return _currentService.RequestData();
     }

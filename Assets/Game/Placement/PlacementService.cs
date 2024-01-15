@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
-public class PlacementService : DataService<PlacementData>
+public class PlacementService : DataService<IEnumerable<PlacementData>>
 {
     [FormerlySerializedAs("editModeBuildings")] [SerializeField] private List<PlacementSO> editModePlacementSos;
     [SerializeField] private PlacementPersistenceHandler persistenceHandler;

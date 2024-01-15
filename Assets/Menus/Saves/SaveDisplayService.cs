@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class SaveDisplayService : DataService<SaveDisplayData>
+public class SaveDisplayService : DataService<IEnumerable<SaveDisplayData>>
 {
     [SerializeField] protected LocalPathSO pathSo;
 

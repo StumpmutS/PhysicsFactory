@@ -15,7 +15,7 @@ public class PlaceableTransmitter : MonoBehaviour, ISaveable<SaveableObjectSaveD
     
     private void Awake()
     {
-        if (optionalStartData.Label != string.Empty)
+        if (optionalStartData.Context.Label != string.Empty)
             Init(new PlacedData(optionalStartData, optionalStartVolume, new TransformData(transform)));
     }
 

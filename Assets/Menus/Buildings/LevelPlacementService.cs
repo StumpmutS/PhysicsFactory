@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class LevelPlacementService : DataService<PlacementDisplayData>
+public class LevelPlacementService : DataService<IEnumerable<PlacementDisplayData>>
 {
     [FormerlySerializedAs("buildings")] [SerializeField] private List<PlacementDisplayData> placementData;
 

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class MultiplierPowerController : PowerController
+public class MultiplierChargeController : ChargeController
 {
     [SerializeField] private float multiplier;
     
-    protected override float CalculatePower(float charge)
+    protected override float CalculateCharge(float charge)
     {
         return charge * multiplier;
     }

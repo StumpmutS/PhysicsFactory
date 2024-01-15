@@ -5,8 +5,8 @@ using UnityEngine;
 [Serializable]
 public class PlacementData
 {
-    [SerializeField] private string label;
-    public string Label => label;
+    [SerializeField] private ContextData context;
+    public ContextData Context => context;
     [SerializeField] private List<PlacementProcessor> placementProcessors;
     public List<PlacementProcessor> PlacementProcessors => placementProcessors;
     [SerializeField] private List<Restriction<PlacementRestrictionInfo>> placementRestrictions;

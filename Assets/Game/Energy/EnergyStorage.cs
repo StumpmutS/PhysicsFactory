@@ -23,7 +23,7 @@ public class EnergyStorage : MonoBehaviour
         }
     }
 
-    public UnityEvent<float> OnChargeChanged;
+    public UnityEvent<float> OnChargeChanged = new();
 
     private void Awake()
     {

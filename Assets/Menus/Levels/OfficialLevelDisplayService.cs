@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class OfficialLevelDisplayService : DataService<LevelDisplayData>
+public class OfficialLevelDisplayService : DataService<IEnumerable<LevelDisplayData>>
 {
     [SerializeField] private List<LevelSO> levels;
 

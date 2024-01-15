@@ -7,8 +7,8 @@ public class ModificationData
 {
     [SerializeField] private Modification modificationPrefab;
     public Modification ModificationPrefab => modificationPrefab;
-    [SerializeField] private string label;
-    public string Label => label;
+    [SerializeField] private ContextData context;
+    public ContextData Context => context;
     [SerializeField] private List<Restriction<PlaceableRestrictionData>> activationRestrictions;
     public List<Restriction<PlaceableRestrictionData>> ActivationRestrictions => activationRestrictions;
     [SerializeField] private float price;

@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class DataSelectionDisplayController<TData> : MonoBehaviour
 {
-    [SerializeField] private DataService<TData> service;
+    [SerializeField] private DataService<IEnumerable<TData>> service;
     [SerializeField] private DisplayCallbackToggle<TData> displayTogglePrefab;
     [SerializeField] private LayoutDisplay toggleLayoutDisplay;
 

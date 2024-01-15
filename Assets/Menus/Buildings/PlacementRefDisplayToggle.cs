@@ -2,10 +2,10 @@
 
 public class PlacementRefDisplayToggle : DisplayCallbackToggle<PlacementDisplayData>
 {
-    [SerializeField] private Label label;
+    [SerializeField] private ContextDataContainer contextContainer;
     
     protected override void DisplayData(PlacementDisplayData displayData)
     {
-        label.SetLabel(displayData.PlacementContainer.Asset.Data.Label);
+        contextContainer.SetData(displayData.PlacementContainer.Asset.Data.Context);
     }
 }

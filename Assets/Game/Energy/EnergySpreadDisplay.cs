@@ -34,7 +34,7 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
 
     private void SetupNewSelector(IEnergySpender spender, SignedFloat value)
     {
-        var selector = CreateFloatSelector(spender, value, GenerateLabel(spender.SpenderInfo, value));
+        var selector = CreateFloatSelector(spender, value, GenerateLabel(spender.Context, value));
         _selectors[spender] = selector;
         if (selector.transform is not RectTransform rectTransform) return;
         layout.Add(rectTransform);
@@ -57,7 +57,7 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
             if (_selectors.TryGetValue(kvp.Key, out var selector))
             {
                 selector.SignedFloat = kvp.Value;
-                Label.SetLabel(selector, GenerateLabel(kvp.Key.SpenderInfo, kvp.Value));
+                Label.SetLabel(selector, GenerateLabel(kvp.Key.Context, kvp.Value));
             }
             else
             {
@@ -82,9 +82,9 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
         _controller.Spenders.SetValue(spender, value);
     }
 
-    private string GenerateLabel(EnergySpenderInfo info, SignedFloat value)
+    private string GenerateLabel(ContextData context, SignedFloat value)
     {
-        return $"{info.Label} - {value.Value:F2}/{_controller.Spenders.MaxTotal:F2}";
+        return $"{context.Label} - {value.Value:F2}/{_controller.Spenders.MaxTotal:F2}";
     }
 
     private void SetLabel(GameObject gameObj, string value)

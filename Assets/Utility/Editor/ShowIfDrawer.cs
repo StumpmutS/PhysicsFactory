@@ -1,4 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 
@@ -25,9 +29,14 @@ namespace Utility.Editor
         private bool MeetsConditions(SerializedProperty property)
         {
             var showIfAttribute = (ShowIfAttribute)attribute;
-            var target = property.serializedObject.targetObject;
+            var target = SerializedPropertyHelpers.GetPropertyPathObject(property);
+
             var condition = showIfAttribute.Condition;
-            var conditionField = ReflectionHelpers.FindField(200, new HashSet<object>() { target }, condition, out var newTarget);
+            var conditionField = ReflectionHelpers.FindField(5, new HashSet<object>() { target }, condition, out var newTarget);
+            if (conditionField == null)
+            {
+                return true;
+            }
             var conditionValue = conditionField.GetValue(newTarget);
 
             return (bool) conditionValue == showIfAttribute.Value;

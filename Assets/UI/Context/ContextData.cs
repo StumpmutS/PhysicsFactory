@@ -1,9 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class ContextData
 {
-    [SerializeField] private string label;
-    public string Label => label;
+    public string Label;
+    [TextArea] public string Summary;
+    public List<KeyCodeCombinationData> KeyCombinations;
+    public List<DataService<string>> ContextReferences;
+
+    public ContextData(string label = "", string summary = "", List<KeyCodeCombinationData> keyCombinations = null, List<DataService<string>> contextReferences = null)
+    {
+        Label = label;
+        Summary = summary;
+        KeyCombinations = keyCombinations;
+        ContextReferences = contextReferences;
+    }
 }

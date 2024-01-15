@@ -1,13 +1,12 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SaveDisplayToggle : DisplayCallbackToggle<SaveDisplayData>
 {
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private ContextDataContainer contextContainer;
 
     protected override void DisplayData(SaveDisplayData displayData)
     {
         var info = displayData.SaveData.SaveInfo;
-        text.text = $"{info.Name} - {info.DateTime}";
+        contextContainer.SetData(new ContextData($"{info.Name} - {info.DateTime}"));
     }
 }

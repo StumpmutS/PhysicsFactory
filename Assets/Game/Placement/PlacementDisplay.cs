@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Utility.Scripts.Extensions;
 
 public class PlacementDisplay : MonoBehaviour
 {
-    [SerializeField] private DataService<PlacementData> placementService;
+    [SerializeField] private DataService<IEnumerable<PlacementData>> placementService;
     [SerializeField] private LayoutDisplay layoutDisplay;
-    [SerializeField] private LabeledCallbackToggle togglePrefab;
+    [SerializeField] private CallbackToggle togglePrefab;
 
-    private HashSet<LabeledCallbackToggle> _toggles = new();
+    private HashSet<CallbackToggle> _toggles = new();
     private PlacementData _activeData;
     private bool _listeningUnload;
 
@@ -23,7 +24,8 @@ public class PlacementDisplay : MonoBehaviour
             layoutDisplay.AddPrefab(togglePrefab, toggle =>
             {
                 toggle.Init(new CallbackToggleData(HandleToggled, data, false));
-                toggle.SetText(data.Label); 
+                var container = toggle.AddOrGetComponent<ContextDataContainer>();
+                container.SetData(data.Context);
                 _toggles.Add(toggle);
             });
         }
@@ -63,6 +65,7 @@ public class PlacementDisplay : MonoBehaviour
             StopListenOnUnload();
             PlacementManager.Instance.Unload();
             _activeData = null;
+            ContextPanelManager.Instance.RemoveLockedDisplay(this);
         }
 
         if (value && data != _activeData)
@@ -70,6 +73,7 @@ public class PlacementDisplay : MonoBehaviour
             ListenOnUnload();
             PlacementManager.Instance.Load(data);
             _activeData = data;
+            ContextPanelManager.Instance.DisplayLockedPanel(this, data.Context);
         }
     }
 

@@ -834,7 +834,7 @@ PrefabInstance:
     - target: {fileID: 6277511883076660005, guid: fd68304c7a2b5284a9684c6df8999441,
         type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6277511883076660005, guid: fd68304c7a2b5284a9684c6df8999441,
         type: 3}
@@ -855,11 +855,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ReverseIcon
-      objectReference: {fileID: 0}
-    - target: {fileID: 6318956430830444967, guid: fd68304c7a2b5284a9684c6df8999441,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8946848013077542287, guid: fd68304c7a2b5284a9684c6df8999441,
         type: 3}
