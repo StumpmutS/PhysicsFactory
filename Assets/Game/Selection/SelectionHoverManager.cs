@@ -43,6 +43,12 @@ public class SelectionHoverManager : MonoBehaviour
     
     private void UpdateHovered()
     {
+        if (UIHoveredReference.Instance.OverUI())
+        {
+            SetHovered(null);
+            return;
+        }
+        
         var found = Physics.RaycastNonAlloc(MainCameraRef.Cam.ScreenPointToRay(Input.mousePosition), RaycastResults, maxSearchDistance, selectableLayer);
         if (found == 0)
         {

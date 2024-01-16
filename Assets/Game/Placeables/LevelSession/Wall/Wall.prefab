@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 8234195866719595784}
   - component: {fileID: 1202966920060059513}
   - component: {fileID: 2607749314140233495}
+  - component: {fileID: 7885400676466893428}
   m_Layer: 7
   m_Name: WallMain
   m_TagString: Untagged
@@ -253,6 +254,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7885400676466893428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3131869614542946599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f3e322e1fa14754830c693e736063d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  startingData:
+    Label: Wall
+    Summary: Stops objects from going to a better place... usually.
+    KeyCombinations: []
+    ContextReferences: []
 --- !u!1 &3286921890406014748
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +409,11 @@ MonoBehaviour:
     m_SubObjectType: 
     m_EditorAssetChanged: 0
   optionalStartData:
-    label: 
+    context:
+      Label: 
+      Summary: 
+      KeyCombinations: []
+      ContextReferences: []
     placementProcessors: []
     placementRestrictions: []
     previewPrefab: {fileID: 0}

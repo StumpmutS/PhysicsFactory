@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f86eb6650b9529f4fa7960ac9170c51c, type: 3}
   m_Name: FrictionlessPhysicMaterialMod
   m_EditorClassIdentifier: 
-  info:
+  data:
     modificationPrefab: {fileID: 4547405215875242661, guid: 7f9a8898e140cbe419c2ba22cee4a598,
       type: 3}
-    label: Frictionless
+    context:
+      Label: Smooth
+      Summary: No friction!
+      KeyCombinations: []
+      ContextReferences: []
     activationRestrictions:
     - {fileID: 11400000, guid: f1a511772bb780a4a9e0a138aaef7e5c, type: 2}
     - {fileID: 11400000, guid: ab56a61cb2ea22140854b139380e31c0, type: 2}
-    saleRestrictions:
-    - {fileID: 11400000, guid: 48f7d22a953fab943af99d943ed1a7f8, type: 2}
     price: 0
     saleMultiplier: 1

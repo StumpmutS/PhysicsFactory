@@ -449,7 +449,7 @@ MonoBehaviour:
       m_Calls: []
   startingData:
     Label: Extractor
-    Summary: Extracts things
+    Summary: Extracts resources from extraction sites
     KeyCombinations: []
     ContextReferences: []
 --- !u!1001 &1245919801485226905

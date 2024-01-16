@@ -43,7 +43,7 @@ public abstract class ColorSpringListener : SpringListener
         UpdateValues();
     }
 
-    public override void HandleSpringValue(float amount, float target)
+    protected override void HandleSpringValue(float amount, float target)
     {
         switch (amount)
         {

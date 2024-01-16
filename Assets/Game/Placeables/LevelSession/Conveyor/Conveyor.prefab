@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: 3687587335354862021}
   - component: {fileID: 5046291421389401347}
   - component: {fileID: 4431729348424794642}
+  - component: {fileID: 1217334310050788933}
   m_Layer: 7
   m_Name: ConveyorMain
   m_TagString: Untagged
@@ -543,7 +544,7 @@ MonoBehaviour:
       m_Calls: []
   startingData:
     Label: Conveyor
-    Summary: 'Conveys things
+    Summary: 'Sends objects to a better place... sometimes.
 
       {0}'
     KeyCombinations:
@@ -571,6 +572,27 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   storage: {fileID: 197613538122375830}
+--- !u!114 &1217334310050788933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5614799982898544609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8312cf4a7024c31bc88ed38e796a8d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrades:
+  - {fileID: 11400000, guid: 2424cd1feb276c742bc03573ed9be4d0, type: 2}
+  placeable: {fileID: 2070404357917867543}
+  OnUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDowngrade:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6893692433659650155
 GameObject:
   m_ObjectHideFlags: 0

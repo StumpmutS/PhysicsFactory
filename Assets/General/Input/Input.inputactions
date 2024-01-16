@@ -314,7 +314,7 @@
                 {
                     "name": "",
                     "id": "5cbe8fbc-1b2a-41c3-8976-e2ca4be1e726",
-                    "path": "<Mouse>/middleButton",
+                    "path": "<Keyboard>/space",
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "Keyboard&Mouse",

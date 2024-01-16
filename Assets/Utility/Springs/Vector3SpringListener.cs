@@ -19,7 +19,7 @@ public abstract class Vector3SpringListener : SpringListener
 
     protected abstract Vector3 GetOrig();
 
-    public override void HandleSpringValue(float amount, float target)
+    protected override void HandleSpringValue(float amount, float target)
     {
         switch (amount)
         {

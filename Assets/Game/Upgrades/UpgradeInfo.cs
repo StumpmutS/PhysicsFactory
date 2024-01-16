@@ -11,6 +11,6 @@ public class UpgradeInfo
     public List<Restriction<PlaceableRestrictionData>> DowngradeRestrictions => downgradeRestrictions;
     [SerializeField] private float price;
     public float Price => price;
-    [SerializeField] private float saleMultiplier;
+    [SerializeField, Range(0, 1)] private float saleMultiplier;
     public float SaleMultiplier => saleMultiplier;
 }

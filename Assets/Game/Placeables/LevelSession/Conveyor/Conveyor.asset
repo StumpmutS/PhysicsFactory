@@ -15,7 +15,7 @@ MonoBehaviour:
   placementData:
     context:
       Label: Conveyor
-      Summary: Sends objects to a better place... mostly.
+      Summary: Sends objects to a better place... sometimes.
       KeyCombinations: []
       ContextReferences: []
     placementProcessors:

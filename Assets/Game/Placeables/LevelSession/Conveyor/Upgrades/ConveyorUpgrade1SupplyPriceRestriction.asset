@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b408d36cafaf44c0a73e6caf463ed26e, type: 3}
-  m_Name: DefaultOutlineColor
+  m_Script: {fileID: 11500000, guid: dd565d313164456e8299e14cd1094a49, type: 3}
+  m_Name: ConveyorUpgrade1SupplyPriceRestriction
   m_EditorClassIdentifier: 
-  colors:
-  - {r: 0.15294118, g: 0.23137255, b: 0.31764707, a: 1}
+  restrictionFailureType: 1

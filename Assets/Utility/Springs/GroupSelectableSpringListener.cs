@@ -6,8 +6,8 @@ public class GroupSelectableSpringListener : SpringListener, ISerializationCallb
 {
     [SerializeField] private bool allowAtNeg1, allowAt0, allowAt1;
     [SerializeField] private List<UI.Selectable> selectables;
-    
-    public override void HandleSpringValue(float amount, float target)
+
+    protected override void HandleSpringValue(float amount, float target)
     {
         bool allowed = DetermineAllowance(target);
         foreach (var selectable in selectables)

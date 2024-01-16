@@ -2,7 +2,7 @@
 
 public abstract class Vector4SpringListener : SpringListener
 {
-    [SerializeField, ShowIf(nameof(useSetValue), true, 6)] private Vector4 minValue, origValue, maxValue;
+    [SerializeField, ShowIf(nameof(useSetValue), true, 7)] private Vector4 minValue, origValue, maxValue;
     
     private Vector4 _origValue;
     
@@ -17,7 +17,7 @@ public abstract class Vector4SpringListener : SpringListener
 
     protected abstract Vector4 GetOrig();
 
-    public override void HandleSpringValue(float amount, float target)
+    protected override void HandleSpringValue(float amount, float target)
     {
         switch (amount)
         {

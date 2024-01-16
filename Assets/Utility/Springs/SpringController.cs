@@ -35,7 +35,7 @@ public class SpringController : MonoBehaviour
     {
         foreach (var listener in GetComponents<SpringListener>())
         {
-            OnSpringValueChanged.AddListener(listener.HandleSpringValue);
+            OnSpringValueChanged.AddListener(listener.TryHandleSpringValue);
         }
         
         if (!_initialized) Init();

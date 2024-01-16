@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Extractor
   m_EditorClassIdentifier: 
   placementData:
-    label: Extractor
+    context:
+      Label: Extractor
+      Summary: Extracts resources from extraction sites
+      KeyCombinations: []
+      ContextReferences: []
     placementProcessors:
     - {fileID: 11400000, guid: 6fc9d95227789e0428c5494895f5bc64, type: 2}
     - {fileID: 11400000, guid: b8ca47ed05b93df4fa4252127a1a26d8, type: 2}

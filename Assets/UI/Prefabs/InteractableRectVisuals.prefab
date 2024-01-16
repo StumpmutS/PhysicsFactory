@@ -327,6 +327,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &9100474997867704219 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7604315341855232404, guid: f6820a67fa64fa04ca4df1939ca086c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1714909698222718479}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7574595188635986310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -587,8 +593,10 @@ MonoBehaviour:
   maxMultiplier: 0
   minValue: {x: 0, y: 0, z: 0, w: 0}
   origValue: {x: 0, y: 0, z: 0, w: 0}
-  maxValue: {x: -3, y: -3, z: -3, w: -3}
-  targetRect: {fileID: 8014130053666282807}
+  maxValue: {x: -5, y: -5, z: -5, w: -5}
+  useReferenceScale: 0
+  referenceRectScale: {x: 100, y: 100}
+  targetRect: {fileID: 9100474997867704219}
 --- !u!114 &2000311822148307054
 MonoBehaviour:
   m_ObjectHideFlags: 0

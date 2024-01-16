@@ -17,7 +17,7 @@ public abstract class FloatSpringListener : SpringListener
 
     protected abstract float GetOrig();
 
-    public override void HandleSpringValue(float amount, float target)
+    protected override void HandleSpringValue(float amount, float target)
     {
         switch (amount)
         {

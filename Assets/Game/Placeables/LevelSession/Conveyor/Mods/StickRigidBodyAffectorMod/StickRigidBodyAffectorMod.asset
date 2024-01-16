@@ -21,6 +21,6 @@ MonoBehaviour:
       KeyCombinations: []
       ContextReferences: []
     activationRestrictions:
-    - {fileID: 11400000, guid: 705fe0e12c2b2c0459d5b77ddd4e22c6, type: 2}
+    - {fileID: 11400000, guid: b3d54953847e8da489ae8838b494e6e1, type: 2}
     price: 1
     saleMultiplier: 1

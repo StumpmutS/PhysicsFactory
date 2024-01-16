@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd565d313164456e8299e14cd1094a49, type: 3}
-  m_Name: StickSupplyPriceRestriction
+  m_Script: {fileID: 11500000, guid: b408d36cafaf44c0a73e6caf463ed26e, type: 3}
+  m_Name: ToggleValueFillColors
   m_EditorClassIdentifier: 
-  restrictionFailureType: 1
+  colors:
+  - {r: 0.09803922, g: 0.13333334, b: 0.43137255, a: 1}
+  - {r: 0.09914753, g: 0.1345574, b: 0.432, a: 1}

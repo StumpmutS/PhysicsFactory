@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60720b370d724520bb8fad94ae54cae9, type: 3}
   m_Name: Wall
   m_EditorClassIdentifier: 
-  buildingPlacementData:
-    label: Wall
+  placementData:
+    context:
+      Label: Wall
+      Summary: Stops objects from going to a better place... usually.
+      KeyCombinations: []
+      ContextReferences: []
     placementProcessors:
     - {fileID: 11400000, guid: b97c23e86d232644e8ea420d4d0e53fc, type: 2}
     - {fileID: 11400000, guid: eacc36113ef50614db9c4687270439f1, type: 2}
@@ -22,13 +26,6 @@ MonoBehaviour:
     placementRestrictions:
     - {fileID: 11400000, guid: 1424a7f99faabfb468c5b3b9e992c1b2, type: 2}
     - {fileID: 11400000, guid: afe3c7c255dc2cf4bb6ec32db62c210c, type: 2}
-    saleRestrictionRefs:
-    - reference:
-        m_AssetGUID: cb490c57cbddc4d47b30985b0bf6dff1
-        m_SubObjectName: 
-        m_SubObjectType: 
-        m_EditorAssetChanged: 0
-      Asset: {fileID: 11400000, guid: cb490c57cbddc4d47b30985b0bf6dff1, type: 2}
     previewPrefab: {fileID: 1907927485439986569, guid: 10b758939261d9d4e977a8626958813f,
       type: 3}
     anchorCellAmount: 4

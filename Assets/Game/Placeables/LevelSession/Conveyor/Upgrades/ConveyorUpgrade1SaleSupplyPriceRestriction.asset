@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b408d36cafaf44c0a73e6caf463ed26e, type: 3}
-  m_Name: IconOpacityColors
+  m_Script: {fileID: 11500000, guid: 756a578bd25d41e0bfeab74921ceabd0, type: 3}
+  m_Name: ConveyorUpgrade1SaleSupplyPriceRestriction
   m_EditorClassIdentifier: 
-  colors:
-  - {r: 0.8, g: 0.9764706, b: 1, a: 1}
-  - {r: 0.8, g: 0.9764706, b: 1, a: 0.5019608}
