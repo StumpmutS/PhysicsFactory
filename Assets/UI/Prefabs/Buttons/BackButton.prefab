@@ -88,6 +88,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4709066343012385540, guid: c917cc48afe46a045ac77e0efa1c8de3,
+        type: 3}
+      propertyPath: startingData.Label
+      value: Back
+      objectReference: {fileID: 0}
     - target: {fileID: 5041106614750430527, guid: c917cc48afe46a045ac77e0efa1c8de3,
         type: 3}
       propertyPath: m_AnchorMax.x

@@ -12,6 +12,11 @@ public class PlacementSelectionDisplayController : DataSelectionDisplayControlle
 
     [FormerlySerializedAs("OnBuildingsChanged")] public UnityEvent<IEnumerable<AssetRefContainer<PlacementSO>>> OnPlacementContainersChanged = new();
 
+    protected override ContextData GenerateContext(PlacementDisplayData data)
+    {
+        return data.PlacementContainer.Asset.Data.Context;
+    }
+
     protected override bool DataSelected(PlacementDisplayData data)
     {
         return placementPersistenceHandler.PlacementContainers.Any(c => c.Asset == data.PlacementContainer.Asset);

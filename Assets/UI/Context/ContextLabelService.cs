@@ -1,15 +1,6 @@
-﻿using UnityEngine;
-
-public class ContextLabelService : DataService<string>
+﻿public class ContextLabelService : ContextDrivenService
 {
-    [SerializeField] private DataService<ContextData> contextService;
-
-    private void Awake()
-    {
-        contextService.OnUpdated.AddListener(HandleUpdate);
-    }
-
-    private void HandleUpdate(ContextData context)
+    protected override void HandleUpdate(ContextData context)
     {
         OnUpdated.Invoke(context.Label);
     }
@@ -17,10 +8,5 @@ public class ContextLabelService : DataService<string>
     public override string RequestData()
     {
         return contextService.RequestData().Label;
-    }
-
-    private void OnDestroy()
-    {
-        if (contextService != null) contextService.OnUpdated.RemoveListener(HandleUpdate);
     }
 }

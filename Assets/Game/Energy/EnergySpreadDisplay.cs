@@ -10,7 +10,7 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
     [SerializeField] private LayoutDisplay layout;
     [SerializeField] private TMP_Text text;
     [SerializeField] private SignedFloatSelector floatSelectorPrefab;
-    [SerializeField] private ComponentAdder labelAdder;
+    [SerializeField] private ContextualUIObjectData contextualUIObjectData;
 
     private EnergySpreadController _controller;
     private Dictionary<IEnergySpender, SignedFloatSelector> _selectors = new();
@@ -34,17 +34,17 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
 
     private void SetupNewSelector(IEnergySpender spender, SignedFloat value)
     {
-        var selector = CreateFloatSelector(spender, value, GenerateLabel(spender.Context, value));
+        var selector = CreateFloatSelector(spender, value, GenerateContext(spender.Context, value));
         _selectors[spender] = selector;
         if (selector.transform is not RectTransform rectTransform) return;
         layout.Add(rectTransform);
     }
 
-    private SignedFloatSelector CreateFloatSelector(object callbackObj, SignedFloat value, string labelValue)
+    private SignedFloatSelector CreateFloatSelector(object callbackObj, SignedFloat value, ContextData context)
     {
         var selector = Instantiate(floatSelectorPrefab);
         selector.Init(value, callbackObj);
-        SetLabel(selector.gameObject, labelValue);
+        ContextualUIObjectBuilder.BuildObject(selector.gameObject, contextualUIObjectData, context);
         selector.OnChanged.AddListener(HandleSelectorChanged);
         return selector;
     }
@@ -57,7 +57,9 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
             if (_selectors.TryGetValue(kvp.Key, out var selector))
             {
                 selector.SignedFloat = kvp.Value;
-                Label.SetLabel(selector, GenerateLabel(kvp.Key.Context, kvp.Value));
+                if (!selector.TryGetComponent<ContextDataContainer>(out var contextContainer)) continue;
+                
+                contextContainer.SetData(GenerateContext(kvp.Key.Context, kvp.Value));
             }
             else
             {
@@ -82,15 +84,9 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
         _controller.Spenders.SetValue(spender, value);
     }
 
-    private string GenerateLabel(ContextData context, SignedFloat value)
+    private ContextData GenerateContext(ContextData context, SignedFloat value)
     {
-        return $"{context.Label} - {value.Value:F2}/{_controller.Spenders.MaxTotal:F2}";
-    }
-
-    private void SetLabel(GameObject gameObj, string value)
-    {
-        var label = (Label) labelAdder.AddOrGetTo(gameObj);
-        label.SetLabel(value);
+        return new ContextData(context.Label, $"{value.Value:F2}/{_controller.Spenders.MaxTotal:F2}");
     }
 
     protected override void RemoveSelectionDisplay()

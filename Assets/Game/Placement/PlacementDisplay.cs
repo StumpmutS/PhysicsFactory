@@ -7,6 +7,7 @@ public class PlacementDisplay : MonoBehaviour
     [SerializeField] private DataService<IEnumerable<PlacementData>> placementService;
     [SerializeField] private LayoutDisplay layoutDisplay;
     [SerializeField] private CallbackToggle togglePrefab;
+    [SerializeField] private ContextualUIObjectData toggleContextualData;
 
     private HashSet<CallbackToggle> _toggles = new();
     private PlacementData _activeData;
@@ -24,8 +25,7 @@ public class PlacementDisplay : MonoBehaviour
             layoutDisplay.AddPrefab(togglePrefab, toggle =>
             {
                 toggle.Init(new CallbackToggleData(HandleToggled, data, false));
-                var container = toggle.AddOrGetComponent<ContextDataContainer>();
-                container.SetData(data.Context);
+                ContextualUIObjectBuilder.BuildObject(toggle.gameObject, toggleContextualData, data.Context);
                 _toggles.Add(toggle);
             });
         }
@@ -54,6 +54,8 @@ public class PlacementDisplay : MonoBehaviour
         {
             toggle.Toggle.isOn = false;
         }
+        
+        ContextPanelManager.Instance.RemoveLockedDisplay(this);
     }
 
     private void HandleToggled(object obj, bool value)

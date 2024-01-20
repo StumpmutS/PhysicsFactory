@@ -10,6 +10,4 @@ public class RestrictionFeedbackInfo
     public string Text => text;
     [SerializeField] private IconData icon;
     public IconData Icon => icon;
-    [SerializeField] private List<ComponentAdder> componentAdders;
-    public List<ComponentAdder> ComponentAdders => componentAdders;
 }

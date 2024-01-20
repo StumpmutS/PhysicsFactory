@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1369679663873290756}
   - component: {fileID: 8914058080346233224}
   - component: {fileID: 480148868777016526}
+  - component: {fileID: 6429100200631235795}
   m_Layer: 0
   m_Name: ContextPanel
   m_TagString: Untagged
@@ -120,6 +121,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!225 &6429100200631235795
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351634515860234134}
+  m_Enabled: 1
+  m_Alpha: 0.97
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &4503228763318755012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -785,7 +798,7 @@ PrefabInstance:
     - target: {fileID: 7948186887318495044, guid: f6820a67fa64fa04ca4df1939ca086c7,
         type: 3}
       propertyPath: m_Color.a
-      value: 0.8
+      value: 0.9019608
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

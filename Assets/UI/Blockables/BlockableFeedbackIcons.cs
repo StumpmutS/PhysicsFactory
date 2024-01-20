@@ -2,22 +2,22 @@
 using UnityEngine.UI;
 using Utility.Scripts;
 
-public class BlockableFeedbackIcons : MonoBehaviour, IUIBlockable, IInitializableComponent<ImageLayoutInfo>
+public class BlockableFeedbackIcons : MonoBehaviour, IUIBlockable
 {
     [SerializeField] private LayoutDisplay layout;
     [SerializeField] private Image iconPrefab;
 
     public void Init(ImageLayoutInfo info)
     {
-        layout = Instantiate(info.LayoutPrefab, transform, false);
+        if (layout == null) layout = Instantiate(info.LayoutPrefab, transform, false);
         iconPrefab = info.ImagePrefab;
     }
     
-    public void Block(UIBlockableInfo info)
+    public void Block(UIBlockableData data)
     {
         layout.Clear();
         
-        foreach (var iconInfo in info.FeedbackIcons)
+        foreach (var iconInfo in data.FeedbackIcons)
         {
             var image = Instantiate(iconPrefab);
             image.sprite = iconInfo.Sprite;

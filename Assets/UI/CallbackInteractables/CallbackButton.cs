@@ -22,7 +22,7 @@ public class CallbackButton : MonoBehaviour
 
     private void HandleClicked()
     {
-        _callback.Invoke(_callbackObject);
+        _callback?.Invoke(_callbackObject);
     }
 
     private void OnDestroy()

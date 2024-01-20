@@ -163,7 +163,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5905576567061896099}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 02830f0ad9494919bf58ab682f8b8589, type: 3}
   m_Name: 
@@ -594,8 +594,6 @@ MonoBehaviour:
   minValue: {x: 0, y: 0, z: 0, w: 0}
   origValue: {x: 0, y: 0, z: 0, w: 0}
   maxValue: {x: -5, y: -5, z: -5, w: -5}
-  useReferenceScale: 0
-  referenceRectScale: {x: 100, y: 100}
   targetRect: {fileID: 9100474997867704219}
 --- !u!114 &2000311822148307054
 MonoBehaviour:

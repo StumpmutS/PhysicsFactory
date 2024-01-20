@@ -27,7 +27,7 @@ public class AssetRefCollection
         var asset = _loadedAssets[index];
         if (asset is not T result)
         {
-            Debug.LogError($"Asset at index {index} was not of specified type: {typeof(T).Name}");
+            Debug.LogError($"Asset at index {index} was not of specified type: {nameof(T)}");
             return default;
         }
 

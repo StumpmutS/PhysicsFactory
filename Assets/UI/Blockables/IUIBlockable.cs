@@ -1,5 +1,6 @@
 ﻿public interface IUIBlockable
 {
-    public void Block(UIBlockableInfo info);
+    public void Block(UIBlockableData data);
+
     public void Unblock();
 }

@@ -8,7 +8,8 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
     [SerializeField] private GameObject container;
     [SerializeField] private LayoutDisplay layout;
     [SerializeField] private CallbackToggle togglePrefab;
-    [SerializeField] private IconSO restrictedIcon;
+    [SerializeField] private ContextualUIObjectData toggleContextualData;
+    [SerializeField] private GameObject restrictedBlockingPrefab;
 
     private ModificationContainer _modificationContainer;
     private GeneralRefreshEvent _generalRefreshEvent;
@@ -21,30 +22,23 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
         _modificationContainer = modificationContainer;
         _generalRefreshEvent = _modificationContainer.AddOrGetComponent<GeneralRefreshEvent>();
         _generalRefreshEvent.OnRefresh.AddListener(GeneralRefresh);
+        
         foreach (var kvp in modificationContainer.ModificationsActive)
         {
-            var toggle = CreateToggle(kvp.Key, kvp.Value);
-            _toggles[kvp.Key] = toggle;
-            if (toggle.transform is not RectTransform rectTransform) return;
-            layout.Add(rectTransform);
+            layout.AddPrefab(togglePrefab, toggle =>
+            {
+                InitToggle(toggle, kvp.Key, kvp.Value);
+                _toggles[kvp.Key] = toggle;
+            });
         }
+        
         GeneralRefresh();
     }
-
-    private CallbackToggle CreateToggle(AssetRefContainer<ModificationSO> modificationRef, bool active)
-    {
-        var toggle = Instantiate(togglePrefab);
-        SetToggle(toggle, modificationRef, active);
-        return toggle;
-    }
     
-    private void SetToggle(CallbackToggle toggle, AssetRefContainer<ModificationSO> modRef, bool active)
+    private void InitToggle(CallbackToggle toggle, AssetRefContainer<ModificationSO> modRef, bool active)
     {
         toggle.Init(new CallbackToggleData(HandleToggle, modRef, active));
-        if (toggle.TryGetComponent<ContextDataContainer>(out var contextContainer))
-        {
-            contextContainer.SetData(modRef.Asset.Data.Context);
-        }
+        ContextualUIObjectBuilder.BuildObject(toggle.gameObject, toggleContextualData, modRef.Asset.Data.Context);
     }
 
     private void HandleToggle(object callbackObj, bool value)
@@ -61,13 +55,13 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
         {
             RestrictionFailureDisplay.Instance.DisplayFailure(failureInfo);
         }
-        SetToggle(_toggles[modRef], modRef, _modificationContainer.ModificationsActive[modRef]);
+        InitToggle(_toggles[modRef], modRef, _modificationContainer.ModificationsActive[modRef]);
     }
 
     private void HandleDeactivatePressed(AssetRefContainer<ModificationSO> modRef)
     {
         _modificationContainer.TryDeactivateModification(modRef);
-        SetToggle(_toggles[modRef], modRef, _modificationContainer.ModificationsActive[modRef]);
+        InitToggle(_toggles[modRef], modRef, _modificationContainer.ModificationsActive[modRef]);
     }
 
     private void GeneralRefresh()
@@ -83,7 +77,7 @@ public class ModificationDisplay : SelectableDisplay<ModificationContainer>
             }
             
             var blocker = kvp.Value.Toggle.AddOrGetComponent<RestrictionUIBlocker>();
-            blocker.Init(failureInfo.FailureType, restrictedIcon.Icon);
+            blocker.Init(failureInfo.FailureType, restrictedBlockingPrefab);
             kvp.Value.Toggle.isOn = false;
         }
     }

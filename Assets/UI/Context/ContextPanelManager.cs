@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,26 +7,29 @@ using Utility.Scripts;
 
 public class ContextPanelManager : Singleton<ContextPanelManager>
 {
+    [SerializeField] private Canvas canvas;
     [SerializeField] private ContextPanel contextPanelPrefab;
+    [SerializeField] private RectTransform floatingPanelContainer;
     [SerializeField] private RectTransform lockedPanelContainer;
 
     private object _lockedCaller;
     private ContextPanel _lockedPanel;
     private Dictionary<object, ContextPanel> _displayedPanels = new();
-
-    public void DisplayPanel(object caller, ContextData data)
+    
+    public ContextPanel DisplayFloatingPanel(object caller, ContextData data)
     {
-        var panel = Instantiate(contextPanelPrefab);
-        ScreenFormatter.FormatRect(panel.transform as RectTransform, Input.mousePosition);
-        panel.Display(data);
+        TryRemoveFloatingDisplay(caller);
+        var panel = DisplayPanel(floatingPanelContainer, data);
+        ScreenFormatter.PositionRectAboutPoint(floatingPanelContainer, Input.mousePosition, canvas);
         _displayedPanels[caller] = panel;
+        return panel;
     }
 
-    public void RemoveDisplay(object caller)
+    public void TryRemoveFloatingDisplay(object caller)
     {
         if (!_displayedPanels.TryGetValue(caller, out var panel)) return;
         
-        Destroy(panel.gameObject);
+        DestroyImmediate(panel.gameObject);
         _displayedPanels.Remove(caller);
     }
 
@@ -33,13 +37,9 @@ public class ContextPanelManager : Singleton<ContextPanelManager>
     {
         if (_lockedCaller != null) RemoveLockedDisplay(_lockedCaller);
         
-        var panel = Instantiate(contextPanelPrefab, lockedPanelContainer, false);
-        panel.Display(data);
+        var panel = DisplayPanel(lockedPanelContainer, data);
         _lockedCaller = caller;
         _lockedPanel = panel;
-        
-        LayoutRebuilder.ForceRebuildLayoutImmediate(lockedPanelContainer);
-        LayoutRebuilder.ForceRebuildLayoutImmediate(panel.transform as RectTransform);
     }
 
     public void RemoveLockedDisplay(object caller)
@@ -49,5 +49,17 @@ public class ContextPanelManager : Singleton<ContextPanelManager>
         Destroy(_lockedPanel.gameObject);
         _lockedCaller = null;
         _lockedPanel = null;
+    }
+
+    private ContextPanel DisplayPanel(RectTransform container, ContextData context)
+    {
+        var panel = Instantiate(contextPanelPrefab, container, false);
+        panel.Display(context);
+        
+        LayoutRebuilder.ForceRebuildLayoutImmediate(container);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(panel.transform as RectTransform);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(container);
+
+        return panel;
     }
 }

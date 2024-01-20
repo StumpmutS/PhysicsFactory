@@ -1,24 +1,25 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using Utility.Scripts;
+﻿using UnityEngine;
+using Utility.Scripts.Extensions;
 
-public class UIBlocker : MonoBehaviour, IInitializableComponent<UIBlockerInfo>
+public class UIBlocker : MonoBehaviour
 {
-    private HashSet<IUIBlockable> _blockables;
+    private GameObject _blockerObject;
+    private IUIBlockable[] _blockables;
+    private CanvasGroup _canvasGroup;
 
-    public void Init(UIBlockerInfo info)
+    public void Init(UIBlockerData data)
     {
-        foreach (var componentAdder in info.ComponentAdders)
-        {
-            componentAdder.AddOrGetTo(gameObject);
-        }
+        _blockerObject = Instantiate(data.BlockingPrefab, transform, false);
         
-        _blockables = GetComponentsInChildren<IUIBlockable>().ToHashSet();
+        _blockables = _blockerObject.GetComponents<IUIBlockable>();
         foreach (var blockable in _blockables)
         {
-            blockable.Block(info.BlockableInfo);
+            blockable.Block(data.UIBlockableData);
         }
+
+        _canvasGroup = this.AddOrGetComponent<CanvasGroup>();
+        _canvasGroup.interactable = false;
+        _canvasGroup.blocksRaycasts = false;
     }
 
     private void OnDestroy()
@@ -27,5 +28,9 @@ public class UIBlocker : MonoBehaviour, IInitializableComponent<UIBlockerInfo>
         {
             blockable.Unblock();
         }
+        
+        if (_blockerObject != null) Destroy(_blockerObject);
+        //breaks objects that already had a canvas group, will ignore for now
+        if (_canvasGroup != null) Destroy(_canvasGroup);
     }
 }

@@ -8,7 +8,7 @@ public class SaleDisplay : SelectableDisplay<SaleController>
 {
     [SerializeField] private GameObject container;
     [SerializeField] private Button button;
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private ContextDataContainer contextContainer;
 
     private SaleController _saleController;
     private DataService<ContextData> _contextDataService;
@@ -45,18 +45,24 @@ public class SaleDisplay : SelectableDisplay<SaleController>
         }
         stringBuilder.Append($": ${_saleController.SalePriceSummation:F2}");
         
-        text.text = stringBuilder.ToString();
+        contextContainer.SetData(new ContextData(stringBuilder.ToString()));
     }
 
     private void HandleServiceUpdate(ContextData data)
     {
+        TryStopListenOnContext();
+        RefreshDisplay();
+    }
+
+    private void TryStopListenOnContext()
+    {
         if (_contextDataService != null) _contextDataService.OnUpdated.RemoveListener(HandleServiceUpdate);
         _contextDataService = null;
-        RefreshDisplay();
     }
 
     protected override void RemoveSelectionDisplay()
     {
+        TryStopListenOnContext();
         container.SetActive(false);
         button.gameObject.SetActive(false);
     }

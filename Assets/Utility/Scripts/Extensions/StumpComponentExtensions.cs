@@ -58,10 +58,15 @@ namespace Utility.Scripts.Extensions
             return result != null;
         }
 
+        public static bool TryGetComponentsInChildren<T>(this GameObject gameObject, out T result) where T : Component
+        {
+            result = gameObject.GetComponentInChildren<T>();
+            return result != null;
+        }
+
         public static bool RemoveOneComponent<T>(this Component component) where T : Component
         {
-            var found = component.GetComponent<T>();
-            if (found == null) return false;
+            if (!component.TryGetComponent<T>(out var found)) return false;
             
             Object.Destroy(found);
             return true;
