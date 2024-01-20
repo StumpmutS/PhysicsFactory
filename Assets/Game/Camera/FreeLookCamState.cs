@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class FreeLookCamState : State
@@ -15,5 +16,6 @@ public class FreeLookCamState : State
     public override void Enter()
     {
         _inputProvider.XYAxis = _defaultInput;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 }

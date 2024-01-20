@@ -1,4 +1,5 @@
 ﻿using Cinemachine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class LockedCamState : State
@@ -15,5 +16,6 @@ public class LockedCamState : State
     public override void Enter()
     {
         _inputProvider.XYAxis = _emptyInput;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

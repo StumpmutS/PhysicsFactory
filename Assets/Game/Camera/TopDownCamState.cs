@@ -20,6 +20,7 @@ public class TopDownCamState : State
     public override void Enter()
     {
         _inputProvider.XYAxis = _emptyInput;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public override void Tick()
