@@ -1,13 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class StickRigidBodyAffector : RigidBodyAffector, IEnergySpender
+public class StickRigidBodyAffector : RigidBodyAffector, IChargeable
 {
     [SerializeField] private DataService<ContextData> contextService;
     public ContextData Context => contextService.RequestData();
     [SerializeField] private float energyToForceMultiplier;
 
-    private float _charge;
+    public ChargePacket ChargePacket { get; set; }
+
+    private EnergySpreadController _controller;
+
+    public override void Init(RigidBodyAffectorContainer rigidBodyAffectorContainer)
+    {
+        if (!rigidBodyAffectorContainer.TryGetComponent<EnergySpreadController>(out _controller)) return;
+        
+        _controller.RegisterSpender(this);
+    }
 
     public override void AffectRigidbody(Collision collision)
     {
@@ -27,12 +37,12 @@ public class StickRigidBodyAffector : RigidBodyAffector, IEnergySpender
         foreach (var contact in _contactPoints)
         {
             collision.rigidbody.AddForceAtPosition
-                (contact.normal * energyToForceMultiplier * _charge, contact.point);
+                (contact.normal * energyToForceMultiplier * ChargePacket.CurrentCharge.AsFloat(), contact.point);
         }
     }
 
-    public void SetEnergyLevel(float amount)
+    private void OnDestroy()
     {
-        _charge = amount;
+        if (_controller != null) _controller.DeregisterSpender(this);
     }
 }

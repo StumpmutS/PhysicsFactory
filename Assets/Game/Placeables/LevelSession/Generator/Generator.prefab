@@ -86,8 +86,8 @@ MonoBehaviour:
     m_EditorAssetChanged: 0
   optionalStartData:
     context:
-      Label: 
-      Summary: 
+      Label: Generator
+      Summary: Generates energy
       KeyCombinations: []
       ContextReferences: []
     placementProcessors: []
@@ -95,8 +95,8 @@ MonoBehaviour:
     previewPrefab: {fileID: 0}
     anchorCellAmount: 0
     price: 0
-    saleMultiplier: 1
-  optionalStartVolume: 0
+    saleMultiplier: 0
+  optionalStartVolume: 1
   placeable: {fileID: 8603222302506079921}
 --- !u!1 &4487770535281297241
 GameObject:
@@ -310,8 +310,8 @@ GameObject:
   - component: {fileID: 1757536320219594119}
   - component: {fileID: 8603222302506079921}
   - component: {fileID: 6839993792191197506}
+  - component: {fileID: 4570897394218839311}
   - component: {fileID: 6574510647520500109}
-  - component: {fileID: 9186603668778472721}
   - component: {fileID: 1724471759510975065}
   - component: {fileID: 8020193255096309217}
   - component: {fileID: 6175243138404417285}
@@ -392,8 +392,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d35a2ab1070a91547b7b7665d4ec3017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentContainer: {fileID: 9186603668778472721}
-  energyGenerated: 10
+  startingChargeGenerated: 10
+  OnGeneratedChargeChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4570897394218839311}
+        m_TargetAssemblyTypeName: ChargePacketSender, Assembly-CSharp
+        m_MethodName: SetMaxCharge
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8603222302506079921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,19 +438,19 @@ MonoBehaviour:
   parent: {fileID: 4395187715909865302}
   OnSale:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9186603668778472721}
-        m_TargetAssemblyTypeName: CurrentContainer, Assembly-CSharp
-        m_MethodName: ShutDownCurrents
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &4570897394218839311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7723004265237654679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d267b06891544a08884bb64c2feee6d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6574510647520500109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,24 +463,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61788f7ecf6d440ea81353c674e83c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentContainer: {fileID: 9186603668778472721}
+  energyNode: {fileID: 1724471759510975065}
   currentVisualsPrefab: {fileID: 2127817943294552290, guid: eb8fabe301f827148879ab2362dcf7cd,
     type: 3}
---- !u!114 &9186603668778472721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7723004265237654679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ef85129605e4ca799656a0b9764e217, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnCurrentsChanged:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1724471759510975065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,7 +478,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108ae927c0d6437f8cac1b0db5b337bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentContainer: {fileID: 9186603668778472721}
+  OnConnectionsUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  sender: {fileID: 4570897394218839311}
   nodeFinder: {fileID: 1551491421839816752}
 --- !u!114 &8020193255096309217
 MonoBehaviour:
@@ -565,7 +567,7 @@ MonoBehaviour:
       m_Calls: []
   nodeType:
     searchKeyWord: node
-    targetTypeAssemblyQName: SpenderNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    targetTypeAssemblyQName: ReceiverNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   finder: {fileID: 1551491421839816752}
 --- !u!114 &3212717737895028727
@@ -608,6 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 942fe49ab3d24e938af37f0fff4decc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generator: {fileID: 1757536320219594119}
   autoConnector: {fileID: 8020193255096309217}
   finder: {fileID: 1551491421839816752}
 --- !u!1001 &1297693354741087531

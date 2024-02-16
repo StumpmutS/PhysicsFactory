@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyCurrentVisualizer : MonoBehaviour
+public class PacketConnectionVisualizer : MonoBehaviour
 {
-    [SerializeField] private CurrentContainer currentContainer;
+    [SerializeField] private EnergyNode energyNode;
     [SerializeField] private GameObject currentVisualsPrefab;
 
     private HashSet<GameObject> _currentVisuals = new();
@@ -12,30 +12,32 @@ public class EnergyCurrentVisualizer : MonoBehaviour
     public void TryActivate()
     {
         if (_active) return;
-        currentContainer.OnCurrentsChanged.AddListener(Refresh);
+        
+        energyNode.OnConnectionsUpdated.AddListener(Refresh);
         Activate();
     }
 
     private void Activate()
     {
         _active = true;
-        foreach (var current in currentContainer.Currents)
+        foreach (var connection in energyNode.PacketConnections)
         {
-            VisualizeCurrent(current);
+            VisualizeConnection(connection);
         }
     }
     
     private void Refresh()
     {
-        Deactivate();
-        Activate();
+        if (TryDeactivate()) Activate();
     }
     
-    public void TryDeactivate()
+    public bool TryDeactivate()
     {
-        if (!_active) return;
-        currentContainer.OnCurrentsChanged.RemoveListener(Refresh);
+        if (!_active) return false;
+        
+        energyNode.OnConnectionsUpdated.RemoveListener(Refresh);
         Deactivate();
+        return true;
     }
 
     private void Deactivate()
@@ -48,10 +50,10 @@ public class EnergyCurrentVisualizer : MonoBehaviour
         _currentVisuals.Clear();
     }
 
-    private void VisualizeCurrent(EnergyCurrent current)
+    private void VisualizeConnection(ChargePacketConnection connection)
     {
-        var origin = current.Sender.transform.position;
-        var destination = current.Receiver.transform.position;
+        var origin = connection.Sender.transform.position;
+        var destination = ((Component) connection.Receiver).transform.position;
         var direction = destination - origin;
         var visuals = Instantiate(currentVisualsPrefab);
         visuals.transform.forward = direction;

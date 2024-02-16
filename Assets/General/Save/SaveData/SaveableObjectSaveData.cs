@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine.Serialization;
 using Utility.Scripts;
 
 [Serializable]
@@ -10,7 +11,7 @@ public class SaveableObjectSaveData
     public UpgradeSaveData UpgradeSaveData;
     public ModificationSaveData ModificationSaveData;
     public GeneratorSaveData GeneratorSaveData;
-    public CurrentSaveData CurrentSaveData;
+    public NodeSaveData NodeSaveData;
     public EnergySpreadSaveData EnergySpreadSaveData;
     public ExtractorSaveData ExtractorSaveData;
 

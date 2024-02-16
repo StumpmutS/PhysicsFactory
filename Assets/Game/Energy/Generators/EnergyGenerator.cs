@@ -1,27 +1,29 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class EnergyGenerator : MonoBehaviour
 {
-    [SerializeField] private CurrentContainer currentContainer;
-    [SerializeField] private float energyGenerated;
-    public float EnergyGenerated => energyGenerated;
+    [SerializeField] private float startingChargeGenerated;
+    public float ChargeGenerated => _chargeGenerated;
 
-    private void Awake()
+    private float _chargeGenerated;
+    private bool _loaded;
+
+    public UnityEvent<float> OnGeneratedChargeChanged = new();
+
+    public void Load(float chargeGenerated)
     {
-        currentContainer.OnCurrentsChanged.AddListener(UpdateCurrentCharges);
+        _chargeGenerated = chargeGenerated;
+        OnGeneratedChargeChanged.Invoke(ChargeGenerated);
+        _loaded = true;
     }
-
-    private void UpdateCurrentCharges()
+    
+    private void Start()
     {
-        foreach (var current in currentContainer.Currents)
-        {
-            current.SetCharge(energyGenerated / currentContainer.Currents.Count);
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (currentContainer != null) currentContainer.OnCurrentsChanged.RemoveListener(UpdateCurrentCharges);
+        if (_loaded) return;
+        
+        Load(startingChargeGenerated);
     }
 }

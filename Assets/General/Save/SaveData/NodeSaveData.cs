@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 [Serializable]
-public class CurrentSaveData
+public class NodeSaveData
 {
     public List<ConnectionSaveData> ConnectionSaveData = new();
 }

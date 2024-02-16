@@ -13,26 +13,26 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
     [SerializeField] private ContextualUIObjectData contextualUIObjectData;
 
     private EnergySpreadController _controller;
-    private Dictionary<IEnergySpender, SignedFloatSelector> _selectors = new();
+    private Dictionary<IChargeable, SignedFloatSelector> _selectors = new();
 
     protected override void SetupSelectionDisplay(EnergySpreadController controller)
     {
         container.SetActive(true);
         _controller = controller;
-        SetText(controller.Spenders.CurrentTotal, controller.Spenders.MaxTotal);
-        controller.Spenders.OnFloatsChanged += HandleSpendersChanged;
-        foreach (var kvp in controller.Spenders.Floats)
+        controller.OnSpendersChanged.AddListener(RefreshSelectors);
+        SetText(controller.CurrentTotal, controller.MaxTotal);
+        foreach (var spender in controller.Spenders)
         {
-            SetupNewSelector(kvp.Key, kvp.Value);
+            SetupNewSelector(spender, spender.ChargePacket.CurrentCharge);
         }
     }
-
+    
     private void SetText(float currentTotal, float maxTotal)
     {
         text.text = $"Charge Spent: {currentTotal:F2} / {maxTotal:F2}";
     }
 
-    private void SetupNewSelector(IEnergySpender spender, SignedFloat value)
+    private void SetupNewSelector(IChargeable spender, SignedFloat value)
     {
         var selector = CreateFloatSelector(spender, value, GenerateContext(spender.Context, value));
         _selectors[spender] = selector;
@@ -49,51 +49,52 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
         return selector;
     }
 
-    private void HandleSpendersChanged()
+    private void RefreshSelectors()
     {
-        var floatsCopy = _controller.Spenders.Floats.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-        foreach (var kvp in floatsCopy)
+        foreach (var spender in _controller.Spenders)
         {
-            if (_selectors.TryGetValue(kvp.Key, out var selector))
+            if (_selectors.TryGetValue(spender, out var selector))
             {
-                selector.SignedFloat = kvp.Value;
+                selector.SignedFloat = spender.ChargePacket.CurrentCharge;
                 if (!selector.TryGetComponent<ContextDataContainer>(out var contextContainer)) continue;
                 
-                contextContainer.SetData(GenerateContext(kvp.Key.Context, kvp.Value));
+                contextContainer.SetData(GenerateContext(spender.Context, spender.ChargePacket.CurrentCharge));
             }
             else
             {
-                SetupNewSelector(kvp.Key, kvp.Value);
+                SetupNewSelector(spender, spender.ChargePacket.CurrentCharge);
             }
         }
 
         var selectorsCopy = _selectors.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         foreach (var kvp in selectorsCopy)
         {
-            if (_controller.Spenders.Floats.ContainsKey(kvp.Key)) continue;
+            if (_controller.Spenders.Contains(kvp.Key)) continue;
+            
             Destroy(kvp.Value.gameObject);
             _selectors.Remove(kvp.Key);
         }
         
-        SetText(_controller.Spenders.CurrentTotal, _controller.Spenders.MaxTotal);
+        SetText(_controller.CurrentTotal, _controller.MaxTotal);
     }
 
     private void HandleSelectorChanged(object callbackObj, SignedFloat value)
     {
-        if (callbackObj is not IEnergySpender spender) return;
-        _controller.Spenders.SetValue(spender, value);
+        if (callbackObj is not IChargeable spender) return;
+        spender.ChargePacket.UpdateRequestedCharge(value);
+        RefreshSelectors();
     }
 
     private ContextData GenerateContext(ContextData context, SignedFloat value)
     {
-        return new ContextData(context.Label, $"{value.Value:F2}/{_controller.Spenders.MaxTotal:F2}");
+        return new ContextData(context.Label, $"{value.Value:F2}/{_controller.MaxTotal:F2}");
     }
 
     protected override void RemoveSelectionDisplay()
     {
+        if (_controller != null) _controller.OnSpendersChanged.AddListener(RefreshSelectors);
         container.SetActive(false);
         layout.Clear();
         _selectors.Clear();
-        if (_controller != null) _controller.Spenders.OnFloatsChanged -= HandleSpendersChanged;
     }
 }

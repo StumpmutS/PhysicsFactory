@@ -1,49 +1,55 @@
 ﻿using System.Collections.Generic;
 using Utility.Scripts;
-using Utility.Scripts.Extensions;
+
 
 public class SaveableObjectIdManager : Singleton<SaveableObjectIdManager>
-{
-    private HashSet<SaveableObject> _objects = new();
-    private List<SaveableObject> _indexedObjects = new();
+{ 
+    public const int SceneIdIndex = 1024;
+
+    private SerializableDictionary<int, SaveableObject> _idObjects = new();
+    private HashSet<SaveableObject> _uniqueObjects = new();
+    private int idIndex;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        idIndex = SceneIdIndex;
+    }
 
     public int AddObject(SaveableObject obj)
     {
-        if (!_objects.Add(obj)) return -1;
+        if (!_uniqueObjects.Add(obj)) return -1;
 
-        for (int i = 0; i < _indexedObjects.Count; i++)
-        {
-            if (_indexedObjects[i] != null) continue;
-            
-            _indexedObjects[i] = obj;
-            return i;
-        }
+        while (_idObjects.ContainsKey(idIndex)) idIndex++;
         
-        _indexedObjects.Add(obj);
-        return _indexedObjects.Count - 1;
+        _idObjects[idIndex] = obj;
+        idIndex++;
+        
+        return idIndex - 1;
     }
 
     public void IdentifyObject(SaveableObject obj, int id)
     {
-        if (_indexedObjects.Count <= id) _indexedObjects.Equalize(id + 1);
-        _indexedObjects[id] = obj;
+        if (!_uniqueObjects.Add(obj)) return;
+        
+        _idObjects[id] = obj;
     }
     
     public void RemoveObject(SaveableObject saveableObject)
     {
-        _objects.Remove(saveableObject);
-        _indexedObjects.Remove(saveableObject);
+        if (!_uniqueObjects.Remove(saveableObject)) return;
+        
+        _idObjects.Remove(saveableObject.Id);
     }
 
     public bool TryGet(int id, out SaveableObject obj)
     {
-        if (id > -1 && id < _indexedObjects.Count)
-        {
-            obj = _indexedObjects[id];
-            return true;
-        }
+        return _idObjects.TryGetValue(id, out obj);
+    }
 
+    public bool TryGetSceneObject(int id, out SaveableObject obj)
+    {
         obj = null;
-        return false;
+        return id >= 0 && id < SceneIdIndex && TryGet(id, out obj);
     }
 }

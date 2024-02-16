@@ -7,17 +7,19 @@ public class PlaceableManager : Singleton<PlaceableManager>
 {
     private HashSet<Placeable> _placeables = new();
 
-    public UnityEvent OnPlaceableAdded = new();
+    public UnityEvent OnPlaceablesUpdated = new();
 
     public void AddPlaceable(Placeable placeable)
     {
         if (!_placeables.Add(placeable)) return;
         
-        OnPlaceableAdded.Invoke();
+        OnPlaceablesUpdated.Invoke();
     }
 
     public void RemovePlaceable(Placeable placeable)
     {
-        _placeables.Remove(placeable);
+        if (!_placeables.Remove(placeable)) return;
+        
+        OnPlaceablesUpdated.Invoke();
     }
 }

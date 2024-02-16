@@ -23,7 +23,7 @@ public class EnergyNodeAutoConnector : MonoBehaviour
     
     private HashSet<EnergyNode> _connectedNodes = new();
 
-    public UnityEvent OnLockChanged;
+    public UnityEvent OnLockChanged = new();
 
     private void Awake()
     {
@@ -32,11 +32,11 @@ public class EnergyNodeAutoConnector : MonoBehaviour
 
     private void Start()
     {
-        PlaceableManager.Instance.OnPlaceableAdded.AddListener(HandlePlaceableAdded);
+        PlaceableManager.Instance.OnPlaceablesUpdated.AddListener(HandlePlaceablesUpdated);
         RefreshNodes(nodeFinder.Nodes);
     }
 
-    private void HandlePlaceableAdded()
+    private void HandlePlaceablesUpdated()
     {
         RefreshNodes(nodeFinder.Nodes);
     }
@@ -66,6 +66,6 @@ public class EnergyNodeAutoConnector : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (PlaceableManager.Instance != null) PlaceableManager.Instance.OnPlaceableAdded.RemoveListener(HandlePlaceableAdded);
+        if (PlaceableManager.Instance != null) PlaceableManager.Instance.OnPlaceablesUpdated.RemoveListener(HandlePlaceablesUpdated);
     }
 }

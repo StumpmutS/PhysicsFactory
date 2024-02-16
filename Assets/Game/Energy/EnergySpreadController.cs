@@ -1,84 +1,99 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.Events;
 using Utility.Scripts;
 
 public class EnergySpreadController : MonoBehaviour, ISaveable<SaveableObjectSaveData>, ILoadable<EnergySpreadSaveData>
 {
-    [FormerlySerializedAs("container")] [SerializeField] private EnergyStorage storage;
+    [SerializeField] private ChargePacketDistributor packetDistributor;
     [SerializeField] private List<Component> startingSpenders;
 
-    public FloatGroup<IEnergySpender> Spenders { get; } = new();
+    public float CurrentTotal => Spenders.Sum(s => s.ChargePacket.CurrentCharge.Value);
+    public float MaxTotal => CurrentTotal + packetDistributor.AvailableCharge;
+    public HashSet<IChargeable> Spenders { get; private set; } = new();
 
-    private void Awake()
+    private bool _spendersInitialized;
+
+    public UnityEvent OnSpendersChanged = new();
+
+    private void Start()
     {
-        Spenders.MaxTotal = storage.TotalCharge;
+        TryInitSpenders();
+    }
+
+    private void TryInitSpenders()
+    {
+        if (_spendersInitialized) return;
         
         foreach (var component in startingSpenders)
         {
-            if (component is IEnergySpender spender)
+            if (component is IChargeable spender)
             {
                 RegisterSpender(spender);
             }
         }
-
-        Spenders.OnFloatsChanged += HandleSpendersChanged;
-        storage.OnChargeChanged.AddListener(HandleChargeChanged);
+        
+        _spendersInitialized = true;
     }
 
-    public void RegisterSpender(IEnergySpender spender)
+    public void RegisterSpender(IChargeable spender)
     {
-        Spenders.SetValue(spender, new SignedFloat(0, true));
+        if (!Spenders.Add(spender)) return;
+        
+        var packet = packetDistributor.RequestChargePacket();
+        spender.ChargePacket = packet;
+        spender.ChargePacket.OnChargeUpdated += HandlePacketUpdated;
+        OnSpendersChanged.Invoke();
     }
 
-    public void DeregisterSpender(IEnergySpender spender)
+    private void HandlePacketUpdated(ChargePacket packet)
+    {
+        OnSpendersChanged.Invoke();
+    }
+
+    public void DeregisterSpender(IChargeable spender)
     {
         Spenders.Remove(spender);
-    }
-
-    private void HandleChargeChanged(float value)
-    {
-        Spenders.MaxTotal = value;
-    }
-
-    private void HandleSpendersChanged()
-    {
-        foreach (var kvp in Spenders.Floats)
-        {
-            kvp.Key.SetEnergyLevel(kvp.Value.AsFloat());
-        }
+        spender.ChargePacket.ReleasePacket();
+        spender.ChargePacket.OnChargeUpdated -= HandlePacketUpdated;
+        OnSpendersChanged.Invoke();
     }
 
     private void OnDestroy()
     {
-        if (storage != null) storage.OnChargeChanged.RemoveListener(HandleChargeChanged);
-        if (Spenders != null) Spenders.OnFloatsChanged -= HandleSpendersChanged;
+        foreach (var spender in Spenders)
+        {
+            spender.ChargePacket.ReleasePacket();
+        }
     }
 
     public void Save(SaveableObjectSaveData data, AssetRefCollection assetRefCollection)
     {
         data.EnergySpreadSaveData ??= new EnergySpreadSaveData();
-        data.EnergySpreadSaveData.MaxTotal = Spenders.MaxTotal;
         data.EnergySpreadSaveData.Spread ??= new SerializableDictionary<string, SerializableSignedFloat>();
-        foreach (var kvp in Spenders.Floats)
+        foreach (var spender in Spenders)
         {
-            data.EnergySpreadSaveData.Spread[kvp.Key.Context.Label] = new SerializableSignedFloat(kvp.Value);
+            data.EnergySpreadSaveData.Spread[spender.Context.Label] = new SerializableSignedFloat(spender.ChargePacket.CurrentCharge);
         }
         data.EnergySpreadSaveData.Spread.OnBeforeSerialize();
     }
 
     public LoadingInfo Load(EnergySpreadSaveData data, AssetRefCollection assetRefCollection)
     {
-        Spenders.MaxTotal = data.MaxTotal;
-        var floatsCopy = Spenders.Floats.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-        foreach (var kvp in floatsCopy)
+        TryInitSpenders();
+        
+        foreach (var spender in Spenders)
         {
-            var label = kvp.Key.Context.Label;
-            if (data.Spread.TryGetValue(label, out var value))
+            var label = spender.Context.Label;
+            if (!data.Spread.TryGetValue(label, out var value))
             {
-                Spenders.SetValue(kvp.Key, value.ToSignedFloat());
+                var ex = $"Could not find spender with label: {label}";
+                return LoadingInfo.Completed(data, ELoadCompletionStatus.Failed, new Exception(ex));
             }
+            
+            spender.ChargePacket.UpdateRequestedCharge(value.ToSignedFloat());
         }
 
         return LoadingInfo.Completed(data, ELoadCompletionStatus.Succeeded);

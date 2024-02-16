@@ -1,17 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Utility.Scripts;
 
 public class SaveableObjectLoadManager : Singleton<SaveableObjectLoadManager>, ILoadable<LevelData>
 {
+    [SerializeField] private List<SaveableObject> sceneObjects;
+    
     private InitializedSaveableObjectData _initializedObjectData;
-
+    
     public LoadingInfo Load(LevelData data, AssetRefCollection assetRefCollection)
     {
         _initializedObjectData = new InitializedSaveableObjectData();
-
+        
         foreach (var saveableObjectSaveData in data.SaveableObjectSaveData)
         {
+            if (SaveableObjectIdManager.Instance.TryGetSceneObject(saveableObjectSaveData.Id, out var obj))
+            {
+                _initializedObjectData.SaveableObjects.Add(obj.gameObject, saveableObjectSaveData);
+                continue;
+            }
+            
             var asset = LevelLoadingHelpers.GetSaveableAsset(data, saveableObjectSaveData, assetRefCollection);
             if (asset == default)
             {
@@ -44,7 +54,7 @@ public class SaveableObjectLoadManager : Singleton<SaveableObjectLoadManager>, I
             new LoadableData(() => CreateLoader(d => d.UpgradeSaveData).Load()),
             new LoadableData(() => CreateLoader(d => d.ModificationSaveData).Load()),
             new LoadableData(() => CreateLoader(d => d.GeneratorSaveData).Load()),
-            new LoadableData(() => CreateLoader(d => d.CurrentSaveData).Load()),
+            new LoadableData(() => CreateLoader(d => d.NodeSaveData).Load()),
             new LoadableData(() => CreateLoader(d => d.EnergySpreadSaveData).Load()),
             new LoadableData(() => CreateLoader(d => d).Load()) //final pass for any new components
         });

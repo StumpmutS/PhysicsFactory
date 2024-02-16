@@ -14,10 +14,25 @@ namespace Utility.Scripts
 
         public bool Positive;
 
-        public SignedFloat(float value, bool positive)
+        public SignedFloat(float value = 0f, bool positive = true)
         {
             _value = Mathf.Abs(value);
             Positive = positive;
+        }
+
+        public static SignedFloat FromFloat(float value)
+        {
+            return new SignedFloat(Mathf.Abs(value), Mathf.Sign(value) >= 0);
+        }
+
+        public static SignedFloat operator +(SignedFloat l, SignedFloat r)
+        {
+            return FromFloat(l.AsFloat() + r.AsFloat());
+        }
+
+        public static SignedFloat operator +(SignedFloat l, float r)
+        {
+            return FromFloat(l.AsFloat() + r);
         }
 
         public float AsFloat()

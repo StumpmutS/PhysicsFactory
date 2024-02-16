@@ -19,6 +19,7 @@ public class RigidBodyAffectorContainer : MonoBehaviour
     public RigidBodyAffector AddAffector(RigidBodyAffector affectorPrefab)
     {
         var affector = Instantiate(affectorPrefab, containerTransform);
+        affector.Init(this);
         SetAffector(affectorPrefab.GetType(), affector);
         return affector;
     }

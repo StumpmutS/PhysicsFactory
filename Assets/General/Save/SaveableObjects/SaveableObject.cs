@@ -1,12 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class SaveableObject : MonoBehaviour, ISaveable<LevelData>, ILoadable<SaveableObjectSaveData>
 {
+    [SerializeField] private bool sceneObject;
+    [SerializeField, ShowIf(nameof(sceneObject), true)] private SaveableObjectIdManager idManager;
+    [SerializeField, ShowIf(nameof(sceneObject), true)] private int startId = -1;
     [SerializeField] private Transform mainTransform;
     
     public int Id { get; private set; } = -1;
+
+    private void Awake()
+    {
+        if (!sceneObject) return;
+        
+        Id = startId;
+        idManager.IdentifyObject(this, Id);
+    }
 
     private void Start()
     {

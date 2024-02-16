@@ -9,4 +9,9 @@ public class VolumeEnergyConverter : EnergyConverter
     {
         return charge / placeable.Data.Volume;
     }
+
+    public override float UnconvertEnergy(float charge)
+    {
+        return charge * placeable.Data.Volume;
+    }
 }

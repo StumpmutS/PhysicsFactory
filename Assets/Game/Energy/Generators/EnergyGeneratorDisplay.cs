@@ -7,13 +7,11 @@ public class EnergyGeneratorDisplay : SelectableDisplay<EnergyGenerator>
 {
     [SerializeField] private GameObject container;
     [SerializeField] private TMP_Text text;
-
-    public UnityEvent<SignedFloat> OnChange;
     
     protected override void SetupSelectionDisplay(EnergyGenerator generator)
     {
         container.SetActive(true);
-        SetText(generator.EnergyGenerated);
+        SetText(generator.ChargeGenerated);
     }
     
     private void SetText(float charge)

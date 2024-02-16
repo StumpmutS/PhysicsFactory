@@ -2,7 +2,5 @@
 
 public class StorageChargeVisuals : ChargeVisuals
 {
-    [SerializeField] private EnergyStorage storage;
-
-    protected override string TextValue => storage.TotalCharge.ToString("F2");
+    protected override string TextValue => "System On Chopping Block";
 }
