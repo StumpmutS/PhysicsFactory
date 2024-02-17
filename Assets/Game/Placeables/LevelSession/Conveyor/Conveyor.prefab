@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyNode: {fileID: 4958169215755486241}
-  currentVisualsPrefab: {fileID: 2127817943294552290, guid: eb8fabe301f827148879ab2362dcf7cd,
+  currentVisualsPrefab: {fileID: 2776083092830201365, guid: e895218598fbe1c42927ed5b6237ee35,
     type: 3}
 --- !u!114 &5046291421389401347
 MonoBehaviour:

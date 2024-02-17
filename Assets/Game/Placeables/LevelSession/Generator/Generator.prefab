@@ -358,6 +358,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ebd7682fc6453b89ba5ebd124f8eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneObject: 0
+  idManager: {fileID: 0}
+  startId: -1
   mainTransform: {fileID: 1399576277567197203}
 --- !u!65 &7983207004966662307
 BoxCollider:
@@ -464,7 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyNode: {fileID: 1724471759510975065}
-  currentVisualsPrefab: {fileID: 2127817943294552290, guid: eb8fabe301f827148879ab2362dcf7cd,
+  currentVisualsPrefab: {fileID: 2776083092830201365, guid: e895218598fbe1c42927ed5b6237ee35,
     type: 3}
 --- !u!114 &1724471759510975065
 MonoBehaviour:

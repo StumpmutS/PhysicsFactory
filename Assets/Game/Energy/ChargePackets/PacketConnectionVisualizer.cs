@@ -4,9 +4,9 @@ using UnityEngine;
 public class PacketConnectionVisualizer : MonoBehaviour
 {
     [SerializeField] private EnergyNode energyNode;
-    [SerializeField] private GameObject currentVisualsPrefab;
+    [SerializeField] private PacketConnectionVisual currentVisualsPrefab;
 
-    private HashSet<GameObject> _currentVisuals = new();
+    private HashSet<PacketConnectionVisual> _currentVisuals = new();
     private bool _active;
 
     public void TryActivate()
@@ -59,9 +59,13 @@ public class PacketConnectionVisualizer : MonoBehaviour
         var direction = destination - origin;
         var visuals = Instantiate(currentVisualsPrefab);
         visuals.transform.forward = direction;
-        visuals.transform.position = Vector3.Lerp(origin, destination, .5f);
-        visuals.transform.localScale = new Vector3(visuals.transform.localScale.x, visuals.transform.localScale.y,
-            direction.magnitude);
+        visuals.transform.position = origin;
+        
+        var main = visuals.ParticleSystem.main;
+        main.startLifetime =
+            new ParticleSystem.MinMaxCurve(
+                direction.magnitude / visuals.ParticleSystem.velocityOverLifetime.y.constantMax);
+        visuals.ParticleSystem.Play();
         
         _currentVisuals.Add(visuals);
     }
