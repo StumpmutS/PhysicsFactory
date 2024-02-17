@@ -3611,7 +3611,9 @@ MonoBehaviour:
       useSpecificValue: 0
       floatSo: {fileID: 0}
       specificValue: 0
-    driveLabel: 1
+    labelDriven: 1
+    summaryDriven: 0
+    labelSummarySeparator: 
   toggleLayoutDisplay: {fileID: 518780027}
   interactionDisplayPrefab: {fileID: 4981398575449891391, guid: 3e887728ff72aef47942600fa049c290,
     type: 3}
@@ -5051,7 +5053,9 @@ MonoBehaviour:
       useSpecificValue: 0
       floatSo: {fileID: 0}
       specificValue: 0
-    driveLabel: 1
+    labelDriven: 1
+    summaryDriven: 0
+    labelSummarySeparator: 
   toggleLayoutDisplay: {fileID: 544576043}
   interactionDisplayPrefab: {fileID: 1164904139180820926, guid: a0605e59ee88c2c4e90f5d6e59614885,
     type: 3}
@@ -6695,7 +6699,9 @@ MonoBehaviour:
       useSpecificValue: 0
       floatSo: {fileID: 0}
       specificValue: 0
-    driveLabel: 1
+    labelDriven: 1
+    summaryDriven: 0
+    labelSummarySeparator: 
   toggleLayoutDisplay: {fileID: 1806086905}
   interactionDisplayPrefab: {fileID: 4871127738562300709, guid: 750570bfc82b40c409a7911661c86eba,
     type: 3}
@@ -7205,7 +7211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.27127087, g: 0.29329884, b: 0.33962262, a: 0.29803923}
+  m_Color: {r: 1, g: 0.86153847, b: 0.55, a: 0.050980393}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -96,6 +96,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Energy",
+                    "type": "Button",
+                    "id": "5d8c8777-ff6b-4f18-9786-30edc83737f1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Control",
                     "type": "Button",
                     "id": "5483fa56-0857-4933-b34e-6d935189c0ec",
@@ -451,6 +460,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db0c075e-1cac-43dd-a5ba-42cad6fd3f1c",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Energy",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

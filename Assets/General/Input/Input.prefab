@@ -308,6 +308,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 08e68278-8e9d-4b2b-bb2e-25c3a92f8d95
     m_ActionName: 'Player/Escape[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4295406705474592687}
+        m_TargetAssemblyTypeName: InputTranslationManager, Assembly-CSharp
+        m_MethodName: Energy
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5d8c8777-ff6b-4f18-9786-30edc83737f1
+    m_ActionName: 'Player/Energy[/Keyboard/v]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -380,6 +396,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnIsolateUp:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnergyDown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnergyUp:
     m_PersistentCalls:
       m_Calls: []
   OnHomeDown:

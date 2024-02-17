@@ -6,12 +6,12 @@ public class ViewSelectionActions : MonoBehaviour
     [SerializeField] private Viewable viewable;
     [SerializeField] private Selectable selectable;
 
-    public UnityEvent<Selectable> OnHover;
-    public UnityEvent<Selectable> OnHoverStop;
-    public UnityEvent<Selectable> OnSelect;
-    public UnityEvent<Selectable> OnDeselect;
-    public UnityEvent<Selectable> OnEngage;
-    public UnityEvent<Selectable> OnDisengage;
+    public UnityEvent<Selectable> OnHover = new();
+    public UnityEvent<Selectable> OnHoverStop = new();
+    public UnityEvent<Selectable> OnSelect = new();
+    public UnityEvent<Selectable> OnDeselect = new();
+    public UnityEvent<Selectable> OnEngage = new();
+    public UnityEvent<Selectable> OnDisengage = new();
 
     private void Awake()
     {

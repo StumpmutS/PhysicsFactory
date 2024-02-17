@@ -212,6 +212,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ebd7682fc6453b89ba5ebd124f8eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneObject: 0
+  idManager: {fileID: 0}
+  startId: -1
   mainTransform: {fileID: 7941187070353593827}
 --- !u!65 &6229695234046450071
 BoxCollider:
@@ -360,6 +363,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   converters:
   - {fileID: 220314435346379355}
+  OnChargeUpdate:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4958169215755486241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -908,12 +914,12 @@ PrefabInstance:
     - target: {fileID: 7025951564048548820, guid: 467cee09846352240b326aa5ceb1e096,
         type: 3}
       propertyPath: OnSelect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: EnergyCurrentVisualizer, Assembly-CSharp
+      value: PacketConnectionVisualizer, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7025951564048548820, guid: 467cee09846352240b326aa5ceb1e096,
         type: 3}
       propertyPath: OnDeselect.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: EnergyCurrentVisualizer, Assembly-CSharp
+      value: PacketConnectionVisualizer, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7025951564048548820, guid: 467cee09846352240b326aa5ceb1e096,
         type: 3}

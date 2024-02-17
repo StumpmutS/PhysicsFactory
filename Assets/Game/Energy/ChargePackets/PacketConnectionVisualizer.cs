@@ -28,16 +28,16 @@ public class PacketConnectionVisualizer : MonoBehaviour
     
     private void Refresh()
     {
-        if (TryDeactivate()) Activate();
+        TryDeactivate();
+        TryActivate();
     }
     
-    public bool TryDeactivate()
+    public void TryDeactivate()
     {
-        if (!_active) return false;
+        if (!_active) return;
         
         energyNode.OnConnectionsUpdated.RemoveListener(Refresh);
         Deactivate();
-        return true;
     }
 
     private void Deactivate()
@@ -52,6 +52,8 @@ public class PacketConnectionVisualizer : MonoBehaviour
 
     private void VisualizeConnection(ChargePacketConnection connection)
     {
+        if (!gameObject.scene.isLoaded) return;
+        
         var origin = connection.Sender.transform.position;
         var destination = ((Component) connection.Receiver).transform.position;
         var direction = destination - origin;

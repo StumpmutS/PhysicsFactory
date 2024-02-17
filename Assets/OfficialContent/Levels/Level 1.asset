@@ -56,13 +56,17 @@ MonoBehaviour:
     SupplyData:
       Supply: 200
     SaveableObjectSaveData:
-    - Id: 0
+    - Id: 1024
       PrefabReferenceIds:
         keys: 0000000001000000
         values: 0000000001000000
       PlacedSaveData:
         data:
-          label: Default Extraction Site
+          contextData:
+            Label: 
+            Summary: 
+            KeyCombinations: []
+            ContextReferences: []
           volume: 8.000001
           price: 0
           saleMultiplier: 0
@@ -75,24 +79,28 @@ MonoBehaviour:
       ModificationSaveData:
         ActiveModificationIndexes: 
       GeneratorSaveData:
+        ChargeGenerated: 0
         Locked: 0
         Range: 0
-      CurrentSaveData:
+      NodeSaveData:
         ConnectionSaveData: []
       EnergySpreadSaveData:
-        MaxTotal: 0
         Spread:
           keys: []
           values: []
       ExtractorSaveData:
         ExtractableId: 0
-    - Id: 1
+    - Id: 1025
       PrefabReferenceIds:
         keys: 0000000001000000
         values: 0200000003000000
       PlacedSaveData:
         data:
-          label: Wall
+          contextData:
+            Label: 
+            Summary: 
+            KeyCombinations: []
+            ContextReferences: []
           volume: 4.0000005
           price: 0
           saleMultiplier: 0
@@ -105,12 +113,12 @@ MonoBehaviour:
       ModificationSaveData:
         ActiveModificationIndexes: 
       GeneratorSaveData:
+        ChargeGenerated: 0
         Locked: 0
         Range: 0
-      CurrentSaveData:
+      NodeSaveData:
         ConnectionSaveData: []
       EnergySpreadSaveData:
-        MaxTotal: 0
         Spread:
           keys: []
           values: []

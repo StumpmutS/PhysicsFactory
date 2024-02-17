@@ -26,6 +26,8 @@ public class InputTranslationManager : Singleton<InputTranslationManager>
     public UnityEvent OnGridUp;
     public UnityEvent OnIsolateDown;
     public UnityEvent OnIsolateUp;
+    public UnityEvent OnEnergyDown;
+    public UnityEvent OnEnergyUp;
     public UnityEvent OnHomeDown;
     public UnityEvent OnHomeUp;
     public UnityEvent OnEscapeDown;
@@ -153,8 +155,24 @@ public class InputTranslationManager : Singleton<InputTranslationManager>
         }
     }
 
-    private bool _cachedControlValue;
+    private bool _cachedEnergyValue;
+    public void Energy(InputAction.CallbackContext ctx)
+    {
+        var value = ctx.ReadValueAsButton();
+        if (value == _cachedEnergyValue) return;
+        _cachedEnergyValue = value;
+        
+        if (value)
+        {
+            OnEnergyDown.Invoke();
+        }
+        else
+        {
+            OnEnergyUp.Invoke();
+        }
+    }
 
+    private bool _cachedControlValue;
     public void Control(InputAction.CallbackContext ctx)
     {
         var value = ctx.ReadValueAsButton();
