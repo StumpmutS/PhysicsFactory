@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MaterialManager : MonoBehaviour
 {
 #pragma warning disable CS0108, CS0114
-    [SerializeField] private Renderer renderer;
+    [FormerlySerializedAs("renderer")] [SerializeField] private Renderer primaryRenderer;
 #pragma warning restore CS0108, CS0114
+    [SerializeField] private List<Renderer> secondaryRenderers;
     [SerializeField] private MaterialPairs materialPairs;
 
     private Material _materialReference;
@@ -16,11 +18,11 @@ public class MaterialManager : MonoBehaviour
     {
         get
         {
-            if (_materialInstance == renderer.sharedMaterial) return _materialInstance;
+            if (_materialInstance == primaryRenderer.sharedMaterial) return _materialInstance;
 
             if (_materialInstance != null) Destroy(_materialInstance);
-            _materialInstance = Instantiate(renderer.material);
-            renderer.material = _materialInstance;
+            _materialInstance = Instantiate(primaryRenderer.material);
+            SetMaterial(_materialInstance);
             return _materialInstance;
         }
         set => _materialInstance = value;
@@ -29,7 +31,7 @@ public class MaterialManager : MonoBehaviour
 
     private void Awake()
     {
-        _materialReference = renderer.sharedMaterial;
+        _materialReference = primaryRenderer.sharedMaterial;
         if (MaterialHelper.IsZWriteMaterial(_materialReference, out var zWrite)) _zWrite = zWrite;
     }
 
@@ -52,13 +54,22 @@ public class MaterialManager : MonoBehaviour
         
         var prevReference = _materialReference;
         _materialReference = material;
-        renderer.material = material;
+        SetMaterial(material);
         
         foreach (var actionKvp in _materialActions)
         {
             actionKvp.Value.Invoke(actionKvp.Key, MaterialInstance);
         }
         return prevReference;
+    }
+
+    private void SetMaterial(Material material)
+    {
+        primaryRenderer.material = material;
+        foreach (var secondary in secondaryRenderers)
+        {
+            secondary.material = material;
+        }
     }
 
     public void ZWriteOn()

@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07964892e6874f98938224bd2d65aee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingPrefab: {fileID: 6657367101063419230, guid: cc243238367b75847b71c26217872531,
+  placeablePrefab: {fileID: 6657367101063419230, guid: cc243238367b75847b71c26217872531,
     type: 3}
   rendererInfo:
   - overrideAlpha: 1
@@ -160,7 +160,7 @@ MonoBehaviour:
       m_Calls: []
   nodeType:
     searchKeyWord: node
-    targetTypeAssemblyQName: SpenderNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+    targetTypeAssemblyQName: ReceiverNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   finder: {fileID: 5367981027734394732}
 --- !u!114 &5367981027734394732

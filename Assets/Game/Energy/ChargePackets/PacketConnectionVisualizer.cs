@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PacketConnectionVisualizer : MonoBehaviour
 {
     [SerializeField] private EnergyNode energyNode;
-    [SerializeField] private PacketConnectionVisual currentVisualsPrefab;
+    [FormerlySerializedAs("currentVisualsPrefab")] [SerializeField] private PacketConnectionVisual visualsPrefab;
 
-    private HashSet<PacketConnectionVisual> _currentVisuals = new();
+    private HashSet<PacketConnectionVisual> _visuals = new();
     private bool _active;
 
     public void TryActivate()
@@ -43,11 +44,11 @@ public class PacketConnectionVisualizer : MonoBehaviour
     private void Deactivate()
     {
         _active = false;
-        foreach (var current in _currentVisuals)
+        foreach (var visual in _visuals)
         {
-            Destroy(current.gameObject);
+            if (visual != null) Destroy(visual.gameObject);
         }
-        _currentVisuals.Clear();
+        _visuals.Clear();
     }
 
     private void VisualizeConnection(ChargePacketConnection connection)
@@ -57,7 +58,7 @@ public class PacketConnectionVisualizer : MonoBehaviour
         var origin = connection.Sender.transform.position;
         var destination = ((Component) connection.Receiver).transform.position;
         var direction = destination - origin;
-        var visuals = Instantiate(currentVisualsPrefab);
+        var visuals = Instantiate(visualsPrefab);
         visuals.transform.forward = direction;
         visuals.transform.position = origin;
         
@@ -67,6 +68,6 @@ public class PacketConnectionVisualizer : MonoBehaviour
                 direction.magnitude / visuals.ParticleSystem.velocityOverLifetime.y.constantMax);
         visuals.ParticleSystem.Play();
         
-        _currentVisuals.Add(visuals);
+        _visuals.Add(visuals);
     }
 }
