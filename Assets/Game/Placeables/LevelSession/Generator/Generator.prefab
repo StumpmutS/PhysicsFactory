@@ -5468,7 +5468,7 @@ PrefabInstance:
     - target: {fileID: 6837308768476888878, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
       propertyPath: OnSelect.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Activate
+      value: TryActivate
       objectReference: {fileID: 0}
     - target: {fileID: 6837308768476888878, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
@@ -5488,7 +5488,7 @@ PrefabInstance:
     - target: {fileID: 6837308768476888878, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
       propertyPath: OnDeselect.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Deactivate
+      value: TryDeactivate
       objectReference: {fileID: 0}
     - target: {fileID: 6837308768476888878, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
@@ -5498,7 +5498,7 @@ PrefabInstance:
     - target: {fileID: 6837308768476888878, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
       propertyPath: OnSelect.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: NodeHighlighter, Assembly-CSharp
+      value: Activatable, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6837308768476888878, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
@@ -5508,7 +5508,7 @@ PrefabInstance:
     - target: {fileID: 6837308768476888878, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
       propertyPath: OnDeselect.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: NodeHighlighter, Assembly-CSharp
+      value: Activatable, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6837308768476888878, guid: 49c445ad83452654391e3e707471cb4e,
         type: 3}
@@ -6025,7 +6025,7 @@ PrefabInstance:
     - target: {fileID: 288950689092072028, guid: 467cee09846352240b326aa5ceb1e096,
         type: 3}
       propertyPath: OnActivation.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 288950689092072028, guid: 467cee09846352240b326aa5ceb1e096,
         type: 3}
@@ -6045,7 +6045,7 @@ PrefabInstance:
     - target: {fileID: 288950689092072028, guid: 467cee09846352240b326aa5ceb1e096,
         type: 3}
       propertyPath: OnDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 288950689092072028, guid: 467cee09846352240b326aa5ceb1e096,
         type: 3}

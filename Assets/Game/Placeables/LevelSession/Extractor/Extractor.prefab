@@ -399,7 +399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e92179da4af4f328caef3c87cd37360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderer: {fileID: 5372257577295928999}
+  primaryRenderer: {fileID: 5372257577295928999}
+  secondaryRenderers: []
   materialPairs: {fileID: 11400000, guid: 0f37b19fd943c174a8aaea155a1d47ee, type: 2}
 --- !u!114 &9140431958233726904
 MonoBehaviour:
@@ -434,7 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyNode: {fileID: 3162090931042402191}
-  currentVisualsPrefab: {fileID: 2776083092830201365, guid: e895218598fbe1c42927ed5b6237ee35,
+  visualsPrefab: {fileID: 2776083092830201365, guid: e895218598fbe1c42927ed5b6237ee35,
     type: 3}
 --- !u!1001 &1245919801485226905
 PrefabInstance:
@@ -841,7 +842,7 @@ PrefabInstance:
     - target: {fileID: 288950689092072028, guid: 467cee09846352240b326aa5ceb1e096,
         type: 3}
       propertyPath: OnActivation.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 288950689092072028, guid: 467cee09846352240b326aa5ceb1e096,
         type: 3}
@@ -851,7 +852,7 @@ PrefabInstance:
     - target: {fileID: 288950689092072028, guid: 467cee09846352240b326aa5ceb1e096,
         type: 3}
       propertyPath: OnDeactivation.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 288950689092072028, guid: 467cee09846352240b326aa5ceb1e096,
         type: 3}

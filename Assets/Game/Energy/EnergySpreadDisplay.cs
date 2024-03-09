@@ -92,7 +92,7 @@ public class EnergySpreadDisplay : SelectableDisplay<EnergySpreadController>
 
     protected override void RemoveSelectionDisplay()
     {
-        if (_controller != null) _controller.OnSpendersChanged.AddListener(RefreshSelectors);
+        if (_controller != null) _controller.OnSpendersChanged.RemoveListener(RefreshSelectors);
         container.SetActive(false);
         layout.Clear();
         _selectors.Clear();

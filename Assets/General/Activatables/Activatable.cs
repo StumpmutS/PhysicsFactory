@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class Activatable : MonoBehaviour
 {
-    public UnityEvent OnActivation;
-    public UnityEvent OnDeactivation;
+    public UnityEvent OnActivation = new();
+    public UnityEvent OnDeactivation = new();
 
     private bool _active;
     

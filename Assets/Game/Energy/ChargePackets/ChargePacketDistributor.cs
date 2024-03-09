@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,6 +17,7 @@ public class ChargePacketDistributor : ChargePacketSender, IChargePacketReceiver
     {
         _distributablePackets.Add(packet);
         packet.OnChargeUpdated += HandleDistributableChargeUpdated;
+        packet.OnPacketReleased += HandlePacketReleased;
         HandleDistributableChargeUpdated(packet);
     }
 
@@ -23,6 +25,14 @@ public class ChargePacketDistributor : ChargePacketSender, IChargePacketReceiver
     {
         UpdateMaxCharge();
         OnChargeUpdate.Invoke();
+    }
+
+    private void HandlePacketReleased(ChargePacket packet)
+    {
+        if (!_distributablePackets.Remove(packet)) return;
+        
+        UnsubscribePacket(packet);
+        HandleDistributableChargeUpdated(packet);
     }
 
     protected override void HandlePacketChargeRequest(ChargePacket packet, SignedFloat value)
@@ -43,5 +53,19 @@ public class ChargePacketDistributor : ChargePacketSender, IChargePacketReceiver
     {
         var rawMax = _distributablePackets.Sum(p => p.CurrentCharge.Value + p.AvailableCharge);
         SetMaxCharge(EnergyConversionHelpers.ConvertEnergy(converters, rawMax));
+    }
+
+    private void OnDestroy()
+    {
+        foreach (var packet in _distributablePackets)
+        {
+            UnsubscribePacket(packet);
+        }
+    }
+
+    private void UnsubscribePacket(ChargePacket packet)
+    {
+        if (packet != null) packet.OnChargeUpdated -= HandleDistributableChargeUpdated;
+        if (packet != null) packet.OnPacketReleased -= HandlePacketReleased;
     }
 }
