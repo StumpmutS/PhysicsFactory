@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using Utility.Scripts.Extensions;
@@ -14,6 +15,11 @@ public class FloatInputController : MonoBehaviour
     private void Awake()
     {
         inputField.onValueChanged.AddListener(HandleInput);
+    }
+
+    private void Start()
+    {
+        HandleInput(inputField.text);
     }
 
     private void HandleInput(string s)

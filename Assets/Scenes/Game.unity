@@ -4993,7 +4993,6 @@ GameObject:
   - component: {fileID: 876229853}
   - component: {fileID: 876229856}
   - component: {fileID: 876229857}
-  - component: {fileID: 876229858}
   - component: {fileID: 876229859}
   m_Layer: 5
   m_Name: SelectedMenu
@@ -5175,22 +5174,6 @@ MonoBehaviour:
     type: 3}
   layout: {fileID: 1199241709}
   sizeLabel: Size
---- !u!114 &876229858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 876229849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 995cc81205064f5fb2fd1ca2709553de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  container: {fileID: 1428204977}
-  layout: {fileID: 625268150}
-  togglePrefab: {fileID: 3434147456740525637, guid: d0ebc34070e2f2447a4e3b1d5f716150,
-    type: 3}
 --- !u!114 &876229859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7756,7 +7739,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   service: {fileID: 1098288976}
-  togglePrefab: {fileID: 0}
+  togglePrefab: {fileID: 3378792141780570565, guid: 40ea79de0fa109449bf0501c760d74ef,
+    type: 3}
   toggleContextualData:
     hoverDisplay: 0
     hoverTime:
