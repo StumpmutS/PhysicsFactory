@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60720b370d724520bb8fad94ae54cae9, type: 3}
   m_Name: EditorWall
   m_EditorClassIdentifier: 
-  buildingPlacementData:
-    label: Wall
+  placementData:
+    context:
+      Label: Wall
+      Summary: 
+      KeyCombinations: []
+      ContextReferences: []
     placementProcessors:
     - {fileID: 11400000, guid: 2ef8dcb25476e80439994195df99b0e0, type: 2}
     - {fileID: 11400000, guid: 633968ce90662f143929580f9b480783, type: 2}
     - {fileID: 11400000, guid: 1ea7ac8441cb0f741bcf5984e5a9ebd9, type: 2}
     - {fileID: 11400000, guid: 74bdcc25efe109e4295e93950c207398, type: 2}
     placementRestrictions: []
-    saleRestrictionRefs: []
     previewPrefab: {fileID: 3097565862757685009, guid: 74c2025a3b8515340a91c1be52740720,
       type: 3}
     anchorCellAmount: 4
