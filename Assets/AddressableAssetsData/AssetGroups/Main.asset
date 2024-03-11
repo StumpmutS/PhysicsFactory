@@ -16,7 +16,17 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 1eb20dbe0413fe54d8989fc9d0bfa1d4
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 0a81ecd8eb936d44dbc701de02c87338
+    m_Address: Assets/Game/Placeables/LevelEditor/SpecialExtractionSite/SessionSpecialExtractionSite.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0f5da56734308d4d980c86e663a076c
+    m_Address: Assets/Game/Placeables/LevelEditor/SpecialExtractionSite/EditorSpecialExtractionSite.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d2d3607da753be649add1ec63153bacd, type: 2}
   m_SchemaSet:

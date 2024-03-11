@@ -1,4 +1,5 @@
 ﻿public enum EResourceType
 {
-    Default
+    Default,
+    Special
 }
