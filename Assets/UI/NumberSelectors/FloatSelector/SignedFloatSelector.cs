@@ -41,4 +41,9 @@ public class SignedFloatSelector : MonoBehaviour
     {
         OnChanged.Invoke(_callbackObj, SignedFloat);
     }
+
+    public void UpdateMax(float newMax)
+    {
+        _maxValue = newMax;
+    }
 }

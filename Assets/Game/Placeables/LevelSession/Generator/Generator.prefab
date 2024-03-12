@@ -237,6 +237,9 @@ GameObject:
   - component: {fileID: 3212717737895028727}
   - component: {fileID: 1619538960554571032}
   - component: {fileID: 1239597809014037526}
+  - component: {fileID: 3056133272902198065}
+  - component: {fileID: 1590242723620304844}
+  - component: {fileID: 1160434441593024319}
   m_Layer: 7
   m_Name: GeneratorMain
   m_TagString: Untagged
@@ -447,7 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingRange: 9
-  maxRange: 9
+  startingMaxRange: 9
   layerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -467,6 +470,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnMaxRangeUpdated:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5633931920916618137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +541,63 @@ MonoBehaviour:
   generator: {fileID: 1757536320219594119}
   autoConnector: {fileID: 8020193255096309217}
   finder: {fileID: 1551491421839816752}
+--- !u!114 &3056133272902198065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7723004265237654679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8312cf4a7024c31bc88ed38e796a8d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgrades:
+  - {fileID: 11400000, guid: 57be587ae2344f142ad9f3ecefff24e1, type: 2}
+  placeable: {fileID: 8603222302506079921}
+  OnUpgrade:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDowngrade:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1590242723620304844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7723004265237654679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f734e75d4847998f27e6a3e72c46f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeFinder: {fileID: 1551491421839816752}
+  levelRanges:
+    keys: 0000000001000000
+    values:
+    - 9
+    - 18
+--- !u!114 &1160434441593024319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7723004265237654679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950154096d3a43698f9e927539dbe66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generator: {fileID: 1757536320219594119}
+  energyRanges:
+    keys: 0000000001000000
+    values:
+    - 10
+    - 60
 --- !u!1001 &1297693354741087531
 PrefabInstance:
   m_ObjectHideFlags: 0

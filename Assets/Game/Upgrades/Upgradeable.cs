@@ -33,7 +33,7 @@ public class Upgradeable : MonoBehaviour, IRefreshable, ISellable, ISaveable<Sav
 
     public UnityEvent OnUpgrade = new();
     public UnityEvent OnDowngrade = new();
-    public event Action OnRefresh;
+    public event Action OnRefresh = delegate { };
     
     public bool TryUpgrade(RestrictionFailureInfo failureInfo)
     {
@@ -43,7 +43,7 @@ public class Upgradeable : MonoBehaviour, IRefreshable, ISellable, ISaveable<Sav
 
         Level++;
         OnUpgrade.Invoke();
-        OnRefresh?.Invoke();
+        OnRefresh.Invoke();
         return true;
     }
     
@@ -55,7 +55,7 @@ public class Upgradeable : MonoBehaviour, IRefreshable, ISellable, ISaveable<Sav
 
         Level--;
         OnDowngrade.Invoke();
-        OnRefresh?.Invoke();
+        OnRefresh.Invoke();
         return true;
     }
 
@@ -73,6 +73,7 @@ public class Upgradeable : MonoBehaviour, IRefreshable, ISellable, ISaveable<Sav
     {
         Level = data.Level;
 
+        OnRefresh.Invoke();
         return LoadingInfo.Completed(data, ELoadCompletionStatus.Succeeded);
     }
 }

@@ -182,7 +182,7 @@ MonoBehaviour:
         m_SubObjectType: 
         m_EditorAssetChanged: 0
     SupplyData:
-      Supply: 200
+      Supply: 90
     SaveableObjectSaveData:
     - Id: 1030
       PrefabReferenceIds:

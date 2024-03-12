@@ -8,13 +8,23 @@ public class NodeFinderDisplay : SelectableDisplay<EnergyNodeFinder>
     [SerializeField] private LayoutDisplay layout;
     [SerializeField] private string sizeLabel = "Size";
 
+    private EnergyNodeFinder _nodeFinder;
+    private SignedFloatSelector _selector;
+    
     protected override void SetupSelectionDisplay(EnergyNodeFinder nodeFinder)
     {
         container.SetActive(true);
-        var selector = CreateFloatSelector(nodeFinder);
-        selector.OnChanged.AddListener(HandleSelectorChanged);
-        if (selector.transform is not RectTransform rectTransform) return;
+        _nodeFinder = nodeFinder;
+        _nodeFinder.OnMaxRangeUpdated.AddListener(HandleMaxRangeUpdate);
+        _selector = CreateFloatSelector(_nodeFinder);
+        _selector.OnChanged.AddListener(HandleSelectorChanged);
+        if (_selector.transform is not RectTransform rectTransform) return;
         layout.Add(rectTransform);
+    }
+
+    private void HandleMaxRangeUpdate(float newMaxRange)
+    {
+        _selector.UpdateMax(newMaxRange);
     }
 
     private void HandleSelectorChanged(object obj, SignedFloat value)
@@ -34,6 +44,7 @@ public class NodeFinderDisplay : SelectableDisplay<EnergyNodeFinder>
 
     protected override void RemoveSelectionDisplay()
     {
+        if (_nodeFinder != null) _nodeFinder.OnMaxRangeUpdated.RemoveListener(HandleMaxRangeUpdate);
         container.SetActive(false);
         layout.Clear();
     }

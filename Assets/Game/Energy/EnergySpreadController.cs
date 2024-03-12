@@ -10,7 +10,9 @@ public class EnergySpreadController : MonoBehaviour, ISaveable<SaveableObjectSav
     [SerializeField] private ChargePacketDistributor packetDistributor;
     [SerializeField] private List<Component> startingSpenders;
 
-    public float CurrentTotal => Spenders.Sum(s => s.ChargePacket.CurrentCharge.Value);
+    public float CurrentTotal => Spenders
+        .Where(c => c.ChargePacket != null)
+        .Sum(c => c.ChargePacket.CurrentCharge.Value);
     public float MaxTotal => CurrentTotal + packetDistributor.AvailableCharge;
     public HashSet<IChargeable> Spenders { get; private set; } = new();
 
@@ -40,11 +42,14 @@ public class EnergySpreadController : MonoBehaviour, ISaveable<SaveableObjectSav
 
     public void RegisterSpender(IChargeable spender)
     {
-        if (!Spenders.Add(spender)) return;
+        if (Spenders.Contains(spender)) return; // Using contains instead of add is intentional
         
         var packet = packetDistributor.RequestChargePacket();
         spender.ChargePacket = packet;
         spender.ChargePacket.OnChargeUpdated += HandlePacketUpdated;
+
+        Spenders.Add(spender);
+        
         OnSpendersChanged.Invoke();
     }
 
