@@ -16,4 +16,12 @@ public class MaterialPairs : ScriptableObject
     {
         return materials.TryGetValue(material, out foundMaterial);
     }
+
+    public bool IsPair(Material materialA, Material materialB)
+    {
+        TryGetZWriteOffMaterial(materialA, out var foundB);
+        TryGetZWriteOffMaterial(materialB, out var foundA);
+
+        return foundA == materialA || foundB == materialB;
+    }
 }

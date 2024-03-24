@@ -124,10 +124,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5761148512493090633}
-  - component: {fileID: 3352789661824915257}
   - component: {fileID: 7136622694699963498}
   - component: {fileID: 8538065452563219743}
   - component: {fileID: 7921706125846843774}
+  - component: {fileID: 4970971358980327536}
   m_Layer: 3
   m_Name: Dolboid
   m_TagString: Untagged
@@ -151,20 +151,6 @@ Transform:
   - {fileID: 2977681234789903729}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3352789661824915257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5329831554418432110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d31a682ee9f99b41a670ede4d36cc44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingInfo:
-    mass: 1
 --- !u!54 &7136622694699963498
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -225,3 +211,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bbd35831a3b4d3291af01e99d005ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnResourceDataChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &4970971358980327536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5329831554418432110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e92179da4af4f328caef3c87cd37360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryRenderer: {fileID: 1820733192417672950}
+  secondaryRenderers: []
+  materialPairs: {fileID: 11400000, guid: 0f37b19fd943c174a8aaea155a1d47ee, type: 2}

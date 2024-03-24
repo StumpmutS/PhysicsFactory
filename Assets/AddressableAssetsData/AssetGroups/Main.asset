@@ -27,6 +27,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38fdc7123d798014884f5cb4f5814a14
+    m_Address: Assets/Game/Placeables/LevelEditor/StormHazard/SessionStorm.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 95e7879522095894cb844b6c8ba13ed6
+    m_Address: Assets/Game/Placeables/LevelEditor/StormHazard/EditorStorm.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: d2d3607da753be649add1ec63153bacd, type: 2}
   m_SchemaSet:

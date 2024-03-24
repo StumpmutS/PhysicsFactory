@@ -1,0 +1,375 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007c9d51215e4123a2ebbf0dbfc3db21, type: 3}
+  m_Name: Stormy
+  m_EditorClassIdentifier: 
+  LevelData:
+    LevelInfo:
+      SerializableGuid:
+        stringGuid: fae6b5b4-242b-4688-b153-351ebbf855e3
+      Name: Stormy
+      SerializableLastUpdatedTimeStamp:
+        stringDate: 03/21/2024 01:37:30
+    AssetRefCollection:
+      references:
+      - m_AssetGUID: cc243238367b75847b71c26217872531
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 33691f24951d46a4981eae0e13caee6b
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: edfd6fe33f8e1c54680c52b1269cf0e7
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 38fdc7123d798014884f5cb4f5814a14
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 95e7879522095894cb844b6c8ba13ed6
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 33691f24951d46a4981eae0e13caee6b
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: edfd6fe33f8e1c54680c52b1269cf0e7
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 33691f24951d46a4981eae0e13caee6b
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: edfd6fe33f8e1c54680c52b1269cf0e7
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 33691f24951d46a4981eae0e13caee6b
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: edfd6fe33f8e1c54680c52b1269cf0e7
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 7be1b72d585c53947b90658d2c0c7538
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 1d84f788566d2db4393ce03a92c7c765
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 33691f24951d46a4981eae0e13caee6b
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: edfd6fe33f8e1c54680c52b1269cf0e7
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: b6a073ae7837fc646a7088a63b7023da
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 8eeb3e60c071cde4dae8cf02a5c50e13
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      - m_AssetGUID: 8a5a49d3dd4e58a4ea9fbbf2e405f0e3
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+    SupplyData:
+      Supply: 1000
+    SaveableObjectSaveData:
+    - Id: 1
+      PrefabReferenceIds:
+        keys: 00000000
+        values: 00000000
+      PlacedSaveData:
+        data:
+          contextData:
+            Label: Generator
+            Summary: Generates energy
+            KeyCombinations: []
+            ContextReferences: []
+          volume: 1
+          price: 0
+          saleMultiplier: 0
+          transformData:
+            WorldPosition: {x: 0, y: 1.5, z: 1.5}
+            WorldRotation: {x: -0, y: -0, z: -0, w: 1}
+            LocalScale: {x: 1, y: 1, z: 1}
+      UpgradeSaveData:
+        Level: 0
+      ModificationSaveData:
+        ActiveModificationIndexes: 
+      GeneratorSaveData:
+        ChargeGenerated: 10
+        Locked: 0
+        Range: 9
+      NodeSaveData:
+        ConnectionSaveData: []
+      EnergySpreadSaveData:
+        Spread:
+          keys: []
+          values: []
+      ExtractorSaveData:
+        ExtractableId: 0
+    - Id: 1028
+      PrefabReferenceIds:
+        keys: 0000000001000000
+        values: 0100000002000000
+      PlacedSaveData:
+        data:
+          contextData:
+            Label: Wall
+            Summary: 
+            KeyCombinations: []
+            ContextReferences: []
+          volume: 54
+          price: 0
+          saleMultiplier: 0
+          transformData:
+            WorldPosition: {x: 0, y: -3.5, z: 7.5}
+            WorldRotation: {x: 0, y: 0, z: 0, w: 1}
+            LocalScale: {x: 6, y: 1, z: 9}
+      UpgradeSaveData:
+        Level: 0
+      ModificationSaveData:
+        ActiveModificationIndexes: 
+      GeneratorSaveData:
+        ChargeGenerated: 0
+        Locked: 0
+        Range: 0
+      NodeSaveData:
+        ConnectionSaveData: []
+      EnergySpreadSaveData:
+        Spread:
+          keys: []
+          values: []
+      ExtractorSaveData:
+        ExtractableId: 0
+    - Id: 1024
+      PrefabReferenceIds:
+        keys: 0000000001000000
+        values: 0300000004000000
+      PlacedSaveData:
+        data:
+          contextData:
+            Label: Storm
+            Summary: Electrical Hazard
+            KeyCombinations: []
+            ContextReferences: []
+          volume: 90.00004
+          price: 0
+          saleMultiplier: 0
+          transformData:
+            WorldPosition: {x: 0, y: -1.5, z: 5.5}
+            WorldRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+            LocalScale: {x: 6, y: 5.000001, z: 3.0000007}
+      UpgradeSaveData:
+        Level: 0
+      ModificationSaveData:
+        ActiveModificationIndexes: 
+      GeneratorSaveData:
+        ChargeGenerated: 0
+        Locked: 0
+        Range: 0
+      NodeSaveData:
+        ConnectionSaveData: []
+      EnergySpreadSaveData:
+        Spread:
+          keys: []
+          values: []
+      ExtractorSaveData:
+        ExtractableId: 0
+    - Id: 1025
+      PrefabReferenceIds:
+        keys: 0000000001000000
+        values: 0500000006000000
+      PlacedSaveData:
+        data:
+          contextData:
+            Label: Wall
+            Summary: 
+            KeyCombinations: []
+            ContextReferences: []
+          volume: 45
+          price: 0
+          saleMultiplier: 0
+          transformData:
+            WorldPosition: {x: 3.5, y: -1.5, z: 7.5}
+            WorldRotation: {x: 0, y: 0, z: 0, w: 1}
+            LocalScale: {x: 1, y: 5, z: 9}
+      UpgradeSaveData:
+        Level: 0
+      ModificationSaveData:
+        ActiveModificationIndexes: 
+      GeneratorSaveData:
+        ChargeGenerated: 0
+        Locked: 0
+        Range: 0
+      NodeSaveData:
+        ConnectionSaveData: []
+      EnergySpreadSaveData:
+        Spread:
+          keys: []
+          values: []
+      ExtractorSaveData:
+        ExtractableId: 0
+    - Id: 1026
+      PrefabReferenceIds:
+        keys: 0000000001000000
+        values: 0700000008000000
+      PlacedSaveData:
+        data:
+          contextData:
+            Label: Wall
+            Summary: 
+            KeyCombinations: []
+            ContextReferences: []
+          volume: 63.00003
+          price: 0
+          saleMultiplier: 0
+          transformData:
+            WorldPosition: {x: -0.5, y: 0.5, z: 7.5}
+            WorldRotation: {x: 0, y: -0.7071068, z: -0, w: 0.7071068}
+            LocalScale: {x: 9.000002, y: 1, z: 7.000002}
+      UpgradeSaveData:
+        Level: 0
+      ModificationSaveData:
+        ActiveModificationIndexes: 
+      GeneratorSaveData:
+        ChargeGenerated: 0
+        Locked: 0
+        Range: 0
+      NodeSaveData:
+        ConnectionSaveData: []
+      EnergySpreadSaveData:
+        Spread:
+          keys: []
+          values: []
+      ExtractorSaveData:
+        ExtractableId: 0
+    - Id: 1027
+      PrefabReferenceIds:
+        keys: 0000000001000000
+        values: 090000000a000000
+      PlacedSaveData:
+        data:
+          contextData:
+            Label: Wall
+            Summary: 
+            KeyCombinations: []
+            ContextReferences: []
+          volume: 36
+          price: 0
+          saleMultiplier: 0
+          transformData:
+            WorldPosition: {x: -3.5, y: -2, z: 7.5}
+            WorldRotation: {x: 0, y: 0, z: 0, w: 1}
+            LocalScale: {x: 1, y: 4, z: 9}
+      UpgradeSaveData:
+        Level: 0
+      ModificationSaveData:
+        ActiveModificationIndexes: 
+      GeneratorSaveData:
+        ChargeGenerated: 0
+        Locked: 0
+        Range: 0
+      NodeSaveData:
+        ConnectionSaveData: []
+      EnergySpreadSaveData:
+        Spread:
+          keys: []
+          values: []
+      ExtractorSaveData:
+        ExtractableId: 0
+    - Id: 1029
+      PrefabReferenceIds:
+        keys: 0000000001000000
+        values: 0b0000000c000000
+      PlacedSaveData:
+        data:
+          contextData:
+            Label: Extraction Site
+            Summary: 
+            KeyCombinations: []
+            ContextReferences: []
+          volume: 54.00002
+          price: 0
+          saleMultiplier: 0
+          transformData:
+            WorldPosition: {x: 0, y: -1.5, z: 10.5}
+            WorldRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+            LocalScale: {x: 6, y: 3.0000005, z: 3.0000005}
+      UpgradeSaveData:
+        Level: 0
+      ModificationSaveData:
+        ActiveModificationIndexes: 
+      GeneratorSaveData:
+        ChargeGenerated: 0
+        Locked: 0
+        Range: 0
+      NodeSaveData:
+        ConnectionSaveData: []
+      EnergySpreadSaveData:
+        Spread:
+          keys: []
+          values: []
+      ExtractorSaveData:
+        ExtractableId: 0
+    - Id: 1030
+      PrefabReferenceIds:
+        keys: 0000000001000000
+        values: 0d0000000e000000
+      PlacedSaveData:
+        data:
+          contextData:
+            Label: Wall
+            Summary: 
+            KeyCombinations: []
+            ContextReferences: []
+          volume: 36.00001
+          price: 0
+          saleMultiplier: 0
+          transformData:
+            WorldPosition: {x: 0, y: -1.5, z: 12}
+            WorldRotation: {x: 0, y: -0.7071068, z: -0, w: 0.7071068}
+            LocalScale: {x: 2.0000005, y: 3, z: 6.0000005}
+      UpgradeSaveData:
+        Level: 0
+      ModificationSaveData:
+        ActiveModificationIndexes: 
+      GeneratorSaveData:
+        ChargeGenerated: 0
+        Locked: 0
+        Range: 0
+      NodeSaveData:
+        ConnectionSaveData: []
+      EnergySpreadSaveData:
+        Spread:
+          keys: []
+          values: []
+      ExtractorSaveData:
+        ExtractableId: 0
+    PlacementSaveData:
+      PlacementAssetRefIds: 0f0000001000000011000000
+    Options:
+      keys: []
+      values: []

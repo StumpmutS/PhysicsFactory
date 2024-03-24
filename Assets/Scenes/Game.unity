@@ -3973,6 +3973,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8bb9be79ffb992e4cbf5e8ca1ee5d50b, type: 2}
   - {fileID: 11400000, guid: 80edb85c7a717604e8689243e07be5cc, type: 2}
   - {fileID: 11400000, guid: 756424efcc0f52d4ea144c8850203feb, type: 2}
+  - {fileID: 11400000, guid: 1d5b4a02130e5f54797279a8593c867c, type: 2}
   persistenceHandler: {fileID: 1097567672}
   OnPlacementReady:
     m_PersistentCalls:
@@ -6878,9 +6879,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceModifiers:
-    keys: 00000000
+    keys: 0000000002000000
     values:
     - List: []
+    - List:
+      - {fileID: 11400000, guid: fc001ae6600fb4a4c818e9a53782b575, type: 2}
 --- !u!1 &1063196980
 GameObject:
   m_ObjectHideFlags: 0

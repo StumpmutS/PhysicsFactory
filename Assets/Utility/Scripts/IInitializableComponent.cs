@@ -1,4 +1,6 @@
-﻿namespace Utility.Scripts
+﻿using UnityEngine;
+
+namespace Utility.Scripts
 {
     public interface IInitializableComponent<T>
     {

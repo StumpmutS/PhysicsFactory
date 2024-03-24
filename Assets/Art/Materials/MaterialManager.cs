@@ -14,7 +14,7 @@ public class MaterialManager : MonoBehaviour
     private Material _materialReference;
     private bool _zWrite;
     private Material _materialInstance;
-    private Material MaterialInstance
+    public Material MaterialInstance
     {
         get
         {
@@ -25,9 +25,11 @@ public class MaterialManager : MonoBehaviour
             SetMaterial(_materialInstance);
             return _materialInstance;
         }
-        set => _materialInstance = value;
+        private set => _materialInstance = value;
     }
     private Dictionary<int, Action<int, Material>> _materialActions = new();
+    private Dictionary<int, Action<int, Material>> _persistentMaterialActions = new();
+    private Dictionary<int, object> _persistentCallers = new();
 
     private void Awake()
     {
@@ -40,9 +42,32 @@ public class MaterialManager : MonoBehaviour
         _materialActions[propertyId] = materialAction;
         materialAction.Invoke(propertyId, MaterialInstance);
     }
+
+    public void ModifyMaterialPersistent(int propertyId, Action<int, Material> materialAction, object caller)
+    {
+        _persistentMaterialActions[propertyId] = materialAction;
+        _persistentCallers[propertyId] = caller;
+        materialAction.Invoke(propertyId, MaterialInstance);
+    }
+
+    public void RemovePersistentModification(int propertyId, object caller)
+    {
+        if (!_persistentCallers.TryGetValue(propertyId, out var currentCaller) || currentCaller != caller) return;
+        
+        _persistentCallers.Remove(propertyId);
+        _persistentMaterialActions.Remove(propertyId);
+    }
     
+    /// <summary>
+    /// Swaps material, applying persistent modifiers and conditionally applying non-persistent modifiers
+    /// </summary>
+    /// <param name="material">Material to swap</param>
+    /// <param name="checkZWrite">Will use correct Z Write Material variant if set to true</param>
+    /// <returns>Material that has been swapped</returns>
     public Material SwapMaterial(Material material, bool checkZWrite = true)
     {
+        if (material == _materialReference) return material;
+        
         if (checkZWrite && MaterialHelper.IsZWriteMaterial(material, out var zWrite))
         {
             if (zWrite != _zWrite)
@@ -56,11 +81,26 @@ public class MaterialManager : MonoBehaviour
         _materialReference = material;
         SetMaterial(material);
         
-        foreach (var actionKvp in _materialActions)
+        if (materialPairs.IsPair(prevReference, _materialReference))
         {
-            actionKvp.Value.Invoke(actionKvp.Key, MaterialInstance);
+            InvokeActions(_materialActions);
         }
+        else
+        {
+            _materialActions.Clear();
+        }
+        
+        InvokeActions(_persistentMaterialActions);
+        
         return prevReference;
+    }
+
+    private void InvokeActions(Dictionary<int, Action<int, Material>> actions)
+    {
+        foreach (var kvp in actions)
+        {
+            kvp.Value.Invoke(kvp.Key, MaterialInstance);
+        }
     }
 
     private void SetMaterial(Material material)
@@ -79,7 +119,7 @@ public class MaterialManager : MonoBehaviour
         
         if (materialPairs.TryGetZWriteOnMaterial(_materialReference, out var zOnMaterial))
         {
-            SwapMaterial(zOnMaterial, false);
+            SwapMaterial(zOnMaterial, checkZWrite: false);
         }
     }
 
@@ -90,7 +130,7 @@ public class MaterialManager : MonoBehaviour
         
         if (materialPairs.TryGetZWriteOffMaterial(_materialReference, out var zOffMaterial))
         {
-            SwapMaterial(zOffMaterial, false);
+            SwapMaterial(zOffMaterial, checkZWrite: false);
         }
     }
 

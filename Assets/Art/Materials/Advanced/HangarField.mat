@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HangarField
-  m_Shader: {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 559318733078b1d48b8eaa35177de5e2,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -17,12 +18,12 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
-  - SHADOWCASTER
   - DepthOnly
+  - SHADOWCASTER
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -90,6 +91,8 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BlendOp: 0
+    - _BlurScale: 25
+    - _BlurSpeed: 0.005
     - _BumpScale: 1
     - _CastShadows: 0
     - _ClearCoatMask: 0
@@ -105,8 +108,10 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _LineScale: 8
     - _Metallic: 0
     - _OcclusionStrength: 1
+    - _Offset: 5
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -124,7 +129,7 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _BaseColor: {r: 0.3725489, g: 0.62352943, b: 1, a: 0.2}
-    - _Color: {r: 0.37254888, g: 0.62352943, b: 1, a: 0.2}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.6}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

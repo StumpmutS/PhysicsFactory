@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60720b370d724520bb8fad94ae54cae9, type: 3}
+  m_Name: EditorStorm
+  m_EditorClassIdentifier: 
+  placementData:
+    context:
+      Label: Storm
+      Summary: Electrical Hazard
+      KeyCombinations: []
+      ContextReferences: []
+    placementProcessors:
+    - {fileID: 11400000, guid: 1e19ebcf55dcd164aa4f54f407548214, type: 2}
+    - {fileID: 11400000, guid: 8d55d2dcfb99c724daf0f8e089fec713, type: 2}
+    - {fileID: 11400000, guid: 5e21ff0079346b54aa5a2eb173882ad0, type: 2}
+    - {fileID: 11400000, guid: 2137769a72138b642b240c7a96617bd9, type: 2}
+    placementRestrictions: []
+    previewPrefab: {fileID: 3097565862757685009, guid: d6e6eaa904eb6ee4d837c96ec46c580e,
+      type: 3}
+    anchorCellAmount: 4
+    price: 0
+    saleMultiplier: 0

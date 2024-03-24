@@ -1,5 +1,6 @@
 ﻿public enum EResourceType
 {
     Default,
-    Special
+    Special,
+    Electrocuted,
 }

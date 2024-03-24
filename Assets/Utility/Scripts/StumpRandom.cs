@@ -5,6 +5,14 @@ namespace Utility.Scripts
 {
     public class StumpRandom
     {
+        /// <summary>
+        /// Generates an amount of random unique numbers in given range.
+        /// Works better the larger the range is compared to the amount
+        /// </summary>
+        /// <param name="minInclusive">Range min inclusive</param>
+        /// <param name="maxExclusive">Range max exclusive</param>
+        /// <param name="amount">Amount of numbers to generate</param>
+        /// <returns>Generated numbers</returns>
         public static IEnumerable<int> FastSample(int minInclusive, int maxExclusive, int amount)
         {
             if (maxExclusive - minInclusive < amount)
@@ -22,6 +30,13 @@ namespace Utility.Scripts
             return numbers;
         }
         
+        /// <summary>
+        /// Generates an amount of random unique numbers in given range
+        /// </summary>
+        /// <param name="minInclusive">Range min inclusive</param>
+        /// <param name="maxExclusive">Range max exclusive</param>
+        /// <param name="amount">Amount of numbers to generate</param>
+        /// <returns>Generated numbers</returns>
         public static IEnumerable<int> SafeSample(int minInclusive, int maxExclusive, int amount)
         {
             if (maxExclusive - minInclusive < amount)
