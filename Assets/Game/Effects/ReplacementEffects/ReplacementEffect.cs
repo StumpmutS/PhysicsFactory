@@ -3,19 +3,19 @@ using Utility.Scripts.Extensions;
 
 public abstract class ReplacementEffect<TData, TReplacer> : Effect where TReplacer : Replacer<TData>
 {
-    [SerializeField] private TData data;
+    protected abstract TData Data { get; }
     
-    public override void ApplyEffect(GameObject go)
+    public override void ApplyEffect(EffectData effectData)
     {
-        var replacer = go.AddOrGetComponent<TReplacer>();
-        replacer.InitReplacement(data);
+        var replacer = effectData.GameObject.AddOrGetComponent<TReplacer>();
+        replacer.InitReplacement(Data);
     }
 
-    public override void RemoveEffect(GameObject go)
+    public override void RemoveEffect(EffectData effectData)
     {
-        if (go.TryGetComponent<TReplacer>(out var replacer))
+        if (effectData.GameObject.TryGetComponent<TReplacer>(out var replacer))
         {
-            replacer.StopReplacement(data);
+            replacer.StopReplacement(Data);
         }
     }
 }

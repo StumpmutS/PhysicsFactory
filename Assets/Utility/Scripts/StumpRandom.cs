@@ -93,5 +93,15 @@ namespace Utility.Scripts
 
             return result;
         }
+
+        public static Vector3 SampleWorldPointInBoxCollider(BoxCollider boxCollider)
+        {
+            var extents = boxCollider.size / 2;
+            return new Vector3(Random.Range(-extents.x, extents.x), 
+                Random.Range(-extents.y, extents.y),
+                Random.Range(-extents.z, extents.z))
+                   + boxCollider.center
+                   + boxCollider.transform.position;
+        }
     }
 }

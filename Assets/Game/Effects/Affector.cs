@@ -7,23 +7,23 @@ public abstract class Affector : MonoBehaviour
     [SerializeField] private List<GameObjectRestriction> applicationRestrictions;
     [SerializeField] private List<GameObjectRestriction> removalRestrictions;
 
-    protected void TryApplyEffects(GameObject go)
+    protected void TryApplyEffects(EffectData data)
     {
-        if (!RestrictionHelper.TryPassRestrictions(applicationRestrictions, go, new RestrictionFailureInfo())) return;
+        if (!RestrictionHelper.TryPassRestrictions(applicationRestrictions, data.GameObject, new RestrictionFailureInfo())) return;
         
         foreach (var effect in effects)
         {
-            effect.ApplyEffect(go);
+            effect.ApplyEffect(data);
         }
     }
 
-    protected void RemoveEffects(GameObject go)
+    protected void RemoveEffects(EffectData data)
     {
-        if (!RestrictionHelper.TryPassRestrictions(removalRestrictions, go, new RestrictionFailureInfo())) return;
+        if (!RestrictionHelper.TryPassRestrictions(removalRestrictions, data.GameObject, new RestrictionFailureInfo())) return;
 
         foreach (var effect in effects)
         {
-            effect.RemoveEffect(go);
+            effect.RemoveEffect(data);
         }
     }
 }

@@ -90,6 +90,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -128,6 +130,7 @@ GameObject:
   - component: {fileID: 8538065452563219743}
   - component: {fileID: 7921706125846843774}
   - component: {fileID: 4970971358980327536}
+  - component: {fileID: 8059244623775994448}
   m_Layer: 3
   m_Name: Dolboid
   m_TagString: Untagged
@@ -229,3 +232,16 @@ MonoBehaviour:
   primaryRenderer: {fileID: 1820733192417672950}
   secondaryRenderers: []
   materialPairs: {fileID: 11400000, guid: 0f37b19fd943c174a8aaea155a1d47ee, type: 2}
+--- !u!114 &8059244623775994448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5329831554418432110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aaf4d22ac8302849b40c92fb07fd411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containerTransform: {fileID: 2977681234789903729}
