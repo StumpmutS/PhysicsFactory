@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7b0b8c365744abeb95c9125fe4df177, type: 3}
   m_Name: ElectrocutedResourceReplacementEffect
   m_EditorClassIdentifier: 
-  data:
+  resourceData:
     resourceType: 2
     Amount: 1

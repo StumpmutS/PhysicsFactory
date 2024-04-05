@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e013ef1566e2465c9fbd4326f5034df8, type: 3}
   m_Name: ElectrocutedForceTorqueEffect
   m_EditorClassIdentifier: 
-  magnitude: 0
+  magnitude: 5

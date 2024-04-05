@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d31a939ae6a5432780f232bbdd8f805b, type: 3}
   m_Name: ElectrocutedVisualsCreationEffect
   m_EditorClassIdentifier: 
-  creatablePrefab: {fileID: 0}
+  creatablePrefab: {fileID: 6409427339169588994, guid: cd42c7cfd07d26b45ab11c97cebb8a1c,
+    type: 3}

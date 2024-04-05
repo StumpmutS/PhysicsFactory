@@ -45,6 +45,13 @@ namespace Utility.Scripts.Extensions
             return new Vector3(1 / vector3.x, 1 / vector3.y, 1 / vector3.z);
         }
 
+        public static float Volume(this Vector3 vector3)
+        {
+            var result = vector3.x * vector3.y * vector3.z;
+            if (result < 0) Debug.LogWarning("Volume is negative.");
+            return result;
+        }
+
         public static Vector3 IsolateAxis(this Vector3 vector3, Vector3 exclude = default, Vector3 prioritize = default)
         {
             //exclusion

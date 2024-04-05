@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e683adc5bac643e88b23c0796ac07f79, type: 3}
   m_Name: ElectrocutedMassReplacementEffect
   m_EditorClassIdentifier: 
-  data: 0.01
+  mass: 1

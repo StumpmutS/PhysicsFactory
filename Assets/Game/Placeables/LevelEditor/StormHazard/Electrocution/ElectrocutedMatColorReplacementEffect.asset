@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d14dacf6894061bc4d59bf910f2e4f, type: 3}
   m_Name: ElectrocutedMatColorReplacementEffect
   m_EditorClassIdentifier: 
-  data: {r: 0.73693085, g: 0, b: 1, a: 1}
+  color: {r: 2.1249392, g: 0, b: 21.361254, a: 1}
