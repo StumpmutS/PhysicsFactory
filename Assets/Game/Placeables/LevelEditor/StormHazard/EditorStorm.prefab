@@ -260,6 +260,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4c4d46e904da7c54b83ff6de388e7581, type: 2}
   - {fileID: 11400000, guid: f79c35b8437b9c541857bfb762a2cde4, type: 2}
   - {fileID: 11400000, guid: e9d176b9dfc0d2448984d17ee5a0cda3, type: 2}
+  - {fileID: 11400000, guid: e45e0db9ba576e24790a617738eeeec3, type: 2}
+  - {fileID: 11400000, guid: a782b51e8c049cd4a91cc1b2f2822595, type: 2}
   applicationRestrictions:
   - {fileID: 11400000, guid: b5fcb82a4ba683743aeb33141db49af9, type: 2}
   - {fileID: 11400000, guid: d6f754d2464f28248bd176e7f8c2a099, type: 2}

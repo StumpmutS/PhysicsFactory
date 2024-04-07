@@ -5,6 +5,24 @@ namespace Utility.Scripts.Extensions
 {
     public static class StumpVector3Extensions
     {
+        public static Vector3 SetX(Vector3 vector3, float x)
+        {
+            vector3.x = x;
+            return vector3;
+        }
+        
+        public static Vector3 SetY(Vector3 vector3, float y)
+        {
+            vector3.y = y;
+            return vector3;
+        }
+        
+        public static Vector3 SetZ(Vector3 vector3, float z)
+        {
+            vector3.z = z;
+            return vector3;
+        }
+        
         public static bool SetToCursorToWorldPosition(this ref Vector3 vector3)
         {
             var ray = MainCameraRef.Cam.ScreenPointToRay(Input.mousePosition);

@@ -10,8 +10,8 @@ public class ForceTorqueEffect : Effect
         if (!data.GameObject.TryGetComponent<Rigidbody>(out var rigidbody) ||
             !data.GameObject.TryGetComponent<Collider>(out var collider)) return;
 
-        var point = collider.ClosestPoint(data.EffectOrigin);
-        var direction = (point - data.EffectOrigin).normalized;
+        var point = collider.ClosestPoint(data.Origin);
+        var direction = (point - data.Origin).normalized;
 
         rigidbody.AddForceAtPosition(direction * magnitude, point, ForceMode.Impulse);
     }

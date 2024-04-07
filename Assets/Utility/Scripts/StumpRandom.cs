@@ -96,7 +96,8 @@ namespace Utility.Scripts
 
         public static Vector3 SampleWorldPointInBoxCollider(BoxCollider boxCollider)
         {
-            var extents = boxCollider.size / 2;
+            var orientedScale = boxCollider.transform.rotation * boxCollider.transform.localScale;
+            var extents = Vector3.Scale(boxCollider.size, orientedScale) / 2;
             return new Vector3(Random.Range(-extents.x, extents.x), 
                 Random.Range(-extents.y, extents.y),
                 Random.Range(-extents.z, extents.z))

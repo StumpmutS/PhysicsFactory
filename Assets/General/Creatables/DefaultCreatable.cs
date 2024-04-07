@@ -29,6 +29,6 @@ public class DefaultCreatable : Creatable
 
     public override void Dispose()
     {
-        Destroy(this);
+        Destroy(gameObject);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effects/Creation")]
-public class CreationEffect : Effect
+[CreateAssetMenu(menuName = "Effects/Creation/Target")]
+public class TargetCreationEffect : Effect
 {
     [SerializeField] private Creatable creatablePrefab;
     
@@ -9,13 +9,13 @@ public class CreationEffect : Effect
     {
         if (!data.GameObject.TryGetComponent<CreatableController>(out var controller)) return;
         
-        controller.Create(creatablePrefab, this);
+        controller.Create(creatablePrefab, data.GameObject);
     }
 
     public override void RemoveEffect(EffectData data)
     {
         if (!data.GameObject.TryGetComponent<CreatableController>(out var controller)) return;
         
-        controller.Dispose(creatablePrefab, this);
+        controller.Dispose(creatablePrefab, data.GameObject);
     }
 }

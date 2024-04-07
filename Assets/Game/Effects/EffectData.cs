@@ -3,11 +3,11 @@
 public struct EffectData
 {
     public GameObject GameObject;
-    public Vector3 EffectOrigin;
+    public Vector3 Origin;
 
-    public EffectData(GameObject gameObject, Vector3 effectOrigin)
+    public EffectData(GameObject gameObject, Vector3 origin)
     {
         GameObject = gameObject;
-        EffectOrigin = effectOrigin;
+        Origin = origin;
     }
 }

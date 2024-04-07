@@ -18,6 +18,11 @@ public class ResourceTypeRestriction : GameObjectRestriction
         var resourceType = resource.Data.ResourceType;
         
         if (matchType && resourceType != matchingType) return false;
-        return excludes.All(rt => rt != resourceType);
+        foreach (var excludedType in excludes)
+        {
+            if (excludedType == resourceType) return false;
+        }
+
+        return true;
     }
 }

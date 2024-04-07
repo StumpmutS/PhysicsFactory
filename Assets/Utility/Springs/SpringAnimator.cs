@@ -9,7 +9,6 @@ public class SpringAnimator : MonoBehaviour
     [SerializeField] private bool playOnEnable;
     [SerializeField] private List<SpringAnimationData> animationData;
 
-    private int _animationIndex;
     private float _timer;
 
     private void OnEnable()

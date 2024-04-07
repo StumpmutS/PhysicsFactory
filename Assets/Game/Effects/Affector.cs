@@ -6,7 +6,7 @@ public abstract class Affector : MonoBehaviour
     [SerializeField] private List<Effect> effects;
     [SerializeField] private List<GameObjectRestriction> applicationRestrictions;
     [SerializeField] private List<GameObjectRestriction> removalRestrictions;
-
+    
     protected void TryApplyEffects(EffectData data)
     {
         if (!RestrictionHelper.TryPassRestrictions(applicationRestrictions, data.GameObject, new RestrictionFailureInfo())) return;

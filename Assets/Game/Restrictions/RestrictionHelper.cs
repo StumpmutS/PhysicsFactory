@@ -24,9 +24,8 @@ public static class RestrictionHelper
 
     public static bool TryPassRestrictions<T>(IEnumerable<Restriction<T>> restrictions, T info, RestrictionFailureInfo failureInfo)
     {
-        var restrictionList = restrictions.ToList();
-        var passed = CheckRestrictions(restrictionList, info, failureInfo);
-        if (passed) PassRestrictions(restrictionList, info);
+        var passed = CheckRestrictions(restrictions, info, failureInfo);
+        if (passed) PassRestrictions(restrictions, info);
         return passed;
     }
 }

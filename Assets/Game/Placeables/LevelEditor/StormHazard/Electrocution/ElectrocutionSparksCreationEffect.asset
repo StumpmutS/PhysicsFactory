@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e013ef1566e2465c9fbd4326f5034df8, type: 3}
-  m_Name: ElectrocutedForceTorqueEffect
+  m_Script: {fileID: 11500000, guid: 7f2f3829b7904d8eba3d702dc5f1ea78, type: 3}
+  m_Name: ElectrocutionSparksCreationEffect
   m_EditorClassIdentifier: 
-  magnitude: 0
+  creatablePrefab: {fileID: 2175282589069200234, guid: 26ddfe2879a267c4fae920151eb15f55,
+    type: 3}
