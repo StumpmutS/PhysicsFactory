@@ -156,6 +156,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -579,7 +581,7 @@ MonoBehaviour:
     keys: 0000000001000000
     values:
     - 9
-    - 18
+    - 30
 --- !u!114 &1160434441593024319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,7 +599,7 @@ MonoBehaviour:
     keys: 0000000001000000
     values:
     - 10
-    - 60
+    - 200
 --- !u!1001 &1297693354741087531
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -40,8 +40,8 @@ public class StateMachine
 
     public void Tick()
     {
-        CheckTransitions();
         _currentState.Tick();
+        CheckTransitions();
     }
 
     private void CheckTransitions()
